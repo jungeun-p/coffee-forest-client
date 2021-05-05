@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Main from "../Pages/Main";
 import Signup from "../Pages/Signup";
 import Login from "../Pages/Login";
+import Admin from "../Pages/Admin";
 
 const MainRouter = () => {
   return (
@@ -18,6 +19,9 @@ const MainRouter = () => {
         </Route>
         <Route path="/signup">
           <Signup />
+        </Route>
+        <Route path="/admin">
+          <Admin />
         </Route>
       </Switch>
     </BrowserRouter>

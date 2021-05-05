@@ -40,7 +40,6 @@ const Signup = () => {
         value={ceo.businessNumber}
         onChange={onChange}
       />
-
       <div>
         <p>info</p>
         <input
