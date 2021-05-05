@@ -4,7 +4,7 @@ import Login from "../../System/User/Login";
 const LoginBody = () => {
   return (
     <div>
-      Login
+      Login 👋
       <Login />
     </div>
   );

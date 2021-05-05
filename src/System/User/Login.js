@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const Login = () => {
   const [user, setUser] = useState({
-    id: "",
+    email: "",
     pw: "",
   });
 
@@ -11,10 +11,21 @@ const Login = () => {
     setUser((state) => ({ ...state, [name]: value }));
   };
 
-  const onClick = () => {};
+  const onClick = () => {
+    if ((user.email && user.pw) === "") {
+      alert("모두 기입");
+    } else {
+      alert("success!");
+    }
+  };
   return (
     <div>
-      <input name="id" value={user.id} placeholder="id" onChange={onChange} />
+      <input
+        name="email"
+        value={user.email}
+        placeholder="email"
+        onChange={onChange}
+      />
       <input
         name="pw"
         value={user.pw}

@@ -1,10 +1,11 @@
 import React from "react";
-import SignBody from "./SignBody";
+import Signup from "../../System/User/Signup";
 
 const SignupContainer = () => {
   return (
     <div>
-      <SignBody />
+      <p>Sign(CEO)</p>
+      <Signup />
     </div>
   );
 };
