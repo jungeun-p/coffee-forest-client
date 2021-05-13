@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+### Coffee Foreset
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+***
 
-## Available Scripts
+**Overview** 
 
-In the project directory, you can run:
+해당 프로젝트는 규모가 작은 기업에서 활용할 수 있는 오픈소스 근태 관리 시스템이다.  
+현재 출근, 퇴근부와 간단한 일정 관리를 수기로 작성하거나 엑셀 등의 프로그램을 사용하여 작성하고 있는 기업에서 활용될 수 있으며,    
+아래와 같은 기능이 제공될 예정이다.    
 
-### `yarn start`
+- 출근 및 퇴근 시간을 기록하고 관리할 수 있는 기능
+- 연차 및 반차 등 직원의 휴가 일정을 기록하고 관리할 수 있는 기능
+- 기업의 특정 스케줄 및 이벤트를 기록하고 관리할 수 있는 기능
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+본 프로젝트는 기본적으로 웹 서비스 형태로 제공될 예정이며, 추후 React Native를 활용한 어플리케이션 개발 계획이 있음
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br>
 
-### `yarn test`
+***
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**How to use**
 
-### `yarn build`
+<br>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+***
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Environment**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<br>
 
-### `yarn eject`
+***
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Repository**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+*Frontend* - *https://github.com/jungeun-p/coffee-forest-client*   
+*Backend*  - *https://github.com/yh0921k/coffee-forest-server*
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<br>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+***
 
-## Learn More
+**Developed By**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+*YongHwi Kim* - *https://github.com/yh0921k*     
+*JungEun Park* - *https://github.com/jungeun-p* 
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<br>
