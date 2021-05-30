@@ -1,9 +1,10 @@
 import React from "react";
+import styled from "styled-components";
 
 const SignBody = ({ ceo, onChange, onClick }) => {
   return (
-    <div>
-      <div>
+    <SignForm>
+      <SignInformation>
         <p>company</p>
         <input
           name="companyName"
@@ -23,8 +24,8 @@ const SignBody = ({ ceo, onChange, onClick }) => {
           value={ceo.businessNumber}
           onChange={onChange}
         />
-      </div>
-      <div>
+      </SignInformation>
+      <SignInformation>
         <p>info</p>
         <input
           name="email"
@@ -51,10 +52,22 @@ const SignBody = ({ ceo, onChange, onClick }) => {
           value={ceo.position}
           onChange={onChange}
         />
-      </div>
+      </SignInformation>
       <button onClick={onClick}>회원가입</button>
-    </div>
+    </SignForm>
   );
 };
+
+const SignForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const SignInformation = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+`;
 
 export default SignBody;

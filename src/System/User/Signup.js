@@ -21,7 +21,7 @@ const Signup = () => {
   const onClick = () => {
     alert(ceo.position);
   };
-  return <Signform ceo={ceo} onChanges={onChange} onClick={onClick} />;
+  return <Signform ceo={ceo} onChange={onChange} onClick={onClick} />;
 };
 
 export default Signup;
