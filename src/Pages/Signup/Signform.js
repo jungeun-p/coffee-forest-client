@@ -13,9 +13,9 @@ const SignBody = ({ ceo, onChange, onClick }) => {
           onChange={onChange}
         />
         <input
-          name="address"
-          placeholder="address"
-          value={ceo.address}
+          name="companyAddress"
+          placeholder="companyAddress"
+          value={ceo.companyAddress}
           onChange={onChange}
         />
         <input
@@ -50,6 +50,12 @@ const SignBody = ({ ceo, onChange, onClick }) => {
           name="position"
           placeholder="position"
           value={ceo.position}
+          onChange={onChange}
+        />
+        <input
+          name="address"
+          placeholder="address"
+          value={ceo.address}
           onChange={onChange}
         />
       </SignInformation>

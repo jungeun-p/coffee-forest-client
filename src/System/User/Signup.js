@@ -3,14 +3,15 @@ import Signform from "../../Pages/Signup/Signform";
 
 const Signup = () => {
   const [ceo, setCeo] = useState({
-    companyName: "",
-    address: "",
-    businessNumber: "",
     email: "",
     pw: "",
     name: "",
     phone: "",
+    address: "",
     position: "",
+    companyName: "",
+    companyAddress: "",
+    businessNumber: "",
   });
 
   const onChange = (e) => {
