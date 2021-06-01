@@ -6,26 +6,32 @@ import {
 
 export const Types = {
   SetValue: "user/SetValue",
+  SignRequest: "user/SignRequest",
+  SignSuccess: "user/SignSuccess",
+  SignFail: "user/SignFail",
 };
 
 export const actions = {
   setValue: createSetValueAction(Types.SetValue),
+  signRequest: (user) => ({ type: Types.SignRequest, user }),
+  signSuccess: (token) => ({ type: Types.SignSuccess, token }),
+  signFail: () => ({ type: Types.SignFail }),
 };
 
 const INITIAL_STATE = {
-  email: "",
-  pw: "",
-  name: "",
-  phone: "",
-  address: "",
-  position: "",
-  companyName: "",
-  companyAddress: "",
-  businessNumber: "",
+  loading: false,
+  payload: {
+    token: "",
+  },
 };
 
 const reducer = createReducer(INITIAL_STATE, {
   [Types.SetValue]: setValueReducer,
+  [Types.SignRequest]: (state, action) => ({
+    ...state,
+    loading: true,
+    payload: { token: action.payload.token },
+  }),
 });
 
 export default reducer;

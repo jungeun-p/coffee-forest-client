@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const SignBody = ({ ceo, onChange, onClick }) => {
+const SignBody = ({ user, onChange, onClick }) => {
   return (
     <SignForm>
       <SignInformation>
@@ -9,19 +9,19 @@ const SignBody = ({ ceo, onChange, onClick }) => {
         <input
           name="companyName"
           placeholder="companyName"
-          value={ceo.companyName}
+          value={user.companyName}
           onChange={onChange}
         />
         <input
           name="companyAddress"
           placeholder="companyAddress"
-          value={ceo.companyAddress}
+          value={user.companyAddress}
           onChange={onChange}
         />
         <input
           name="businessNumber"
           placeholder="businessNumber"
-          value={ceo.businessNumber}
+          value={user.businessNumber}
           onChange={onChange}
         />
       </SignInformation>
@@ -30,32 +30,32 @@ const SignBody = ({ ceo, onChange, onClick }) => {
         <input
           name="email"
           placeholder="email"
-          value={ceo.email}
+          value={user.email}
           onChange={onChange}
         />
-        <input name="pw" placeholder="pw" value={ceo.pw} onChange={onChange} />
+        <input name="pw" placeholder="pw" value={user.pw} onChange={onChange} />
         <input
           name="name"
           placeholder="name"
-          value={ceo.name}
+          value={user.name}
           onChange={onChange}
         />
         <input
           name="phone"
           placeholder="phone"
-          value={ceo.phone}
+          value={user.phone}
           onChange={onChange}
         />
         <input
           name="position"
           placeholder="position"
-          value={ceo.position}
+          value={user.position}
           onChange={onChange}
         />
         <input
           name="address"
           placeholder="address"
-          value={ceo.address}
+          value={user.address}
           onChange={onChange}
         />
       </SignInformation>
