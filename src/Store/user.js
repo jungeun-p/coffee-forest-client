@@ -30,7 +30,16 @@ const reducer = createReducer(INITIAL_STATE, {
   [Types.SignRequest]: (state, action) => ({
     ...state,
     loading: true,
-    payload: { token: action.payload.token },
+  }),
+  [Types.SignSuccess]: (state, action) => ({
+    ...state,
+    loading: false,
+    payload: {
+      token: action.payload.token,
+    },
+    [Types.SignFail]: (state, action) => ({
+      ...state,
+    }),
   }),
 });
 
