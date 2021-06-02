@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import Signform from "../../Pages/Signup/Signform";
 import { actions } from "../../Store/user";
-// import { API_HOST } from "../../Lib/constant";
+import { API_HOST } from "../../Lib/constant";
 
 const Signup = () => {
   const [user, setUser] = useState({
@@ -52,7 +52,7 @@ const Signup = () => {
     // const data = await res.json();
     // console.log(data);
     axios
-      .post(`http://192.168.60.103:80/users`, {
+      .post(`${API_HOST}users`, {
         userSaveRequest: {
           email: user.email,
           password: user.password,

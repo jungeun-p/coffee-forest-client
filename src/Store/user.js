@@ -37,9 +37,9 @@ const reducer = createReducer(INITIAL_STATE, {
     payload: {
       token: action.payload.token,
     },
-    [Types.SignFail]: (state, action) => ({
-      ...state,
-    }),
+  }),
+  [Types.SignFail]: (state, action) => ({
+    ...state,
   }),
 });
 
