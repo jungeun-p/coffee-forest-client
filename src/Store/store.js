@@ -1,8 +1,10 @@
 import { applyMiddleware, combineReducers, createStore, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 import userReducer from "../Store/user";
-// import { all } from "redux-saga/effects";
+import { all } from "redux-saga/effects";
+import signSaga from "../Store/signSaga";
 
+// reducer 합치기
 const reducer = combineReducers({
   user: userReducer,
 });
@@ -16,9 +18,10 @@ const store = createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
-// function* rootSaga() {
-//   yield all([searchSaga()]);
-// }
-// sagaMiddleware.run(rootSaga);
+// saga
+function* rootSaga() {
+  yield all([signSaga()]);
+}
+sagaMiddleware.run(rootSaga);
 
 export default store;
