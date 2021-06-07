@@ -11,12 +11,13 @@ const MainRouter = () => {
       <Switch>
         {/* Main */}
         <Route exact path="/">
+          <Login />
           <Main />
         </Route>
         {/* User */}
-        <Route path="/login">
+        {/* <Route path="/login">
           <Login />
-        </Route>
+        </Route> */}
         <Route path="/signup">
           <Signup />
         </Route>

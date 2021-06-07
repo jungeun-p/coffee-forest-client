@@ -6,7 +6,7 @@ const MainContainer = () => {
   return (
     <Menu>
       <p>menu</p>
-      <Link to="/login">Login</Link>
+      {/* <Link to="/login">Login</Link> */}
       <Link to="/signup">Signup</Link>
       <Link to="/admin">Admin</Link>
     </Menu>
