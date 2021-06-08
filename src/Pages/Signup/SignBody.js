@@ -6,6 +6,32 @@ const SignBody = ({ user, onChange, onClick }) => {
     <SignForm>
       <SignInformation>
         <p>company</p>
+        {user ? (
+          <>
+            <input
+              name="companyName"
+              placeholder="companyName"
+              value={user.companyName}
+              onChange={onChange}
+            />
+            <input
+              name="companyAddress"
+              placeholder="companyAddress"
+              value={user.companyAddress}
+              onChange={onChange}
+            />
+            <input
+              name="businessNumber"
+              placeholder="businessNumber"
+              value={user.businessNumber}
+              onChange={onChange}
+            />
+          </>
+        ) : (
+          <input placeholder="회사 이름을 작성해주세요" />
+        )}
+        {/* 회사 리스트 API */}
+        {/* <input placeholder="회사 이름을 작성해주세요" />
         <input
           name="companyName"
           placeholder="companyName"
@@ -23,7 +49,7 @@ const SignBody = ({ user, onChange, onClick }) => {
           placeholder="businessNumber"
           value={user.businessNumber}
           onChange={onChange}
-        />
+        /> */}
       </SignInformation>
       <SignInformation>
         <p>info</p>
@@ -70,6 +96,7 @@ const SignForm = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
 const SignInformation = styled.div`
   display: flex;
   flex-direction: column;

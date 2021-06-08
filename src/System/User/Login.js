@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+import LoginBody from "../../Pages/Login/LoginBody";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -18,24 +20,7 @@ const Login = () => {
       alert("success!");
     }
   };
-  return (
-    <div>
-      <input
-        name="email"
-        value={user.email}
-        placeholder="email"
-        onChange={onChange}
-      />
-      <input
-        name="pw"
-        value={user.pw}
-        type="password"
-        placeholder="pw"
-        onChange={onChange}
-      />
-      <button onClick={onClick}>로그인</button>
-    </div>
-  );
+  return <LoginBody user={user} onChange={onChange} onClick={onClick} />;
 };
 
 export default Login;

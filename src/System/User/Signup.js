@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import Signform from "../../Pages/Signup/Signform";
+import SignBody from "../../Pages/Signup/SignBody";
 import { actions } from "../../Store/user";
 import { API_HOST } from "../../Lib/constant";
 
@@ -76,7 +76,7 @@ const Signup = () => {
     //setLoading(true);
   };
 
-  return <Signform user={user} onChange={onChange} onClick={onClick} />;
+  return <SignBody user={user} onChange={onChange} onClick={onClick} />;
 };
 
 export default Signup;
