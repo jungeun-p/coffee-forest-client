@@ -5,10 +5,11 @@ import styled from "styled-components";
 const MainContainer = () => {
   return (
     <Menu>
-      <p>menu</p>
+      <h4>coffee-forest-client</h4>
       {/* <Link to="/login">Login</Link> */}
-      <Link to="/signup">Signup</Link>
+      {/* <Link to="/signup">Signup</Link> */}
       <Link to="/admin">Admin</Link>
+      <Link to="/mypage">Mypage</Link>
     </Menu>
   );
 };

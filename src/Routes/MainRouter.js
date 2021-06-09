@@ -4,6 +4,7 @@ import Main from "../Pages/Main";
 import Signup from "../Pages/Signup";
 import Login from "../Pages/Login";
 import Admin from "../Pages/Admin";
+import Mypage from "../Pages/Mypage";
 
 const MainRouter = () => {
   return (
@@ -11,8 +12,8 @@ const MainRouter = () => {
       <Switch>
         {/* Main */}
         <Route exact path="/">
-          <Login />
           <Main />
+          <Login />
         </Route>
         {/* User */}
         {/* <Route path="/login">
@@ -23,6 +24,9 @@ const MainRouter = () => {
         </Route>
         <Route path="/admin">
           <Admin />
+        </Route>
+        <Route path="/mypage">
+          <Mypage />
         </Route>
       </Switch>
     </BrowserRouter>
