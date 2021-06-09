@@ -1,11 +1,13 @@
 import React from "react";
-import Mypage from "../../System/User/Mypage";
+import MypageBody from "../Mypage/MypageBody";
+import WeeklyPage from "../Mypage/WeeklyPage";
 
 const MypageContainer = () => {
   return (
     <>
       <p>Mypage</p>
-      <Mypage />
+      <MypageBody />
+      <WeeklyPage />
     </>
   );
 };

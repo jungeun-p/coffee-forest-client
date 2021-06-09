@@ -8,8 +8,8 @@ const MainContainer = () => {
       <h4>coffee-forest-client</h4>
       {/* <Link to="/login">Login</Link> */}
       {/* <Link to="/signup">Signup</Link> */}
-      <Link to="/admin">Admin</Link>
-      <Link to="/mypage">Mypage</Link>
+      <Link to="/admin">개발자 관리</Link>
+      <Link to="/mypage">마이 페이지</Link>
     </Menu>
   );
 };
