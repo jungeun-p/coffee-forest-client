@@ -28,6 +28,21 @@ const Signup = () => {
   // redux-saga로 dispatch(action, data) 전달
   // const onClick = async () => {
   const onClick = () => {
+    let user = {
+      userSaveRequest: {
+        email: user.email,
+        password: user.password,
+        position: "ADMIN",
+        name: user.name,
+        phone: user.phone,
+        address: user.address,
+      },
+      companySaveRequest: {
+        name: user.companyName,
+        address: user.companyAddress,
+        businessNumber: user.businessNumber,
+      },
+    };
     dispatch(actions.signRequest, user);
     //setLoading(false);
     // const res = await fetch(`http://192.168.60.103:80/users`, {
@@ -52,21 +67,7 @@ const Signup = () => {
     // const data = await res.json();
     // console.log(data);
     axios
-      .post(`${API_HOST}users`, {
-        userSaveRequest: {
-          email: user.email,
-          password: user.password,
-          position: "ADMIN",
-          name: user.name,
-          phone: user.phone,
-          address: user.address,
-        },
-        companySaveRequest: {
-          name: user.companyName,
-          address: user.companyAddress,
-          businessNumber: user.businessNumber,
-        },
-      })
+      .post(`${API_HOST}users`, user)
       .then((res) => {
         console.log(res.data);
       })

@@ -4,27 +4,17 @@ import axios from "axios";
 import { API_HOST } from "../Lib/constant";
 
 function signApi(user) {
-  return axios.post(
-    `${API_HOST}users`,
-    {
-      userSaveRequest: {
-        email: user.email,
-        password: user.password,
-        position: "ADMIN",
-        name: user.name,
-        phone: user.phone,
-        address: user.address,
-      },
-      companySaveRequest: {
-        name: user.companyName,
-        address: user.companyAddress,
-        businessNumber: user.businessNumber,
-      },
-    },
-    {
-      withCredentials: true,
-    }
-  );
+  return axios
+    .post(`${API_HOST}users`, user)
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  // return axios.post(`${API_HOST}users`, user, {
+  //   withCredentials: true,
+  // });
 }
 
 function* sign({ user }) {
