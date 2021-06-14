@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import LoginBody from "../../Pages/Login/LoginBody";
 
 const Login = () => {

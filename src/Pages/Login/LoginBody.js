@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "../../System/User/Login";
+//import Login from "../../System/User/Login";
 import styled from "styled-components";
 
 const LoginBody = ({ user, onChange, onClick }) => {

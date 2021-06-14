@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const SignBody = ({ user, onChange, onClick }) => {
+const SignBody = ({
+  user,
+  onChange,
+  onClick,
+  ValidateEmail,
+  ValidateBusinessNumber,
+}) => {
   return (
     <SignForm>
       <SignInformation>
@@ -25,6 +31,7 @@ const SignBody = ({ user, onChange, onClick }) => {
               placeholder="businessNumber"
               value={user.businessNumber}
               onChange={onChange}
+              onBlur={ValidateBusinessNumber}
             />
           </>
         ) : (
@@ -58,6 +65,8 @@ const SignBody = ({ user, onChange, onClick }) => {
           placeholder="email"
           value={user.email}
           onChange={onChange}
+          // 이메일 중복
+          onBlur={ValidateEmail}
         />
         <input name="pw" placeholder="pw" value={user.pw} onChange={onChange} />
         <input
