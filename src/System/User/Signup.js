@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 //import { useDispatch } from "react-redux";
 import axios from "axios";
-import SignBody from "../../Pages/Signup/SignBody";
+//import SignBody from "../../Pages/Signup/SignBody";
+import SignOffice from "../../Pages/Signup/SignOffice";
+import SignEmployee from "../../Pages/Signup/SignEmployee";
 //import { actions } from "../../Store/user";
 //import { API_HOST } from "../../Lib/constant";
-import { LOCAL_HOST } from "../../Lib/constant";
+//import { LOCAL_HOST } from "../../Lib/constant";
 
 const Signup = () => {
   const [user, setUser] = useState({
@@ -19,6 +22,9 @@ const Signup = () => {
     businessNumber: "",
   });
   const [loading, setLoading] = useState(false);
+  const [tab, setTab] = useState({
+    activeId: 0,
+  });
 
   //const dispatch = useDispatch();
   const onChange = (e) => {
@@ -92,21 +98,25 @@ const Signup = () => {
     // const data = await res.json();
     // console.log(data);
     try {
-      const res = await axios.post(`${LOCAL_HOST}users`, {
-        userSaveRequest: {
-          email: user.email,
-          password: user.password,
-          position: user.position,
-          name: user.name,
-          phone: user.phone,
-          address: user.address,
+      const res = await axios.post(
+        `http://localhost:80/users`,
+        {
+          userSaveRequest: {
+            email: user.email,
+            password: user.password,
+            position: user.position,
+            name: user.name,
+            phone: user.phone,
+            address: user.address,
+          },
+          companySaveRequest: {
+            name: user.companyName,
+            address: user.companyAddress,
+            businessNumber: user.businessNumber,
+          },
         },
-        companySaveRequest: {
-          name: user.companyName,
-          address: user.companyAddress,
-          businessNumber: user.businessNumber,
-        },
-      });
+        { "Content-Type": "application/json" }
+      );
       console.log(res);
     } catch (e) {
       console.log(e);
@@ -120,15 +130,39 @@ const Signup = () => {
     setLoading(true);
   };
 
+  const obj = {
+    0: (
+      <SignOffice
+        user={user}
+        onChange={onChange}
+        onClick={onClick}
+        ValidateEmail={ValidateEmail}
+        ValidateBusinessNumber={ValidateBusinessNumber}
+      />
+    ),
+    1: (
+      <SignEmployee
+        user={user}
+        onChange={onChange}
+        onClick={onClick}
+        ValidateEmail={ValidateEmail}
+      />
+    ),
+  };
+
+  const clickHandler = (id) => {
+    setTab({ activeId: id });
+  };
+
   return (
-    <SignBody
-      user={user}
-      onChange={onChange}
-      onClick={onClick}
-      ValidateEmail={ValidateEmail}
-      ValidateBusinessNumber={ValidateBusinessNumber}
-    />
+    <>
+      <CategoryName onClick={() => clickHandler(0)}>사원 등록</CategoryName>
+      <CategoryName onClick={() => clickHandler(1)}>직원 등록</CategoryName>
+      {obj[tab.activeId]}
+    </>
   );
 };
+
+const CategoryName = styled.div``;
 
 export default Signup;

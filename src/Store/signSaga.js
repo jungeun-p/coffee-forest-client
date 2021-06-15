@@ -1,11 +1,11 @@
 import { takeLatest, call, put } from "redux-saga/effects";
 import { Types } from "../Store/user";
 import axios from "axios";
-import { API_HOST } from "../Lib/constant";
+// import { API_HOST } from "../Lib/constant";
 
 function signApi(user) {
   return axios
-    .post(`${API_HOST}users`, user)
+    .post(`/api/users`, user)
     .then((res) => {
       console.log(res.data);
     })

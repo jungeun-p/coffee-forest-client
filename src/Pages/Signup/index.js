@@ -5,7 +5,6 @@ import styled from "styled-components";
 const SignupContainer = () => {
   return (
     <Wrap>
-      <p>Sign(CEO)</p>
       <Signup />
     </Wrap>
   );
