@@ -1,65 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
-const SignBody = ({
-  user,
-  onChange,
-  onClick,
-  ValidateEmail,
-  ValidateBusinessNumber,
-}) => {
+const SignEmployee = ({ user, onChange, onClick, ValidateEmail }) => {
   return (
     <SignForm>
       <SignInformation>
-        <p>company</p>
-        {user ? (
-          <>
-            <input
-              name="companyName"
-              placeholder="companyName"
-              value={user.companyName}
-              onChange={onChange}
-            />
-            <input
-              name="companyAddress"
-              placeholder="companyAddress"
-              value={user.companyAddress}
-              onChange={onChange}
-            />
-            <input
-              name="businessNumber"
-              placeholder="businessNumber"
-              value={user.businessNumber}
-              onChange={onChange}
-              onBlur={ValidateBusinessNumber}
-            />
-          </>
-        ) : (
-          <input placeholder="회사 이름을 작성해주세요" />
-        )}
         {/* 회사 리스트 API */}
-        {/* <input placeholder="회사 이름을 작성해주세요" />
+        <p>회사</p>
         <input
+          placeholder="회사 이름을 작성해주세요"
           name="companyName"
-          placeholder="companyName"
           value={user.companyName}
           onChange={onChange}
         />
-        <input
-          name="companyAddress"
-          placeholder="companyAddress"
-          value={user.companyAddress}
-          onChange={onChange}
-        />
-        <input
-          name="businessNumber"
-          placeholder="businessNumber"
-          value={user.businessNumber}
-          onChange={onChange}
-        /> */}
       </SignInformation>
       <SignInformation>
-        <p>info</p>
+        <p>개인정보</p>
         <input
           name="email"
           placeholder="email"
@@ -112,4 +68,4 @@ const SignInformation = styled.div`
   width: 200px;
 `;
 
-export default SignBody;
+export default SignEmployee;
