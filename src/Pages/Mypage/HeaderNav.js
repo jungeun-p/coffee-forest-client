@@ -11,7 +11,6 @@ const HeaderNav = () => {
       {categories.map((cate, index) => (
         <CategoryName
           key={index}
-          name={cate.name}
           to={cate.router}
           active={pathName === cate.router ? true : false}
         >

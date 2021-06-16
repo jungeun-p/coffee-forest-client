@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const WeeklyPage = () => {
-  return <div>WeeklyPage</div>;
+  return <div>주간 일정</div>;
 };
 
 export default WeeklyPage;

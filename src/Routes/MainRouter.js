@@ -30,10 +30,10 @@ const MainRouter = () => {
         <Route path="/mypage">
           <Mypage />
         </Route>
-        <Route path="/montly">
+        <Route path="/mypage/monthly">
           <MonthlyPage />
         </Route>
-        <Route path="/manage">
+        <Route path="/mypage/manage">
           <ManageEmployee />
         </Route>
       </Switch>
