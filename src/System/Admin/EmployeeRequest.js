@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 const EmployeeRequest = () => {
-  return <div>EmployeeRequestlist</div>;
+  return <div>사원 관리</div>;
 };
 
 export default EmployeeRequest;

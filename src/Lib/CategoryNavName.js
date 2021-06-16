@@ -7,11 +7,11 @@ export const categories = [
   {
     index: 2,
     name: '월간 일정',
-    router: '/montly'
+    router: '/mypage/monthly'
   },
   {
     index: 3,
     name: '사원관리',
-    router: '/manage'
+    router: '/mypage/manage'
   }
 ];

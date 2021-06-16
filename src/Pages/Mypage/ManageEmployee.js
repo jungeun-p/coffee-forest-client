@@ -1,8 +1,12 @@
-import React from "react";
-import EmployeeRequest from "../../System/Admin/EmployeeRequest";
+import React from 'react';
+import EmployeeRequest from '../../System/Admin/EmployeeRequest';
 
 const ManageEmployee = () => {
-  return <EmployeeRequest />;
+  return (
+    <>
+      <EmployeeRequest />
+    </>
+  );
 };
 
 export default ManageEmployee;
