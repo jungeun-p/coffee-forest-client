@@ -1,13 +1,23 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+// @ts-nocheck
+import React from 'react';
+// import { Route } from 'react-router-dom';
+// import WeeklyPage from '../Mypage/WeeklyPage';
+// import MonthlyPage from '../Mypage/MonthlyPage';
+// import ManageEmployee from '../Mypage/ManageEmployee';
+import HeaderNav from '../Mypage/HeaderNav';
+import MypageList from './MypageList';
 
-const MypageBody = () => {
+const MypageBody = ({ match }) => {
+  const cateogry = match.params.category || 'mypage';
   return (
-    <div>
-      <NavLink to="/mypage">주간 일정 / </NavLink>
-      <NavLink to="/monthly">월간 일정 / </NavLink>
-      <NavLink to="/manageemployee">사원 관리</NavLink>
-    </div>
+    <>
+      <HeaderNav />
+      <br />
+      <MypageList category={cateogry} />
+      {/* <Route path="/mypage" exact component={WeeklyPage} />
+      <Route path="/monthly" component={MonthlyPage} />
+      <Route path="/manage" component={ManageEmployee} /> */}
+    </>
   );
 };
 
