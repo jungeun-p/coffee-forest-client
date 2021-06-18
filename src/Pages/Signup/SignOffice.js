@@ -1,39 +1,41 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import ButtonCommon from '../../Components/Button';
+import { InputCommon, InputTitle } from '../../Components/Input';
 
 const SignOffice = ({
   user,
   onChange,
   onClick,
   ValidateEmail,
-  ValidateBusinessNumber,
+  ValidateBusinessNumber
 }) => {
   return (
     <SignForm>
+      <InputTitle title={'회사'} />
       <SignInformation>
-        <p>회사</p>
         <input
-          name="companyName"
-          placeholder="companyName"
+          placeholder="회사명"
+          onChange={onChange}
+          name={'companyName'}
           value={user.companyName}
-          onChange={onChange}
         />
         <input
-          name="companyAddress"
-          placeholder="companyAddress"
+          placeholder="회사 주소"
+          onChange={onChange}
+          name={'companyAddress'}
           value={user.companyAddress}
-          onChange={onChange}
         />
         <input
-          name="businessNumber"
-          placeholder="businessNumber"
-          value={user.businessNumber}
+          placeholder="사업자 번호"
           onChange={onChange}
+          name={'businessNumber'}
+          value={user.businessNumber}
           onBlur={ValidateBusinessNumber}
         />
       </SignInformation>
+      <InputTitle title={'개인 정보'} />
       <SignInformation>
-        <p>개인정보</p>
         <input
           name="email"
           placeholder="email"
@@ -68,7 +70,7 @@ const SignOffice = ({
           onChange={onChange}
         />
       </SignInformation>
-      <button onClick={onClick}>회원가입</button>
+      <ButtonCommon onClick={onClick} title={'등록하기'} />
     </SignForm>
   );
 };
@@ -77,13 +79,13 @@ const SignForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 `;
 
 const SignInformation = styled.div`
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 100%;
 `;
 
 export default SignOffice;

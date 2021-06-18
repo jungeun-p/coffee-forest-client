@@ -1,12 +1,14 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import ButtonCommon from '../../Components/Button';
+import { InputCommon, InputTitle } from '../../Components/Input';
 
 const SignEmployee = ({ user, onChange, onClick, ValidateEmail }) => {
   return (
     <SignForm>
+      <InputTitle title={'회사'} />
       <SignInformation>
         {/* 회사 리스트 API */}
-        <p>회사</p>
         <input
           placeholder="회사 이름을 작성해주세요"
           name="companyName"
@@ -14,8 +16,8 @@ const SignEmployee = ({ user, onChange, onClick, ValidateEmail }) => {
           onChange={onChange}
         />
       </SignInformation>
+      <InputTitle title={'개인 정보'} />
       <SignInformation>
-        <p>개인정보</p>
         <input
           name="email"
           placeholder="email"
@@ -50,7 +52,7 @@ const SignEmployee = ({ user, onChange, onClick, ValidateEmail }) => {
           onChange={onChange}
         />
       </SignInformation>
-      <button onClick={onClick}>회원가입</button>
+      <ButtonCommon onClick={onClick} title={'회원가입'} />
     </SignForm>
   );
 };
@@ -59,13 +61,12 @@ const SignForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 `;
 
 const SignInformation = styled.div`
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 100%;
 `;
 
 export default SignEmployee;
