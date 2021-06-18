@@ -5,20 +5,32 @@ import WeeklyPage from '../Mypage/WeeklyPage';
 import MonthlyPage from '../Mypage/MonthlyPage';
 import ManageEmployee from '../Mypage/ManageEmployee';
 import HeaderNav from '../Mypage/HeaderNav';
+import styled from 'styled-components';
 
 const MypageContainer = () => {
   return (
     <>
-      <p>메인</p>
-      <BrowserRouter>
-        <HeaderNav />
-        <br />
-        <Route exact path="/mypage" component={WeeklyPage} />
-        <Route path="/mypage/monthly" component={MonthlyPage} />
-        <Route path="/mypage/manage" component={ManageEmployee} />
-      </BrowserRouter>
+      <p>coffee forest</p>
+      <MainPage>
+        <BrowserRouter>
+          <HeaderNav />
+          <PageWrapper>
+            <Route exact path="/mypage" component={WeeklyPage} />
+            <Route path="/mypage/monthly" component={MonthlyPage} />
+            <Route path="/mypage/manage" component={ManageEmployee} />
+          </PageWrapper>
+        </BrowserRouter>
+      </MainPage>
     </>
   );
 };
+
+const MainPage = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+const PageWrapper = styled.div`
+  width: 85vw;
+`;
 
 export default MypageContainer;

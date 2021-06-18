@@ -11,7 +11,7 @@ export const categories = [
   },
   {
     index: 3,
-    name: '사원관리',
+    name: '사원 관리',
     router: '/mypage/manage'
   }
 ];
