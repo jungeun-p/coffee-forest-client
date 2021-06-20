@@ -13,10 +13,10 @@ const LoginBody = ({ user, onChange, onClick }) => {
         onChange={onChange}
       />
       <input
-        name="pw"
-        value={user.pw}
+        name="password"
+        value={user.password}
         type="password"
-        placeholder="pw"
+        placeholder="password"
         onChange={onChange}
       />
       <ButtonCommon title={'로그인'} onClick={onClick} />

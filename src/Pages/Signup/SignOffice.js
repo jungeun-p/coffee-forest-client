@@ -52,7 +52,12 @@ const SignOffice = ({
           // 이메일 중복
           onBlur={ValidateEmail}
         />
-        <input name="pw" placeholder="pw" value={user.pw} onChange={onChange} />
+        <input
+          name="password"
+          placeholder="password"
+          value={user.pw}
+          onChange={onChange}
+        />
         <input
           name="name"
           placeholder="name"

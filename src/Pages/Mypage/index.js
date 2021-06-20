@@ -1,11 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-//import MypageBody from '../Mypage/MypageBody';
-import WeeklyPage from '../Mypage/WeeklyPage';
 import MonthlyPage from '../Mypage/MonthlyPage';
 import ManageEmployee from '../Mypage/ManageEmployee';
 import HeaderNav from '../Mypage/HeaderNav';
 import styled from 'styled-components';
+import WeeklyPlan from '../../System/Mypage/WeeklyPlan';
 
 const MypageContainer = () => {
   return (
@@ -15,7 +14,7 @@ const MypageContainer = () => {
         <BrowserRouter>
           <HeaderNav />
           <PageWrapper>
-            <Route exact path="/mypage" component={WeeklyPage} />
+            <Route exact path="/mypage" component={WeeklyPlan} />
             <Route path="/mypage/monthly" component={MonthlyPage} />
             <Route path="/mypage/manage" component={ManageEmployee} />
           </PageWrapper>

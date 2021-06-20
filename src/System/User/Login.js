@@ -8,7 +8,7 @@ const Login = () => {
   const history = useHistory();
   const [user, setUser] = useState({
     email: '',
-    pw: ''
+    password: ''
   });
 
   const onChange = e => {
@@ -17,21 +17,30 @@ const Login = () => {
   };
 
   const onClick = async () => {
-    if ((user.email && user.pw) === '') {
-      alert('모두 기입 바람');
-    } else {
-      try {
-        const res = await axios.post(`${LOCAL_HOST}user/auth`, {
+    // if ((user.email && user.password) === '') {
+    //   alert('모두 기입 바람');
+    // } else {
+    axios
+      .post(
+        `${LOCAL_HOST}users/sign-in`,
+        {
           email: user.email,
-          pw: user.pw
+          password: user.password
+        },
+        { 'Content-Type': 'application/json' }
+      )
+      .then(response => {
+        alert('어서오세요!');
+        history.push({
+          pathname: '/mypage',
+          state: {
+            data: response.data
+          }
         });
-        console.log(res);
-        alert('success!');
-        history.push('/mypage');
-      } catch (e) {
-        console.log(e);
-      }
-    }
+      })
+      .catch(error => {
+        console.log(error.response.data);
+      });
   };
   return <LoginBody user={user} onChange={onChange} onClick={onClick} />;
 };
