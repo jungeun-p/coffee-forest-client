@@ -1,7 +1,12 @@
 import React from 'react';
+import WeeklyData from './Weekly/WeeklyData';
 
-const WeeklyPage = () => {
-  return <div>주간 일정</div>;
+const WeeklyPage = ({ weekend }) => {
+  return (
+    <>
+      <WeeklyData weekend={weekend} />
+    </>
+  );
 };
 
 export default WeeklyPage;

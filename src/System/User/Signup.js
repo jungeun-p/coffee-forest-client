@@ -12,7 +12,7 @@ const Signup = () => {
   const history = useHistory();
   const [user, setUser] = useState({
     email: '',
-    pw: '',
+    password: '',
     name: '',
     phone: '',
     address: '',
@@ -34,31 +34,43 @@ const Signup = () => {
   };
 
   // email 중복 검사 api
-  const ValidateEmail = async () => {
-    try {
-      const res = await axios.get(`${LOCAL_HOST}users/duplication`, {
+  const ValidateEmail = () => {
+    axios
+      .get(`${LOCAL_HOST}users/duplication`, {
         params: {
           email: user.email
         }
+      })
+      .then(res => {
+        if (res.data === 'Duplicated') {
+          alert('중복된 이메일 입니다.');
+        } else {
+          alert('가입 가능한 이메일 입니다.');
+        }
+      })
+      .catch(e => {
+        console.log(e.res.data);
       });
-      alert('작성 가능한 이메일입니다.');
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   // 사업자 번호 중복 검사 api
-  const ValidateBusinessNumber = async () => {
-    try {
-      const res = await axios.get(`${LOCAL_HOST}company/duplication`, {
+  const ValidateBusinessNumber = () => {
+    axios
+      .get(`${LOCAL_HOST}company/duplication`, {
         params: {
           businessNumber: user.businessNumber
         }
+      })
+      .then(res => {
+        if (res.data === 'Duplicated') {
+          alert('중복된 사업자 번호입니다.');
+        } else {
+          alert('등록 가능한 사업자 번호입니다.');
+        }
+      })
+      .catch(e => {
+        console.log(e.res.data);
       });
-      alert('등록 가능한 사업자 번호입니다.');
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   // redux-saga로 dispatch(action, data) 전달
@@ -86,17 +98,17 @@ const Signup = () => {
         `${LOCAL_HOST}users`,
         {
           userSaveRequest: {
-            email: 'yh0921k@gmail.com',
-            password: '123123',
-            position: 'ADMIN',
-            name: '김용휘',
-            phone: '010-3193-4705',
-            address: '경기도 안산시 본오동 807-6'
+            email: user.email,
+            password: user.password,
+            position: user.position,
+            name: user.name,
+            phone: user.phone,
+            address: user.address
           },
           companySaveRequest: {
-            name: '커피포레스트',
-            address: '경기도 수원시',
-            businessNumber: '010-6225-7753'
+            name: user.companyName,
+            address: user.companyAddress,
+            businessNumber: user.businessNumber
           }
         },
         { 'Content-Type': 'application/json' }
