@@ -13,13 +13,17 @@ const WeeklyPlan = () => {
     weekStartDate: '',
     weekEndDate: '',
     name: '',
-    position: ''
+    position: '',
+    companyIndex: '',
+    userIndex: ''
   });
 
   useEffect(() => {
     setWeekend(weekends);
+    console.log(weekends);
   });
 
+  // @ts-ignore
   return <WeeklyPage weekend={weekend} />;
 };
 
