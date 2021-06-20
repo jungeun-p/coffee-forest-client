@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ButtonCommon from '../../Components/Button';
-import { InputCommon, InputTitle } from '../../Components/Input';
+import { InputTitle } from '../../Components/Input';
 
 const SignOffice = ({
   user,
@@ -10,6 +10,14 @@ const SignOffice = ({
   ValidateEmail,
   ValidateBusinessNumber
 }) => {
+  const form = [];
+  form.concat({
+    user,
+    onChange,
+    onClick,
+    ValidateEmail,
+    ValidateBusinessNumber
+  });
   return (
     <SignForm>
       <InputTitle title={'회사'} />

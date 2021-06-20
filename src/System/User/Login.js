@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import LoginBody from '../../Pages/Login/LoginBody';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { API_HOST } from '../../Lib/constant';
+import { LOCAL_HOST } from '../../Lib/constant';
 
 const Login = () => {
   const history = useHistory();
@@ -21,16 +21,16 @@ const Login = () => {
       alert('모두 기입 바람');
     } else {
       try {
-        const res = await axios.post(`${API_HOST}user/auth`, {
+        const res = await axios.post(`${LOCAL_HOST}user/auth`, {
           email: user.email,
           pw: user.pw
         });
         console.log(res);
+        alert('success!');
+        history.push('/mypage');
       } catch (e) {
         console.log(e);
       }
-      alert('success!');
-      history.push('/mypage');
     }
   };
   return <LoginBody user={user} onChange={onChange} onClick={onClick} />;
