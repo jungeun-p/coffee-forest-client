@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react';
 //import Login from "../../System/User/Login";
-import styled from "styled-components";
+import styled from 'styled-components';
+import ButtonCommon from '../../Components/Button';
 
 const LoginBody = ({ user, onChange, onClick }) => {
   return (
@@ -18,7 +19,7 @@ const LoginBody = ({ user, onChange, onClick }) => {
         placeholder="pw"
         onChange={onChange}
       />
-      <button onClick={onClick}>로그인</button>
+      <ButtonCommon title={'로그인'} onClick={onClick} />
     </LoginForm>
   );
 };

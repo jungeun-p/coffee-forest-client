@@ -2,15 +2,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 //import { useDispatch } from "react-redux";
 import axios from 'axios';
-//import SignBody from "../../Pages/Signup/SignBody";
 import SignOffice from '../../Pages/Signup/SignOffice';
 import SignEmployee from '../../Pages/Signup/SignEmployee';
-import { API_HOST } from '../../Lib/constant';
 //import { actions } from "../../Store/user";
-//import { API_HOST } from "../../Lib/constant";
-//import { LOCAL_HOST } from "../../Lib/constant";
+import { LOCAL_HOST } from '../../Lib/constant';
+import { useHistory } from 'react-router-dom';
 
 const Signup = () => {
+  const history = useHistory();
   const [user, setUser] = useState({
     email: '',
     pw: '',
@@ -28,36 +27,41 @@ const Signup = () => {
   });
 
   //const dispatch = useDispatch();
+
   const onChange = e => {
     const { name, value } = e.target;
     setUser(state => ({ ...state, [name]: value }));
   };
 
   // email 중복 검사 api
-  const ValidateEmail = () => {
-    // axios
-    //   .get(`${LOCAL_HOST}users/duplication`)
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
+  const ValidateEmail = async () => {
+    try {
+      const res = await axios.get(`${LOCAL_HOST}users/duplication`, {
+        params: {
+          email: user.email
+        }
+      });
+      alert('작성 가능한 이메일입니다.');
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   // 사업자 번호 중복 검사 api
-  const ValidateBusinessNumber = () => {
-    // axios
-    //   .get(`${LOCAL_HOST}company/duplication`)
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
+  const ValidateBusinessNumber = async () => {
+    try {
+      const res = await axios.get(`${LOCAL_HOST}company/duplication`, {
+        params: {
+          businessNumber: user.businessNumber
+        }
+      });
+      alert('등록 가능한 사업자 번호입니다.');
+    } catch (e) {
+      console.log(e);
+    }
   };
 
-  //redux-saga로 dispatch(action, data) 전달
+  // redux-saga로 dispatch(action, data) 전달
   // const onClick = async () => {
   const onClick = async () => {
     // let body = {
@@ -77,57 +81,33 @@ const Signup = () => {
     // };
     //dispatch(actions.signRequest, body);
     setLoading(false);
-    const res = await fetch(`http://192.168.60.103:80/users`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userSaveRequest: {
-          email: user.email,
-          password: user.password,
-          position: user.position,
-          name: user.name,
-          phone: user.phone,
-          address: user.address
+    try {
+      const res = await axios.post(
+        `${LOCAL_HOST}users`,
+        {
+          userSaveRequest: {
+            email: 'yh0921k@gmail.com',
+            password: '123123',
+            position: 'ADMIN',
+            name: '김용휘',
+            phone: '010-3193-4705',
+            address: '경기도 안산시 본오동 807-6'
+          },
+          companySaveRequest: {
+            name: '커피포레스트',
+            address: '경기도 수원시',
+            businessNumber: '010-6225-7753'
+          }
         },
-        companySaveRequest: {
-          name: user.companyName,
-          address: user.companyAddress,
-          businessNumber: user.businessNumber
-        }
-      })
-    });
-    const data = await res.json();
-    console.log(data);
-    // try {
-    //   const res = await axios.post(
-    //     `${API_HOST}users`,
-    //     {
-    //       userSaveRequest: {
-    //         email: 'yh0921k@gmail.com',
-    //         password: '123123',
-    //         position: 'ADMIN',
-    //         name: '김용휘',
-    //         phone: '010-3193-4705',
-    //         address: '경기도 안산시 본오동 807-6'
-    //       },
-    //       companySaveRequest: {
-    //         name: '커피포레스트',
-    //         address: '경기도 수원시',
-    //         businessNumber: '010-6225-7753'
-    //       }
-    //     },
-    //     { 'Content-Type': 'application/json' }
-    //   );
-    //   console.log(res);
-    // } catch (e) {
-    //   console.log(e);
-    // }
-    // .then((res) => {
-    //   console.log(res.data);
-    // })
-    // .catch((e) => {
-    //   console.log(e);
-    // });
+        { 'Content-Type': 'application/json' }
+      );
+      console.log(res);
+      alert('회원 가입 성공!');
+      // 메인-로그인 화면으로 이동
+      history.push('/');
+    } catch (e) {
+      console.log(e);
+    }
     setLoading(true);
   };
 
