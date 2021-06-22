@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-//import { useDispatch } from "react-redux";
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+//import { actions } from "../../Store/user";
 import SignOffice from '../../Pages/Signup/SignOffice';
 import SignEmployee from '../../Pages/Signup/SignEmployee';
-//import { actions } from "../../Store/user";
 import { LOCAL_HOST } from '../../Lib/constant';
 import { useHistory } from 'react-router-dom';
 
@@ -25,9 +25,8 @@ const Signup = () => {
   const [tab, setTab] = useState({
     activeId: 0
   });
-
-  //const dispatch = useDispatch();
-
+  // const user = useSelector();
+  const dispatch = useDispatch();
   const onChange = e => {
     const { name, value } = e.target;
     setUser(state => ({ ...state, [name]: value }));
@@ -35,42 +34,46 @@ const Signup = () => {
 
   // email 중복 검사 api
   const ValidateEmail = () => {
-    axios
-      .get(`${LOCAL_HOST}users/duplication`, {
-        params: {
-          email: user.email
-        }
-      })
-      .then(response => {
-        if (response.data === 'Duplicated') {
-          alert('중복된 이메일 입니다.');
-        } else {
-          alert('가입 가능한 이메일 입니다.');
-        }
-      })
-      .catch(error => {
-        console.log(error.response.data);
-      });
+    if (user.email !== '') {
+      axios
+        .get(`${LOCAL_HOST}users/duplication`, {
+          params: {
+            email: user.email
+          }
+        })
+        .then(response => {
+          if (response.data === 'Duplicated') {
+            alert('중복된 이메일 입니다.');
+          } else {
+            alert('가입 가능한 이메일 입니다.');
+          }
+        })
+        .catch(error => {
+          console.log(error.response.data);
+        });
+    }
   };
 
   // 사업자 번호 중복 검사 api
   const ValidateBusinessNumber = () => {
-    axios
-      .get(`${LOCAL_HOST}company/duplication`, {
-        params: {
-          businessNumber: user.businessNumber
-        }
-      })
-      .then(response => {
-        if (response.data === 'Duplicated') {
-          alert('중복된 사업자 번호입니다.');
-        } else {
-          alert('등록 가능한 사업자 번호입니다.');
-        }
-      })
-      .catch(error => {
-        console.log(error.response.data);
-      });
+    if (user.businessNumber !== '') {
+      axios
+        .get(`${LOCAL_HOST}company/duplication`, {
+          params: {
+            businessNumber: user.businessNumber
+          }
+        })
+        .then(response => {
+          if (response.data === 'Duplicated') {
+            alert('중복된 사업자 번호입니다.');
+          } else {
+            alert('등록 가능한 사업자 번호입니다.');
+          }
+        })
+        .catch(error => {
+          console.log(error.response.data);
+        });
+    }
   };
 
   // redux-saga로 dispatch(action, data) 전달
