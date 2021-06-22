@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
-//import { actions } from "../../Store/user";
+import { useDispatch } from 'react-redux';
 import SignOffice from '../../Pages/Signup/SignOffice';
 import SignEmployee from '../../Pages/Signup/SignEmployee';
 import { LOCAL_HOST } from '../../Lib/constant';
 import { useHistory } from 'react-router-dom';
+import { actions } from '../../Store/user';
 
 const Signup = () => {
   const history = useHistory();
@@ -76,54 +76,55 @@ const Signup = () => {
     }
   };
 
-  // redux-saga로 dispatch(action, data) 전달
   // const onClick = async () => {
-  const onClick = async () => {
-    // let body = {
-    //   userSaveRequest: {
-    //     email: user.email,
-    //     password: user.password,
-    //     position: "ADMIN",
-    //     name: user.name,
-    //     phone: user.phone,
-    //     address: user.address,
-    //   },
-    //   companySaveRequest: {
-    //     name: user.companyName,
-    //     address: user.companyAddress,
-    //     businessNumber: user.businessNumber,
-    //   },
-    // };
-    //dispatch(actions.signRequest, body);
-    setLoading(false);
-    try {
-      const res = await axios.post(
-        `${LOCAL_HOST}users`,
-        {
-          userSaveRequest: {
-            email: user.email,
-            password: user.password,
-            position: user.position,
-            name: user.name,
-            phone: user.phone,
-            address: user.address
-          },
-          companySaveRequest: {
-            name: user.companyName,
-            address: user.companyAddress,
-            businessNumber: user.businessNumber
-          }
-        },
-        { 'Content-Type': 'application/json' }
-      );
-      console.log(res);
-      alert('회원 가입 성공!');
-      // 메인-로그인 화면으로 이동
-      history.push('/');
-    } catch (e) {
-      console.log(e);
-    }
-    setLoading(true);
+  const onClick = () => {
+    let data = {
+      userSaveRequest: {
+        email: user.email,
+        password: user.password,
+        position: 'ADMIN',
+        name: user.name,
+        phone: user.phone,
+        address: user.address
+      },
+      companySaveRequest: {
+        name: user.companyName,
+        address: user.companyAddress,
+        businessNumber: user.businessNumber
+      }
+    };
+    // @ts-ignore
+    // redux-saga로 dispatch(action, data) 전달
+    dispatch(actions.signRequest(data));
+    // setLoading(false);
+    // try {
+    //   const res = await axios.post(
+    //     `${LOCAL_HOST}users`,
+    //     {
+    //       userSaveRequest: {
+    //         email: user.email,
+    //         password: user.password,
+    //         position: user.position,
+    //         name: user.name,
+    //         phone: user.phone,
+    //         address: user.address
+    //       },
+    //       companySaveRequest: {
+    //         name: user.companyName,
+    //         address: user.companyAddress,
+    //         businessNumber: user.businessNumber
+    //       }
+    //     },
+    //     { 'Content-Type': 'application/json' }
+    //   );
+    //   console.log(res);
+    //   alert('회원 가입 성공!');
+    //   // 메인-로그인 화면으로 이동
+    //   history.push('/');
+    // } catch (e) {
+    //   console.log(e);
+    // }
+    // setLoading(true);
   };
 
   const obj = {

@@ -1,25 +1,27 @@
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { Types } from '../user';
 import axios from 'axios';
+import { LOCAL_HOST } from '../../Lib/constant';
 // import { API_HOST } from "../Lib/constant";
 
-function signApi(user) {
+function signApi(data) {
   return axios
-    .post(`/api/users`, user)
-    .then(res => {
-      console.log(res.data);
+    .post(`${LOCAL_HOST}users`, data)
+    .then(response => {
+      console.log(response.data);
     })
-    .catch(e => {
-      console.log(e);
+    .catch(error => {
+      console.log(error.response.data);
     });
+
   // return axios.post(`${API_HOST}users`, user, {
   //   withCredentials: true,
   // });
 }
 
-function* sign({ user }) {
+function* sign({ data }) {
   try {
-    const result = yield call(signApi, user);
+    const result = yield call(signApi, data);
     yield put(Types.SignSuccess, result.data);
   } catch (e) {
     yield put(Types.SignFail, e);
