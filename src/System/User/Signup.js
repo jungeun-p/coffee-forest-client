@@ -41,15 +41,15 @@ const Signup = () => {
           email: user.email
         }
       })
-      .then(res => {
-        if (res.data === 'Duplicated') {
+      .then(response => {
+        if (response.data === 'Duplicated') {
           alert('중복된 이메일 입니다.');
         } else {
           alert('가입 가능한 이메일 입니다.');
         }
       })
-      .catch(e => {
-        console.log(e.res.data);
+      .catch(error => {
+        console.log(error.response.data);
       });
   };
 
@@ -61,15 +61,15 @@ const Signup = () => {
           businessNumber: user.businessNumber
         }
       })
-      .then(res => {
-        if (res.data === 'Duplicated') {
+      .then(response => {
+        if (response.data === 'Duplicated') {
           alert('중복된 사업자 번호입니다.');
         } else {
           alert('등록 가능한 사업자 번호입니다.');
         }
       })
-      .catch(e => {
-        console.log(e.res.data);
+      .catch(error => {
+        console.log(error.response.data);
       });
   };
 

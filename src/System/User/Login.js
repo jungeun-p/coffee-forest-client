@@ -16,31 +16,32 @@ const Login = () => {
     setUser(state => ({ ...state, [name]: value }));
   };
 
-  const onClick = async () => {
-    // if ((user.email && user.password) === '') {
-    //   alert('모두 기입 바람');
-    // } else {
-    axios
-      .post(
-        `${LOCAL_HOST}users/sign-in`,
-        {
-          email: user.email,
-          password: user.password
-        },
-        { 'Content-Type': 'application/json' }
-      )
-      .then(response => {
-        alert('어서오세요!');
-        history.push({
-          pathname: '/mypage',
-          state: {
-            data: response.data
-          }
+  const onClick = () => {
+    if ((user.email && user.password) === '') {
+      alert('모두 기입 바람');
+    } else {
+      axios
+        .post(
+          `${LOCAL_HOST}users/sign-in`,
+          {
+            email: user.email,
+            password: user.password
+          },
+          { 'Content-Type': 'application/json' }
+        )
+        .then(response => {
+          alert('어서오세요!');
+          history.push({
+            pathname: '/mypage',
+            state: {
+              data: response.data
+            }
+          });
+        })
+        .catch(error => {
+          console.log(error.response.data);
         });
-      })
-      .catch(error => {
-        console.log(error.response.data);
-      });
+    }
   };
   return <LoginBody user={user} onChange={onChange} onClick={onClick} />;
 };
