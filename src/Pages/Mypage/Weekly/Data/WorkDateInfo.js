@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const WeeklyData = ({ weekend }) => {
+const WorkDateInfo = ({ weekend }) => {
   return (
     <>
       <MainDate>
@@ -17,10 +17,6 @@ const WeeklyData = ({ weekend }) => {
           </WeekendNumber>
         </Dates>
       </MainDate>
-      <MainProfile>
-        <div>{weekend.name}</div>
-        <div>{weekend.position}</div>
-      </MainProfile>
     </>
   );
 };
@@ -30,6 +26,5 @@ const Month = styled.div``;
 const Dates = styled.div``;
 const Year = styled.div``;
 const WeekendNumber = styled.div``;
-const MainProfile = styled.div``;
 
-export default WeeklyData;
+export default WorkDateInfo;
