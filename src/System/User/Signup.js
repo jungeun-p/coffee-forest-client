@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SignOffice from '../../Pages/Signup/SignOffice';
 import SignEmployee from '../../Pages/Signup/SignEmployee';
 import { LOCAL_HOST } from '../../Lib/constant';
@@ -21,11 +21,11 @@ const Signup = () => {
     companyAddress: '',
     businessNumber: ''
   });
-  const [loading, setLoading] = useState(false);
+  //const [loading, setLoading] = useState(false);
   const [tab, setTab] = useState({
     activeId: 0
   });
-  // const user = useSelector();
+  const sign = useSelector(state => state.user);
   const dispatch = useDispatch();
   const onChange = e => {
     const { name, value } = e.target;
@@ -56,27 +56,33 @@ const Signup = () => {
 
   // 사업자 번호 중복 검사 api
   const ValidateBusinessNumber = () => {
-    if (user.businessNumber !== '') {
-      axios
-        .get(`${LOCAL_HOST}company/duplication`, {
-          params: {
-            businessNumber: user.businessNumber
-          }
-        })
-        .then(response => {
-          if (response.data === 'Duplicated') {
-            alert('중복된 사업자 번호입니다.');
-          } else {
-            alert('등록 가능한 사업자 번호입니다.');
-          }
-        })
-        .catch(error => {
-          console.log(error.response.data);
-        });
-    }
+    let number = {
+      params: {
+        businessNumber: user.businessNumber
+      }
+    };
+    dispatch(actions.validateNumber(number));
+    // if (user.businessNumber !== '') {
+    //   axios
+    //     .get(`${LOCAL_HOST}company/duplication`, {
+    //       params: {
+    //         businessNumber: user.businessNumber
+    //       }
+    //     })
+    //     .then(response => {
+    //       if (response.data === 'Duplicated') {
+    //         alert('중복된 사업자 번호입니다.');
+    //       } else {
+    //         alert('등록 가능한 사업자 번호입니다.');
+    //       }
+    //     })
+    //     .catch(error => {
+    //       console.log(error.response.data);
+    //     });
+    // }
+    console.log(sign);
   };
 
-  // const onClick = async () => {
   const onClick = () => {
     let data = {
       userSaveRequest: {
