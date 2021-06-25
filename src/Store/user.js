@@ -14,7 +14,7 @@ export const Types = {
 export const actions = {
   // sign
   signRequest: data => ({ type: Types.SignRequest, data }),
-  signSuccess: token => ({ type: Types.SignSuccess, token }),
+  signSuccess: userIndex => ({ type: Types.SignSuccess, userIndex }),
   signFail: error => ({ type: Types.SignFail, error }),
   // valid
   validateNumber: input => ({ type: Types.ValidateNumber, input }),
@@ -32,15 +32,8 @@ const INITIAL_STATE = {
 };
 
 const reducer = createReducer(INITIAL_STATE, {
-  [Types.SignRequest]: (state, action) => ({
-    ...state,
-    signLoading: true
-  }),
-  [Types.SignSuccess]: (state, action) => ({
-    ...state,
-    signLoading: false,
-    userIndex: action.payload
-  }),
+  // [Types.SignRequest]: (state, action) => ({}),
+  [Types.SignSuccess]: (state, action) => (state.userIndex = action.userIndex),
   [Types.SignFail]: (state, action) => ({
     ...state,
     signLoading: false,
