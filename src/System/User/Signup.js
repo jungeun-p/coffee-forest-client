@@ -27,6 +27,7 @@ const Signup = () => {
   });
   const sign = useSelector(state => state.user);
   const dispatch = useDispatch();
+
   const onChange = e => {
     const { name, value } = e.target;
     setUser(state => ({ ...state, [name]: value }));
@@ -56,31 +57,33 @@ const Signup = () => {
 
   // 사업자 번호 중복 검사 api
   const ValidateBusinessNumber = () => {
-    let number = {
-      params: {
-        businessNumber: user.businessNumber
-      }
-    };
-    dispatch(actions.validateNumber(number));
-    // if (user.businessNumber !== '') {
-    //   axios
-    //     .get(`${LOCAL_HOST}company/duplication`, {
-    //       params: {
-    //         businessNumber: user.businessNumber
-    //       }
-    //     })
-    //     .then(response => {
-    //       if (response.data === 'Duplicated') {
-    //         alert('중복된 사업자 번호입니다.');
-    //       } else {
-    //         alert('등록 가능한 사업자 번호입니다.');
-    //       }
-    //     })
-    //     .catch(error => {
-    //       console.log(error.response.data);
-    //     });
-    // }
-    console.log(sign);
+    if (user.businessNumber !== '') {
+      let input = {
+        params: {
+          businessNumber: user.businessNumber
+        }
+      };
+      dispatch(actions.validateNumber(input));
+      // axios
+      //   .get(`${LOCAL_HOST}company/duplication`, {
+      //     params: {
+      //       businessNumber: user.businessNumber
+      //     }
+      //   })
+      //   .then(response => {
+      //     if (response.data === 'Duplicated') {
+      //       alert('중복된 사업자 번호입니다.');
+      //     } else {
+      //       alert('등록 가능한 사업자 번호입니다.');
+      //     }
+      //   })
+      //   .catch(error => {
+      //     console.log(error.response.data);
+      //   });
+    } else {
+      alert('사업자 번호를 제대로 작성해주세요');
+    }
+    // console.log(sign);
   };
 
   const onClick = () => {

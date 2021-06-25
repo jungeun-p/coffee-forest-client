@@ -27,35 +27,6 @@ function* sign({ data }) {
   }
 }
 
-function validNumberApi(number) {
-  return axios
-    .get(`${LOCAL_HOST}company/duplication`, number)
-    .then(response => {
-      if (response.data === 'Duplicated') {
-        alert('중복된 사업자 번호입니다.');
-      } else {
-        alert('등록 가능한 사업자 번호입니다.');
-      }
-    })
-    .catch(error => {
-      console.log(error.response.data);
-    });
-}
-
-// function validEmailApi(email) {
-//   return axios.get(`${LOCAL_HOST}users/duplication`, { params: { email } });
-// }
-
-function* valid({ number, email }) {
-  try {
-    const fixnumber = yield call(validNumberApi, number);
-    yield put(Types.ValidateSuccess, fixnumber.data);
-  } catch (error) {
-    yield put(Types.ValidateFail, error.response.data);
-  }
-}
-
 export default function* watchSign() {
-  // yield take(Types.SignRequest, sign);
-  yield takeEvery(Types.ValidateNumber, valid);
+  yield takeEvery(Types.SignRequest, sign);
 }
