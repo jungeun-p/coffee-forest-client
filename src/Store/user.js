@@ -28,7 +28,7 @@ const INITIAL_STATE = {
   signFail: '',
   userIndex: '', // 회원가입 후 userIndex 값을 얻을 경우 성공.
   validFail: '',
-  validMessage: '' // 비교 후 성공하면 message가 생성.
+  validMessage: null // 비교 후 성공하면 message가 생성.
 };
 
 const reducer = createReducer(INITIAL_STATE, {
