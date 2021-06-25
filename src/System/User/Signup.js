@@ -25,7 +25,7 @@ const Signup = () => {
     activeId: 0
   });
 
-  const { validMessage } = useSelector(state => state.user);
+  const { validMessage, userIndex } = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const onChange = e => {
@@ -83,47 +83,18 @@ const Signup = () => {
         businessNumber: user.businessNumber
       }
     };
-    // @ts-ignore
     // redux-saga로 dispatch(action, data) 전달
     dispatch(actions.signRequest(data));
-    // setLoading(false);
-    // try {
-    //   const res = await axios.post(
-    //     `${LOCAL_HOST}users`,
-    //     {
-    //       userSaveRequest: {
-    //         email: user.email,
-    //         password: user.password,
-    //         position: user.position,
-    //         name: user.name,
-    //         phone: user.phone,
-    //         address: user.address
-    //       },
-    //       companySaveRequest: {
-    //         name: user.companyName,
-    //         address: user.companyAddress,
-    //         businessNumber: user.businessNumber
-    //       }
-    //     },
-    //     { 'Content-Type': 'application/json' }
-    //   );
-    //   console.log(res);
-    //   alert('회원 가입 성공!');
-    //   // 메인-로그인 화면으로 이동
-    //   history.push('/');
-    // } catch (e) {
-    //   console.log(e);
-    // }
-    // setLoading(true);
   };
 
-  // useEffect(() => {
-  //   if (validMessage === 'Available') {
-  //     alert('등록 가능합니다');
-  //   } else {
-  //     alert('다시 한번 작성해주세요');
-  //   }
-  // }, [validMessage, dispatch]);
+  useEffect(() => {
+    if (userIndex !== '') {
+      alert('회원 가입 성공');
+      history.push('/');
+    } else {
+      alert('다시 한번 작성해주세요');
+    }
+  }, [dispatch, userIndex]);
 
   const obj = {
     0: (

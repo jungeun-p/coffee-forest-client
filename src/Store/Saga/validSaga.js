@@ -36,7 +36,6 @@ function* number({ input }) {
   if (message === 'Available') {
     yield put(actions.validateSuccess(message));
   } else {
-    console.log(message);
     yield put(actions.validateFail(message));
   }
 }
@@ -46,7 +45,6 @@ function* email({ inputEmail }) {
   if (message === 'Available') {
     yield put(actions.validateSuccess(message));
   } else {
-    console.log(message);
     yield put(actions.validateFail(message));
   }
 }
