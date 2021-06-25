@@ -18,7 +18,7 @@ export const actions = {
   signFail: error => ({ type: Types.SignFail, error }),
   // valid
   validateNumber: input => ({ type: Types.ValidateNumber, input }),
-  validateEmail: input => ({ type: Types.ValidateEmail, input }),
+  validateEmail: inputEmail => ({ type: Types.ValidateEmail, inputEmail }),
   validateSuccess: message => ({ type: Types.ValidateSuccess, message }),
   validateFail: message => ({ type: Types.ValidateFail, message })
 };

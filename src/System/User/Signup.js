@@ -37,29 +37,19 @@ const Signup = () => {
   // email 중복 검사 api
   const ValidateEmail = () => {
     if (user.email !== '') {
-      axios
-        .get(`${LOCAL_HOST}users/duplication`, {
-          params: {
-            email: user.email
-          }
-        })
-        .then(response => {
-          if (response.data === 'Duplicated') {
-            alert('중복된 이메일 입니다.');
-          } else {
-            alert('가입 가능한 이메일 입니다.');
-          }
-        })
-        .catch(error => {
-          console.log(error.response.data);
-        });
+      const inputEmail = {
+        params: {
+          email: user.email
+        }
+      };
+      dispatch(actions.validateEmail(inputEmail));
     }
   };
 
   // 사업자 번호 중복 검사 api
   const ValidateBusinessNumber = () => {
     if (user.businessNumber !== '') {
-      let input = {
+      const input = {
         params: {
           businessNumber: user.businessNumber
         }
