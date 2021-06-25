@@ -1,4 +1,5 @@
 import { createReducer } from '../Hooks/redux-helper';
+// import { createReducer } from '@reduxjs/toolkit';
 
 export const Types = {
   SignRequest: 'user/SignRequest',
@@ -19,15 +20,15 @@ export const actions = {
   validateNumber: input => ({ type: Types.ValidateNumber, input }),
   validateEmail: input => ({ type: Types.ValidateEmail, input }),
   validateSuccess: message => ({ type: Types.ValidateSuccess, message }),
-  validateFail: error => ({ type: Types.ValidateFail })
+  validateFail: message => ({ type: Types.ValidateFail, message })
 };
 
 const INITIAL_STATE = {
   signLoading: false,
   signFail: '',
-  userIndex: null, // 회원가입 후 userIndex 값을 얻을 경우 성공.
+  userIndex: '', // 회원가입 후 userIndex 값을 얻을 경우 성공.
   validFail: '',
-  validMessage: null // 비교 후 성공하면 message가 생성.
+  validMessage: '' // 비교 후 성공하면 message가 생성.
 };
 
 const reducer = createReducer(INITIAL_STATE, {
@@ -45,14 +46,9 @@ const reducer = createReducer(INITIAL_STATE, {
     signLoading: false,
     signFail: action.error
   }),
-  [Types.ValidateSuccess]: (state, action) => ({
-    ...state,
-    validMessage: action.payload
-  }),
-  [Types.ValidateFail]: (state, action) => ({
-    ...state,
-    validFail: action.error
-  })
+  [Types.ValidateSuccess]: (state, action) =>
+    (state.validMessage = action.message),
+  [Types.ValidateFail]: (state, action) => (state.validFail = action.message)
 });
 
 export default reducer;

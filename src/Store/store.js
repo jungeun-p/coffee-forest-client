@@ -3,6 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import userReducer from '../Store/user';
 import { all } from 'redux-saga/effects';
 import signSaga from './Saga/signSaga';
+import validSaga from './Saga/validSaga';
 
 // reducer 합치기
 const reducer = combineReducers({
@@ -20,7 +21,7 @@ const store = createStore(
 
 // saga
 function* rootSaga() {
-  yield all([signSaga()]);
+  yield all([signSaga(), validSaga()]);
 }
 sagaMiddleware.run(rootSaga);
 

@@ -5,13 +5,14 @@ import { LOCAL_HOST } from '../../Lib/constant';
 // import { API_HOST } from "../Lib/constant";
 
 function signApi(data) {
-  return axios.post(`${LOCAL_HOST}users`, data);
-  // .then(response => {
-  //   console.log(response.data);
-  // })
-  // .catch(error => {
-  //   console.log(error.response.data);
-  // });
+  return axios
+    .post(`${LOCAL_HOST}users`, data)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.log(error.response.data);
+    });
 
   // return axios.post(`${API_HOST}users`, user, {
   //   withCredentials: true,
