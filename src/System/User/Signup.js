@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,8 +25,7 @@ const Signup = () => {
     activeId: 0
   });
 
-  const sign = useSelector(state => state.user);
-  console.log(sign);
+  const { validMessage } = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const onChange = e => {
@@ -43,6 +42,11 @@ const Signup = () => {
         }
       };
       dispatch(actions.validateEmail(inputEmail));
+    } else {
+      alert('이미 등록된 이메일이 존재합니다.');
+    }
+    if (validMessage === 'Available') {
+      alert('등록 가능합니다');
     }
   };
 
@@ -56,7 +60,10 @@ const Signup = () => {
       };
       dispatch(actions.validateNumber(input));
     } else {
-      alert('사업자 번호를 제대로 작성해주세요');
+      alert('사업자 번호를 제대로 작성해주세요.');
+    }
+    if (validMessage === 'Available') {
+      alert('등록 가능합니다');
     }
   };
 
@@ -109,6 +116,14 @@ const Signup = () => {
     // }
     // setLoading(true);
   };
+
+  // useEffect(() => {
+  //   if (validMessage === 'Available') {
+  //     alert('등록 가능합니다');
+  //   } else {
+  //     alert('다시 한번 작성해주세요');
+  //   }
+  // }, [validMessage, dispatch]);
 
   const obj = {
     0: (
