@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import SignOffice from '../../Pages/Signup/SignOffice';
 import SignEmployee from '../../Pages/Signup/SignEmployee';
-import { LOCAL_HOST } from '../../Lib/constant';
 import { useHistory } from 'react-router-dom';
-import { actions } from '../../Store/user';
+import { actions as userActions } from '../../Store/user';
+import { actions as validActions } from '../../Store/validation';
 
 const Signup = () => {
   const history = useHistory();
@@ -25,8 +24,20 @@ const Signup = () => {
     activeId: 0
   });
 
-  const { validMessage, userIndex } = useSelector(state => state.user);
+  const userInfo = useSelector(state => state.user.userIndex);
+  console.log(userInfo);
+  const { validEmail, validNumber } = useSelector(state => state.validation);
+
+  console.log(`email:${validEmail}, number:${validNumber}`);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (userInfo) {
+      alert('회원 가입 성공');
+      history.push('/');
+    }
+  }, [userInfo, dispatch]);
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -41,29 +52,19 @@ const Signup = () => {
           email: user.email
         }
       };
-      dispatch(actions.validateEmail(inputEmail));
-    } else {
-      alert('이미 등록된 이메일이 존재합니다.');
-    }
-    if (validMessage === 'Available') {
-      alert('등록 가능합니다');
+      dispatch(validActions.validateEmail(inputEmail));
     }
   };
 
   // 사업자 번호 중복 검사 api
   const ValidateBusinessNumber = () => {
-    if (user.businessNumber !== '') {
+    if (user.businessNumber) {
       const input = {
         params: {
           businessNumber: user.businessNumber
         }
       };
-      dispatch(actions.validateNumber(input));
-    } else {
-      alert('사업자 번호를 제대로 작성해주세요.');
-    }
-    if (validMessage === 'Available') {
-      alert('등록 가능합니다');
+      dispatch(validActions.validateNumber(input));
     }
   };
 
@@ -84,17 +85,8 @@ const Signup = () => {
       }
     };
     // redux-saga로 dispatch(action, data) 전달
-    dispatch(actions.signRequest(data));
+    dispatch(userActions.signRequest(data));
   };
-
-  useEffect(() => {
-    if (userIndex !== '') {
-      alert('회원 가입 성공');
-      history.push('/');
-    } else {
-      alert('다시 한번 작성해주세요');
-    }
-  }, [dispatch, userIndex]);
 
   const obj = {
     0: (

@@ -8,7 +8,7 @@ function signApi(data) {
   return axios
     .post(`${LOCAL_HOST}users`, data)
     .then(response => {
-      const userIndex = response.data;
+      const userIndex = response.data.userIndex;
       return {
         userIndex
       };
@@ -22,6 +22,26 @@ function signApi(data) {
   // });
 }
 
+function loginApi(data) {
+  return axios
+    .post(`${LOCAL_HOST}users/sign-in`, data)
+    .then(response => {
+      const companyIndex = response.data.companyIndex;
+      const userIndex = response.data.userIndex;
+      const userInfo = {
+        companyIndex: companyIndex,
+        userIndex: userIndex
+      };
+      return {
+        userInfo
+      };
+    })
+    .catch(error => {
+      const errorMessage = error.response.data;
+      return { errorMessage };
+    });
+}
+
 function* sign({ data }) {
   const { userIndex, errorMessage } = yield call(signApi, data);
   if (userIndex) {
@@ -31,6 +51,16 @@ function* sign({ data }) {
   }
 }
 
+function* login({ data }) {
+  const { userInfo, errorMessage } = yield call(loginApi, data);
+  if (userInfo) {
+    yield put(actions.loginSuccess(userInfo));
+  } else {
+    yield put(actions.loginFail(errorMessage));
+  }
+}
+
 export default function* watchSign() {
   yield takeEvery(Types.SignRequest, sign);
+  yield takeEvery(Types.LoginRequest, login);
 }

@@ -1,13 +1,15 @@
 import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import userReducer from '../Store/user';
+import userReducer from './user';
+import validReducer from './validation';
 import { all } from 'redux-saga/effects';
 import signSaga from './Saga/signSaga';
 import validSaga from './Saga/validSaga';
 
 // reducer 합치기
 const reducer = combineReducers({
-  user: userReducer
+  user: userReducer,
+  validation: validReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
