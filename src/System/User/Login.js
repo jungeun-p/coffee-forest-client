@@ -1,15 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import LoginBody from '../../Pages/Login/LoginBody';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../Lib/constant';
+import { useDispatch, useSelector } from 'react-redux';
+import { actions } from '../../Store/user';
 
 const Login = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const companyIndex = useSelector(state => state.user.userInfo.companyIndex);
+
   const [user, setUser] = useState({
     email: '',
     password: ''
   });
+
+  useEffect(() => {
+    if (companyIndex) {
+      alert('로그인 성공');
+      history.push('/mypage');
+    }
+  }, [companyIndex, dispatch]);
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -20,27 +33,25 @@ const Login = () => {
     if ((user.email && user.password) === '') {
       alert('모두 기입 바람');
     } else {
-      axios
-        .post(
-          `${LOCAL_HOST}users/sign-in`,
-          {
-            email: user.email,
-            password: user.password
-          },
-          { 'Content-Type': 'application/json' }
-        )
-        .then(response => {
-          alert('어서오세요!');
-          history.push({
-            pathname: '/mypage',
-            state: {
-              data: response.data
-            }
-          });
-        })
-        .catch(error => {
-          console.log(error.response.data);
-        });
+      const data = {
+        email: user.email,
+        password: user.password
+      };
+      dispatch(actions.loginRequest(data));
+      // axios
+      //   .post(`${LOCAL_HOST}users/sign-in`, data)
+      //   .then(response => {
+      //     alert('어서오세요!');
+      //     history.push({
+      //       pathname: '/mypage',
+      //       state: {
+      //         data: response.data
+      //       }
+      //     });
+      //   })
+      //   .catch(error => {
+      //     console.log(error.response.data);
+      //   });
     }
   };
   return <LoginBody user={user} onChange={onChange} onClick={onClick} />;

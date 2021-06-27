@@ -24,11 +24,20 @@ const Signup = () => {
     activeId: 0
   });
 
-  const { userIndex } = useSelector(state => state.user);
-  console.log(userIndex);
+  const userInfo = useSelector(state => state.user.userIndex);
+  console.log(userInfo);
   const { validEmail, validNumber } = useSelector(state => state.validation);
+
   console.log(`email:${validEmail}, number:${validNumber}`);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (userInfo) {
+      alert('회원 가입 성공');
+      history.push('/');
+    }
+  }, [userInfo, dispatch]);
 
   const onChange = e => {
     const { name, value } = e.target;

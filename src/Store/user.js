@@ -4,32 +4,34 @@ import { createReducer } from '../Hooks/redux-helper';
 export const Types = {
   SignRequest: 'user/SignRequest',
   SignSuccess: 'user/SignSuccess',
-  SignFail: 'user/SignFail'
-  // ValidateNumber: 'user/ValidateNumber',
-  // ValidateEmail: 'user/ValidateEmaiil',
-  // ValidateSuccess: 'user/ValidateSuccess',
-  // ValidateFail: 'user/ValidateFail'
+  SignFail: 'user/SignFail',
+  LoginRequest: 'user/LoginRequest',
+  LoginSuccess: 'user/LoginSuccess',
+  LoginFail: 'user/LoginFail'
 };
 
 export const actions = {
   // sign
   signRequest: data => ({ type: Types.SignRequest, data }),
   signSuccess: userIndex => ({ type: Types.SignSuccess, userIndex }),
-  signFail: error => ({ type: Types.SignFail, error })
-  // valid
-  // validateNumber: input => ({ type: Types.ValidateNumber, input }),
-  // validateEmail: inputEmail => ({ type: Types.ValidateEmail, inputEmail }),
-  // validateSuccess: message => ({ type: Types.ValidateSuccess, message }),
-  // validateFail: message => ({ type: Types.ValidateFail, message })
+  signFail: error => ({ type: Types.SignFail, error }),
+  // login
+  loginRequest: data => ({ type: Types.LoginRequest, data }),
+  loginSuccess: userInfo => ({ type: Types.LoginSuccess, userInfo }),
+  loginFail: error => ({ type: Types.LoginFail, error })
 };
 
 const INITIAL_STATE = {
   signLoading: false,
   signFail: '',
-  userIndex: '' // 회원가입 후 userIndex 값을 얻을 경우 성공.
-  // validFail: '',
-  // validEmail: null, // 비교 후 성공하면 message가 생성.
-  // validNumber:''
+  loginLoading: false,
+  loginFail: '',
+  companyIndex: '',
+  userIndex: '',
+  userInfo: {
+    companyIndex: null,
+    userIndex: null
+  }
 };
 
 const reducer = createReducer(INITIAL_STATE, {
@@ -39,10 +41,9 @@ const reducer = createReducer(INITIAL_STATE, {
     ...state,
     signLoading: false,
     signFail: action.error
-  })
-  // [Types.ValidateSuccess]: (state, action) =>
-  //   (state.validMessage = action.message),
-  // [Types.ValidateFail]: (state, action) => (state.validFail = action.message)
+  }),
+  [Types.LoginSuccess]: (state, action) => (state.userInfo = action.userInfo),
+  [Types.LoginFail]: (state, action) => (state.loginFail = action.error)
 });
 
 export default reducer;
