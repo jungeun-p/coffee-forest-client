@@ -13,7 +13,7 @@ const ButtonCommon = ({ title, onClick }) => {
 
 const ButtonArticle = styled.button`
   overflow: hidden;
-  background-color: #8b6352;
+  background-color: #1ca953;
   height: 58px;
   border-radius: 10px;
   padding: 0 15px 0 15px;
@@ -29,7 +29,7 @@ const ButtonArticle = styled.button`
 const ButtonDetail = styled.div``;
 const ButtonTitle = styled.div`
   font-size: 14px;
-  color: #fefefe;
+  color: #f8faed;
   font-weight: 500;
 `;
 

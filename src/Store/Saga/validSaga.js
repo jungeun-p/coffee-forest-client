@@ -1,5 +1,5 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
-import { actions, Types } from '../user';
+import { actions, Types } from '../validation';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../Lib/constant';
 
@@ -34,7 +34,7 @@ function validEmailApi(inputEmail) {
 function* number({ input }) {
   const { message } = yield call(validNumberApi, input);
   if (message === 'Available') {
-    yield put(actions.validateSuccess(message));
+    yield put(actions.validateSuccessNumber(message));
   } else {
     yield put(actions.validateFail(message));
   }
@@ -43,7 +43,7 @@ function* number({ input }) {
 function* email({ inputEmail }) {
   const { message } = yield call(validEmailApi, inputEmail);
   if (message === 'Available') {
-    yield put(actions.validateSuccess(message));
+    yield put(actions.validateSuccessEmail(message));
   } else {
     yield put(actions.validateFail(message));
   }
