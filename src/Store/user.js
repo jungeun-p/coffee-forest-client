@@ -17,7 +17,7 @@ export const actions = {
   signFail: error => ({ type: Types.SignFail, error }),
   // login
   loginRequest: data => ({ type: Types.LoginRequest, data }),
-  loginSuccess: userInfo => ({ type: Types.LoginSuccess, userInfo }),
+  loginSuccess: userData => ({ type: Types.LoginSuccess, userData }),
   loginFail: error => ({ type: Types.LoginFail, error })
 };
 
@@ -28,10 +28,7 @@ const INITIAL_STATE = {
   loginFail: '',
   companyIndex: '',
   userIndex: '',
-  userInfo: {
-    companyIndex: null,
-    userIndex: null
-  }
+  userInfo: {}
 };
 
 const reducer = createReducer(INITIAL_STATE, {
@@ -42,7 +39,7 @@ const reducer = createReducer(INITIAL_STATE, {
     signLoading: false,
     signFail: action.error
   }),
-  [Types.LoginSuccess]: (state, action) => (state.userInfo = action.userInfo),
+  [Types.LoginSuccess]: (state, action) => (state.userInfo = action.userData),
   [Types.LoginFail]: (state, action) => (state.loginFail = action.error)
 });
 

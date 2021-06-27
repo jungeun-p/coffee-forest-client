@@ -1,5 +1,6 @@
 import { takeEvery, call, put, take } from 'redux-saga/effects';
 import { actions, Types } from '../user';
+import { actions as scheduleActions } from '../schedule';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../Lib/constant';
 // import { API_HOST } from "../Lib/constant";
@@ -26,14 +27,9 @@ function loginApi(data) {
   return axios
     .post(`${LOCAL_HOST}users/sign-in`, data)
     .then(response => {
-      const companyIndex = response.data.companyIndex;
-      const userIndex = response.data.userIndex;
-      const userInfo = {
-        companyIndex: companyIndex,
-        userIndex: userIndex
-      };
+      const userData = response.data;
       return {
-        userInfo
+        userData
       };
     })
     .catch(error => {
@@ -52,9 +48,10 @@ function* sign({ data }) {
 }
 
 function* login({ data }) {
-  const { userInfo, errorMessage } = yield call(loginApi, data);
-  if (userInfo) {
-    yield put(actions.loginSuccess(userInfo));
+  const { userData, errorMessage } = yield call(loginApi, data);
+  if (userData) {
+    yield put(actions.loginSuccess(userData));
+    //yield put(scheduleActions.scheduleInfo(scheduleData));
   } else {
     yield put(actions.loginFail(errorMessage));
   }

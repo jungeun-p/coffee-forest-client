@@ -9,6 +9,7 @@ import { actions as validActions } from '../../Store/validation';
 
 const Signup = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -25,12 +26,8 @@ const Signup = () => {
   });
 
   const userInfo = useSelector(state => state.user.userIndex);
-  console.log(userInfo);
   const { validEmail, validNumber } = useSelector(state => state.validation);
-
   console.log(`email:${validEmail}, number:${validNumber}`);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (userInfo) {
