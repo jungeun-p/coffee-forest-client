@@ -5,21 +5,24 @@ import axios from 'axios';
 import { LOCAL_HOST } from '../../Lib/constant';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../Store/user';
+import { actions as scheduleActions } from '../../Store/schedule';
 
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const companyIndex = useSelector(state => state.user.userInfo.companyIndex);
 
   const [user, setUser] = useState({
     email: '',
     password: ''
   });
 
+  const { companyIndex } = useSelector(state => state.user.userInfo);
+  const scheduleData = useSelector(state => state.user.userInfo);
+
   useEffect(() => {
     if (companyIndex) {
       alert('로그인 성공');
+      dispatch(scheduleActions.scheduleInfo(scheduleData));
       history.push('/mypage');
     }
   }, [companyIndex, dispatch]);
