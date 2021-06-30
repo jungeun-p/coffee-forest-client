@@ -6,6 +6,7 @@ import scheduleReducer from './schedule';
 import { all } from 'redux-saga/effects';
 import signSaga from './Saga/signSaga';
 import validSaga from './Saga/validSaga';
+import enterSaga from './Saga/enterSaga';
 
 // reducer 합치기
 const reducer = combineReducers({
@@ -25,7 +26,7 @@ const store = createStore(
 
 // saga
 function* rootSaga() {
-  yield all([signSaga(), validSaga()]);
+  yield all([signSaga(), validSaga(), enterSaga()]);
 }
 sagaMiddleware.run(rootSaga);
 
