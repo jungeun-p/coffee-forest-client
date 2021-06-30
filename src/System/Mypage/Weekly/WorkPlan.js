@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../../Lib/constant';
+import WorkAttandance from '../../../Pages/Mypage/Weekly/Plan/WorkAttandance';
 
-const WorkPlan = ({ weekend }) => {
+const WorkPlan = ({ schedulePlan, weekend }) => {
   // 출근 api
   const onAttandacne = () => {
     axios
@@ -38,6 +39,7 @@ const WorkPlan = ({ weekend }) => {
     <>
       <button onClick={onAttandacne}>출근</button>
       <button onClick={onLeaving}>퇴근</button>
+      <WorkAttandance schedulePlan={schedulePlan} />
     </>
   );
 };
