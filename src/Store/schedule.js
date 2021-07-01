@@ -4,17 +4,22 @@ export const Types = {
   ScheduleInfo: 'schedule/ScheduleInfo',
   ScheduleEnter: 'schedule/ScheduleEnter',
   ScheduleEnterSuccess: 'schedule/ScheduleEnterSuccess',
-  ScheduleOut: 'schedule/ScheduleOut'
+  ScheduleEnd: 'schedule/ScheduleEnd',
+  ScheduleEndSuccess: 'schedule/ScheduleEndSuccess'
 };
 
 export const actions = {
   scheduleInfo: scheduleData => ({ type: Types.ScheduleInfo, scheduleData }),
   scheduleEnter: index => ({ type: Types.ScheduleEnter, index }),
-  scheduleEnterSuccess: enterTime => ({
+  scheduleEnterSuccess: attendance => ({
     type: Types.ScheduleEnterSuccess,
-    enterTime
+    attendance
   }),
-  scheduleOut: index => ({ type: Types.ScheduleOut, index })
+  scheduleEnd: index => ({ type: Types.ScheduleEnd, index }),
+  scheduleEndSuccess: attendance => ({
+    type: Types.ScheduleEndSuccess,
+    attendance
+  })
 };
 
 const INITIAL_STATE = {
@@ -24,7 +29,9 @@ const INITIAL_STATE = {
 const reducer = createReducer(INITIAL_STATE, {
   [Types.ScheduleInfo]: (state, action) => (state.date = action.scheduleData),
   [Types.ScheduleEnterSuccess]: (state, action) =>
-    (state.date.enter = action.enterTime)
+    (state.date.enter = action.attendance),
+  [Types.ScheduleEndSuccess]: (state, action) =>
+    (state.date.enter = action.attendance)
 });
 
 export default reducer;

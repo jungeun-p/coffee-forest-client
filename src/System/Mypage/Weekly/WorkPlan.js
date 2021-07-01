@@ -22,8 +22,6 @@ const WorkPlan = ({ schedulePlan, weekend }) => {
     scheduleStatus: ''
   });
 
-  console.log(event);
-
   const onChange = e => {
     const { name, value } = e.target;
     setEvent(state => ({ ...state, [name]: value }));
@@ -73,18 +71,23 @@ const WorkPlan = ({ schedulePlan, weekend }) => {
 
   // 퇴근 api
   const onLeaving = () => {
-    axios
-      .patch(`${LOCAL_HOST}attendance`, {
-        companyIndex: weekend.companyIndex,
-        userIndex: weekend.userIndex
-      })
-      .then(response => {
-        alert('퇴근');
-        console.log(response.data);
-      })
-      .catch(error => {
-        console.log(error.response.data);
-      });
+    const index = {
+      companyIndex: weekend.companyIndex,
+      userIndex: weekend.userIndex
+    };
+    dispatch(actions.scheduleEnd(index));
+    // axios
+    //   .patch(`${LOCAL_HOST}attendance`, {
+    //     companyIndex: weekend.companyIndex,
+    //     userIndex: weekend.userIndex
+    //   })
+    //   .then(response => {
+    //     alert('퇴근');
+    //     console.log(response.data);
+    //   })
+    //   .catch(error => {
+    //     console.log(error.response.data);
+    //   });
   };
 
   return (

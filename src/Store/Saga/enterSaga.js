@@ -3,14 +3,28 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { LOCAL_HOST } from '../../Lib/constant';
 import { actions, Types } from '../schedule';
 
+function endApi(index) {
+  return axios
+    .patch(`${LOCAL_HOST}attendance`, index)
+    .then(response => {
+      const attendance = response.data;
+      console.log(attendance);
+      return { attendance };
+    })
+    .catch(error => {
+      const errorMessage = error.response.data;
+      return { errorMessage };
+    });
+}
+
 function enterApi(index) {
   return axios
     .post(`${LOCAL_HOST}attendance`, index)
     .then(response => {
-      const enterTime = response.data;
-      console.log(enterTime);
+      const attendance = response.data;
+      console.log(attendance);
       return {
-        enterTime
+        attendance
       };
     })
     .catch(error => {
@@ -19,13 +33,21 @@ function enterApi(index) {
     });
 }
 
+function* end({ index }) {
+  const { attendance } = yield call(endApi, index);
+  if (attendance) {
+    yield put(actions.scheduleEndSuccess(attendance));
+  }
+}
+
 function* enter({ index }) {
-  const { enterTime } = yield call(enterApi, index);
-  if (enterTime) {
-    yield put(actions.scheduleEnterSuccess(enterTime));
+  const { attendance } = yield call(enterApi, index);
+  if (attendance) {
+    yield put(actions.scheduleEnterSuccess(attendance));
   }
 }
 
 export default function* watchWorkplan() {
   yield takeEvery(Types.ScheduleEnter, enter);
+  yield takeEvery(Types.ScheduleEnd, end);
 }
