@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 const WorkPlan = ({ schedulePlan, weekend }) => {
   const dispatch = useDispatch();
   const enter = useSelector(state => state.schedule.date.enter);
-  console.log(enter);
   // 출근 api
   const onAttandacne = () => {
     const index = {
