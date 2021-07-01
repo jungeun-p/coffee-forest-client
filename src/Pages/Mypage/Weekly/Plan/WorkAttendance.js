@@ -1,6 +1,6 @@
 import React from 'react';
 
-const WorkAttandance = ({ schedulePlan, enter }) => {
+const WorkAttendance = ({ schedulePlan, enter }) => {
   // const value = schedulePlan[Object.values(schedulePlan)[0]];
   // const startTime = Object.values(schedulePlan)[0][0].startTime;
   // const endTime = Object.values(schedulePlan)[0][0].endTime;
@@ -12,4 +12,4 @@ const WorkAttandance = ({ schedulePlan, enter }) => {
   );
 };
 
-export default WorkAttandance;
+export default WorkAttendance;
