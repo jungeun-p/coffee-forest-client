@@ -14,14 +14,15 @@ const InputTitle = ({ title }) => {
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
+  justify-content: flex-start;
+  margin-bottom: 15px;
 `;
 const TitleWrap = styled.div``;
 
 const Title = styled.div`
-  font-size: 14px;
+  font-size: 18px;
   color: #444444;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 export default InputTitle;

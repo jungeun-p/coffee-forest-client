@@ -12,6 +12,7 @@ const ButtonCommon = ({ title, onClick }) => {
 };
 
 const ButtonArticle = styled.button`
+  /* width: 320px; */
   overflow: hidden;
   background-color: #1ca953;
   height: 58px;
@@ -24,6 +25,7 @@ const ButtonArticle = styled.button`
   vertical-align: middle;
   border: none;
   outline: none;
+  margin-bottom: 40px;
 `;
 
 const ButtonDetail = styled.div``;
