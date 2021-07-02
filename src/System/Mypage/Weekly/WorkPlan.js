@@ -55,18 +55,6 @@ const WorkPlan = ({ schedulePlan, weekend }) => {
       userIndex: weekend.userIndex
     };
     dispatch(actions.scheduleEnter(index));
-    // axios
-    //   .post(`${LOCAL_HOST}attendance`, {
-    //     companyIndex: weekend.companyIndex,
-    //     userIndex: weekend.userIndex
-    //   })
-    //   .then(response => {
-    //     alert('출근');
-    //     console.log(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.log(error.response.data);
-    //   });
   };
 
   // 퇴근 api
@@ -76,18 +64,6 @@ const WorkPlan = ({ schedulePlan, weekend }) => {
       userIndex: weekend.userIndex
     };
     dispatch(actions.scheduleEnd(index));
-    // axios
-    //   .patch(`${LOCAL_HOST}attendance`, {
-    //     companyIndex: weekend.companyIndex,
-    //     userIndex: weekend.userIndex
-    //   })
-    //   .then(response => {
-    //     alert('퇴근');
-    //     console.log(response.data);
-    //   })
-    //   .catch(error => {
-    //     console.log(error.response.data);
-    //   });
   };
 
   return (

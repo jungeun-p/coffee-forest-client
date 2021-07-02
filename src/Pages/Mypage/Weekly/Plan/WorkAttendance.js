@@ -1,7 +1,6 @@
 import React from 'react';
 
 const WorkAttendance = ({ schedulePlan, enter }) => {
-  console.log(enter);
   // const value = schedulePlan[Object.values(schedulePlan)[0]];
   // const startTime = Object.values(schedulePlan)[0][0].startTime;
   // const endTime = Object.values(schedulePlan)[0][0].endTime;

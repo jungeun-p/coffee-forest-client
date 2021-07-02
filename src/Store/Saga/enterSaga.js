@@ -8,7 +8,6 @@ function endApi(index) {
     .patch(`${LOCAL_HOST}attendance`, index)
     .then(response => {
       const attendance = response.data;
-      console.log(attendance);
       return { attendance };
     })
     .catch(error => {
@@ -22,7 +21,6 @@ function enterApi(index) {
     .post(`${LOCAL_HOST}attendance`, index)
     .then(response => {
       const attendance = response.data;
-      console.log(attendance);
       return {
         attendance
       };
