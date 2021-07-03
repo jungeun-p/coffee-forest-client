@@ -1,4 +1,4 @@
 import InputCommon from './InputCommon';
-import InputTitle from './InputTitle';
+import { InputTitleS, InputTitleB } from './InputTitle';
 
-export { InputCommon, InputTitle };
+export { InputCommon, InputTitleS, InputTitleB };

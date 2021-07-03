@@ -128,6 +128,7 @@ const CategoryWrap = styled.div`
   height: 50px;
   background: black;
   border-radius: 14px;
+  margin-bottom: 40px;
 `;
 
 export default Signup;
