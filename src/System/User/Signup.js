@@ -6,6 +6,7 @@ import SignEmployee from '../../Pages/Signup/SignEmployee';
 import { useHistory } from 'react-router-dom';
 import { actions as userActions } from '../../Store/user';
 import { actions as validActions } from '../../Store/validation';
+import ButtonSelect from '../../Components/Button/ButtonSelect';
 
 const Signup = () => {
   const history = useHistory();
@@ -111,13 +112,22 @@ const Signup = () => {
 
   return (
     <>
-      <CategoryName onClick={() => clickHandler(0)}>회사 등록</CategoryName>
-      <CategoryName onClick={() => clickHandler(1)}>직원 등록</CategoryName>
+      <CategoryWrap>
+        <ButtonSelect title="회사 등록 🏢" onClick={() => clickHandler(0)} />
+        <ButtonSelect title="사원 등록 👤" onClick={() => clickHandler(1)} />
+      </CategoryWrap>
       {obj[tab.activeId]}
     </>
   );
 };
 
-const CategoryName = styled.div``;
+const CategoryWrap = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 50px;
+  background: black;
+  border-radius: 14px;
+`;
 
 export default Signup;

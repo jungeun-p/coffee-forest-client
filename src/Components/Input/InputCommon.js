@@ -32,11 +32,15 @@ const Input = styled.input`
   font-size: inherit;
   text-align: left;
   outline: none;
-  color: #d9dbce;
+  color: #232323;
   font-size: 12px;
+  font-weight: 500;
   padding: 0;
   padding-left: 18px;
   margin-top: 20px;
+  ::placeholder {
+    color: #d9dbce;
+  }
 `;
 
 // const InputCommon = ({ label, name, value, placeholder, onChange, onBlur }) => {

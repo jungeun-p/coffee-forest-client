@@ -32,7 +32,7 @@ const ButtonDetail = styled.div``;
 const ButtonTitle = styled.div`
   font-size: 14px;
   color: #f8faed;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 export default ButtonCommon;
