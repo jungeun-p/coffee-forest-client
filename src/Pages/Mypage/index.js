@@ -9,7 +9,6 @@ import WeeklyPlan from '../../System/Mypage/WeeklyPlan';
 const MypageContainer = () => {
   return (
     <>
-      <p>coffee forest</p>
       <MainPage>
         <BrowserRouter>
           <HeaderNav />
@@ -26,10 +25,8 @@ const MypageContainer = () => {
 
 const MainPage = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 `;
-const PageWrapper = styled.div`
-  width: 85vw;
-`;
+const PageWrapper = styled.div``;
 
 export default MypageContainer;

@@ -7,24 +7,33 @@ const HeaderNav = () => {
   const pathName = useLocation().pathname;
   console.log(pathName);
   return (
-    <CategoryWrapper>
-      {categories.map((cate, index) => (
-        <CategoryName
-          key={index}
-          to={cate.router}
-          active={pathName === cate.router ? true : false}
-        >
-          {cate.name}
-        </CategoryName>
-      ))}
-    </CategoryWrapper>
+    <HeaderWrapper>
+      <div>logo</div>
+      <CategoryWrapper>
+        {categories.map((cate, index) => (
+          <CategoryName
+            key={index}
+            to={cate.router}
+            active={pathName === cate.router ? true : false}
+          >
+            {cate.name}
+          </CategoryName>
+        ))}
+      </CategoryWrapper>
+      <div>profile</div>
+    </HeaderWrapper>
   );
 };
 
+const HeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 20px;
+`;
 const CategoryWrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 15vw;
+  flex-direction: row;
 `;
 
 const CategoryName = styled(Link)`
@@ -40,7 +49,8 @@ const CategoryName = styled(Link)`
   text-decoration: none;
   background-color: transparent;
   font-size: 16px;
-  margin: 0 0 10px 0;
+  font-weight: 600;
+  padding: 0 22px 0 22px;
   cursor: pointer;
 
   ${props =>

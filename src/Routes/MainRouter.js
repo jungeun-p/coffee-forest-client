@@ -15,7 +15,7 @@ const MainRouter = () => {
         {/* Main */}
         <Route exact path="/">
           <Main />
-          <Login />
+          {/* <Login /> */}
         </Route>
         {/* User */}
         {/* <Route path="/login">
