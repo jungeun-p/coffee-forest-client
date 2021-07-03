@@ -10,7 +10,7 @@ const LoginContainer = () => {
       <InputTitle title="CoffeeForest" />
       <TitleWrap>
         <InputTitle title="로그인" />
-        <InputTitle title="로고" />
+        <InputTitle title="🧩" />
       </TitleWrap>
       <Login />
       <Link to="/signup">근태관리가 처음이세요?</Link>

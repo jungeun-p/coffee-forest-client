@@ -1,3 +1,9 @@
 body {
   margin: 0;
+  font-family: 'appleM';
+}
+
+@font-face {
+  font-family: 'appleM';
+  src: url('./assets/Fonts/AppleSDGothicNeoM.ttf');
 }
