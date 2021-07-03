@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ButtonCommon from '../../Components/Button';
-import { InputCommon, InputTitle } from '../../Components/Input';
+import { InputCommon, InputTitleS } from '../../Components/Input';
 
 const SignOffice = ({
   user,
@@ -31,7 +31,7 @@ const SignOffice = ({
       onChange: onChange,
       value: user.businessNumber,
       placeholder: '사업자 번호',
-      onblur: ValidateBusinessNumber
+      onBlur: ValidateBusinessNumber
     }
   ];
   const formSignInfo = [
@@ -82,7 +82,7 @@ const SignOffice = ({
 
   return (
     <SignForm>
-      <InputTitle title={'회사'} />
+      <InputTitleS title={'회사'} />
       <SignInformation>
         {formSignOffice.map((cate, index) => (
           <InputCommon
@@ -91,11 +91,11 @@ const SignOffice = ({
             value={cate.value}
             placeholder={cate.placeholder}
             onChange={cate.onChange}
-            onBlur={cate?.onblur}
+            onBlur={cate?.onBlur}
           />
         ))}
       </SignInformation>
-      <InputTitle title={'개인 정보'} />
+      <InputTitleS title={'개인 정보'} />
       <SignInformation>
         {formSignInfo.map((cate, index) => (
           <InputCommon
@@ -104,7 +104,7 @@ const SignOffice = ({
             value={cate.value}
             placeholder={cate.placeholder}
             onChange={cate.onChange}
-            onBlur={cate?.onblur}
+            onBlur={cate?.onBlur}
           />
         ))}
       </SignInformation>

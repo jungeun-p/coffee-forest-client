@@ -44,12 +44,7 @@ const LoginBody = ({ user, onChange, onClick }) => {
 const LoginForm = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f8faed;
-`;
-
-const LoginArticle = styled.div`
-  width: 375px;
-  height: 500px;
+  /* background-color: #f8faed; */
 `;
 
 const InputWrap = styled.div`

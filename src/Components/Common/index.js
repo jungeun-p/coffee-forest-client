@@ -15,3 +15,9 @@ export const ContainerRoot = styled.main`
     max-width: 375px;
   }
 `;
+
+// ContainerRoot 하위 Wrapper
+
+export const ContentsWrapper = styled.div`
+  padding: 50px 28px;
+`;

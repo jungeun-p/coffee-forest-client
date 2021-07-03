@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import ButtonCommon from '../../Components/Button';
-import { InputCommon, InputTitle } from '../../Components/Input';
+import { InputCommon, InputTitleS } from '../../Components/Input';
 
 const SignEmployee = ({ user, onChange, onClick, ValidateEmail }) => {
   return (
     <SignForm>
-      <InputTitle title={'회사'} />
+      <InputTitleS title={'회사'} />
       <SignInformation>
         {/* 회사 리스트 API */}
         <input
@@ -16,7 +16,7 @@ const SignEmployee = ({ user, onChange, onClick, ValidateEmail }) => {
           onChange={onChange}
         />
       </SignInformation>
-      <InputTitle title={'개인 정보'} />
+      <InputTitleS title={'개인 정보'} />
       <SignInformation>
         <input
           name="email"
