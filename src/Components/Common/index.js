@@ -8,12 +8,12 @@ export const ContainerRoot = styled.main`
   flex-direction: column;
   width: 100%;
   box-sizing: border-box;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
   flex: 1;
-  @media (min-width: 0px) {
+  /* @media (min-width: 0px) {
     max-width: 375px;
-  }
+  } */
   background-color: #f8faed;
 `;
 

@@ -10,7 +10,7 @@ const ButtonSelect = ({ onClick, title, selected }) => {
 };
 
 const ButtonArticle = styled.div`
-  width: 160px;
+  width: 50vw;
   height: 50px;
   background-color: ${props => (props.selected ? ' #1ca953' : '#FFFFFF')};
   border-radius: 14px;

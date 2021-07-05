@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ButtonCommon from '../../Components/Button';
+import { ButtonCommon } from '../../Components/Button';
 import { InputCommon, InputTitleS } from '../../Components/Input';
 
 const SignOffice = ({

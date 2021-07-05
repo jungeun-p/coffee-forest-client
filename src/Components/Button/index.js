@@ -1,4 +1,4 @@
-import ButtonCommon from './ButtonCommon';
+import { ButtonCommon, ButtonCommonS } from './ButtonCommon';
 // import ButtonSelect from './ButtonSelect';
 
-export default ButtonCommon;
+export { ButtonCommon, ButtonCommonS };
