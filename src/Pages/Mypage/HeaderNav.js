@@ -30,6 +30,7 @@ const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 35px;
 `;
 const CategoryWrapper = styled.div`
   display: flex;
@@ -62,7 +63,7 @@ const CategoryName = styled.div`
 const CategoryBar = styled.div`
   width: 70px;
   height: 3px;
-  margin-top: 10px;
+  margin-top: 6px;
   display: ${props => (props.selected ? '' : 'none')};
   background-color: ${props => (props.selected ? '#000000' : '#949494')};
 `;
