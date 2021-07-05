@@ -3,7 +3,6 @@ import React from 'react';
 const WorkAddSchedule = ({ sendSchedule, onChange, event }) => {
   return (
     <>
-      <p>일정</p>
       <div>
         <input
           name="date"
