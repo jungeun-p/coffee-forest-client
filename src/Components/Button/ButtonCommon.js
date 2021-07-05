@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// 기본 버튼
 const ButtonCommon = ({ title, onClick }) => {
   return (
     <ButtonArticle onClick={onClick}>
-      <ButtonDetail>
-        <ButtonTitle>{title}</ButtonTitle>
-      </ButtonDetail>
+      <ButtonTitle>{title}</ButtonTitle>
     </ButtonArticle>
   );
 };
@@ -28,11 +27,38 @@ const ButtonArticle = styled.button`
   margin-bottom: 40px;
 `;
 
-const ButtonDetail = styled.div``;
 const ButtonTitle = styled.div`
   font-size: 14px;
   color: #f8faed;
   font-weight: 600;
 `;
 
-export default ButtonCommon;
+// 작은 버튼
+
+const ButtonCommonS = ({ title, onClick }) => {
+  return (
+    <ButtonArticleS onClick={onClick}>
+      <ButtonTitleS>{title}</ButtonTitleS>
+    </ButtonArticleS>
+  );
+};
+
+const ButtonArticleS = styled.div`
+  width: 60px;
+  height: 30px;
+  background: #1ca953;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 0 0 10px;
+`;
+const ButtonTitleS = styled.div`
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  text-align: center;
+`;
+
+export { ButtonCommonS, ButtonCommon };

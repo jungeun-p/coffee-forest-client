@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../../Lib/constant';
-import WorkAttendance from '../../../Pages/Mypage/Weekly/Plan/WorkAttendance';
 import { actions } from '../../../Store/schedule';
 import { useDispatch, useSelector } from 'react-redux';
-import WorkAddSchedule from '../../../Pages/Mypage/Weekly/Plan/WorkAddSchedule';
 import WorkPlan from '../../../Pages/Mypage/Weekly/Plan/WorkPlan';
 
 const SaveSchedule = ({ schedulePlan, weekend }) => {

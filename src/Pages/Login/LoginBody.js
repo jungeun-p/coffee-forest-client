@@ -2,7 +2,7 @@ import React from 'react';
 //import Login from "../../System/User/Login";
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import ButtonCommon from '../../Components/Button';
+import { ButtonCommon } from '../../Components/Button';
 import { InputCommon } from '../../Components/Input';
 
 const LoginBody = ({ user, onChange, onClick }) => {
