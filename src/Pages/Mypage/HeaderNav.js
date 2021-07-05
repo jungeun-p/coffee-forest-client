@@ -14,7 +14,7 @@ const HeaderNav = () => {
           <CategoryName
             key={index}
             to={cate.router}
-            active={pathName === cate.router ? true : false}
+            selected={pathName === cate.router ? true : false}
           >
             {cate.name}
           </CategoryName>
@@ -44,7 +44,7 @@ const CategoryName = styled(Link)`
   &:hover {
     text-decoration: none;
   }
-  color: #949494;
+  color: ${props => (props.selected ? '#000000' : '#949494')};
   border: none;
   text-decoration: none;
   background-color: transparent;
@@ -52,12 +52,12 @@ const CategoryName = styled(Link)`
   font-weight: 600;
   padding: 0 22px 0 22px;
   cursor: pointer;
-
+  /* 
   ${props =>
     props.active &&
     css`
       color: #000000;
-    `}
+    `} */
 `;
 
 export default HeaderNav;

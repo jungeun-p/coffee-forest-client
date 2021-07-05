@@ -1,5 +1,6 @@
 import React from 'react';
 //import Login from "../../System/User/Login";
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import ButtonCommon from '../../Components/Button';
 import { InputCommon } from '../../Components/Input';
@@ -36,6 +37,10 @@ const LoginBody = ({ user, onChange, onClick }) => {
           />
         ))}
       </InputWrap>
+      <LinkWrap>
+        <Link to="/signup">근태관리가 처음이세요?</Link>
+        <Link to="/">비밀번호를 잊으셨나요?</Link>
+      </LinkWrap>
       <ButtonCommon title="로그인 하기" onClick={onClick} />
     </LoginForm>
   );
@@ -48,6 +53,12 @@ const LoginForm = styled.div`
 `;
 
 const InputWrap = styled.div`
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+`;
+
+const LinkWrap = styled.div`
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;

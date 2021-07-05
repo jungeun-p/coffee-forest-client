@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ButtonSelect = ({ onClick, title }) => {
+const ButtonSelect = ({ onClick, title, selected }) => {
   return (
-    <ButtonArticle onClick={onClick}>
-      <ButtonTitle>{title}</ButtonTitle>
+    <ButtonArticle selected={selected} onClick={onClick}>
+      <ButtonTitle selected={selected}>{title}</ButtonTitle>
     </ButtonArticle>
   );
 };
@@ -12,10 +12,9 @@ const ButtonSelect = ({ onClick, title }) => {
 const ButtonArticle = styled.div`
   width: 160px;
   height: 50px;
-  background: #1ca953;
+  background-color: ${props => (props.selected ? ' #1ca953' : '#FFFFFF')};
   border-radius: 14px;
   font-weight: bold;
-  color: #ffffff;
   font-size: 14px;
   line-height: 22px;
   /* identical to box height */
@@ -24,6 +23,9 @@ const ButtonArticle = styled.div`
   cursor: pointer;
 `;
 
-const ButtonTitle = styled.p``;
+const ButtonTitle = styled.p`
+  color: ${props => (props.selected ? '#ffffff' : '#D9DBCE')};
+  background-color: ${props => (props.selected ? '#1ca953' : '#FFFFFF')};
+`;
 
 export default ButtonSelect;

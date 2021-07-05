@@ -18,7 +18,7 @@ const SignupContainer = () => {
 const Wrap = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #f8faed;
+  /* background-color: #f8faed; */
 `;
 
 export default SignupContainer;

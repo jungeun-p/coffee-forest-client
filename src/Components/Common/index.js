@@ -14,10 +14,11 @@ export const ContainerRoot = styled.main`
   @media (min-width: 0px) {
     max-width: 375px;
   }
+  background-color: #f8faed;
 `;
 
 // ContainerRoot 하위 Wrapper
 
 export const ContentsWrapper = styled.div`
-  padding: 50px 28px;
+  padding: 50px 28px 0px 28px;
 `;

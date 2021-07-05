@@ -113,8 +113,16 @@ const Signup = () => {
   return (
     <>
       <CategoryWrap>
-        <ButtonSelect title="회사 등록 🏢" onClick={() => clickHandler(0)} />
-        <ButtonSelect title="사원 등록 👤" onClick={() => clickHandler(1)} />
+        <ButtonSelect
+          title="회사 등록 🏢"
+          onClick={() => clickHandler(0)}
+          selected={tab.activeId === 0}
+        />
+        <ButtonSelect
+          title="사원 등록 👤"
+          onClick={() => clickHandler(1)}
+          selected={tab.activeId === 1}
+        />
       </CategoryWrap>
       {obj[tab.activeId]}
     </>
@@ -126,7 +134,7 @@ const CategoryWrap = styled.div`
   flex-direction: row;
   justify-content: center;
   height: 50px;
-  background: black;
+  background: #ffffff;
   border-radius: 14px;
   margin-bottom: 40px;
 `;
