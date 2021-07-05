@@ -5,8 +5,9 @@ import WorkAttendance from '../../../Pages/Mypage/Weekly/Plan/WorkAttendance';
 import { actions } from '../../../Store/schedule';
 import { useDispatch, useSelector } from 'react-redux';
 import WorkAddSchedule from '../../../Pages/Mypage/Weekly/Plan/WorkAddSchedule';
+import WorkPlan from '../../../Pages/Mypage/Weekly/Plan/WorkPlan';
 
-const WorkPlan = ({ schedulePlan, weekend }) => {
+const SaveSchedule = ({ schedulePlan, weekend }) => {
   const dispatch = useDispatch();
   const { enter, companyIndex, userIndex } = useSelector(
     state => state.schedule.date
@@ -68,16 +69,25 @@ const WorkPlan = ({ schedulePlan, weekend }) => {
 
   return (
     <>
-      <button onClick={onAttandacne}>출근</button>
+      <WorkPlan
+        onAttandacne={onAttandacne}
+        onLeaving={onLeaving}
+        schedulePlan={schedulePlan}
+        enter={enter}
+        sendSchedule={sendSchedule}
+        onChange={onChange}
+        event={event}
+      />
+      {/* <button onClick={onAttandacne}>출근</button>
       <button onClick={onLeaving}>퇴근</button>
       <WorkAttendance schedulePlan={schedulePlan} enter={enter} />
       <WorkAddSchedule
         sendSchedule={sendSchedule}
         onChange={onChange}
         event={event}
-      />
+      /> */}
     </>
   );
 };
 
-export default WorkPlan;
+export default SaveSchedule;
