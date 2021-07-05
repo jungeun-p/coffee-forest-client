@@ -25,6 +25,7 @@ const ButtonArticle = styled.button`
   border: none;
   outline: none;
   margin-bottom: 40px;
+  cursor: pointer;
 `;
 
 const ButtonTitle = styled.div`
@@ -51,7 +52,8 @@ const ButtonArticleS = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 0 0 10px;
+  /* margin: 0 0 0 10px; */
+  cursor: pointer;
 `;
 const ButtonTitleS = styled.div`
   font-weight: 500;
