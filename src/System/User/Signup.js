@@ -35,7 +35,7 @@ const Signup = () => {
       alert('회원 가입 성공');
       history.push('/');
     }
-  }, [userInfo, dispatch]);
+  }, [userInfo, dispatch, history]);
 
   const onChange = e => {
     const { name, value } = e.target;

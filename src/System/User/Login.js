@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import LoginBody from '../../Pages/Login/LoginBody';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
-import { LOCAL_HOST } from '../../Lib/constant';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../Store/user';
 import { actions as scheduleActions } from '../../Store/schedule';
@@ -25,7 +23,7 @@ const Login = () => {
       dispatch(scheduleActions.scheduleInfo(scheduleData));
       history.push('/mypage');
     }
-  }, [companyIndex, dispatch]);
+  }, [companyIndex, dispatch, history, scheduleData]);
 
   const onChange = e => {
     const { name, value } = e.target;
