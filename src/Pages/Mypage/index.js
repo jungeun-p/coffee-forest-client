@@ -5,21 +5,24 @@ import ManageEmployee from '../Mypage/ManageEmployee';
 import HeaderNav from '../Mypage/HeaderNav';
 import styled from 'styled-components';
 import WeeklyPlan from '../../System/Mypage/WeeklyPlan';
+import { ContainerRoot, ContentsWrapper } from '../../Components/Common';
 
 const MypageContainer = () => {
   return (
-    <>
-      <MainPage>
-        <BrowserRouter>
-          <HeaderNav />
-          <PageWrapper>
-            <Route exact path="/mypage" component={WeeklyPlan} />
-            <Route path="/mypage/monthly" component={MonthlyPage} />
-            <Route path="/mypage/manage" component={ManageEmployee} />
-          </PageWrapper>
-        </BrowserRouter>
-      </MainPage>
-    </>
+    <ContainerRoot>
+      <ContentsWrapper>
+        <MainPage>
+          <BrowserRouter>
+            <HeaderNav />
+            <PageWrapper>
+              <Route exact path="/mypage" component={WeeklyPlan} />
+              <Route path="/mypage/monthly" component={MonthlyPage} />
+              <Route path="/mypage/manage" component={ManageEmployee} />
+            </PageWrapper>
+          </BrowserRouter>
+        </MainPage>
+      </ContentsWrapper>
+    </ContainerRoot>
   );
 };
 

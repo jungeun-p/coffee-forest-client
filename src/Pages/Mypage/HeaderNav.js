@@ -8,19 +8,20 @@ const HeaderNav = () => {
   console.log(pathName);
   return (
     <HeaderWrapper>
-      <div>logo</div>
+      <div>🧩</div>
       <CategoryWrapper>
         {categories.map((cate, index) => (
-          <CategoryName
+          <Category
             key={index}
             to={cate.router}
-            active={pathName === cate.router ? true : false}
+            selected={pathName === cate.router ? true : false}
           >
-            {cate.name}
-          </CategoryName>
+            <CategoryName>{cate.name}</CategoryName>
+            <CategoryBar selected={pathName === cate.router ? true : false} />
+          </Category>
         ))}
       </CategoryWrapper>
-      <div>profile</div>
+      <div>👩🏻‍💻</div>
     </HeaderWrapper>
   );
 };
@@ -29,35 +30,41 @@ const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin: 0 20px;
 `;
 const CategoryWrapper = styled.div`
   display: flex;
   flex-direction: row;
 `;
 
-const CategoryName = styled(Link)`
-  &:active {
-    text-decoration: none;
-    color: #949494;
-  }
-  &:hover {
-    text-decoration: none;
-  }
-  color: #949494;
+const Category = styled(Link)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: ${props => (props.selected ? '#000000' : '#949494')};
+  text-decoration: none;
+`;
+
+const CategoryName = styled.div`
   border: none;
   text-decoration: none;
   background-color: transparent;
   font-size: 16px;
   font-weight: 600;
-  padding: 0 22px 0 22px;
   cursor: pointer;
-
+  padding: 0 10px 0 10px;
+  /* 
   ${props =>
     props.active &&
     css`
       color: #000000;
-    `}
+    `} */
+`;
+const CategoryBar = styled.div`
+  width: 70px;
+  height: 3px;
+  margin-top: 10px;
+  display: ${props => (props.selected ? '' : 'none')};
+  background-color: ${props => (props.selected ? '#000000' : '#949494')};
 `;
 
 export default HeaderNav;

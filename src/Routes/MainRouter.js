@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Main from '../Pages/Main';
 import Signup from '../Pages/Signup';
-import Login from '../Pages/Login';
+// import Login from '../Pages/Login';
 import Admin from '../Pages/Admin';
 import Mypage from '../Pages/Mypage';
 import MonthlyPage from '../Pages/Mypage/MonthlyPage';
