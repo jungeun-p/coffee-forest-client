@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+// import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import AddEvent from '../Event';
 // import { ButtonCommonS } from '../Button';
 
+// 일일 스케줄
 const WeekendList = ({
   date,
   title,
@@ -11,18 +14,28 @@ const WeekendList = ({
   onChange,
   event
 }) => {
+  const [view, setView] = useState(false);
+  const onView = () => {
+    setView(!view ? true : false);
+  };
   return (
     <WeekendArticle>
-      <WeekendDate>{date}</WeekendDate>
+      <PlanInfo>
+        <div className="date">{date}</div>
+        <div className="event" onClick={onView}>
+          ✏️
+        </div>
+      </PlanInfo>
       <PlanList>
         <PlanArticle title={title} startTime={startTime} endTime={endTime} />
-        <div className="addEvent">+ 근태 추가</div>
-        {/* <AddEvent
-          sendSchedule={sendSchedule}
-          onChange={onChange}
-          event={event}
-        /> */}
       </PlanList>
+      <AddEvent
+        view={view}
+        event={event}
+        onChange={onChange}
+        sendSchedule={sendSchedule}
+        date={date}
+      />
     </WeekendArticle>
   );
 };
@@ -31,22 +44,28 @@ const WeekendArticle = styled.div`
   padding: 20px 0;
   border-bottom: 1px solid #f3f3f3;
 `;
-const WeekendDate = styled.div`
-  font-size: 14px;
-  font-weight: 600;
-  line-height: 19px;
-  color: #232323;
-`;
-const PlanList = styled.div`
-  .addEvent {
+
+const PlanInfo = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  .date {
+    font-size: 14px;
     font-weight: 600;
-    font-size: 12px;
-    line-height: 16px;
+    line-height: 19px;
+    color: #232323;
+  }
+  .event {
     color: #1ca953;
-    padding-top: 15px;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 17px;
+    cursor: pointer;
   }
 `;
+const PlanList = styled.div``;
 
+// 각 스케줄 및 시간
 const PlanArticle = ({ title, startTime, endTime }) => {
   return (
     <PlanOne>
@@ -54,7 +73,7 @@ const PlanArticle = ({ title, startTime, endTime }) => {
         <div className="title">{title}</div>
       </PlanTitleBox>
       <PlanTime>
-        {startTime}~{endTime}
+        {startTime} ~ {endTime}
       </PlanTime>
     </PlanOne>
   );
@@ -85,31 +104,5 @@ const PlanTime = styled.div`
   line-height: 18px;
   color: #232323;
 `;
-
-// const AddEvent = ({ sendSchedule, onchange, event }) => {
-//   return (
-//     <EventBox>
-//       <div className="buttonWrap">
-//         <ButtonCommonS title="연차" />
-//         <ButtonCommonS title="회의" />
-//         <ButtonCommonS title="외근" />
-//       </div>
-//     </EventBox>
-//   );
-// };
-
-// const EventBox = styled.div`
-//   display: '';
-//   height: 150px;
-//   background: rgba(255, 255, 255, 0.9);
-//   box-shadow: 4px 16px 36px rgba(0, 0, 0, 0.05);
-//   border-radius: 16px;
-//   .buttonWrap {
-//     display: flex;
-//     flex-direction: row;
-//     justify-content: space-evenly;
-//     padding-top: 20px;
-//   }
-// `;
 
 export default WeekendList;

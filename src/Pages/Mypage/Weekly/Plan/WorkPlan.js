@@ -31,11 +31,11 @@ const WorkPlan = ({
           event={event}
         />
       </WorkPlanList>
-      <WorkAddSchedule
+      {/* <WorkAddSchedule
         sendSchedule={sendSchedule}
         onChange={onChange}
         event={event}
-      />
+      /> */}
     </>
   );
 };
