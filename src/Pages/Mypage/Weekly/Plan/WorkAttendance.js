@@ -15,7 +15,6 @@ const WorkAttendance = ({
   const minuteEnd = enter?.endTime.slice(3, 5);
 
   const date = Object.keys(schedulePlan)[0];
-  console.log(date);
   // const startTime = Object.values(schedulePlan)[0][0].startTime;
   // const endTime = Object.values(schedulePlan)[0][0].endTime;
 
