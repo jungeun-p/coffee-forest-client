@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ButtonCommonS } from '../Button';
+import { InputSmall } from '../Input';
 
 const AddEvent = ({ view, event, onChange, sendSchedule, date }) => {
   return (
@@ -11,21 +13,20 @@ const AddEvent = ({ view, event, onChange, sendSchedule, date }) => {
           <option value="">회의 ✍</option>"<option value="">연차 ⛱</option>"
         </select>
         <div className="date">
-          <input
-            id="EventDate"
+          <InputSmall
             name="date"
             value={event.date}
             placeholder="날짜"
             onChange={onChange}
           />
-          <div>
-            <input
+          <div className="time">
+            <InputSmall
               name="startTime"
               value={event.startTime}
               placeholder="시작 시간"
               onChange={onChange}
             />
-            <input
+            <InputSmall
               name="endTime"
               value={event.endTime}
               placeholder="마감 시간"
@@ -33,8 +34,8 @@ const AddEvent = ({ view, event, onChange, sendSchedule, date }) => {
             />
           </div>
         </div>
-        <button onClick={sendSchedule}>일정 등록</button>
       </EventForm>
+      <ButtonCommonS onClick={sendSchedule} title="일정 등록" />
     </AddEventArticle>
   );
 };
@@ -45,6 +46,7 @@ const AddEventArticle = styled.div`
 `;
 
 const EventForm = styled.div`
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   .selectBox {
@@ -61,6 +63,15 @@ const EventForm = styled.div`
   }
   .selectBox::-ms-expand {
     display: none; /*for IE10,11*/
+  }
+  .date {
+    display: flex;
+    flex-direction: column;
+    .time {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
   }
 `;
 
