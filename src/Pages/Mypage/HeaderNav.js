@@ -5,7 +5,6 @@ import { categories } from '../../Lib/CategoryNavName';
 
 const HeaderNav = () => {
   const pathName = useLocation().pathname;
-  console.log(pathName);
   return (
     <HeaderWrapper>
       <div>🧩</div>
