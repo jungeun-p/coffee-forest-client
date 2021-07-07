@@ -8,7 +8,7 @@ const WeeklyPage = ({ weekend, schedulePlan }) => {
   return (
     <>
       <WorkData weekend={weekend} />
-      <WorkLoad />
+      <WorkLoad schedulePlan={schedulePlan} />
       <WorkPlan schedulePlan={schedulePlan} weekend={weekend} />
       {/* <SaveSchedule schedulePlan={schedulePlan} weekend={weekend} /> */}
       {/* <WorkPlan /> */}
