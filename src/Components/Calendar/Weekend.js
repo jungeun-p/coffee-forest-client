@@ -1,33 +1,53 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import AddEvent from '../Event';
 // import { ButtonCommonS } from '../Button';
 
 // 일일 스케줄
-const WeekendList = ({
-  date,
-  title,
-  startTime,
-  endTime,
-  sendSchedule,
-  onChange,
-  event
-}) => {
+const WeekendList = ({ date, plan, sendSchedule, onChange, event }) => {
   const [view, setView] = useState(false);
   const onView = () => {
     setView(!view ? true : false);
   };
+  useEffect(() => {
+    setView(false);
+  }, []);
   return (
     <WeekendArticle>
       <PlanInfo>
-        <div className="date">{date}</div>
+        <div className="date">{date.slice(5, 10)}</div>
         <div className="event" onClick={onView}>
           ✏️
         </div>
       </PlanInfo>
       <PlanList>
-        <PlanArticle title={title} startTime={startTime} endTime={endTime} />
+        {plan.map((plan, index) => (
+          <PlanArticle
+            key={index}
+            startTime={
+              plan.startTime.slice(0, 2) > 12
+                ? `오후 0${
+                    plan.startTime.slice(0, 2) - 12
+                  } : ${plan.startTime.slice(3, 5)}`
+                : `오전 ${plan.startTime.slice(0, 2)} : ${plan.startTime.slice(
+                    3,
+                    5
+                  )}`
+            }
+            endTime={
+              plan.endTime.slice(0, 2) > 12
+                ? `오후 0${
+                    plan.endTime.slice(0, 2) - 12
+                  } : ${plan.endTime.slice(3, 5)}`
+                : `오전 ${plan.endTime.slice(0, 2)} : ${plan.endTime.slice(
+                    3,
+                    5
+                  )}`
+            }
+            title={plan.scheduleStatus === 'OUTSIDE' ? '외근' : '근무'}
+          />
+        ))}
       </PlanList>
       <AddEvent
         view={view}

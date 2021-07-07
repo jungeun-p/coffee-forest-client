@@ -8,7 +8,7 @@ const AddEvent = ({ view, event, onChange, sendSchedule, date }) => {
     <AddEventArticle view={view}>
       <EventForm>
         <select className="selectBox" name="scheduleStatus" onChange={onChange}>
-          <option value="">선택</option>
+          <option value="">유형 선택</option>
           <option value="OUTSIDE">외근 💼</option>"
           <option value="">회의 ✍</option>"<option value="">연차 ⛱</option>"
         </select>

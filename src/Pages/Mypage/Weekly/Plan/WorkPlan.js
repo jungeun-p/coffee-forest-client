@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ButtonCommonS } from '../../../../Components/Button';
-import WorkAddSchedule from './WorkAddSchedule';
 import WorkAttendance from './WorkAttendance';
 
 const WorkPlan = ({
@@ -31,11 +30,6 @@ const WorkPlan = ({
           event={event}
         />
       </WorkPlanList>
-      {/* <WorkAddSchedule
-        sendSchedule={sendSchedule}
-        onChange={onChange}
-        event={event}
-      /> */}
     </>
   );
 };
