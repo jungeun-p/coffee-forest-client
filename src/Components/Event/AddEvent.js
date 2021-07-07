@@ -19,23 +19,25 @@ const AddEvent = ({ view, event, onChange, sendSchedule, date }) => {
             placeholder="날짜"
             onChange={onChange}
           />
-          <div className="time">
-            <InputSmall
-              name="startTime"
-              value={event.startTime}
-              placeholder="시작 시간"
-              onChange={onChange}
-            />
-            <InputSmall
-              name="endTime"
-              value={event.endTime}
-              placeholder="마감 시간"
-              onChange={onChange}
-            />
-          </div>
+        </div>
+        <div className="time">
+          <InputSmall
+            name="startTime"
+            value={event.startTime}
+            placeholder="시작 시간"
+            onChange={onChange}
+          />
+          <InputSmall
+            name="endTime"
+            value={event.endTime}
+            placeholder="마감 시간"
+            onChange={onChange}
+          />
         </div>
       </EventForm>
-      <ButtonCommonS onClick={sendSchedule} title="일정 등록" />
+      <div className="button">
+        <ButtonCommonS onClick={sendSchedule} title="일정 등록" />
+      </div>
     </AddEventArticle>
   );
 };
@@ -43,6 +45,11 @@ const AddEvent = ({ view, event, onChange, sendSchedule, date }) => {
 const AddEventArticle = styled.div`
   display: ${props => (props.view ? '' : 'none')};
   margin-top: 15px;
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
 `;
 
 const EventForm = styled.div`
@@ -67,10 +74,18 @@ const EventForm = styled.div`
   .date {
     display: flex;
     flex-direction: column;
-    .time {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-evenly;
+  }
+  .time {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .title {
+      font-size: 12px;
+      line-height: 16px;
+      color: #858585;
+      font-weight: 600;
+      padding-top: 15px;
     }
   }
 `;
