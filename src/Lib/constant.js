@@ -2,4 +2,4 @@
 // export const LOCAL_HOST = `http://192.168.60.104:80/`; // yh GraalVM 서버
 // export const LOCAL_HOST = `http://172.30.1.12:80/`; // je GraalVM 서버
 
-export const LOCAL_HOST = `http://172.16.101.84:80/`; // je GraalVM 서버
+export const LOCAL_HOST = `http://172.30.1.38:80/`; // je GraalVM 서버

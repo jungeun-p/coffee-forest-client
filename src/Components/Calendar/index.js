@@ -1,3 +1,4 @@
 import WeekendList from './Weekend';
+import ThisWeek from './ThisWeek';
 
-export default WeekendList;
+export { WeekendList, ThisWeek };

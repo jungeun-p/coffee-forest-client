@@ -22,32 +22,36 @@ const WeekendList = ({ date, plan, sendSchedule, onChange, event }) => {
         </div>
       </PlanInfo>
       <PlanList>
-        {plan.map((plan, index) => (
-          <PlanArticle
-            key={index}
-            startTime={
-              plan.startTime.slice(0, 2) > 12
-                ? `오후 0${
-                    plan.startTime.slice(0, 2) - 12
-                  } : ${plan.startTime.slice(3, 5)}`
-                : `오전 ${plan.startTime.slice(0, 2)} : ${plan.startTime.slice(
-                    3,
-                    5
-                  )}`
-            }
-            endTime={
-              plan.endTime.slice(0, 2) > 12
-                ? `오후 0${
-                    plan.endTime.slice(0, 2) - 12
-                  } : ${plan.endTime.slice(3, 5)}`
-                : `오전 ${plan.endTime.slice(0, 2)} : ${plan.endTime.slice(
-                    3,
-                    5
-                  )}`
-            }
-            title={plan.scheduleStatus === 'OUTSIDE' ? '외근' : '근무'}
-          />
-        ))}
+        {plan.endTime ? (
+          plan.map((plan, index) => (
+            <PlanArticle
+              key={index}
+              startTime={
+                plan.startTime.slice(0, 2) > 12
+                  ? `오후 0${
+                      plan.startTime.slice(0, 2) - 12
+                    } : ${plan.startTime.slice(3, 5)}`
+                  : `오전 ${plan.startTime.slice(
+                      0,
+                      2
+                    )} : ${plan.startTime.slice(3, 5)}`
+              }
+              endTime={
+                plan.endTime.slice(0, 2) > 12
+                  ? `오후 0${
+                      plan.endTime.slice(0, 2) - 12
+                    } : ${plan.endTime.slice(3, 5)}`
+                  : `오전 ${plan.endTime.slice(0, 2)} : ${plan.endTime.slice(
+                      3,
+                      5
+                    )}`
+              }
+              title={plan.scheduleStatus === 'OUTSIDE' ? '외근' : '근무'}
+            />
+          ))
+        ) : (
+          <div>퇴근 전</div>
+        )}
       </PlanList>
       <AddEvent
         view={view}
