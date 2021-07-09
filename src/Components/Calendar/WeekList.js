@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import AddEvent from '../Event';
-// import { ButtonCommonS } from '../Button';
-// import { ThisWeekCalendar } from '../../Components/Calendar';
-// import functionWeek from '../../Hooks/addThisWeek';
+
+// 삭제 예정
+
 // 일일 스케줄
 const WeekList = ({
   schedulePlan,

@@ -1,6 +1,7 @@
 import React from 'react';
 import { WeekList } from '../../../../Components/Calendar';
 
+// 삭제 예정
 const WorkAttendance = ({
   schedulePlan,
   enter,

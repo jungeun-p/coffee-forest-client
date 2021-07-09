@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { ButtonCommonS } from '../../../../Components/Button';
 import { ThisWeekCalendar } from '../../../../Components/Calendar';
-import WorkAttendance from './WorkAttendance';
 
 const WorkPlan = ({
   onAttandacne,
@@ -25,13 +24,6 @@ const WorkPlan = ({
       </WorkPlanWrapper>
       {/* 이번 주 근무 일정 */}
       <WorkPlanList>
-        {/* <WorkAttendance
-          schedulePlan={schedulePlan}
-          enter={enter}
-          sendSchedule={sendSchedule}
-          onChange={onChange}
-          event={event}
-        /> */}
         <ThisWeekCalendar
           schedulePlan={schedulePlan}
           enter={enter}
@@ -39,14 +31,6 @@ const WorkPlan = ({
           onChange={onChange}
           event={event}
         />
-        {/* <ThisWeek />
-        <WorkAttendance
-          schedulePlan={schedulePlan}
-          enter={enter}
-          sendSchedule={sendSchedule}
-          onChange={onChange}
-          event={event}
-        /> */}
       </WorkPlanList>
     </>
   );
