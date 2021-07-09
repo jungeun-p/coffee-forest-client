@@ -1,11 +1,34 @@
-import React, { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import AddEvent from '../Event';
-// import { ButtonCommonS } from '../Button';
+import functionWeek from '../../Hooks/addThisWeek';
 
-// 일일 스케줄
-const WeekendList = ({ date, plan, sendSchedule, onChange, event }) => {
+const ThisWeekCalendar = ({
+  schedulePlan,
+  enter,
+  sendSchedule,
+  onChange,
+  event
+}) => {
+  // 기존 달력 날짜
+  const thisWeekDate = functionWeek();
+  return (
+    <>
+      {thisWeekDate.map((day, index) => (
+        <PlanDate
+          day={day}
+          key={index}
+          schedulePlan={schedulePlan[day]}
+          sendSchedule={sendSchedule}
+          onChange={onChange}
+          event={event}
+        />
+      ))}
+    </>
+  );
+};
+
+const PlanDate = ({ day, schedulePlan, sendSchedule, onChange, event }) => {
   const [view, setView] = useState(false);
   const onView = () => {
     setView(!view ? true : false);
@@ -14,21 +37,22 @@ const WeekendList = ({ date, plan, sendSchedule, onChange, event }) => {
     setView(false);
   }, []);
   return (
-    <WeekendArticle>
+    <WeekArticle>
       <PlanInfo>
-        <div className="date">{date.slice(5, 10)}</div>
+        <div className="date">{day}</div>
         <div className="event" onClick={onView}>
           ✏️
         </div>
       </PlanInfo>
       <PlanList>
-        {plan.endTime ? (
-          plan.map((plan, index) => (
+        {schedulePlan ? (
+          schedulePlan.map((plan, index) => (
             <PlanArticle
               key={index}
+              title={plan.scheduleStatus === 'OUTSIDE' ? '외근' : '근무'}
               startTime={
                 plan.startTime.slice(0, 2) > 12
-                  ? `오후 0${
+                  ? `오후 ${
                       plan.startTime.slice(0, 2) - 12
                     } : ${plan.startTime.slice(3, 5)}`
                   : `오전 ${plan.startTime.slice(
@@ -38,7 +62,7 @@ const WeekendList = ({ date, plan, sendSchedule, onChange, event }) => {
               }
               endTime={
                 plan.endTime.slice(0, 2) > 12
-                  ? `오후 0${
+                  ? `오후 ${
                       plan.endTime.slice(0, 2) - 12
                     } : ${plan.endTime.slice(3, 5)}`
                   : `오전 ${plan.endTime.slice(0, 2)} : ${plan.endTime.slice(
@@ -46,11 +70,14 @@ const WeekendList = ({ date, plan, sendSchedule, onChange, event }) => {
                       5
                     )}`
               }
-              title={plan.scheduleStatus === 'OUTSIDE' ? '외근' : '근무'}
             />
           ))
         ) : (
-          <div>퇴근 전</div>
+          <PlanArticle
+            title="근무"
+            startTime="오전 8 : 30"
+            endTime="오후 5 : 30"
+          />
         )}
       </PlanList>
       <AddEvent
@@ -58,13 +85,12 @@ const WeekendList = ({ date, plan, sendSchedule, onChange, event }) => {
         event={event}
         onChange={onChange}
         sendSchedule={sendSchedule}
-        date={date}
+        // date={date}
       />
-    </WeekendArticle>
+    </WeekArticle>
   );
 };
-
-const WeekendArticle = styled.div`
+const WeekArticle = styled.div`
   padding: 20px 0;
   border-bottom: 1px solid #f3f3f3;
 `;
@@ -73,6 +99,8 @@ const PlanInfo = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  /* padding: 20px 0;
+  border-bottom: 1px solid #f3f3f3; */
   .date {
     font-size: 14px;
     font-weight: 600;
@@ -129,4 +157,4 @@ const PlanTime = styled.div`
   color: #232323;
 `;
 
-export default WeekendList;
+export default ThisWeekCalendar;
