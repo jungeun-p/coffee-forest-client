@@ -1,5 +1,5 @@
 import React from 'react';
-import { WeekendList } from '../../../../Components/Calendar';
+import { WeekList } from '../../../../Components/Calendar';
 
 const WorkAttendance = ({
   schedulePlan,
@@ -19,20 +19,24 @@ const WorkAttendance = ({
   // 기존 scheduleList
   // key값
   const date = Object.keys(schedulePlan);
+  // console.log(date);
   // values값, key값
   // date.map(day => console.log(schedulePlan[day], day));
   return (
     <>
-      {date?.map((day, index) => (
-        <WeekendList
-          key={index}
-          sendSchedule={sendSchedule}
-          onChange={onChange}
-          event={event}
-          date={day}
-          plan={schedulePlan[day]}
-        />
-      ))}
+      <div>
+        {date?.map((day, index) => (
+          <WeekList
+            schedulePlan={schedulePlan}
+            key={index}
+            sendSchedule={sendSchedule}
+            onChange={onChange}
+            event={event}
+            date={day}
+            plan={schedulePlan[day]}
+          />
+        ))}
+      </div>
     </>
   );
 };

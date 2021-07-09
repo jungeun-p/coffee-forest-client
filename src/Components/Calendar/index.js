@@ -1,4 +1,4 @@
-import WeekendList from './Weekend';
-import ThisWeek from './ThisWeek';
+import WeekList from './WeekList';
+import ThisWeekCalendar from './ThisWeekCalendar';
 
-export { WeekendList, ThisWeek };
+export { WeekList, ThisWeekCalendar };
