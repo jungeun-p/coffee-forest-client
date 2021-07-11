@@ -3,7 +3,31 @@ import styled from 'styled-components';
 
 const WorkLoad = ({ schedulePlan, weekend }) => {
   const date = Object.keys(schedulePlan);
-  const list = schedulePlan[date];
+  const status = date.map(date =>
+    schedulePlan[date].map(key => key.scheduleStatus)
+  );
+  // array of arrays 펼치기
+  const statusArray = status.reduce((acc, it) => [...acc, ...it], []);
+  // 중복 제거
+  const uniqueStatus = [...new Set(statusArray)];
+
+  const statusCateogry = [
+    {
+      index: 1,
+      name: '⛱️ 휴가',
+      status: 'VACATION'
+    },
+    {
+      index: 2,
+      name: '💼 외근',
+      status: 'OUTSIDE'
+    },
+    {
+      index: 3,
+      name: '✍ 회의',
+      status: 'MEETING'
+    }
+  ];
   return (
     <WorkLoadBox>
       <UserProfile>
@@ -14,16 +38,10 @@ const WorkLoad = ({ schedulePlan, weekend }) => {
         </div>
       </UserProfile>
       <UserLoad>
-        <UserStatus className="status">⛱️ 휴가</UserStatus>
-        <UserStatus className="status">💼 외근</UserStatus>
-        <UserStatus className="status">✍ 회의</UserStatus>
-        {date.map(day =>
-          schedulePlan[day].map(key => (
-            // <UserStatus status={key.scheduleStatus ? true : false}></UserStatus>
-            <UserStatus
-              status={key.scheduleStatus === 'OUTSIDE' ? true : false}
-            >
-              💼 외근
+        {uniqueStatus.map(key =>
+          statusCateogry.map((name, index) => (
+            <UserStatus key={index} status={name.status === key}>
+              {name.name}
             </UserStatus>
           ))
         )}
@@ -55,8 +73,8 @@ const UserProfile = styled.div`
   .name {
     margin-left: 10px;
     .userName {
-      font-size: 10px;
-      line-height: 10px;
+      font-size: 12px;
+      line-height: 12px;
       font-weight: 500;
     }
     .userTitle {
@@ -66,14 +84,7 @@ const UserProfile = styled.div`
   }
 `;
 
-const UserLoad = styled.div`
-  /* color: #444444; */
-  /* .status {
-    font-size: 15px;
-    font-weight: 600;
-    color: ${props => (props.status ? '#c4c4c4' : '#444444')};
-  } */
-`;
+const UserLoad = styled.div``;
 
 const UserStatus = styled.div`
   font-size: 15px;
