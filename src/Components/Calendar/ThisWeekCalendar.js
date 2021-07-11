@@ -39,7 +39,10 @@ const PlanDate = ({ day, schedulePlan, sendSchedule, onChange, event }) => {
   return (
     <WeekArticle>
       <PlanInfo>
-        <div className="date">{day}</div>
+        <div className="date">{`${day.slice(5, 7)}월 ${day.slice(
+          8,
+          11
+        )}일`}</div>
         <div className="event" onClick={onView}>
           ✏️
         </div>

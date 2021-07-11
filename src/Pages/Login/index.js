@@ -2,6 +2,7 @@ import React from 'react';
 import Login from '../../System/User/Login';
 import styled from 'styled-components';
 import { InputTitleB } from '../../Components/Input';
+import mainLogo from '../../assets/Img/logo/mainLogo.png';
 
 const LoginContainer = () => {
   return (
@@ -9,7 +10,7 @@ const LoginContainer = () => {
       <InputTitleB title="CoffeeForest" />
       <TitleWrap>
         <InputTitleB title="로그인" />
-        <InputTitleB title="🧩" />
+        <Logo src={mainLogo} />
       </TitleWrap>
       <Login />
     </>
@@ -27,6 +28,10 @@ const TitleWrap = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+`;
+
+const Logo = styled.img`
+  height: 34px;
 `;
 
 export default LoginContainer;

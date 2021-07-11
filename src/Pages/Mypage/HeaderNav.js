@@ -2,12 +2,14 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { useLocation, Link } from 'react-router-dom';
 import { categories } from '../../Lib/CategoryNavName';
+import mainLogo from '../../assets/Img/logo/mainLogo.png';
 
 const HeaderNav = () => {
   const pathName = useLocation().pathname;
   return (
     <HeaderWrapper>
-      <div>🧩</div>
+      {/* <div>🧩</div> */}
+      <Logo src={mainLogo} />
       <CategoryWrapper>
         {categories.map((cate, index) => (
           <Category
@@ -31,6 +33,11 @@ const HeaderWrapper = styled.div`
   justify-content: space-between;
   margin-bottom: 35px;
 `;
+
+const Logo = styled.img`
+  height: 30px;
+`;
+
 const CategoryWrapper = styled.div`
   display: flex;
   flex-direction: row;
