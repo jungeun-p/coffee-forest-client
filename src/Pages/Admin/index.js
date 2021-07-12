@@ -1,5 +1,5 @@
-import React from "react";
-import Admin from "../../System/Admin/Admin";
+import React from 'react';
+import Admin from '../../System/Admin/Admin';
 
 const AdminContainer = () => {
   return (

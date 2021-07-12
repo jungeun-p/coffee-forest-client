@@ -7,6 +7,7 @@ import Admin from '../Pages/Admin';
 import Mypage from '../Pages/Mypage';
 import MonthlyPage from '../Pages/Mypage/MonthlyPage';
 import ManageEmployee from '../Pages/Mypage/ManageEmployee';
+import Profile from '../Pages/User';
 
 const MainRouter = () => {
   return (
@@ -26,6 +27,9 @@ const MainRouter = () => {
         </Route>
         <Route path="/admin">
           <Admin />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
         <Route path="/mypage">
           <Mypage />

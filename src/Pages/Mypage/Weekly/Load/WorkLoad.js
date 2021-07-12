@@ -10,7 +10,7 @@ const WorkLoad = ({ schedulePlan, weekend }) => {
   const statusArray = status.reduce((acc, it) => [...acc, ...it], []);
   // 중복 제거
   const uniqueStatus = [...new Set(statusArray)];
-
+  console.log(uniqueStatus);
   const statusCateogry = [
     {
       index: 1,
@@ -40,7 +40,7 @@ const WorkLoad = ({ schedulePlan, weekend }) => {
       <UserLoad>
         {uniqueStatus.map(key =>
           statusCateogry.map((name, index) => (
-            <UserStatus key={index} status={name.status === key}>
+            <UserStatus key={index} status={name.status === key ? true : false}>
               {name.name}
             </UserStatus>
           ))
