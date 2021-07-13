@@ -6,10 +6,11 @@ const MyProfile = () => {
     {
       name: '김바름',
       email: 'barum@naver.com',
+      password: 1234,
       position: 'EMPLOYEE',
-      officeName: '커피포레스트',
+      companyName: '커피포레스트',
       phone: '010-0000-0000',
-      주소: '경기도 수원시 '
+      address: '경기도 수원시 '
     }
   ];
   return <EditProfile profile={profile} />;

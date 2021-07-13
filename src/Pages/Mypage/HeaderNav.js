@@ -24,7 +24,7 @@ const HeaderNav = () => {
         ))}
       </CategoryWrapper>
       <MyProfile to="/profile">
-        <Profile src={basicProfile} />
+        <ProfileImage src={basicProfile} />
       </MyProfile>
     </HeaderWrapper>
   );
@@ -79,7 +79,7 @@ const CategoryBar = styled.div`
 
 const MyProfile = styled(Link)``;
 
-const Profile = styled.img`
+const ProfileImage = styled.img`
   height: 30px;
 `;
 
