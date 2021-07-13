@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { useLocation, Link } from 'react-router-dom';
 import { categories } from '../../Lib/CategoryNavName';
 import mainLogo from '../../assets/Img/logo/mainLogo.png';
+import basicProfile from '../../assets/Img/profile/basicProfile.png';
 
 const HeaderNav = () => {
   const pathName = useLocation().pathname;
@@ -22,7 +23,9 @@ const HeaderNav = () => {
           </Category>
         ))}
       </CategoryWrapper>
-      <div>👩🏻‍💻</div>
+      <MyProfile to="/profile">
+        <ProfileImage src={basicProfile} />
+      </MyProfile>
     </HeaderWrapper>
   );
 };
@@ -72,6 +75,12 @@ const CategoryBar = styled.div`
   margin-top: 6px;
   display: ${props => (props.selected ? '' : 'none')};
   background-color: ${props => (props.selected ? '#000000' : '#949494')};
+`;
+
+const MyProfile = styled(Link)``;
+
+const ProfileImage = styled.img`
+  height: 30px;
 `;
 
 export default HeaderNav;

@@ -1,15 +1,15 @@
 import React from 'react';
 import { ContainerRoot, ContentsWrapper } from '../../Components/Common';
-import Login from '../../Pages/Login';
+import MyProfile from '../../System/User/MyProfile';
 
-const MainContainer = () => {
+const userContainer = () => {
   return (
     <ContainerRoot>
       <ContentsWrapper>
-        <Login />
+        <MyProfile />
       </ContentsWrapper>
     </ContainerRoot>
   );
 };
 
-export default MainContainer;
+export default userContainer;
