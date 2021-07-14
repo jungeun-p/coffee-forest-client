@@ -63,7 +63,7 @@ const EventForm = styled.div`
     border-radius: 10px;
     height: 40px;
     padding: 10px;
-    background-color: #f3f3f3;
+    background-color: #f8faed;
     border: none;
     font-size: 10px;
     color: #b7b7b7;

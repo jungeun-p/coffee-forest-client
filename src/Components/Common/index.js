@@ -14,7 +14,7 @@ export const ContainerRoot = styled.main`
   /* @media (min-width: 0px) {
     max-width: 375px;
   } */
-  background-color: #f8faed;
+  background-color: #ffffff;
 `;
 
 // ContainerRoot 하위 Wrapper

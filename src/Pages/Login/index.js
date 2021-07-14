@@ -6,24 +6,36 @@ import mainLogo from '../../assets/Img/logo/mainLogo.png';
 
 const LoginContainer = () => {
   return (
-    <Wrap>
-      <InputTitleB title="CoffeeForest" />
-      <TitleWrap>
-        <InputTitleB title="로그인" />
-        <Logo src={mainLogo} />
-      </TitleWrap>
-      <Login />
-    </Wrap>
+    <LoginWrapper>
+      <LoginBox>
+        <InputTitleB title="CoffeeForest" />
+        <TitleWrap>
+          <InputTitleB title="로그인" />
+          <Logo src={mainLogo} />
+        </TitleWrap>
+        <Login />
+      </LoginBox>
+    </LoginWrapper>
   );
 };
 
-const Wrap = styled.div`
+const LoginWrapper = styled.div`
+  @media all and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+const LoginBox = styled.div`
   @media all and (min-width: 768px) {
     width: 315px;
-    background: #f8faed;
+    background: #ffffff;
     box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.05);
     border-radius: 16px;
-    padding: 30px 30px;
+    padding: 40px 30px 0 30px;
+    margin: 0;
   }
 `;
 

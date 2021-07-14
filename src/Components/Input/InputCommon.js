@@ -28,7 +28,7 @@ const Input = styled.input`
   height: 58px;
   border: none;
   border-radius: 10px;
-  background-color: #ffffff;
+  background-color: #f8faed;
   font-size: inherit;
   text-align: left;
   outline: none;
