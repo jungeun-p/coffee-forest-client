@@ -12,20 +12,37 @@ const InputCommon = ({
   type
 }) => {
   return (
-    <Input
-      name={name}
-      value={value}
-      placeholder={placeholder}
-      onBlur={onBlur}
-      onChange={onChange}
-      type={type}
-    />
+    <InputWrap>
+      <InputTitle>{placeholder}</InputTitle>
+      <Input
+        name={name}
+        value={value}
+        // placeholder={placeholder}
+        onBlur={onBlur}
+        onChange={onChange}
+        type={type}
+      />
+    </InputWrap>
   );
 };
 
+const InputWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+`;
+const InputTitle = styled.div`
+  transform: translateY(3em);
+  height: 20px;
+  font-size: 10px;
+  color: #1ca953;
+  font-weight: 600;
+  margin-left: 12px;
+`;
 const Input = styled.input`
   /* width: 302px; */
-  height: 58px;
+  height: 30px;
   border: none;
   border-radius: 10px;
   background-color: #f8faed;
@@ -33,11 +50,11 @@ const Input = styled.input`
   text-align: left;
   outline: none;
   color: #232323;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   padding: 0;
-  padding-left: 18px;
-  margin-top: 20px;
+  padding: 20px 0 8px 12px;
+  /* margin-top: 20px; */
   ::placeholder {
     color: #d9dbce;
   }
