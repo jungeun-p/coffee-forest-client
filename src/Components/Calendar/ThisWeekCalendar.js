@@ -94,7 +94,7 @@ const PlanDate = ({ day, schedulePlan, sendSchedule, onChange, event }) => {
   );
 };
 const WeekArticle = styled.div`
-  padding: 20px 0;
+  padding: 25px 0;
   border-bottom: 1px solid #f3f3f3;
 `;
 
@@ -124,7 +124,7 @@ const PlanList = styled.div``;
 const PlanArticle = ({ title, startTime, endTime }) => {
   return (
     <PlanOne>
-      <PlanTitleBox>
+      <PlanTitleBox title={title}>
         <div className="title">{title}</div>
       </PlanTitleBox>
       <PlanTime>
@@ -140,17 +140,18 @@ const PlanOne = styled.div`
   margin-top: 10px;
 `;
 const PlanTitleBox = styled.div`
-  width: 37px;
-  height: 22px;
-  background: #f8faed;
+  width: 35px;
+  height: 20px;
+  background-color: ${props =>
+    props.title === '외근' ? '#5eb1fe' : '#1ca953'};
   border-radius: 5px;
-  margin-right: 35px;
+  margin-right: 15px;
   .title {
     text-align: center;
     font-weight: 600;
     font-size: 12px;
-    line-height: 22px;
-    color: #d9dbce;
+    line-height: 18px;
+    color: #ffffff;
   }
 `;
 const PlanTime = styled.div`
