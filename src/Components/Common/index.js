@@ -11,9 +11,9 @@ export const ContainerRoot = styled.main`
   /* margin-left: auto;
   margin-right: auto; */
   flex: 1;
-  @media all and (min-width: 768px) {
+  /* @media all and (min-width: 768px) {
     padding: 0 10vw;
-  }
+  } */
   background-color: #ffffff;
 `;
 
@@ -21,4 +21,8 @@ export const ContainerRoot = styled.main`
 
 export const ContentsWrapper = styled.div`
   padding: 50px 28px 0px 28px;
+  /* @media all and (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+  } */
 `;

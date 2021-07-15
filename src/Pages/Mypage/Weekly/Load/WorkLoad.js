@@ -62,7 +62,7 @@ const WorkLoadBox = styled.div`
   justify-content: space-between;
   padding: 20px 20px;
   @media all and (min-width: 768px) {
-    width: 400px;
+    /* width: 400px; */
     margin-right: 50px;
   }
 `;

@@ -18,9 +18,9 @@ const WeeklyPage = ({ weekend, schedulePlan }) => {
 };
 
 const WorkWeekly = styled.div`
-  /* @media all and (min-width: 768px) {
-    padding: 0 10vw;
-  } */
+  @media all and (min-width: 768px) {
+    /* padding: 0 10vw; */
+  }
 `;
 
 const WorkList = styled.div`
