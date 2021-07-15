@@ -65,7 +65,7 @@ const WorkPlanList = styled.div`
   background-color: #ffffff;
   box-shadow: 4px 16px 36px rgba(0, 0, 0, 0.05);
   border-radius: 16px;
-  padding: 0 20px;
+  padding: 0 25px;
   margin-bottom: 40px;
 `;
 

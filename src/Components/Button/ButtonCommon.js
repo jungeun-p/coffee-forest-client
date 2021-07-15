@@ -52,7 +52,7 @@ const ButtonArticleS = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin: 0 0 0 10px; */
+  margin: 0 0 0 10px;
   cursor: pointer;
 `;
 const ButtonTitleS = styled.div`
