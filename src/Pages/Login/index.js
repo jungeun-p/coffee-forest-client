@@ -8,7 +8,7 @@ const LoginContainer = () => {
   return (
     <LoginWrapper>
       <LoginBox>
-        <InputTitleB title="CoffeeForest" />
+        {/* <InputTitleB title="CoffeeForest" /> */}
         <TitleWrap>
           <InputTitleB title="로그인" />
           <Logo src={mainLogo} />

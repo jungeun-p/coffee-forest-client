@@ -11,9 +11,9 @@ export const ContainerRoot = styled.main`
   /* margin-left: auto;
   margin-right: auto; */
   flex: 1;
-  /* @media (min-width: 0px) {
-    max-width: 375px;
-  } */
+  @media all and (min-width: 768px) {
+    padding: 0 10vw;
+  }
   background-color: #ffffff;
 `;
 

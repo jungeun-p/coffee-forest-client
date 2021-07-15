@@ -13,7 +13,7 @@ const WorkPlan = ({
   event
 }) => {
   return (
-    <>
+    <WorkWrapperList>
       {/* 이번 주 근무 타이틀 */}
       <WorkPlanWrapper>
         <WorkPlanTitle>이번 주 근무</WorkPlanTitle>
@@ -32,9 +32,15 @@ const WorkPlan = ({
           event={event}
         />
       </WorkPlanList>
-    </>
+    </WorkWrapperList>
   );
 };
+
+const WorkWrapperList = styled.div`
+  @media all and (min-width: 768px) {
+    width: 70vw;
+  }
+`;
 
 const WorkPlanWrapper = styled.div`
   display: flex;

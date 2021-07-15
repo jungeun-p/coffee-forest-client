@@ -10,22 +10,22 @@ const HeaderNav = () => {
   return (
     <HeaderWrapper>
       {/* <div>🧩</div> */}
-      <Logo src={mainLogo} />
-      <CategoryWrapper>
-        {categories.map((cate, index) => (
-          <Category
-            key={index}
-            to={cate.router}
-            selected={pathName === cate.router ? true : false}
-          >
-            <CategoryName>{cate.name}</CategoryName>
-            <CategoryBar selected={pathName === cate.router ? true : false} />
-          </Category>
-        ))}
-      </CategoryWrapper>
-      <MyProfile to="/profile">
+      {/* <Logo src={mainLogo} /> */}
+      {/* <CategoryWrapper> */}
+      {categories.map((cate, index) => (
+        <Category
+          key={index}
+          to={cate.router}
+          selected={pathName === cate.router ? true : false}
+        >
+          <CategoryName>{cate.name}</CategoryName>
+          <CategoryBar selected={pathName === cate.router ? true : false} />
+        </Category>
+      ))}
+      {/* </CategoryWrapper> */}
+      {/* <MyProfile to="/profile">
         <ProfileImage src={basicProfile} />
-      </MyProfile>
+      </MyProfile> */}
     </HeaderWrapper>
   );
 };
