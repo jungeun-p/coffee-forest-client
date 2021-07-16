@@ -61,9 +61,10 @@ const WorkLoadBox = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding: 20px 20px;
+
   @media all and (min-width: 768px) {
-    /* width: 400px; */
-    margin-right: 50px;
+    /* min-width: 250px; */
+    margin-right: 3vw;
   }
 `;
 
@@ -88,7 +89,9 @@ const UserProfile = styled.div`
   }
 `;
 
-const UserLoad = styled.div``;
+const UserLoad = styled.div`
+  /* margin-left: 5em; */
+`;
 
 const UserStatus = styled.div`
   font-size: 15px;

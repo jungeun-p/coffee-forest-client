@@ -19,8 +19,11 @@ const WeeklyPage = ({ weekend, schedulePlan }) => {
 
 const WorkWeekly = styled.div`
   @media all and (min-width: 768px) {
-    /* padding: 0 10vw; */
+    /* max-width: 80vw; */
   }
+  /* @media (min-width: 0px) {
+    min-width: 80vw;
+  } */
 `;
 
 const WorkList = styled.div`
@@ -28,6 +31,7 @@ const WorkList = styled.div`
   flex-direction: column;
   @media all and (min-width: 768px) {
     flex-direction: row;
+    justify-content: flex-start;
   }
 `;
 

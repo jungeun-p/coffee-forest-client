@@ -18,12 +18,17 @@ const HeaderNav = () => {
             to={cate.router}
             selected={pathName === cate.router ? true : false}
           >
-            <CategoryName>{cate.name}</CategoryName>
+            <CategoryName>
+              <i className={cate.class}></i>
+            </CategoryName>
             {/* <CategoryBar selected={pathName === cate.router ? true : false} /> */}
           </Category>
         ))}
       </CategoryWrapper>
-      <Logo className="logo" src={mainLogo} />
+      {/* <Logo className="logo" src={mainLogo} /> */}
+      <div className="logo" id="signout">
+        <i className="fas fa-share-square"></i>
+      </div>
     </HeaderWrapper>
   );
 };
@@ -33,19 +38,18 @@ const HeaderWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 10vh;
+  height: 8vh;
   width: 100vw;
   background-color: #ffffff;
   z-index: 3;
   position: fixed;
   bottom: 0;
-  border-top: 1px solid blakc;
   .logo {
     visibility: hidden;
   }
   @media all and (min-width: 768px) {
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: start;
     align-items: center;
     position: sticky;
     left: 0;
@@ -56,12 +60,18 @@ const HeaderWrapper = styled.div`
     .logo {
       visibility: visible;
     }
+    #signout {
+      font-size: 22px;
+      padding-bottom: 50px;
+      position: fixed;
+      bottom: 0;
+    }
   }
 `;
 
 const Logo = styled.img`
   height: 30px;
-  padding: 50px 0 60px 0;
+  padding: 50px 0 0 0;
 `;
 
 const CategoryWrapper = styled.div`
@@ -70,6 +80,7 @@ const CategoryWrapper = styled.div`
   @media all and (min-width: 768px) {
     display: flex;
     flex-direction: column;
+    justify-content: right;
     align-items: center;
   }
 `;
@@ -77,19 +88,19 @@ const CategoryWrapper = styled.div`
 const Category = styled(Link)`
   display: flex;
   flex-direction: column;
-  color: ${props => (props.selected ? '#000000' : '#949494')};
+  color: ${props => (props.selected ? '#1CA953' : '#949494')};
   text-decoration: none;
 `;
 
 const CategoryName = styled.div`
   border: none;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
-  padding: 0 40px;
+  padding: 0 12vw;
   cursor: pointer;
   @media all and (min-width: 768px) {
-    padding: 0 0 50px 0;
+    padding: 60px 0 0 0;
   }
   /* padding: 0 10px 0 10px; */
   /* 

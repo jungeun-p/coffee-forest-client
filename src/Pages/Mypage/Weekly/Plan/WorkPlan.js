@@ -37,8 +37,8 @@ const WorkPlan = ({
 };
 
 const WorkWrapperList = styled.div`
-  /* @media all and (min-width: 768px) {
-    width: 70vw; */
+  @media all and (min-width: 768px) {
+    /* width: 60vw; */
   }
 `;
 
