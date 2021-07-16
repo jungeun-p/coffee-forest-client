@@ -19,19 +19,29 @@ const EditProfile = ({ profile }) => {
       <InputTitleS title="회사" />
       <ProfileInformation>
         {profile.map((pro, index) => (
-          <InputCommon key={index} name="companyName" value={pro.companyName} />
+          <InputCommon
+            key={index}
+            name="companyName"
+            value={pro.companyName}
+            placeholder="회사명"
+          />
         ))}
       </ProfileInformation>
       <InputTitleS title="개인 정보" />
       {profile.map((pro, index) => (
         <ProfileInformation key={index}>
-          <InputCommon name="name" value={pro.name} />
-          <InputCommon name="password" value={pro.password} />
-          <InputCommon name="phone" value={pro.phone} />
+          <InputCommon name="name" value={pro.name} placeholder="이름" />
+          <InputCommon
+            name="password"
+            value={pro.password}
+            placeholder="비밀번호"
+          />
+          <InputCommon name="phone" value={pro.phone} placeholder="전화번호" />
           <InputCommon
             name="address"
             onChange={pro.onChange}
             value={pro.address}
+            placeholder="주소"
           />
         </ProfileInformation>
       ))}

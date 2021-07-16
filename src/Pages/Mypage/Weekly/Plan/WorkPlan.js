@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ButtonCommonS } from '../../../../Components/Button';
 import { ThisWeekCalendar } from '../../../../Components/Calendar';
+import { TitleB } from '../../../../Components/Common';
 
 const WorkPlan = ({
   onAttandacne,
@@ -16,7 +17,7 @@ const WorkPlan = ({
     <WorkWrapperList>
       {/* 이번 주 근무 타이틀 */}
       <WorkPlanWrapper>
-        <WorkPlanTitle>이번 주 근무</WorkPlanTitle>
+        <TitleB>이번 주 근무</TitleB>
         <ButtonWrapper>
           <ButtonCommonS onClick={onAttandacne} title="출근" />
           <ButtonCommonS onClick={onLeaving} title="퇴근" />
@@ -48,12 +49,6 @@ const WorkPlanWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 35px;
-`;
-const WorkPlanTitle = styled.div`
-  font-size: 18px;
-  line-height: 21px;
-  color: #1ca953;
-  font-weight: 700;
 `;
 
 const ButtonWrapper = styled.div`
