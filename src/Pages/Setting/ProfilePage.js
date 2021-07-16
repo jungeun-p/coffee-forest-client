@@ -2,11 +2,10 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import basicProfile from '../../assets/Img/profile/basicProfile.png';
-import { DivideLine, TitleB } from '../../Components/Common';
+import { DivideLine } from '../../Components/Common';
 
 const ProfilePage = () => {
   const userData = useSelector(state => state.schedule.date);
-  console.log(userData);
   return (
     <MainProfile>
       <ProfileImage src={basicProfile} />
