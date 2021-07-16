@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-
+import DivideLine from './DivideLine';
+import TitleB from './Title';
 // page의 전체를 잡아주는 container
 export const ContainerRoot = styled.main`
   position: relative;
@@ -26,3 +27,5 @@ export const ContentsWrapper = styled.div`
     flex-direction: row;
   } */
 `;
+
+export { TitleB, DivideLine };

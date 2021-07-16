@@ -4,11 +4,11 @@ import MyProfile from '../../System/User/MyProfile';
 
 const userContainer = () => {
   return (
-    <ContainerRoot>
-      <ContentsWrapper>
-        <MyProfile />
-      </ContentsWrapper>
-    </ContainerRoot>
+    // <ContainerRoot>
+    //   <ContentsWrapper>
+    <MyProfile />
+    //   </ContentsWrapper>
+    // </ContainerRoot>
   );
 };
 

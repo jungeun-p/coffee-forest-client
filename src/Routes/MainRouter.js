@@ -6,8 +6,9 @@ import Signup from '../Pages/Signup';
 import Admin from '../Pages/Admin';
 import Mypage from '../Pages/Mypage';
 import MonthlyPage from '../Pages/Mypage/MonthlyPage';
-import ManageEmployee from '../Pages/Mypage/ManageEmployee';
+// import ManageEmployee from '../Pages/Mypage/ManageEmployee';
 import Profile from '../Pages/User';
+import Setting from '../Pages/Setting';
 
 const MainRouter = () => {
   return (
@@ -38,7 +39,7 @@ const MainRouter = () => {
           <MonthlyPage />
         </Route>
         <Route path="/mypage/manage">
-          <ManageEmployee />
+          <Setting />
         </Route>
       </Switch>
     </BrowserRouter>
