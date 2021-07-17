@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import basicProfile from '../../assets/Img/profile/basicProfile.png';
-import { DivideLine } from '../../Components/Common';
 
 const ProfilePage = () => {
   const userData = useSelector(state => state.schedule.date);
@@ -23,6 +22,7 @@ const ProfilePage = () => {
 const MainProfile = styled.div`
   display: flex;
   flex-direction: column;
+  margin-top: 35px;
   .name {
     color: #1ca953;
     font-weight: 700;
@@ -41,6 +41,11 @@ const MainProfile = styled.div`
 const ProfileImage = styled.img`
   width: 100px;
   height: 100px;
+`;
+
+const DivideLine = styled.div`
+  border: 2px solid #1ca953;
+  margin-top: 35px;
 `;
 
 export default ProfilePage;

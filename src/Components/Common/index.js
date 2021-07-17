@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import DivideLine from './DivideLine';
 import TitleB from './Title';
 // page의 전체를 잡아주는 container
 export const ContainerRoot = styled.main`
@@ -28,4 +27,4 @@ export const ContentsWrapper = styled.div`
   } */
 `;
 
-export { TitleB, DivideLine };
+export { TitleB };
