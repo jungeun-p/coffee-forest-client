@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import WeeklyPlan from '../../System/Mypage/WeeklyPlan';
 import { ContainerRoot, ContentsWrapper } from '../../Components/Common';
 // import ProfilePage from '../Setting/ProfilePage';
-import settingContainer from '../Setting';
+import SettingContainer from '../Setting';
 
 const MypageContainer = () => {
   return (
@@ -17,7 +17,7 @@ const MypageContainer = () => {
           <ContentsWrapper>
             <Route exact path="/mypage" component={WeeklyPlan} />
             <Route path="/mypage/monthly" component={MonthlyPage} />
-            <Route path="/mypage/manage" component={settingContainer} />
+            <Route path="/mypage/manage" component={SettingContainer} />
           </ContentsWrapper>
         </ContainerRoot>
       </MainPage>

@@ -1,6 +1,7 @@
 import React from 'react';
 import EditProfile from '../../Pages/User/EditProfile';
 
+// 삭제 예정
 const MyProfile = () => {
   const profile = [
     {
