@@ -8,6 +8,7 @@ import ManageEmployee from './ManageEmployee';
 import RequestEmployee from './RequestEmployee';
 import RequestWork from './RequestWork';
 import SettingWork from './SettingWork';
+import EditProfile from './EditProfile';
 
 const SettingContainer = () => {
   const [tab, setTab] = useState({
@@ -15,7 +16,7 @@ const SettingContainer = () => {
   });
 
   const obj = {
-    //0: <EditProfile />,
+    0: <EditProfile />,
     1: <SettingWork />,
     2: <ManageEmployee />,
     3: <RequestWork />,
@@ -41,9 +42,16 @@ const SettingContainer = () => {
 };
 
 const SettingWrapper = styled.div`
+  .page {
+    margin: 35px 0 0 0;
+  }
   @media all and (min-width: 768px) {
     display: flex;
     flex-direction: row;
+    .page {
+      margin: 0 0 0 60px;
+      /* width: 320px; */
+    }
   }
 `;
 

@@ -15,14 +15,14 @@ const InputWrapperB = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 `;
 const TitleWrapB = styled.div``;
 
 const TitleB = styled.div`
   font-size: 18px;
   color: #232323;
-  font-weight: 600;
+  font-weight: 700;
 `;
 
 const InputTitleS = ({ title }) => {
@@ -38,14 +38,14 @@ const InputWrapperS = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 `;
 const TitleWrapS = styled.div``;
 
 const TitleS = styled.div`
   font-size: 14px;
   color: #232323;
-  font-weight: 600;
+  font-weight: 700;
 `;
 
 export { InputTitleS, InputTitleB };
