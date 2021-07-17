@@ -30,7 +30,7 @@ const ButtonArticle = styled.button`
 
 const ButtonTitle = styled.div`
   font-size: 14px;
-  color: #f8faed;
+  color: #ffffff;
   font-weight: 600;
 `;
 
@@ -63,4 +63,36 @@ const ButtonTitleS = styled.div`
   text-align: center;
 `;
 
-export { ButtonCommonS, ButtonCommon };
+const ButtonCommonH = ({ title, onClick }) => {
+  return (
+    <ButtonArticleH onClick={onClick}>
+      <ButtonTitleH>{title}</ButtonTitleH>
+    </ButtonArticleH>
+  );
+};
+
+const ButtonArticleH = styled.div`
+  width: 80px;
+  overflow: hidden;
+  background-color: #1ca953;
+  height: 58px;
+  border-radius: 10px;
+  padding: 0 15px 0 15px;
+  display: inline-flex;
+  box-sizing: 14px;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  border: none;
+  outline: none;
+  margin-top: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+`;
+const ButtonTitleH = styled.div`
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 600;
+`;
+
+export { ButtonCommonS, ButtonCommon, ButtonCommonH };

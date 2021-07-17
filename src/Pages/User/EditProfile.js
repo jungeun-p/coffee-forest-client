@@ -3,19 +3,10 @@ import styled from 'styled-components';
 import { InputCommon, InputTitleS } from '../../Components/Input';
 import basicProfile from '../../assets/Img/profile/basicProfile.png';
 
+// tdf
 const EditProfile = ({ profile }) => {
   return (
     <ProfileForm>
-      {profile.map((pro, index) => (
-        <MainProfile key={index}>
-          <ProfileImage src={basicProfile} />
-          <div className="name">{pro.name}</div>
-          <div className="infos">
-            <div className="info">{pro.email}</div>
-            <div className="info">{pro.position}</div>
-          </div>
-        </MainProfile>
-      ))}
       <InputTitleS title="회사" />
       <ProfileInformation>
         {profile.map((pro, index) => (
