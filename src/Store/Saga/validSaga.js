@@ -19,7 +19,7 @@ function validNumberApi(input) {
 
 function validEmailApi(inputEmail) {
   return axios
-    .get(`${LOCAL_HOST}users/duplication`, inputEmail)
+    .get(`${LOCAL_HOST}users/email`, inputEmail)
     .then(response => {
       const message = response.data;
       return {

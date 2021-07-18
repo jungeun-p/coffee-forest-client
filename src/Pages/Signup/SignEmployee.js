@@ -1,9 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
+import { TitleB } from '../../Components/Common';
 import { InputCommon, InputTitleS } from '../../Components/Input';
 
-const SignEmployee = ({ user, onChange, onClick, ValidateEmail }) => {
+const SignEmployee = ({
+  user,
+  onChange,
+  onClick,
+  ValidateEmail,
+  validEmail
+}) => {
   const formSignInfo = [
     {
       index: 1,
@@ -11,7 +18,9 @@ const SignEmployee = ({ user, onChange, onClick, ValidateEmail }) => {
       onChange: onChange,
       value: user.email,
       placeholder: '이메일',
-      onBlur: ValidateEmail
+      onBlur: ValidateEmail,
+      validEmail: validEmail
+      // onBlur: ValidateForm
     },
     {
       index: 2,
@@ -19,6 +28,7 @@ const SignEmployee = ({ user, onChange, onClick, ValidateEmail }) => {
       onChange: onChange,
       value: user.password,
       placeholder: '비밀번호'
+      // onBlur: ValidateForm
     },
     {
       index: 3,
@@ -36,13 +46,6 @@ const SignEmployee = ({ user, onChange, onClick, ValidateEmail }) => {
     },
     {
       index: 5,
-      name: 'position',
-      onChange: onChange,
-      value: user.position,
-      placeholder: '직급'
-    },
-    {
-      index: 6,
       name: 'address',
       onChange: onChange,
       value: user.address,
@@ -51,16 +54,7 @@ const SignEmployee = ({ user, onChange, onClick, ValidateEmail }) => {
   ];
   return (
     <SignForm>
-      <InputTitleS title={'회사'} />
-      <SignInformation>
-        {/* 회사 리스트 API */}
-        <InputCommon
-          placeholder="회사명"
-          name="companyName"
-          value={user.companyName}
-          onChange={onChange}
-        />
-      </SignInformation>
+      <TitleB>회원 가입</TitleB>
       <InputTitleS title={'개인 정보'} />
       <SignInformation>
         {formSignInfo.map((cate, index) => (
@@ -70,10 +64,11 @@ const SignEmployee = ({ user, onChange, onClick, ValidateEmail }) => {
             placeholder={cate.placeholder}
             onChange={cate.onChange}
             onBlur={cate?.onBlur}
+            validEmail={cate?.validEmail}
           />
         ))}
       </SignInformation>
-      <ButtonCommon onClick={onClick} title={'회원가입'} />
+      <ButtonCommon onClick={onClick} title="회원가입" />
     </SignForm>
   );
 };

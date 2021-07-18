@@ -82,7 +82,7 @@ const SignOffice = ({
 
   return (
     <SignForm>
-      <InputTitleS title={'회사'} />
+      <InputTitleS title="회사" />
       <SignInformation>
         {formSignOffice.map((cate, index) => (
           <InputCommon
@@ -95,7 +95,7 @@ const SignOffice = ({
           />
         ))}
       </SignInformation>
-      <InputTitleS title={'개인 정보'} />
+      <InputTitleS title="개인 정보" />
       <SignInformation>
         {formSignInfo.map((cate, index) => (
           <InputCommon

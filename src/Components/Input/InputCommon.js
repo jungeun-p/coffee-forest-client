@@ -9,7 +9,8 @@ const InputCommon = ({
   placeholder,
   onChange,
   onBlur,
-  type
+  type,
+  validEmail
 }) => {
   return (
     <InputWrap>
@@ -21,6 +22,7 @@ const InputCommon = ({
         onBlur={onBlur}
         onChange={onChange}
         type={type}
+        validEmail={validEmail ? true : false}
       />
     </InputWrap>
   );
