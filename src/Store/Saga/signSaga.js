@@ -7,15 +7,15 @@ import { LOCAL_HOST } from '../../Lib/constant';
 
 function signApi(data) {
   return axios
-    .post(`${LOCAL_HOST}users`, data)
+    .post(`${LOCAL_HOST}sign-up`, data)
     .then(response => {
-      const userIndex = response.data.userIndex;
+      const message = 'Valid';
       return {
-        userIndex
+        message
       };
     })
     .catch(error => {
-      const errorMessage = error.response.data;
+      const errorMessage = error.response.data.message;
       return { errorMessage };
     });
   // return axios.post(`${API_HOST}users`, user, {
@@ -39,9 +39,9 @@ function loginApi(data) {
 }
 
 function* sign({ data }) {
-  const { userIndex, errorMessage } = yield call(signApi, data);
-  if (userIndex) {
-    yield put(actions.signSuccess(userIndex));
+  const { message, errorMessage } = yield call(signApi, data);
+  if (message) {
+    yield put(actions.signSuccess(message));
   } else {
     yield put(actions.signFail(errorMessage));
   }
