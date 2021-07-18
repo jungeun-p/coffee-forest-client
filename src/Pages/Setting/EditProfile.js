@@ -7,7 +7,6 @@ import { InputCommon, InputTitleS } from '../../Components/Input';
 
 const EditProfile = () => {
   const userData = useSelector(state => state.schedule.date);
-  console.log(userData);
   return (
     <ProfileForm>
       <ProfileInformation>
