@@ -27,7 +27,10 @@ function validEmailApi(inputEmail) {
       };
     })
     .catch(error => {
-      console.log(error.response.data);
+      const errorMessage = error.response.data;
+      return {
+        errorMessage
+      };
     });
 }
 
@@ -41,11 +44,11 @@ function* number({ input }) {
 }
 
 function* email({ inputEmail }) {
-  const { message } = yield call(validEmailApi, inputEmail);
+  const { message, errorMessage } = yield call(validEmailApi, inputEmail);
   if (message === 'Available') {
     yield put(actions.validateSuccessEmail(message));
   } else {
-    yield put(actions.validateFail(message));
+    yield put(actions.validateSuccessEmail(message));
   }
 }
 
