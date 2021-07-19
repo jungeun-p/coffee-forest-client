@@ -21,7 +21,10 @@ export const actions = {
     type: Types.ValidateSuccessEmail,
     message
   }),
-  validateFail: message => ({ type: Types.ValidateFail, message })
+  validateFail: errorMessage => ({
+    type: Types.ValidateFail,
+    errorMessage
+  })
 };
 
 const INITIAL_STATE = {
@@ -36,7 +39,8 @@ const reducer = createReducer(INITIAL_STATE, {
     (state.validNumber = action.message),
   [Types.ValidateSuccessEmail]: (state, action) =>
     (state.validEmail = action.message),
-  [Types.ValidateFail]: (state, action) => (state.validFail = action.message)
+  [Types.ValidateFail]: (state, action) =>
+    (state.validFail = action.errorMessage)
 });
 
 export default reducer;

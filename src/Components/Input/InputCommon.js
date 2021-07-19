@@ -10,21 +10,27 @@ const InputCommon = ({
   onChange,
   onBlur,
   type,
-  validEmail
+  validEmail,
+  check,
+  checkPassword
 }) => {
   return (
-    <InputWrap>
-      <InputTitle>{placeholder}</InputTitle>
-      <Input
-        name={name}
-        value={value}
-        // placeholder={placeholder}
-        onBlur={onBlur}
-        onChange={onChange}
-        type={type}
-        validEmail={validEmail ? true : false}
-      />
-    </InputWrap>
+    <>
+      <InputWrap>
+        <InputTitle>{placeholder}</InputTitle>
+        <Input
+          name={name}
+          value={value}
+          // placeholder={placeholder}
+          onBlur={onBlur}
+          onChange={onChange}
+          type={type}
+        />
+      </InputWrap>
+      <Validation validEmail={validEmail === 'Duplicated' ? true : false}>
+        이미 등록된 이메일입니다.
+      </Validation>
+    </>
   );
 };
 
@@ -60,6 +66,13 @@ const Input = styled.input`
   ::placeholder {
     color: #d9dbce;
   }
+`;
+
+const Validation = styled.div`
+  font-size: 8px;
+  color: red;
+  padding: 8px 0 0 8px;
+  display: ${props => (props.validEmail ? 'inline' : 'none')};
 `;
 
 // const InputCommon = ({ label, name, value, placeholder, onChange, onBlur }) => {
