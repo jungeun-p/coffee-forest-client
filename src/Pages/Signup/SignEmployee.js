@@ -13,7 +13,6 @@ const SignEmployee = ({
   check
 }) => {
   const { password, email } = check.check;
-  console.log(password);
 
   const formSignInfo = [
     {
@@ -23,8 +22,8 @@ const SignEmployee = ({
       value: user.email,
       placeholder: '이메일',
       onBlur: ValidateEmail,
-      validEmail: validEmail
-      // onBlur: ValidateForm
+      validEmail: validEmail,
+      checkEmail: email
     },
     {
       index: 2,
@@ -33,8 +32,7 @@ const SignEmployee = ({
       value: user.password,
       placeholder: '비밀번호',
       onBlur: check.CheckPassword,
-      check: password
-      // onBlur: ValidateForm
+      checkPw: password
     },
     {
       index: 3,
@@ -71,7 +69,8 @@ const SignEmployee = ({
             onChange={cate.onChange}
             onBlur={cate?.onBlur}
             validEmail={cate?.validEmail}
-            check={cate?.check}
+            checkEmail={cate?.checkEmail}
+            checkPw={cate?.checkPw}
           />
         ))}
       </SignInformation>

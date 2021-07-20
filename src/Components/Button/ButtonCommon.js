@@ -11,6 +11,10 @@ const ButtonCommon = ({ title, onClick }) => {
 };
 
 const ButtonArticle = styled.button`
+  /* :disabled {
+    background-color: ${props => (props.button ? ' #1ca953;' : '#B7B7B7')};
+    cursor: ${props => (props.button ? 'pointer' : '')};
+  } */
   /* width: 320px; */
   overflow: hidden;
   background-color: #1ca953;
@@ -62,6 +66,8 @@ const ButtonTitleS = styled.div`
   color: #ffffff;
   text-align: center;
 `;
+
+// 버튼 1/2 크기
 
 const ButtonCommonH = ({ title, onClick }) => {
   return (

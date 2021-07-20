@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SignEmployee from '../../Pages/Signup/SignEmployee';
 import { useHistory } from 'react-router-dom';
@@ -17,15 +17,22 @@ const Signup = () => {
     address: ''
   });
 
+  const [full, setFull] = useState(false);
+
   const { validEmail } = useSelector(state => state.validation);
+  // const { signFail, signSuccess } = useSelector(state => state.user);
 
   const onChange = e => {
     const { name, value } = e.target;
     setUser(state => ({ ...state, [name]: value }));
   };
 
+  // 이메일, 비밀번호 형식 검사
+  const check = CheckForm(user);
+  const { email, password } = check.check;
+
   // email 중복 검사 api
-  const ValidateEmail = () => {
+  const ValidateEmail = useCallback(() => {
     if (user.email !== '') {
       const inputEmail = {
         params: {
@@ -33,8 +40,11 @@ const Signup = () => {
         }
       };
       dispatch(validActions.validateEmail(inputEmail));
+      if (validEmail !== 'Duplicated') {
+        check.CheckEmail();
+      }
     }
-  };
+  }, [check, dispatch, user.email, validEmail]);
 
   // // 사업자 번호 중복 검사 api
   // const ValidateBusinessNumber = () => {
@@ -47,45 +57,59 @@ const Signup = () => {
   //     dispatch(validActions.validateNumber(input));
   //   }
   // };
-
-  // 이메일, 비밀번호 형식 검사
-  const check = CheckForm(user);
+  const inputFull = useCallback(() => {
+    if (
+      validEmail === 'Available' &&
+      email !== 'Invalid' &&
+      password === 'Valid' &&
+      user.email !== '' &&
+      user.password !== '' &&
+      user.name !== '' &&
+      user.phone !== '' &&
+      user.address !== ''
+    ) {
+      setFull(true);
+    } else {
+      setFull(false);
+    }
+  }, [
+    email,
+    password,
+    user.address,
+    user.email,
+    user.name,
+    user.password,
+    user.phone,
+    validEmail
+  ]);
 
   const onClick = () => {
-    let data = {
-      email: user.email,
-      password: user.password,
-      name: user.name,
-      phone: user.phone,
-      address: user.address
-    };
-    // redux-saga로 dispatch(action, data) 전달
-    dispatch(userActions.signRequest(data));
+    if (full === true) {
+      let data = {
+        email: user.email,
+        password: user.password,
+        name: user.name,
+        phone: user.phone,
+        address: user.address
+      };
+      // redux-saga로 dispatch(action, data) 전달
+      dispatch(userActions.signRequest(data));
+      alert('회원 가입 성공!');
+      history.push('/');
+    } else {
+      alert('제대로 작성해주세요');
+    }
   };
+
   useEffect(() => {
-    ValidateEmail();
-    // const { signFail, signSuccess } = useSelector(state => state.user);
+    // ValidateEmail();
     // console.log(`signFail:${signFail}, signSuccess:${signSuccess}`);
-    console.log(`email:${validEmail}`);
-    // console.log(`password: ${check.check.password}`);
-    // if (signFailEmail === 'Invalid') {
-    //   alert('중복된 계정입니다.');
-    // }chkPwd
-    // if (signFailPw === 'Invalid') {
-    //   alert('비밀번호를 다시 설정해주세요');
-    // }
-    // if (signSuccess === 'Valid') {
-    //   alert('회원 가입 성공');
-    //   history.push('/');
-    // }
-    // else {
-    //   alert('가능한 비밀번호 입니다.');
-    // }
-    // if (signSuccess === 'success') {
-    //   alert('회원 가입 성공');
-    //   history.push('/');
-    // }
-  }, [user]);
+    inputFull();
+    // ValidateEmail();
+    // console.log(`Validemail:${validEmail}`);
+    // // console.log(`password: ${password}`);
+    // console.log(`email: ${email}`);
+  }, [inputFull]);
 
   return (
     <SignEmployee

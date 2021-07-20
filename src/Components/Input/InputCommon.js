@@ -11,7 +11,8 @@ const InputCommon = ({
   onBlur,
   type,
   validEmail,
-  check
+  checkEmail,
+  checkPw
 }) => {
   return (
     <>
@@ -29,9 +30,12 @@ const InputCommon = ({
       <Validation validEmail={validEmail === 'Duplicated' ? true : false}>
         이미 등록된 이메일입니다.
       </Validation>
-      <Check check={check === 'Invalid' ? true : false}>
+      <CheckEmail checkEmail={checkEmail === 'Invalid' ? true : false}>
+        이메일 양식에 맞춰주세요.
+      </CheckEmail>
+      <CheckPassword checkPw={checkPw === 'Invalid' ? true : false}>
         대소문자, 숫자, 특수문자 포함하여 최소 8자 이상으로 작성해주세요.
-      </Check>
+      </CheckPassword>
     </>
   );
 };
@@ -77,11 +81,18 @@ const Validation = styled.div`
   display: ${props => (props.validEmail ? 'inline' : 'none')};
 `;
 
-const Check = styled.div`
+const CheckEmail = styled.div`
   font-size: 8px;
   color: red;
   padding: 8px 0 0 8px;
-  display: ${props => (props.check ? 'inline' : 'none')};
+  display: ${props => (props.checkEmail ? 'inline' : 'none')};
+`;
+
+const CheckPassword = styled.div`
+  font-size: 8px;
+  color: red;
+  padding: 8px 0 0 8px;
+  display: ${props => (props.checkPw ? 'inline' : 'none')};
 `;
 
 // const InputCommon = ({ label, name, value, placeholder, onChange, onBlur }) => {
