@@ -47,7 +47,7 @@ function* email({ inputEmail }) {
   const { message, errorMessage } = yield call(validEmailApi, inputEmail);
   if (message === 'Available') {
     yield put(actions.validateSuccessEmail(message));
-  } else {
+  } else if (message === 'Duplicated') {
     yield put(actions.validateSuccessEmail(message));
   }
 }
