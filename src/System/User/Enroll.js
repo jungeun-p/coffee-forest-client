@@ -50,6 +50,7 @@ const Enroll = () => {
 const CategoryWrap = styled.div`
   display: flex;
   flex-direction: row;
+  margin-bottom: 15px;
 `;
 
 export default Enroll;

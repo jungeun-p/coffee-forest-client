@@ -8,16 +8,32 @@ const EnrollContainer = () => {
     <ContainerRoot>
       <ContentsWrapper>
         <EnrollWrap>
-          <EnrollBox>
+          <div className="box">
             <Enroll />
-          </EnrollBox>
+          </div>
         </EnrollWrap>
       </ContentsWrapper>
     </ContainerRoot>
   );
 };
 
-const EnrollWrap = styled.div``;
-const EnrollBox = styled.div``;
+const EnrollWrap = styled.div`
+  @media all and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .box {
+    @media all and (min-width: 768px) {
+      width: 315px;
+      background: #ffffff;
+      box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.05);
+      border-radius: 16px;
+      padding: 40px 30px 0 30px;
+      margin: 0;
+    }
+  }
+`;
 
 export default EnrollContainer;
