@@ -4,7 +4,7 @@ import { ButtonCommon } from '../../Components/Button';
 import { TitleB } from '../../Components/Common';
 import { InputCommon, InputTitleS } from '../../Components/Input';
 
-const SignEmployee = ({
+const SignTemplate = ({
   user,
   onChange,
   onClick,
@@ -92,4 +92,4 @@ const SignInformation = styled.div`
   /* width: 100%; */
 `;
 
-export default SignEmployee;
+export default SignTemplate;
