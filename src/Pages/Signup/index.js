@@ -7,18 +7,34 @@ const SignupContainer = () => {
   return (
     <ContainerRoot>
       <ContentsWrapper>
-        <Wrap>
-          <Signup />
-        </Wrap>
+        <SignupWrap>
+          <SignupBox>
+            <Signup />
+          </SignupBox>
+        </SignupWrap>
       </ContentsWrapper>
     </ContainerRoot>
   );
 };
 
-const Wrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  /* background-color: #f8faed; */
+const SignupWrap = styled.div`
+  @media all and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+`;
+
+const SignupBox = styled.div`
+  @media all and (min-width: 768px) {
+    width: 315px;
+    background: #ffffff;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 40px 30px 0 30px;
+    margin: 0;
+  }
 `;
 
 export default SignupContainer;

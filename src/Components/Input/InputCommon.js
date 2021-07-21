@@ -27,15 +27,21 @@ const InputCommon = ({
           type={type}
         />
       </InputWrap>
-      <Validation validEmail={validEmail === 'Duplicated' ? true : false}>
-        이미 등록된 이메일입니다.
-      </Validation>
-      <CheckEmail checkEmail={checkEmail === 'Invalid' ? true : false}>
-        이메일 양식에 맞춰주세요.
-      </CheckEmail>
-      <CheckPassword checkPw={checkPw === 'Invalid' ? true : false}>
-        대소문자, 숫자, 특수문자 포함하여 최소 8자 이상으로 작성해주세요.
-      </CheckPassword>
+      {validEmail && (
+        <Validation validEmail={validEmail === 'Duplicated' ? true : false}>
+          이미 등록된 이메일입니다.
+        </Validation>
+      )}
+      {checkEmail && (
+        <CheckEmail checkEmail={checkEmail === 'Invalid' ? true : false}>
+          이메일 양식에 맞춰주세요.
+        </CheckEmail>
+      )}
+      {checkPw && (
+        <CheckPassword checkPw={checkPw === 'Invalid' ? true : false}>
+          대소문자, 숫자, 특수문자 포함하여 최소 8자 이상으로 작성해주세요.
+        </CheckPassword>
+      )}
     </>
   );
 };

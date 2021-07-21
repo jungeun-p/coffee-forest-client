@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import SignEmployee from '../../Pages/Signup/SignEmployee';
+import SignTemplate from '../../Pages/Signup/SignTemplate';
 import { useHistory } from 'react-router-dom';
 import { actions as userActions } from '../../Store/user';
 import { actions as validActions } from '../../Store/validation';
@@ -112,7 +112,7 @@ const Signup = () => {
   }, [inputFull]);
 
   return (
-    <SignEmployee
+    <SignTemplate
       user={user}
       onChange={onChange}
       onClick={onClick}
