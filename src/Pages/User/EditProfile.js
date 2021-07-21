@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { InputCommon, InputTitleS } from '../../Components/Input';
-import basicProfile from '../../assets/Img/profile/basicProfile.png';
+// import basicProfile from '../../assets/Img/profile/basicProfile.png';
 
 // tdf
 const EditProfile = ({ profile }) => {
