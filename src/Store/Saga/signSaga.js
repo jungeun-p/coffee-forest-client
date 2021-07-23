@@ -25,9 +25,11 @@ function signApi(data) {
 
 function loginApi(data) {
   return axios
-    .post(`${LOCAL_HOST}users/sign-in`, data)
+    .post(`${LOCAL_HOST}sign-in`, data, { withCredentials: true })
     .then(response => {
       const userData = response.data;
+      const { accessToken } = response.data.userTokenInfo;
+      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
       return {
         userData
       };

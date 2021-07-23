@@ -14,16 +14,17 @@ const Login = () => {
     password: ''
   });
 
-  const { companyIndex } = useSelector(state => state.user.userInfo);
-  const scheduleData = useSelector(state => state.user.userInfo);
+  const { userData } = useSelector(state => state.user);
+  // const scheduleData = useSelector(state => state.user.userInfo);
 
   useEffect(() => {
-    if (companyIndex) {
-      alert('로그인 성공');
-      dispatch(scheduleActions.scheduleInfo(scheduleData));
-      history.push('/mypage');
-    }
-  }, [companyIndex, dispatch, history, scheduleData]);
+    console.log(userData);
+    //   if (companyIndex) {
+    //     alert('로그인 성공');
+    //     dispatch(scheduleActions.scheduleInfo(scheduleData));
+    //     history.push('/mypage');
+    //   }
+  });
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -39,6 +40,7 @@ const Login = () => {
         password: user.password
       };
       dispatch(actions.loginRequest(data));
+
       // axios
       //   .post(`${LOCAL_HOST}users/sign-in`, data)
       //   .then(response => {

@@ -22,14 +22,14 @@ export const actions = {
 };
 
 const INITIAL_STATE = {
-  signLoading: false,
+  // signLoading: false,
   signFail: null,
   signSuccess: null,
   loginFail: '',
-  loginStatus: '',
-  companyIndex: '',
+  userData: {}
+  // companyIndex: ''
   // userIndex: '',
-  userInfo: {}
+  // userInfo: {}
 };
 
 const reducer = createReducer(INITIAL_STATE, {
@@ -46,7 +46,7 @@ const reducer = createReducer(INITIAL_STATE, {
   [Types.SignFail]: (state, action) => (state.signFail = action.errorMessage),
   [Types.SignSuccess]: (state, action) => (state.signSuccess = action.message),
   // [Types.SignFail]: (state, action) => (state.signFail = action.errorMessage),
-  [Types.LoginSuccess]: (state, action) => (state.userInfo = action.userData),
+  [Types.LoginSuccess]: (state, action) => (state.userData = action.userData),
   [Types.LoginFail]: (state, action) => (state.loginFail = action.error)
 });
 
