@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import ButtonSelect from '../../Components/Button/ButtonSelect';
 import EnrollEmployee from '../../Pages/Enroll/EnrollEmployee';
 import EnrollOffice from '../../Pages/Enroll/EnrollOffice';
+import { actions as enrollActions } from '../../Store/enroll';
+import { actions as validActions } from '../../Store/validation';
 
 const Enroll = () => {
   const [office, setOffice] = useState({
@@ -14,24 +16,56 @@ const Enroll = () => {
   });
   const [tab, setTab] = useState({ activeId: 0 });
   const { userData } = useSelector(state => state.user);
+  //const { validNumber } = useSelector(state => state.validation);
+  const { enrollData } = useSelector(state => state.enroll);
   const history = useHistory();
   const dispatch = useDispatch();
+
+  console.log(userData.userTokenInfo.accessToken);
+  // console.log(validNumber);
+  console.log(enrollData);
 
   const onChange = e => {
     const { name, value } = e.target;
     setOffice({ ...office, [name]: value });
   };
 
+  // 회사 등록 신청 api
   const onClick = () => {
     if (office.name && office.address && office.businessNumber !== '') {
+      const data = {
+        userIndex: userData.userIndex,
+        name: office.name,
+        address: office.address,
+        businessNumber: office.businessNumber
+      };
+      dispatch(enrollActions.enrollRequest(data));
+      alert('신청 완료 되었습니다.');
     } else {
       alert('빠짐없이 작성해주세요');
     }
-    //enroll-saga
+  };
+
+  // 사업자 번호 중복 검사 api
+  const ValidateBusinessNumber = () => {
+    if (office.businessNumber) {
+      const input = {
+        params: {
+          businessNumber: office.businessNumber
+        }
+      };
+      dispatch(validActions.validateNumber(input));
+    }
   };
 
   const obj = {
-    0: <EnrollOffice onChange={onChange} onClick={onClick} />,
+    0: (
+      <EnrollOffice
+        onChange={onChange}
+        onClick={onClick}
+        ValidateBusinessNumber={ValidateBusinessNumber}
+      />
+    ),
     1: <EnrollEmployee onChange={onChange} onClick={onClick} />
   };
   const clickHandler = id => {

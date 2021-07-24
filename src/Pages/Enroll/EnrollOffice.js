@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
 import { InputCommon } from '../../Components/Input';
 
-const EnrollOffice = ({ onChange, onClick }) => {
+const EnrollOffice = ({ onChange, onClick, ValidateBusinessNumber }) => {
   const formEnrollInfo = [
     {
       index: 1,
@@ -21,7 +21,8 @@ const EnrollOffice = ({ onChange, onClick }) => {
       index: 3,
       name: 'businessNumber',
       onChange: onChange,
-      placeholder: '사업자 번호'
+      placeholder: '사업자 번호',
+      onBlur: ValidateBusinessNumber
     }
   ];
   return (
@@ -34,6 +35,7 @@ const EnrollOffice = ({ onChange, onClick }) => {
               name={roll.name}
               placeholder={roll.placeholder}
               onChange={roll.onChange}
+              onBlur={roll?.onBlur}
             />
           </div>
         ))}

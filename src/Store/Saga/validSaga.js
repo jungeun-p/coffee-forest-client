@@ -35,7 +35,7 @@ function validEmailApi(inputEmail) {
 }
 
 function* number({ input }) {
-  const { message } = yield call(validNumberApi, input);
+  const { message, errorMessage } = yield call(validNumberApi, input);
   if (message === 'Available') {
     yield put(actions.validateSuccessNumber(message));
   } else {
