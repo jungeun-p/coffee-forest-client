@@ -5,15 +5,15 @@ const WorkDateInfo = ({ weekend }) => {
   return (
     <MainDate>
       <Month>
-        <div>{weekend.month} 월</div>
+        <div>{weekend?.month} 월</div>
       </Month>
       <DividedBar />
       <Dates>
         <Year>
-          <div>{weekend.year} 년</div>
+          <div>{weekend?.year} 년</div>
         </Year>
         <WeekendNumber>
-          <div>{`${weekend.month}. ${weekend.weekStartDate} ~ ${weekend.month}. ${weekend.weekEndDate}`}</div>
+          <div>{`${weekend?.month}. ${weekend?.weekStartDate} ~ ${weekend?.month}. ${weekend?.weekEndDate}`}</div>
         </WeekendNumber>
       </Dates>
     </MainDate>

@@ -2,15 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 const WorkLoad = ({ schedulePlan, weekend }) => {
-  const date = Object.keys(schedulePlan);
-  const status = date.map(date =>
-    schedulePlan[date].map(key => key.scheduleStatus)
-  );
-  // array of arrays 펼치기
-  const statusArray = status.reduce((acc, it) => [...acc, ...it], []);
-  // 중복 제거
-  const uniqueStatus = [...new Set(statusArray)];
-  console.log(uniqueStatus);
+  // const date = Object.keys(schedulePlan);
+  // const status = date.map(date =>
+  //   schedulePlan[date].map(key => key.scheduleStatus)
+  // );
+  // // array of arrays 펼치기
+  // const statusArray = status.reduce((acc, it) => [...acc, ...it], []);
+  // // 중복 제거
+  // const uniqueStatus = [...new Set(statusArray)];
+  // console.log(uniqueStatus);
   const statusCateogry = [
     {
       index: 1,
@@ -33,18 +33,21 @@ const WorkLoad = ({ schedulePlan, weekend }) => {
       <UserProfile>
         <div className="logo">💻</div>
         <div className="name">
-          <div className="userName">{weekend.name} 님의</div>
+          <div className="userName">{weekend?.name} 님의</div>
           <div className="userTitle">이번 주 업무량</div>
         </div>
       </UserProfile>
       <UserLoad>
-        {uniqueStatus.map(key =>
+        {/* {uniqueStatus?.map(key =>
           statusCateogry.map((name, index) => (
-            <UserStatus key={index} status={name.status === key ? true : false}>
+            <UserStatus
+              key={index}
+              status={name?.status === key ? true : false}
+            >
               {name.name}
             </UserStatus>
           ))
-        )}
+        )} */}
       </UserLoad>
     </WorkLoadBox>
   );
