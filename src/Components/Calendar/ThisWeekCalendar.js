@@ -18,8 +18,8 @@ const ThisWeekCalendar = ({
         <PlanDate
           day={day}
           key={index}
-          schedulePlan={schedulePlan[day]}
-          sendSchedule={sendSchedule}
+          // schedulePlan={schedulePlan[day]}
+          // sendSchedule={sendSchedule}
           onChange={onChange}
           event={event}
         />

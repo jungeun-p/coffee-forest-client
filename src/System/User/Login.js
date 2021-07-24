@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import LoginBody from '../../Pages/Login/LoginBody';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../Store/user';
-import { actions as scheduleActions } from '../../Store/schedule';
+// import { actions as scheduleActions } from '../../Store/schedule';
 
 const Login = () => {
   const history = useHistory();
@@ -14,17 +14,7 @@ const Login = () => {
     password: ''
   });
 
-  const { userData } = useSelector(state => state.user);
-  // const scheduleData = useSelector(state => state.user.userInfo);
-
-  useEffect(() => {
-    console.log(userData);
-    //   if (companyIndex) {
-    //     alert('로그인 성공');
-    //     dispatch(scheduleActions.scheduleInfo(scheduleData));
-    //     history.push('/mypage');
-    //   }
-  });
+  const { companyIndex } = useSelector(state => state.user.userData);
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -40,21 +30,13 @@ const Login = () => {
         password: user.password
       };
       dispatch(actions.loginRequest(data));
-
-      // axios
-      //   .post(`${LOCAL_HOST}users/sign-in`, data)
-      //   .then(response => {
-      //     alert('어서오세요!');
-      //     history.push({
-      //       pathname: '/mypage',
-      //       state: {
-      //         data: response.data
-      //       }
-      //     });
-      //   })
-      //   .catch(error => {
-      //     console.log(error.response.data);
-      //   });
+      if (companyIndex === '') {
+        alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
+        history.push('/enroll');
+      } else {
+        alert('로그인 성공');
+        history.push('/mypage');
+      }
     }
   };
   return <LoginBody user={user} onChange={onChange} onClick={onClick} />;

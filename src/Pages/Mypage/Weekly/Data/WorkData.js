@@ -6,8 +6,8 @@ import WorkMypage from './WorkMypage';
 const WorkData = ({ weekend }) => {
   return (
     <WorkDataWrapper>
-      <WorkDateInfo weekend={weekend} />
-      <WorkMypage weekend={weekend} />
+      <WorkDateInfo />
+      <WorkMypage />
     </WorkDataWrapper>
   );
 };

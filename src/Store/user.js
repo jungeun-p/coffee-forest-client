@@ -26,7 +26,19 @@ const INITIAL_STATE = {
   signFail: null,
   signSuccess: null,
   loginFail: '',
-  userData: {}
+  userData: {
+    userIndex: '',
+    companyIndex: '',
+    email: '',
+    name: '',
+    position: '',
+    profileImage: '',
+    userTokenInfo: {
+      userIndex: '',
+      accessToken: '',
+      refreshToken: ''
+    }
+  }
   // companyIndex: ''
   // userIndex: '',
   // userInfo: {}
