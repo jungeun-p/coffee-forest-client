@@ -3,15 +3,11 @@ import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
 import { InputCommon } from '../../Components/Input';
 
-const EnrollEmployee = ({ office, onChange, onClick }) => {
+const EnrollEmployee = ({ onChange, onClick }) => {
   return (
     <EnrollForm>
       <EnrollInformation>
-        <InputCommon
-          name="officeName"
-          onChange={onChange}
-          placeholder="회사명"
-        />
+        <InputCommon name="name" onChange={onChange} placeholder="회사명" />
       </EnrollInformation>
       <ButtonCommon onClick={onClick} title="등록하기" />
     </EnrollForm>

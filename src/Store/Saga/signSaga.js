@@ -53,7 +53,7 @@ function* login({ data }) {
   const { userData, errorMessage } = yield call(loginApi, data);
   if (userData) {
     yield put(actions.loginSuccess(userData));
-    yield put(scheduleActions.scheduleInfo(userData));
+    // yield put(scheduleActions.scheduleInfo(userData));
   } else {
     yield put(actions.loginFail(errorMessage));
   }

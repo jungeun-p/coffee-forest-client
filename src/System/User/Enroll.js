@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import ButtonSelect from '../../Components/Button/ButtonSelect';
 import EnrollEmployee from '../../Pages/Enroll/EnrollEmployee';
@@ -6,11 +8,14 @@ import EnrollOffice from '../../Pages/Enroll/EnrollOffice';
 
 const Enroll = () => {
   const [office, setOffice] = useState({
-    officeName: '',
-    officeAddress: '',
+    name: '',
+    address: '',
     businessNumber: ''
   });
   const [tab, setTab] = useState({ activeId: 0 });
+  const { userData } = useSelector(state => state.user);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -18,12 +23,16 @@ const Enroll = () => {
   };
 
   const onClick = () => {
+    if (office.name && office.address && office.businessNumber !== '') {
+    } else {
+      alert('빠짐없이 작성해주세요');
+    }
     //enroll-saga
   };
 
   const obj = {
-    0: <EnrollOffice office={office} onChange={onChange} onClick={onClick} />,
-    1: <EnrollEmployee office={office} onChange={onChange} onClick={onClick} />
+    0: <EnrollOffice onChange={onChange} onClick={onClick} />,
+    1: <EnrollEmployee onChange={onChange} onClick={onClick} />
   };
   const clickHandler = id => {
     setTab({ activeId: id });
