@@ -46,17 +46,6 @@ const Signup = () => {
     }
   }, [check, dispatch, user.email, validEmail]);
 
-  // // 사업자 번호 중복 검사 api
-  // const ValidateBusinessNumber = () => {
-  //   if (user.businessNumber) {
-  //     const input = {
-  //       params: {
-  //         businessNumber: user.businessNumber
-  //       }
-  //     };
-  //     dispatch(validActions.validateNumber(input));
-  //   }
-  // };
   const inputFull = useCallback(() => {
     if (
       validEmail === 'Available' &&

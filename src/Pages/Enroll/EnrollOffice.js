@@ -3,25 +3,26 @@ import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
 import { InputCommon } from '../../Components/Input';
 
-const EnrollOffice = ({ office, onChange, onClick }) => {
+const EnrollOffice = ({ onChange, onClick, ValidateBusinessNumber }) => {
   const formEnrollInfo = [
     {
       index: 1,
-      name: 'officeName',
+      name: 'name',
       onChange: onChange,
       placeholder: '회사명'
     },
     {
       index: 2,
-      name: 'officeAddress',
+      name: 'address',
       onChange: onChange,
       placeholder: '주소'
     },
     {
       index: 3,
-      name: 'officeNumber',
+      name: 'businessNumber',
       onChange: onChange,
-      placeholder: '사업자 번호'
+      placeholder: '사업자 번호',
+      onBlur: ValidateBusinessNumber
     }
   ];
   return (
@@ -34,6 +35,7 @@ const EnrollOffice = ({ office, onChange, onClick }) => {
               name={roll.name}
               placeholder={roll.placeholder}
               onChange={roll.onChange}
+              onBlur={roll?.onBlur}
             />
           </div>
         ))}
