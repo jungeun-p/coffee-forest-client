@@ -28,9 +28,9 @@ function loginApi(data) {
     .post(`${LOCAL_HOST}sign-in`, data)
     .then(response => {
       const { accessToken } = response.data.userTokenInfo;
-      axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-
+      axios.defaults.headers.common['Authorization'] = accessToken;
       const { userTokenInfo } = response.data;
+      // console.log(userTokenInfo);
       return {
         userTokenInfo
       };
