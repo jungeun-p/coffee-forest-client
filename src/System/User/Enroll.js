@@ -15,15 +15,15 @@ const Enroll = () => {
     businessNumber: ''
   });
   const [tab, setTab] = useState({ activeId: 0 });
-  const { userData } = useSelector(state => state.user);
+  const userTokenInfo = useSelector(state => state.user.userTokenInfo);
   //const { validNumber } = useSelector(state => state.validation);
-  const { enrollData } = useSelector(state => state.enroll);
+  // const { enrollData } = useSelector(state => state.enroll);
   const history = useHistory();
   const dispatch = useDispatch();
 
-  console.log(userData.userTokenInfo.accessToken);
-  // console.log(validNumber);
-  console.log(enrollData);
+  // console.log(userTokenInfo);
+  // // console.log(validNumber);
+  // console.log(enrollData);
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -34,7 +34,7 @@ const Enroll = () => {
   const onClick = () => {
     if (office.name && office.address && office.businessNumber !== '') {
       const data = {
-        userIndex: userData.userIndex,
+        userIndex: userTokenInfo.userIndex,
         name: office.name,
         address: office.address,
         businessNumber: office.businessNumber

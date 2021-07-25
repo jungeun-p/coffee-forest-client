@@ -14,7 +14,7 @@ const Login = () => {
     password: ''
   });
 
-  const { companyIndex } = useSelector(state => state.user.userData);
+  const { companyIndex, userTokenInfo } = useSelector(state => state.user);
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -30,15 +30,18 @@ const Login = () => {
         password: user.password
       };
       dispatch(actions.loginRequest(data));
-      if (companyIndex === '') {
+      if (!companyIndex) {
         alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
         history.push('/enroll');
-      } else {
+      } else if (userTokenInfo) {
         alert('로그인 성공');
         history.push('/mypage');
+      } else {
+        alert('test');
       }
     }
   };
+
   return <LoginBody user={user} onChange={onChange} onClick={onClick} />;
 };
 
