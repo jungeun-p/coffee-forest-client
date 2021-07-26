@@ -14,13 +14,19 @@ const Enroll = () => {
     address: '',
     businessNumber: ''
   });
+  const [full, setFull] = useState(false);
   const [tab, setTab] = useState({ activeId: 0 });
 
   const userTokenInfo = useSelector(state => state.user.userTokenInfo);
+
+  // 양식 불가 : Invalid Business Number Format
+  // 가능 번호 : Available
   const { validNumber } = useSelector(state => state.validation);
-  const { companyApplicantStatus } = useSelector(
-    state => state.enroll.enrollData
-  );
+
+  // 사업자 번호 중복 : Already Exists
+  // 신청 완료 : WAIT
+  // 기본 상태값 : YET
+  const { enrollData } = useSelector(state => state.enroll);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -29,37 +35,30 @@ const Enroll = () => {
     setOffice({ ...office, [name]: value });
   };
 
-  useEffect(() => {
-    // console.log(userTokenInfo);
-    // // console.log(validNumber);
-    // console.log(`number:${validNumber}`);
-    console.log(companyApplicantStatus);
-  }, [validNumber, userTokenInfo, companyApplicantStatus]);
-
-  // 회사 등록 신청 api
-  const onClick = useCallback(() => {
-    if (office.name && office.address && office.businessNumber !== '') {
-      const data = {
-        userIndex: userTokenInfo.userIndex,
-        name: office.name,
-        address: office.address,
-        businessNumber: office.businessNumber
-      };
-      dispatch(enrollActions.enrollRequest(data));
-      alert('신청 완료 되었습니다.');
+  const inputFull = useCallback(() => {
+    if (
+      validNumber === 'Available' &&
+      // enrollData.companyApplicantStatus !== 'Already Exists' &&
+      // companyApplicantStatus !== 'Already Exists' &&
+      // companyApplicantStatus !== 'YET' &&
+      office.name !== '' &&
+      office.address !== '' &&
+      office.businessNumber !== ''
+    ) {
+      setFull(true);
     } else {
-      alert('빠짐없이 작성해주세요');
+      setFull(false);
     }
   }, [
-    dispatch,
+    enrollData.companyApplicantStatus,
     office.address,
     office.businessNumber,
     office.name,
-    userTokenInfo.userIndex
+    validNumber
   ]);
 
-  // 사업자 번호 중복 검사 api
-  const ValidateBusinessNumber = () => {
+  // 사업자 번호 포맷 검사 api
+  const ValidateBusinessNumber = useCallback(() => {
     if (office.businessNumber) {
       const inputNumber = {
         params: {
@@ -68,7 +67,38 @@ const Enroll = () => {
       };
       dispatch(validActions.validateNumber(inputNumber));
     }
-  };
+  }, [dispatch, office.businessNumber]);
+
+  // 회사 등록 신청 api
+  const onClick = useCallback(() => {
+    if (full === true) {
+      const data = {
+        userIndex: userTokenInfo.userIndex,
+        name: office.name,
+        address: office.address,
+        businessNumber: office.businessNumber
+      };
+      dispatch(enrollActions.enrollRequest(data));
+      alert('회사 등록 완료');
+    } else {
+      alert('양식에 맞게 작성해주세요');
+    }
+  }, [
+    dispatch,
+    full,
+    office.address,
+    office.businessNumber,
+    office.name,
+    userTokenInfo.userIndex
+  ]);
+
+  useEffect(() => {
+    // console.log(userTokenInfo);
+    console.log(`number:${validNumber}`);
+    // console.log(`status:${companyApplicantStatus}`);
+    console.log(`status:${enrollData.companyApplicantStatus}`);
+    inputFull();
+  }, [validNumber, inputFull]);
 
   const obj = {
     0: (
@@ -77,7 +107,7 @@ const Enroll = () => {
         onClick={onClick}
         ValidateBusinessNumber={ValidateBusinessNumber}
         validNumber={validNumber}
-        companyApplicantStatus={companyApplicantStatus}
+        companyApplicantStatus={enrollData.companyApplicantStatus}
       />
     ),
     1: <EnrollEmployee onChange={onChange} onClick={onClick} />
