@@ -8,14 +8,12 @@ function enrollApi(data) {
     .post(`${LOCAL_HOST}company-applicant`, data)
     .then(response => {
       const office = response.data;
-      console.log(office);
       return {
         office
       };
     })
     .catch(error => {
       const errorMessage = error.response.data.message;
-      console.log(`error:${errorMessage}`);
       return {
         errorMessage
       };
