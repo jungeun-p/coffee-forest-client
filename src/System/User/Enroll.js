@@ -23,9 +23,9 @@ const Enroll = () => {
   // 가능 번호 : Available
   const { validNumber } = useSelector(state => state.validation);
 
-  // 사업자 번호 중복 : Already Exists
   // 신청 완료 : WAIT
   // 기본 상태값 : YET
+  // 사업자 번호 중복(error) : Already Exists
   const { enrollData } = useSelector(state => state.enroll);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -38,9 +38,7 @@ const Enroll = () => {
   const inputFull = useCallback(() => {
     if (
       validNumber === 'Available' &&
-      // enrollData.companyApplicantStatus !== 'Already Exists' &&
-      // companyApplicantStatus !== 'Already Exists' &&
-      // companyApplicantStatus !== 'YET' &&
+      // enrollData?.companyApplicantStatus === 'WAIT' &&
       office.name !== '' &&
       office.address !== '' &&
       office.businessNumber !== ''
@@ -49,13 +47,7 @@ const Enroll = () => {
     } else {
       setFull(false);
     }
-  }, [
-    enrollData.companyApplicantStatus,
-    office.address,
-    office.businessNumber,
-    office.name,
-    validNumber
-  ]);
+  }, [office.address, office.businessNumber, office.name, validNumber]);
 
   // 사업자 번호 포맷 검사 api
   const ValidateBusinessNumber = useCallback(() => {
@@ -79,9 +71,8 @@ const Enroll = () => {
         businessNumber: office.businessNumber
       };
       dispatch(enrollActions.enrollRequest(data));
-      alert('회사 등록 완료');
     } else {
-      alert('양식에 맞게 작성해주세요');
+      alert('등록된 사업자 번호입니다.');
     }
   }, [
     dispatch,
@@ -96,9 +87,13 @@ const Enroll = () => {
     // console.log(userTokenInfo);
     console.log(`number:${validNumber}`);
     // console.log(`status:${companyApplicantStatus}`);
-    console.log(`status:${enrollData.companyApplicantStatus}`);
+    console.log(`status:${enrollData?.companyApplicantStatus}`);
     inputFull();
-  }, [validNumber, inputFull]);
+    if (enrollData?.companyApplicantStatus === 'WAIT') {
+      alert('등록 완료');
+      history.push('/mypage');
+    }
+  }, [enrollData?.companyApplicantStatus, history, inputFull, validNumber]);
 
   const obj = {
     0: (
@@ -107,7 +102,7 @@ const Enroll = () => {
         onClick={onClick}
         ValidateBusinessNumber={ValidateBusinessNumber}
         validNumber={validNumber}
-        companyApplicantStatus={enrollData.companyApplicantStatus}
+        companyApplicantStatus={enrollData?.companyApplicantStatus}
       />
     ),
     1: <EnrollEmployee onChange={onChange} onClick={onClick} />
