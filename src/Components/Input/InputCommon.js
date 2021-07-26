@@ -11,6 +11,8 @@ const InputCommon = ({
   onBlur,
   type,
   validEmail,
+  validNumber,
+  companyApplicantStatus,
   checkEmail,
   checkPw
 }) => {
@@ -31,6 +33,24 @@ const InputCommon = ({
         <Validation validEmail={validEmail === 'Duplicated' ? true : false}>
           이미 등록된 이메일입니다.
         </Validation>
+      )}
+      {validNumber && (
+        <CheckNumber
+          validNumber={
+            validNumber === 'Invalid Business Number Format' ? true : false
+          }
+        >
+          사업자 등록 포맷에 맞춰서 작성해주세요.
+        </CheckNumber>
+      )}
+      {companyApplicantStatus && (
+        <ApplicationNumber
+          companyApplicantStatus={
+            companyApplicantStatus === 'Already Exists' ? true : false
+          }
+        >
+          이미 존재하는 사업자 번호 입니다.
+        </ApplicationNumber>
       )}
       {checkEmail && (
         <CheckEmail checkEmail={checkEmail === 'Invalid' ? true : false}>
@@ -85,6 +105,20 @@ const Validation = styled.div`
   color: red;
   padding: 8px 0 0 8px;
   display: ${props => (props.validEmail ? 'inline' : 'none')};
+`;
+
+const CheckNumber = styled.div`
+  font-size: 8px;
+  color: red;
+  padding: 8px 0 0 8px;
+  display: ${props => (props.validNumber ? 'inline' : 'none')};
+`;
+
+const ApplicationNumber = styled.div`
+  font-size: 8px;
+  color: red;
+  padding: 8px 0 0 8px;
+  display: ${props => (props.companyApplicantStatus ? 'inline' : 'none')};
 `;
 
 const CheckEmail = styled.div`

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -15,23 +15,29 @@ const Enroll = () => {
     businessNumber: ''
   });
   const [tab, setTab] = useState({ activeId: 0 });
+
   const userTokenInfo = useSelector(state => state.user.userTokenInfo);
-  //const { validNumber } = useSelector(state => state.validation);
-  // const { enrollData } = useSelector(state => state.enroll);
+  const { validNumber } = useSelector(state => state.validation);
+  const { companyApplicantStatus } = useSelector(
+    state => state.enroll.enrollData
+  );
   const history = useHistory();
   const dispatch = useDispatch();
-
-  // console.log(userTokenInfo);
-  // // console.log(validNumber);
-  // console.log(enrollData);
 
   const onChange = e => {
     const { name, value } = e.target;
     setOffice({ ...office, [name]: value });
   };
 
+  useEffect(() => {
+    // console.log(userTokenInfo);
+    // // console.log(validNumber);
+    // console.log(`number:${validNumber}`);
+    console.log(companyApplicantStatus);
+  }, [validNumber, userTokenInfo, companyApplicantStatus]);
+
   // 회사 등록 신청 api
-  const onClick = () => {
+  const onClick = useCallback(() => {
     if (office.name && office.address && office.businessNumber !== '') {
       const data = {
         userIndex: userTokenInfo.userIndex,
@@ -44,17 +50,23 @@ const Enroll = () => {
     } else {
       alert('빠짐없이 작성해주세요');
     }
-  };
+  }, [
+    dispatch,
+    office.address,
+    office.businessNumber,
+    office.name,
+    userTokenInfo.userIndex
+  ]);
 
   // 사업자 번호 중복 검사 api
   const ValidateBusinessNumber = () => {
     if (office.businessNumber) {
-      const input = {
+      const inputNumber = {
         params: {
           businessNumber: office.businessNumber
         }
       };
-      dispatch(validActions.validateNumber(input));
+      dispatch(validActions.validateNumber(inputNumber));
     }
   };
 
@@ -64,6 +76,8 @@ const Enroll = () => {
         onChange={onChange}
         onClick={onClick}
         ValidateBusinessNumber={ValidateBusinessNumber}
+        validNumber={validNumber}
+        companyApplicantStatus={companyApplicantStatus}
       />
     ),
     1: <EnrollEmployee onChange={onChange} onClick={onClick} />

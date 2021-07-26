@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import LoginBody from '../../Pages/Login/LoginBody';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,7 +21,7 @@ const Login = () => {
     setUser(state => ({ ...state, [name]: value }));
   };
 
-  const onClick = () => {
+  const onClick = useCallback(() => {
     if ((user.email && user.password) === '') {
       alert('모두 기입 바람');
     } else {
@@ -40,7 +40,14 @@ const Login = () => {
         alert('test');
       }
     }
-  };
+  }, [
+    companyIndex,
+    dispatch,
+    history,
+    user.email,
+    user.password,
+    userTokenInfo
+  ]);
 
   return <LoginBody user={user} onChange={onChange} onClick={onClick} />;
 };
