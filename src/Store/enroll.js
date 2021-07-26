@@ -18,7 +18,7 @@ const INITIAL_STATE = {
     name: '',
     address: '',
     businessNumber: '',
-    companyApplicantStatus: 'YET'
+    companyApplicantStatus: null
   }
 };
 

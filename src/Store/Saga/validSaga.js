@@ -31,6 +31,7 @@ function validEmailApi(inputEmail) {
     })
     .catch(error => {
       const errorMessage = error.response.data;
+      console.log(errorMessage);
       return {
         errorMessage
       };
