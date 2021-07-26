@@ -8,12 +8,14 @@ function enrollApi(data) {
     .post(`${LOCAL_HOST}company-applicant`, data)
     .then(response => {
       const office = response.data;
+      console.log(office);
       return {
         office
       };
     })
     .catch(error => {
-      const errorMessage = error.response.data;
+      const errorMessage = error.response.data.message;
+      console.log(`error:${errorMessage}`);
       return {
         errorMessage
       };
@@ -22,10 +24,10 @@ function enrollApi(data) {
 
 function* enroll({ data }) {
   const { office, errorMessage } = yield call(enrollApi, data);
-  if (office) {
-    yield put(actions.enrollSuccess(office));
-  } else {
+  if (errorMessage === 'Already Exists') {
     yield put(actions.enrollFail(errorMessage));
+  } else {
+    yield put(actions.enrollSuccess(office));
   }
 }
 export default function* watchSign() {

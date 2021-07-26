@@ -7,7 +7,8 @@ const EnrollOffice = ({
   onChange,
   onClick,
   ValidateBusinessNumber,
-  validNumber
+  validNumber,
+  companyApplicantStatus
 }) => {
   const formEnrollInfo = [
     {
@@ -28,7 +29,8 @@ const EnrollOffice = ({
       onChange: onChange,
       placeholder: '사업자 번호',
       onBlur: ValidateBusinessNumber,
-      validNumber: validNumber
+      validNumber: validNumber,
+      companyApplicantStatus: companyApplicantStatus
     }
   ];
   return (
@@ -43,6 +45,7 @@ const EnrollOffice = ({
               onChange={roll.onChange}
               onBlur={roll?.onBlur}
               validNumber={roll?.validNumber}
+              companyApplicantStatus={roll?.companyApplicantStatus}
             />
           </div>
         ))}

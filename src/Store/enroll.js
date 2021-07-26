@@ -25,7 +25,7 @@ const INITIAL_STATE = {
 const reducer = createReducer(INITIAL_STATE, {
   [Types.EnrollSuccess]: (state, action) => (state.enrollData = action.office),
   [Types.EnrollFail]: (state, action) =>
-    (state.companyApplicantStatus = action.errorMessage)
+    (state.enrollData.companyApplicantStatus = action.errorMessage)
 });
 
 export default reducer;

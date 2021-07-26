@@ -12,6 +12,7 @@ const InputCommon = ({
   type,
   validEmail,
   validNumber,
+  companyApplicantStatus,
   checkEmail,
   checkPw
 }) => {
@@ -41,6 +42,15 @@ const InputCommon = ({
         >
           사업자 등록 포맷에 맞춰서 작성해주세요.
         </CheckNumber>
+      )}
+      {companyApplicantStatus && (
+        <ApplicationNumber
+          companyApplicantStatus={
+            companyApplicantStatus === 'Already Exists' ? true : false
+          }
+        >
+          이미 존재하는 사업자 번호 입니다.
+        </ApplicationNumber>
       )}
       {checkEmail && (
         <CheckEmail checkEmail={checkEmail === 'Invalid' ? true : false}>
@@ -102,6 +112,13 @@ const CheckNumber = styled.div`
   color: red;
   padding: 8px 0 0 8px;
   display: ${props => (props.validNumber ? 'inline' : 'none')};
+`;
+
+const ApplicationNumber = styled.div`
+  font-size: 8px;
+  color: red;
+  padding: 8px 0 0 8px;
+  display: ${props => (props.companyApplicantStatus ? 'inline' : 'none')};
 `;
 
 const CheckEmail = styled.div`

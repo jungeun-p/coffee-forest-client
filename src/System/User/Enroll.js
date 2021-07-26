@@ -18,6 +18,9 @@ const Enroll = () => {
 
   const userTokenInfo = useSelector(state => state.user.userTokenInfo);
   const { validNumber } = useSelector(state => state.validation);
+  const { companyApplicantStatus } = useSelector(
+    state => state.enroll.enrollData
+  );
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -30,7 +33,8 @@ const Enroll = () => {
     // console.log(userTokenInfo);
     // // console.log(validNumber);
     // console.log(`number:${validNumber}`);
-  }, [validNumber, userTokenInfo]);
+    console.log(companyApplicantStatus);
+  }, [validNumber, userTokenInfo, companyApplicantStatus]);
 
   // 회사 등록 신청 api
   const onClick = useCallback(() => {
@@ -73,6 +77,7 @@ const Enroll = () => {
         onClick={onClick}
         ValidateBusinessNumber={ValidateBusinessNumber}
         validNumber={validNumber}
+        companyApplicantStatus={companyApplicantStatus}
       />
     ),
     1: <EnrollEmployee onChange={onChange} onClick={onClick} />
