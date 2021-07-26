@@ -30,14 +30,15 @@ const Login = () => {
         password: user.password
       };
       dispatch(actions.loginRequest(data));
-      if (!companyIndex) {
-        alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
-        history.push('/enroll');
+      if (user.email === 'admin@naver.com') {
+        alert('admin');
+        history.push('/admin');
       } else if (userTokenInfo) {
         alert('로그인 성공');
         history.push('/mypage');
       } else {
-        alert('test');
+        alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
+        history.push('/enroll');
       }
     }
   }, [

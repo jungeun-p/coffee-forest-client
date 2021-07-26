@@ -4,18 +4,21 @@ import userReducer from './user';
 import validReducer from './validation';
 import scheduleReducer from './schedule';
 import enrollReducer from './enroll';
+import adminReducer from './admin';
 import { all } from 'redux-saga/effects';
 import signSaga from './Saga/signSaga';
 import validSaga from './Saga/validSaga';
 import enterSaga from './Saga/enterSaga';
 import enrollSaga from './Saga/enrollSaga';
+import adminSaga from './Saga/adminSaga';
 
 // reducer 합치기
 const reducer = combineReducers({
   user: userReducer,
   validation: validReducer,
   schedule: scheduleReducer,
-  enroll: enrollReducer
+  enroll: enrollReducer,
+  admin: adminReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -29,7 +32,7 @@ const store = createStore(
 
 // saga
 function* rootSaga() {
-  yield all([signSaga(), validSaga(), enterSaga(), enrollSaga()]);
+  yield all([signSaga(), validSaga(), enterSaga(), enrollSaga(), adminSaga()]);
 }
 sagaMiddleware.run(rootSaga);
 
