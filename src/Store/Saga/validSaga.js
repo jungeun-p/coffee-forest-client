@@ -13,7 +13,10 @@ function validNumberApi(input) {
       };
     })
     .catch(error => {
-      console.log(error.response.data);
+      const errorMessage = error.response.data.message;
+      return {
+        errorMessage
+      };
     });
 }
 
@@ -39,7 +42,7 @@ function* number({ input }) {
   if (message === 'Available') {
     yield put(actions.validateSuccessNumber(message));
   } else {
-    yield put(actions.validateFail(message));
+    yield put(actions.validateSuccessNumber(errorMessage));
   }
 }
 

@@ -3,7 +3,12 @@ import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
 import { InputCommon } from '../../Components/Input';
 
-const EnrollOffice = ({ onChange, onClick, ValidateBusinessNumber }) => {
+const EnrollOffice = ({
+  onChange,
+  onClick,
+  ValidateBusinessNumber,
+  validNumber
+}) => {
   const formEnrollInfo = [
     {
       index: 1,
@@ -22,7 +27,8 @@ const EnrollOffice = ({ onChange, onClick, ValidateBusinessNumber }) => {
       name: 'businessNumber',
       onChange: onChange,
       placeholder: '사업자 번호',
-      onBlur: ValidateBusinessNumber
+      onBlur: ValidateBusinessNumber,
+      validNumber: validNumber
     }
   ];
   return (
@@ -36,6 +42,7 @@ const EnrollOffice = ({ onChange, onClick, ValidateBusinessNumber }) => {
               placeholder={roll.placeholder}
               onChange={roll.onChange}
               onBlur={roll?.onBlur}
+              validNumber={roll?.validNumber}
             />
           </div>
         ))}
