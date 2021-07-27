@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import LoginBody from '../../Pages/Login/LoginBody';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -14,7 +14,7 @@ const Login = () => {
     password: ''
   });
 
-  const { companyIndex } = useSelector(state => state.user);
+  const { userTokenInfo, companyIndex } = useSelector(state => state.user);
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -23,13 +23,18 @@ const Login = () => {
 
   const onClick = useCallback(() => {
     if ((user.email && user.password) === '') {
-      alert('모두 기입 바람');
+      alert('로그인 정보를 다시 확인해주세요');
     } else {
       const data = {
         email: user.email,
         password: user.password
       };
       dispatch(actions.loginRequest(data));
+    }
+  }, [dispatch, user.email, user.password]);
+
+  useEffect(() => {
+    if (userTokenInfo.userIndex) {
       if (user.email === 'admin@naver.com') {
         history.push('/admin');
       } else if (!companyIndex) {
@@ -40,9 +45,16 @@ const Login = () => {
         history.push('/mypage');
       }
     }
-  }, [companyIndex, dispatch, history, user.email, user.password]);
+  }, [companyIndex, history, userTokenInfo]);
 
-  return <LoginBody user={user} onChange={onChange} onClick={onClick} />;
+  return (
+    <LoginBody
+      user={user}
+      onChange={onChange}
+      onClick={onClick}
+      userTokenInfo={userTokenInfo}
+    />
+  );
 };
 
 export default Login;

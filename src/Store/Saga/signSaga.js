@@ -35,7 +35,7 @@ function loginApi(data) {
       };
     })
     .catch(error => {
-      const errorMessage = error.response.data;
+      const errorMessage = error.response.data.message;
       return { errorMessage };
     });
 }

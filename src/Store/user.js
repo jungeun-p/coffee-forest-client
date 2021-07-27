@@ -18,14 +18,14 @@ export const actions = {
   // login
   loginRequest: data => ({ type: Types.LoginRequest, data }),
   loginSuccess: userTokenInfo => ({ type: Types.LoginSuccess, userTokenInfo }),
-  loginFail: error => ({ type: Types.LoginFail, error })
+  loginFail: errorMesage => ({ type: Types.LoginFail, errorMesage })
 };
 
 const INITIAL_STATE = {
   // signLoading: false,
   signFail: null,
   signSuccess: null,
-  loginFail: '',
+  // loginFail: null,
   authenticated: false,
   companyIndex: null,
   userTokenInfo: {
@@ -54,7 +54,8 @@ const reducer = createReducer(INITIAL_STATE, {
   // [Types.SignFail]: (state, action) => (state.signFail = action.errorMessage),
   [Types.LoginSuccess]: (state, action) =>
     (state.userTokenInfo = action.userTokenInfo),
-  [Types.LoginFail]: (state, action) => (state.loginFail = action.error)
+  [Types.LoginFail]: (state, action) =>
+    (state.userTokenInfo = action.errorMesage)
 });
 
 export default reducer;
