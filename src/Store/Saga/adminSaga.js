@@ -4,17 +4,11 @@ import { LOCAL_HOST } from '../../Lib/constant';
 import { Types } from '../admin';
 import { actions } from '../admin';
 
-function callApplicantApi({ accessToken }) {
+function callApplicantApi() {
   return axios
-    .get(`${LOCAL_HOST}company-applicant`, {
-      headers: {
-        Authorization: accessToken
-      }
-    })
+    .get(`${LOCAL_HOST}company-applicant`)
     .then(response => {
-      console.log(accessToken);
       const dataList = response.data;
-      console.log(dataList);
       return {
         dataList
       };
@@ -28,8 +22,8 @@ function callApplicantApi({ accessToken }) {
     });
 }
 
-function* list({ accessToken }) {
-  const { dataList, errorMessage } = yield call(callApplicantApi, accessToken);
+function* list() {
+  const { dataList, errorMessage } = yield call(callApplicantApi);
   if (dataList) {
     yield put(actions.applicationListSuccess(dataList));
   } else {
