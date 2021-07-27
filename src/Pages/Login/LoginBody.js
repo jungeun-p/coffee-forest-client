@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
 import { InputCommon } from '../../Components/Input';
 
-const LoginBody = ({ user, onChange, onClick }) => {
+const LoginBody = ({ user, onChange, onClick, userTokenInfo }) => {
   const formCategories = [
     {
       index: 1,
@@ -36,6 +36,22 @@ const LoginBody = ({ user, onChange, onClick }) => {
             type={cate?.type}
           />
         ))}
+        {userTokenInfo && (
+          <InputValid
+            userTokenInfo={
+              userTokenInfo === 'Invalid Email or Password' ? true : false
+            }
+          >
+            회원 정보를 다시 확인해주세요.
+          </InputValid>
+        )}
+        {userTokenInfo && (
+          <InputValid
+            userTokenInfo={userTokenInfo === 'Invalid Password' ? true : false}
+          >
+            비밀번호를 다시 확인해주세요.
+          </InputValid>
+        )}
       </InputWrap>
       <LinkWrap>
         <LinkName to="/signup">근태관리가 처음이세요?</LinkName>
@@ -56,6 +72,13 @@ const InputWrap = styled.div`
   margin-bottom: 40px;
   display: flex;
   flex-direction: column;
+`;
+
+const InputValid = styled.div`
+  font-size: 8px;
+  color: red;
+  padding: 8px 0 0 8px;
+  display: ${props => (props.userTokenInfo ? 'inline' : 'none')};
 `;
 
 const LinkWrap = styled.div`

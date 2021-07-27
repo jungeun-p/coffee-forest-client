@@ -6,17 +6,19 @@ export const Types = {
 };
 
 export const actions = {
-  applicantList: accessToken => ({ type: Types.ApplicantList, accessToken }),
+  applicantList: () => ({ type: Types.ApplicantList }),
   applicationListSuccess: dataList => ({
     type: Types.ApplicantListSuccess,
     dataList
   })
 };
 
-const INITIAL_STATE = {};
-
+const INITIAL_STATE = {
+  dataList: {}
+};
 const reducer = createReducer(INITIAL_STATE, {
-  [Types.ApplicantListSuccess]: (state, action) => (state = action.dataList)
+  [Types.ApplicantListSuccess]: (state, action) =>
+    (state.dataList = action.dataList)
 });
 
 export default reducer;

@@ -1,23 +1,21 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import AdminList from '../../Pages/Admin/AdminList';
 import { actions as adminActions } from '../../Store/admin';
 
 const Admin = () => {
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const { accessToken } = useSelector(state => state.user.userTokenInfo);
-  const dataList = useSelector(state => state.admin);
   const LoadList = useCallback(() => {
-    if (accessToken !== null) {
-      console.log(accessToken);
-      dispatch(adminActions.applicantList(accessToken));
-    }
-  }, [dispatch, accessToken]);
+    dispatch(adminActions.applicantList());
+  }, [dispatch]);
 
   useEffect(() => {
+    setLoading(true);
     LoadList();
-  }, [LoadList]);
-
-  return <>{dataList && <div>로드 중</div>}</>;
+    setLoading(false);
+  }, [LoadList, loading]);
+  return <>{loading ? <div>loading...</div> : <AdminList />}</>;
 };
 
 export default Admin;
