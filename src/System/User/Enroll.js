@@ -71,8 +71,6 @@ const Enroll = () => {
         businessNumber: office.businessNumber
       };
       dispatch(enrollActions.enrollRequest(data));
-    } else {
-      alert('등록된 사업자 번호입니다.');
     }
   }, [
     dispatch,
@@ -85,15 +83,15 @@ const Enroll = () => {
 
   useEffect(() => {
     // console.log(userTokenInfo);
-    console.log(`number:${validNumber}`);
-    // console.log(`status:${companyApplicantStatus}`);
-    console.log(`status:${enrollData?.companyApplicantStatus}`);
+    // console.log(`number:${validNumber}`);
+    // // console.log(`status:${companyApplicantStatus}`);
+    // console.log(`status:${enrollData?.companyApplicantStatus}`);
     inputFull();
     if (enrollData?.companyApplicantStatus === 'WAIT') {
       alert('등록 완료');
       history.push('/mypage');
     }
-  }, [enrollData?.companyApplicantStatus, history, inputFull, validNumber]);
+  }, [enrollData?.companyApplicantStatus, history, inputFull]);
 
   const obj = {
     0: (
