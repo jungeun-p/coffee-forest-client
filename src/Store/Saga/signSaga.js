@@ -30,7 +30,6 @@ function loginApi(data) {
       const { accessToken } = response.data.userTokenInfo;
       axios.defaults.headers.common['Authorization'] = accessToken;
       const { userTokenInfo } = response.data;
-      // console.log(userTokenInfo);
       return {
         userTokenInfo
       };

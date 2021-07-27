@@ -31,7 +31,6 @@ const Login = () => {
       };
       dispatch(actions.loginRequest(data));
       if (user.email === 'admin@naver.com') {
-        alert('admin');
         history.push('/admin');
       } else if (!companyIndex) {
         alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');

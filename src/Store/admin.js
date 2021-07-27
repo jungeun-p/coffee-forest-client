@@ -6,7 +6,7 @@ export const Types = {
 };
 
 export const actions = {
-  applicantList: () => ({ type: Types.ApplicantList }),
+  applicantList: accessToken => ({ type: Types.ApplicantList, accessToken }),
   applicationListSuccess: dataList => ({
     type: Types.ApplicantListSuccess,
     dataList
