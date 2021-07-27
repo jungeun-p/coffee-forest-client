@@ -8,7 +8,7 @@ const Admin = () => {
   console.log(userTokenInfo);
   useEffect(() => {
     dispatch(adminActions.applicantList());
-  }, []);
+  }, [dispatch]);
   return <div>adminsystem</div>;
 };
 

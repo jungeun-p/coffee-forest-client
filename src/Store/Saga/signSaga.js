@@ -1,6 +1,6 @@
-import { takeEvery, call, put, take } from 'redux-saga/effects';
+import { takeEvery, call, put } from 'redux-saga/effects';
 import { actions, Types } from '../user';
-import { actions as scheduleActions } from '../schedule';
+// import { actions as scheduleActions } from '../schedule';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../Lib/constant';
 // import { API_HOST } from "../Lib/constant";

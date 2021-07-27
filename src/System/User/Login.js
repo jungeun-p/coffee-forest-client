@@ -14,7 +14,7 @@ const Login = () => {
     password: ''
   });
 
-  const { companyIndex, userTokenInfo } = useSelector(state => state.user);
+  const { companyIndex } = useSelector(state => state.user);
 
   const onChange = e => {
     const { name, value } = e.target;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import WeeklyPage from '../../Pages/Mypage/WeeklyPage';
 
 const WeeklyPlan = () => {

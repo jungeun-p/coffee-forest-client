@@ -11,23 +11,23 @@ const WorkLoad = ({ schedulePlan, weekend }) => {
   // // 중복 제거
   // const uniqueStatus = [...new Set(statusArray)];
   // console.log(uniqueStatus);
-  const statusCateogry = [
-    {
-      index: 1,
-      name: '⛱️ 휴가',
-      status: 'VACATION'
-    },
-    {
-      index: 2,
-      name: '💼 외근',
-      status: 'OUTSIDE'
-    },
-    {
-      index: 3,
-      name: '✍ 회의',
-      status: 'MEETING'
-    }
-  ];
+  // const statusCateogry = [
+  //   {
+  //     index: 1,
+  //     name: '⛱️ 휴가',
+  //     status: 'VACATION'
+  //   },
+  //   {
+  //     index: 2,
+  //     name: '💼 외근',
+  //     status: 'OUTSIDE'
+  //   },
+  //   {
+  //     index: 3,
+  //     name: '✍ 회의',
+  //     status: 'MEETING'
+  //   }
+  // ];
   return (
     <WorkLoadBox>
       <UserProfile>
@@ -96,10 +96,10 @@ const UserLoad = styled.div`
   /* margin-left: 5em; */
 `;
 
-const UserStatus = styled.div`
-  font-size: 15px;
-  font-weight: 600;
-  color: ${props => (props.status ? '#444444' : '#c4c4c4')};
-`;
+// const UserStatus = styled.div`
+//   font-size: 15px;
+//   font-weight: 600;
+//   color: ${props => (props.status ? '#444444' : '#c4c4c4')};
+// `;
 
 export default WorkLoad;
