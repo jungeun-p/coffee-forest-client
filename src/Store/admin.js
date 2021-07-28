@@ -14,7 +14,7 @@ export const actions = {
 };
 
 const INITIAL_STATE = {
-  dataList: {}
+  dataList: null
 };
 const reducer = createReducer(INITIAL_STATE, {
   [Types.ApplicantListSuccess]: (state, action) =>
