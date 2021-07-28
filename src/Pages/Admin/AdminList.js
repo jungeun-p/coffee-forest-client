@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { ListArticle, ListDetail } from '../../Components/List';
 
 const AdminList = () => {
   const { dataList } = useSelector(state => state.admin);
@@ -11,9 +12,14 @@ const AdminList = () => {
   return (
     <>
       {!dataList ? (
-        <div>loading</div>
+        <>
+          {/* <div>loading...</div> */}
+          <ListArticle />
+          <ListDetail />
+        </>
       ) : (
-        <div>{dataList.map(it => it.companyName)}</div>
+        // <div>{dataList.map(it => it.companyName)}</div>
+        <ListArticle />
       )}
     </>
   );

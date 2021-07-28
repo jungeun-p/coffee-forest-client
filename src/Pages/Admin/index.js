@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ContainerRoot, ContentsWrapper } from '../../Components/Common';
+import {
+  ContainerRoot,
+  ContentsWrapper,
+  TitleB
+} from '../../Components/Common';
 import Admin from '../../System/Admin/Admin';
 
 const AdminContainer = () => {
@@ -9,6 +13,7 @@ const AdminContainer = () => {
       <ContentsWrapper>
         <AdminWrap>
           <div className="box">
+            <TitleB>회사 등록 신청 리스트</TitleB>
             <Admin />
           </div>
         </AdminWrap>
