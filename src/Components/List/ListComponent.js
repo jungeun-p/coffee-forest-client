@@ -4,9 +4,9 @@ import profileBasic from '../../assets/Img/profile/basicProfile.png';
 import { ButtonCommonS } from '../Button';
 import { InputCommon, InputTitleS } from '../Input';
 
-const ListArticle = ({ acceptance, name, phone, email }) => {
+const ListArticle = ({ onClick, acceptance, name, phone, email }) => {
   return (
-    <ListWrap>
+    <ListWrap onClick={onClick}>
       <InformationWrap
         acceptance={acceptance}
         name={name}
