@@ -4,10 +4,15 @@ import profileBasic from '../../assets/Img/profile/basicProfile.png';
 import { ButtonCommonS } from '../Button';
 import { InputCommon, InputTitleS } from '../Input';
 
-const ListArticle = () => {
+const ListArticle = ({ acceptance, name, phone, email }) => {
   return (
     <ListWrap>
-      <InformationWrap />
+      <InformationWrap
+        acceptance={acceptance}
+        name={name}
+        phone={phone}
+        email={email}
+      />
     </ListWrap>
   );
 };
@@ -19,22 +24,22 @@ const ListWrap = styled.div`
   padding: 20px;
 `;
 
-const InformationWrap = () => {
+const InformationWrap = ({ acceptance, name, phone, email }) => {
   return (
     <InformationBox>
       <Information>
         <ProfileImg src={profileBasic} />
         <div className="profiledetail">
-          <div className="name">김용휘</div>
+          <div className="name">{name}</div>
           <div className="info">
-            <div className="detail">010-1111-1111</div>
-            <div className="detail">kyh@naver.com</div>
+            <div className="detail">{phone}</div>
+            <div className="detail">{email}</div>
           </div>
         </div>
       </Information>
-      <div className="button">
+      <ButtonWrap acceptance={acceptance === 'allow' ? true : false}>
         <ButtonCommonS title="승인" />
-      </div>
+      </ButtonWrap>
     </InformationBox>
   );
 };
@@ -44,9 +49,10 @@ const InformationBox = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  .button {
-    display: none;
-  }
+`;
+
+const ButtonWrap = styled.div`
+  display: ${props => (props.acceptance ? 'inline' : 'none')};
 `;
 
 const ProfileImg = styled.img`
@@ -77,11 +83,11 @@ const Information = styled.div`
   }
 `;
 
-const ListDetail = () => {
+const ListDetail = ({ acceptance }) => {
   return (
     <DetailWrap>
       <div className="info">
-        <InformationWrap />
+        <InformationWrap acceptance={acceptance} />
       </div>
       <InputTitleS title="상세정보" />
       <InputCommon placeholder="사업자 번호" />
