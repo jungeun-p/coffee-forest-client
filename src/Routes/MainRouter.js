@@ -33,6 +33,9 @@ const MainRouter = () => {
         <Route path="/admin">
           <Admin />
         </Route>
+        {/* <Route path="/admin/:index">
+          <AdminDetail />
+        </Route> */}
         <Route path="/profile">
           <Profile />
         </Route>

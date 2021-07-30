@@ -1,27 +1,33 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ListArticle, ListDetail } from '../../Components/List';
+import { ListArticle } from '../../Components/List';
 
-const AdminList = () => {
+const AdminList = ({ LoadDetail }) => {
+  // const acceptance = 'allow';
   const { dataList } = useSelector(state => state.admin);
   if (!dataList) {
     console.log('loading...');
   } else {
-    dataList.map(it => console.log(it.companyName));
+    // dataList.map((it, index) => console.log(index));
   }
   return (
-    <>
+    <div>
       {!dataList ? (
-        <>
-          {/* <div>loading...</div> */}
-          <ListArticle />
-          <ListDetail />
-        </>
+        <div>loading...</div>
       ) : (
-        // <div>{dataList.map(it => it.companyName)}</div>
-        <ListArticle />
+        <div>
+          {dataList.map((it, index) => (
+            <ListArticle
+              onClick={LoadDetail}
+              key={index}
+              name={it.userName}
+              phone={it.phone}
+              email={it.email}
+            />
+          ))}
+        </div>
       )}
-    </>
+    </div>
   );
 };
 

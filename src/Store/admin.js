@@ -2,7 +2,9 @@ import { createReducer } from '../Hooks/redux-helper';
 
 export const Types = {
   ApplicantList: 'admin/ApplicantList',
-  ApplicantListSuccess: 'admin/ApplicantListSuccess'
+  ApplicantListSuccess: 'admin/ApplicantListSuccess',
+  ApplicantDetail: 'admin/ApplicantDetail',
+  ApplicantDetailSuccess: 'admin/ApplicantDetailSuccess'
 };
 
 export const actions = {
@@ -10,15 +12,23 @@ export const actions = {
   applicationListSuccess: dataList => ({
     type: Types.ApplicantListSuccess,
     dataList
+  }),
+  applicantDetail: index => ({ type: Types.ApplicantDetail, index }),
+  ApplicantDetailSuccess: dataDetail => ({
+    type: Types.ApplicantDetailSuccess,
+    dataDetail
   })
 };
 
 const INITIAL_STATE = {
-  dataList: null
+  dataList: null,
+  dataDetail: null
 };
 const reducer = createReducer(INITIAL_STATE, {
   [Types.ApplicantListSuccess]: (state, action) =>
-    (state.dataList = action.dataList)
+    (state.dataList = action.dataList),
+  [Types.ApplicantDetailSuccess]: (state, action) =>
+    (state.dataDetail = action.dataDetail)
 });
 
 export default reducer;

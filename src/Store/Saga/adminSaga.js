@@ -4,6 +4,23 @@ import { LOCAL_HOST } from '../../Lib/constant';
 import { Types } from '../admin';
 import { actions } from '../admin';
 
+function callApplicantDetailApi(index) {
+  return axios
+    .get(`${LOCAL_HOST}company-applicant/${index}`)
+    .then(response => {
+      const dataDetail = response.data;
+      return {
+        dataDetail
+      };
+    })
+    .catch(error => {
+      const errorMessage = error.response.data;
+      return {
+        errorMessage
+      };
+    });
+}
+
 function callApplicantApi() {
   return axios
     .get(`${LOCAL_HOST}company-applicant`)
@@ -15,11 +32,20 @@ function callApplicantApi() {
     })
     .catch(error => {
       const errorMessage = error.response.data;
-      console.log(errorMessage);
       return {
         errorMessage
       };
     });
+}
+
+function* detail({ index }) {
+  const { dataDetail, errorMessage } = yield call(
+    callApplicantDetailApi,
+    index
+  );
+  if (dataDetail) {
+    yield put(actions.ApplicantDetailSuccess(dataDetail));
+  }
 }
 
 function* list() {
@@ -32,4 +58,5 @@ function* list() {
 
 export default function* watchAdmin() {
   yield takeEvery(Types.ApplicantList, list);
+  yield takeEvery(Types.ApplicantDetail, detail);
 }
