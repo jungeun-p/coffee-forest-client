@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ListArticle, ListDetail } from '../../Components/List';
+import { ListArticle } from '../../Components/List';
 
-const AdminList = ({ LoadDetail, onClick }) => {
-  const acceptance = 'allow';
+const AdminList = ({ LoadDetail }) => {
+  // const acceptance = 'allow';
   const { dataList } = useSelector(state => state.admin);
   if (!dataList) {
     console.log('loading...');
@@ -19,7 +19,6 @@ const AdminList = ({ LoadDetail, onClick }) => {
           {dataList.map((it, index) => (
             <ListArticle
               onClick={LoadDetail}
-              // onClick={onClick}
               key={index}
               name={it.userName}
               phone={it.phone}

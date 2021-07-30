@@ -18,20 +18,16 @@ const Admin = () => {
 
   const LoadDetail = () => {
     if (index) {
-      // dispatch(adminActions.applicantDetail(index));
       history.push(`/admin/${index}`);
     }
   };
 
-  // const onClick = () => {
-  //   alert('hi');
-  // };
   useEffect(() => {
     setLoading(true);
     LoadList();
-    console.log(index);
     setLoading(false);
   }, [LoadList, loading]);
+
   return (
     <>
       {loading ? <div>loading...</div> : <AdminList LoadDetail={LoadDetail} />}
