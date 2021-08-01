@@ -40,7 +40,7 @@ const AdminWrap = styled.div`
       /* background: #ffffff;
       box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.05);
       border-radius: 16px; */
-      padding: 40px 30px 0 30px;
+      /* padding: 40px 30px 0 30px; */
       margin: 0;
     }
   }

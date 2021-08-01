@@ -22,6 +22,7 @@ const ListWrap = styled.div`
   box-shadow: 4px 16px 36px rgba(0, 0, 0, 0.05);
   border-radius: 16px;
   padding: 20px;
+  margin-bottom: 20px;
 `;
 
 const InformationWrap = ({ acceptance, name, phone, email }) => {
@@ -83,15 +84,31 @@ const Information = styled.div`
   }
 `;
 
-const ListDetail = ({ acceptance }) => {
+const ListDetail = ({
+  onClick,
+  acceptance,
+  name,
+  phone,
+  email,
+  businessNumber,
+  companyName,
+  address
+}) => {
   return (
     <DetailWrap>
       <div className="info">
-        <InformationWrap acceptance={acceptance} />
+        <InformationWrap
+          onClick={onClick}
+          name={name}
+          phone={phone}
+          email={email}
+          acceptance={acceptance}
+        />
       </div>
       <InputTitleS title="상세정보" />
-      <InputCommon placeholder="사업자 번호" />
-      <InputCommon placeholder="사업자 번호" />
+      <InputCommon placeholder="사업자 번호" value={businessNumber} />
+      <InputCommon placeholder="회사명" value={companyName} />
+      <InputCommon placeholder="주소" value={address} />
     </DetailWrap>
   );
 };

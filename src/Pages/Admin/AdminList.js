@@ -12,9 +12,7 @@ const AdminList = ({ LoadDetail }) => {
   }
   return (
     <div>
-      {!dataList ? (
-        <div>loading...</div>
-      ) : (
+      {dataList ? (
         <div>
           {dataList.map((it, index) => (
             <ListArticle
@@ -26,6 +24,8 @@ const AdminList = ({ LoadDetail }) => {
             />
           ))}
         </div>
+      ) : (
+        <div>loading...</div>
       )}
     </div>
   );

@@ -5,32 +5,24 @@ import AdminList from '../../Pages/Admin/AdminList';
 import { actions as adminActions } from '../../Store/admin';
 
 const Admin = () => {
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
-
   const LoadList = useCallback(() => {
     dispatch(adminActions.applicantList());
   }, [dispatch]);
-
   const { dataList } = useSelector(state => state.admin);
   const index = dataList?.map(it => it.index);
-
   const LoadDetail = () => {
     if (index) {
       history.push(`/admin/${index}`);
     }
   };
-
   useEffect(() => {
-    setLoading(true);
     LoadList();
-    setLoading(false);
-  }, [LoadList, loading]);
-
+  }, [LoadList]);
   return (
     <>
-      {loading ? <div>loading...</div> : <AdminList LoadDetail={LoadDetail} />}
+      {dataList ? <AdminList LoadDetail={LoadDetail} /> : <div>loading...</div>}
     </>
   );
 };
