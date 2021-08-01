@@ -5,7 +5,7 @@ import { InputCommon } from '../../Components/Input';
 
 const EnrollOffice = ({
   onChange,
-  onClick,
+  applyCompany,
   ValidateBusinessNumber,
   validNumber,
   companyApplicantStatus
@@ -50,7 +50,7 @@ const EnrollOffice = ({
           </div>
         ))}
       </EnrollInformation>
-      <ButtonCommon onClick={onClick} title="등록하기" />
+      <ButtonCommon onClick={applyCompany} title="등록하기" />
     </EnrollForm>
   );
 };

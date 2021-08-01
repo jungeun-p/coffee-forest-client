@@ -63,7 +63,7 @@ const Enroll = () => {
   }, [dispatch, office.businessNumber]);
 
   // 회사 등록 신청 api
-  const onClick = useCallback(() => {
+  const applyCompany = useCallback(() => {
     if (full === true) {
       const data = {
         userIndex: userTokenInfo.userIndex,
@@ -82,28 +82,30 @@ const Enroll = () => {
     userTokenInfo.userIndex
   ]);
 
+  // 등록된 회사 출력 api
   const LoadCompany = useCallback(() => {
     dispatch(enrollActions.enrollCompanyList());
   }, [office.name]);
 
+  // 사원 신청 api
+  const applyEmployee = useCallback(() => {}, []);
   useEffect(() => {
     // console.log(userTokenInfo);
     // console.log(`number:${validNumber}`);
     // // console.log(`status:${companyApplicantStatus}`);
     // console.log(`status:${enrollData?.companyApplicantStatus}`);
-    console.log(enrollCompany);
     inputFull();
     if (enrollData?.companyApplicantStatus === 'WAIT') {
       alert('등록 완료');
       history.push('/mypage');
     }
-  }, [enrollData?.companyApplicantStatus, history, inputFull]);
+  }, [office.name, enrollData?.companyApplicantStatus, history, inputFull]);
 
   const obj = {
     0: (
       <EnrollOffice
         onChange={onChange}
-        onClick={onClick}
+        applyCompany={applyCompany}
         ValidateBusinessNumber={ValidateBusinessNumber}
         validNumber={validNumber}
         companyApplicantStatus={enrollData?.companyApplicantStatus}
@@ -111,9 +113,11 @@ const Enroll = () => {
     ),
     1: (
       <EnrollEmployee
+        office={office}
+        enrollCompany={enrollCompany}
         LoadCompany={LoadCompany}
         onChange={onChange}
-        onClick={onClick}
+        applyEmployee={applyEmployee}
       />
     )
   };
