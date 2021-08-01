@@ -56,24 +56,21 @@ function callApplicantApi() {
 }
 
 function* accept({ acceptForm }) {
-  const { acceptRes, errorMessage } = yield call(callAcceptApi, acceptForm);
+  const { acceptRes } = yield call(callAcceptApi, acceptForm);
   if (acceptRes) {
     yield put(actions.accpetSuccess(acceptRes));
   }
 }
 
 function* detail({ index }) {
-  const { dataDetail, errorMessage } = yield call(
-    callApplicantDetailApi,
-    index
-  );
+  const { dataDetail } = yield call(callApplicantDetailApi, index);
   if (dataDetail) {
     yield put(actions.applicantDetailSuccess(dataDetail));
   }
 }
 
 function* list() {
-  const { dataList, errorMessage } = yield call(callApplicantApi);
+  const { dataList } = yield call(callApplicantApi);
   if (dataList) {
     yield put(actions.applicationListSuccess(dataList));
   } else {
