@@ -1,18 +1,34 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
-import { InputCommon } from '../../Components/Input';
+// import { InputCommon } from '../../Components/Input';
+import { AutoComplete } from '../../Components/Select';
 
-const EnrollEmployee = ({ LoadCompany, onChange, onClick }) => {
+const EnrollEmployee = ({
+  office,
+  enrollCompany,
+  LoadCompany,
+  onChange,
+  applyEmployee
+}) => {
   useEffect(() => {
     LoadCompany();
+    console.log(enrollCompany);
   }, [LoadCompany]);
+
   return (
     <EnrollForm>
       <EnrollInformation>
-        <InputCommon name="name" onChange={onChange} placeholder="회사명" />
+        {/* <InputCommon name="name" onChange={onChange} placeholder="회사명" /> */}
+        <AutoComplete
+          title="회사명"
+          view={office.name}
+          enrollCompany={enrollCompany}
+          name="name"
+          onChange={onChange}
+        />
       </EnrollInformation>
-      <ButtonCommon onClick={onClick} title="등록하기" />
+      <ButtonCommon onClick={applyEmployee} title="등록하기" />
     </EnrollForm>
   );
 };

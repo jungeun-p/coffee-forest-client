@@ -21,6 +21,7 @@ const InputCommon = ({
       <InputWrap>
         <InputTitle>{placeholder}</InputTitle>
         <Input
+          autoComplete="off"
           name={name}
           value={value}
           // placeholder={placeholder}
