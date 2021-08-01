@@ -71,7 +71,7 @@ const Enroll = () => {
         address: office.address,
         businessNumber: office.businessNumber
       };
-      dispatch(enrollActions.enrollRequest(data));
+      dispatch(enrollActions.enrollRequestCompany(data));
     }
   }, [
     dispatch,
@@ -88,18 +88,35 @@ const Enroll = () => {
   }, [office.name]);
 
   // 사원 신청 api
-  const applyEmployee = useCallback(() => {}, []);
+  const applyEmployee = useCallback(() => {
+    const data = {
+      companyIndex: 3,
+      userIndex: userTokenInfo.userIndex
+    };
+    dispatch(enrollActions.enrollRequestEmployee(data));
+  }, [dispatch, userTokenInfo.userIndex]);
+
   useEffect(() => {
     // console.log(userTokenInfo);
     // console.log(`number:${validNumber}`);
     // // console.log(`status:${companyApplicantStatus}`);
-    // console.log(`status:${enrollData?.companyApplicantStatus}`);
+    console.log(`status:${enrollData}`);
     inputFull();
-    if (enrollData?.companyApplicantStatus === 'WAIT') {
+    if (
+      enrollData?.companyApplicantStatus === 'WAIT' ||
+      enrollData?.workStatus === 'WAITING'
+    ) {
       alert('등록 완료');
       history.push('/mypage');
     }
-  }, [office.name, enrollData?.companyApplicantStatus, history, inputFull]);
+  }, [
+    office.name,
+    enrollData?.companyApplicantStatus,
+    history,
+    inputFull,
+    enrollData?.workStatus,
+    enrollData
+  ]);
 
   const obj = {
     0: (

@@ -3,6 +3,23 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 import { LOCAL_HOST } from '../../Lib/constant';
 import { actions, Types } from '../enroll';
 
+function enrollEmployeeApi(data) {
+  return axios
+    .post(`${LOCAL_HOST}work-applicant`, data)
+    .then(response => {
+      const enrollData = response.data;
+      return {
+        enrollData
+      };
+    })
+    .catch(error => {
+      const errorMessage = error.response.data.message;
+      return {
+        errorMessage
+      };
+    });
+}
+
 function listApi() {
   return axios
     .get(`${LOCAL_HOST}company`)
@@ -24,9 +41,9 @@ function enrollApi(data) {
   return axios
     .post(`${LOCAL_HOST}company-applicant`, data)
     .then(response => {
-      const office = response.data;
+      const enrollData = response.data;
       return {
-        office
+        enrollData
       };
     })
     .catch(error => {
@@ -37,6 +54,13 @@ function enrollApi(data) {
     });
 }
 
+function* enrollEmployee({ data }) {
+  const { enrollData } = yield call(enrollEmployeeApi, data);
+  if (enrollData) {
+    yield put(actions.enrollSuccess(enrollData));
+  }
+}
+
 function* list() {
   const { companyList } = yield call(listApi);
   if (companyList) {
@@ -44,15 +68,16 @@ function* list() {
   }
 }
 
-function* enroll({ data }) {
-  const { office, errorMessage } = yield call(enrollApi, data);
+function* enrollOffice({ data }) {
+  const { enrollData, errorMessage } = yield call(enrollApi, data);
   if (errorMessage === 'Already Exists') {
     yield put(actions.enrollFail(errorMessage));
   } else {
-    yield put(actions.enrollSuccess(office));
+    yield put(actions.enrollSuccess(enrollData));
   }
 }
 export default function* watchSign() {
-  yield takeEvery(Types.EnrollRequest, enroll);
+  yield takeEvery(Types.EnrollRequestCompany, enrollOffice);
   yield takeEvery(Types.EnrollCompanyList, list);
+  yield takeEvery(Types.EnrollRequestEmployee, enrollEmployee);
 }
