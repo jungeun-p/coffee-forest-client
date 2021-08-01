@@ -25,7 +25,7 @@ const ListWrap = styled.div`
   margin-bottom: 20px;
 `;
 
-const InformationWrap = ({ acceptance, name, phone, email }) => {
+const InformationWrap = ({ onClick, acceptance, name, phone, email }) => {
   return (
     <InformationBox>
       <Information>
@@ -39,7 +39,7 @@ const InformationWrap = ({ acceptance, name, phone, email }) => {
         </div>
       </Information>
       <ButtonWrap acceptance={acceptance === 'allow' ? true : false}>
-        <ButtonCommonS title="승인" />
+        <ButtonCommonS title="승인" onClick={onClick} />
       </ButtonWrap>
     </InformationBox>
   );
