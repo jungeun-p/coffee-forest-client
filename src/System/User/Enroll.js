@@ -26,7 +26,8 @@ const Enroll = () => {
   // 신청 완료 : WAIT
   // 기본 상태값 : YET
   // 사업자 번호 중복(error) : Already Exists
-  const { enrollData } = useSelector(state => state.enroll);
+  const { enrollData, enrollCompany } = useSelector(state => state.enroll);
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -81,11 +82,16 @@ const Enroll = () => {
     userTokenInfo.userIndex
   ]);
 
+  const LoadCompany = useCallback(() => {
+    dispatch(enrollActions.enrollCompanyList());
+  }, [office.name]);
+
   useEffect(() => {
     // console.log(userTokenInfo);
     // console.log(`number:${validNumber}`);
     // // console.log(`status:${companyApplicantStatus}`);
     // console.log(`status:${enrollData?.companyApplicantStatus}`);
+    console.log(enrollCompany);
     inputFull();
     if (enrollData?.companyApplicantStatus === 'WAIT') {
       alert('등록 완료');
@@ -103,7 +109,13 @@ const Enroll = () => {
         companyApplicantStatus={enrollData?.companyApplicantStatus}
       />
     ),
-    1: <EnrollEmployee onChange={onChange} onClick={onClick} />
+    1: (
+      <EnrollEmployee
+        LoadCompany={LoadCompany}
+        onChange={onChange}
+        onClick={onClick}
+      />
+    )
   };
   const clickHandler = id => {
     setTab({ activeId: id });

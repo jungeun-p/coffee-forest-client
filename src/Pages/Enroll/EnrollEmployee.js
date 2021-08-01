@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
 import { InputCommon } from '../../Components/Input';
 
-const EnrollEmployee = ({ onChange, onClick }) => {
+const EnrollEmployee = ({ LoadCompany, onChange, onClick }) => {
+  useEffect(() => {
+    LoadCompany();
+  }, [LoadCompany]);
   return (
     <EnrollForm>
       <EnrollInformation>

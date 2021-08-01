@@ -4,7 +4,9 @@ export const Types = {
   ApplicantList: 'admin/ApplicantList',
   ApplicantListSuccess: 'admin/ApplicantListSuccess',
   ApplicantDetail: 'admin/ApplicantDetail',
-  ApplicantDetailSuccess: 'admin/ApplicantDetailSuccess'
+  ApplicantDetailSuccess: 'admin/ApplicantDetailSuccess',
+  AcceptCompany: 'admin/AcceptCompany',
+  AcceptSuccess: 'admin/AcceptSuccess'
 };
 
 export const actions = {
@@ -14,21 +16,25 @@ export const actions = {
     dataList
   }),
   applicantDetail: index => ({ type: Types.ApplicantDetail, index }),
-  ApplicantDetailSuccess: dataDetail => ({
+  applicantDetailSuccess: dataDetail => ({
     type: Types.ApplicantDetailSuccess,
     dataDetail
-  })
+  }),
+  acceptCompany: acceptForm => ({ type: Types.AcceptCompany, acceptForm }),
+  accpetSuccess: acceptRes => ({ type: Types.AcceptSuccess, acceptRes })
 };
 
 const INITIAL_STATE = {
   dataList: null,
-  dataDetail: null
+  dataDetail: null,
+  accpet: null
 };
 const reducer = createReducer(INITIAL_STATE, {
   [Types.ApplicantListSuccess]: (state, action) =>
     (state.dataList = action.dataList),
   [Types.ApplicantDetailSuccess]: (state, action) =>
-    (state.dataDetail = action.dataDetail)
+    (state.dataDetail = action.dataDetail),
+  [Types.AcceptSuccess]: (state, action) => (state.accept = 'accept')
 });
 
 export default reducer;
