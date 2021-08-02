@@ -5,9 +5,9 @@ import ProfilePage from './ProfilePage';
 import TabMenu from './TabMenu';
 import TabPage from './TabPage';
 import ManageEmployee from './ManageEmployee';
-import RequestEmployee from './RequestEmployee';
-import RequestWork from './RequestWork';
-import SettingWork from './SettingWork';
+import RequestEmployeePage from './RequestEmployeePage';
+import RequestWorkPage from './RequestWorkPage';
+import SettingWorkPage from './SettingWorkPage';
 import EditProfile from './EditProfile';
 
 const SettingContainer = () => {
@@ -17,10 +17,10 @@ const SettingContainer = () => {
 
   const obj = {
     0: <EditProfile />,
-    1: <SettingWork />,
+    1: <SettingWorkPage />,
     2: <ManageEmployee />,
-    3: <RequestWork />,
-    4: <RequestEmployee />
+    3: <RequestWorkPage />,
+    4: <RequestEmployeePage />
   };
 
   const clickHandler = id => {

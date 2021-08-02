@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { TitleB } from '../../Components/Common';
 import EditProfile from '../User/EditProfile';
 import ManageEmployee from './ManageEmployee';
-import RequestEmployee from './RequestEmployee';
-import RequestWork from './RequestWork';
-import SettingWork from './SettingWork';
+import RequestEmployee from './RequestEmployeePage';
+import RequestWork from './RequestWorkPage';
+import SettingWork from './SettingWorkPage';
 import TabMenu from './TabMenu';
 import TabPage from './TabPage';
 
