@@ -1,14 +1,7 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { ListArticle } from '../../Components/List';
 
-const AdminList = ({ LoadDetail }) => {
-  const { dataList } = useSelector(state => state.admin);
-  if (!dataList) {
-    console.log('loading...');
-  } else {
-    // dataList.map((it, index) => console.log(index));
-  }
+const AdminList = ({ LoadDetail, dataList }) => {
   return (
     <div>
       {dataList ? (

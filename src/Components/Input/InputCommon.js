@@ -24,12 +24,11 @@ const InputCommon = ({
         <Input
           autoComplete="off"
           name={name}
-          defaultValue={value}
+          value={value}
           // placeholder={placeholder}
           onBlur={onBlur}
           onChange={onChange}
           type={type}
-          readonly={readonly ? 'readOnly' : ''}
         />
       </InputWrap>
       {validEmail && (

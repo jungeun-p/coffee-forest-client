@@ -7,26 +7,29 @@ import { actions as adminActions } from '../../Store/admin';
 const Admin = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { dataList } = useSelector(state => state.admin);
+
   const LoadList = useCallback(() => {
     dispatch(adminActions.applicantList());
   }, [dispatch]);
-  const { dataList } = useSelector(state => state.admin);
+
   const LoadDetail = index => {
     if (dataList.map(item => item.index === index)) {
       history.push(`/admin/${index}`);
     }
   };
-  // const LoadDetail = () => {
-  //   if (index) {
-  //     history.push(`/admin/${index}`);
-  //   }
-  // };
+
   useEffect(() => {
     LoadList();
   }, [LoadList]);
+
   return (
     <>
-      {dataList ? <AdminList LoadDetail={LoadDetail} /> : <div>loading...</div>}
+      {dataList ? (
+        <AdminList LoadDetail={LoadDetail} dataList={dataList} />
+      ) : (
+        <div>loading...</div>
+      )}
     </>
   );
 };
