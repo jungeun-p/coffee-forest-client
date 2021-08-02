@@ -85,6 +85,7 @@ const Information = styled.div`
 `;
 
 const ListDetail = ({
+  readonly,
   onClick,
   acceptance,
   name,
@@ -106,9 +107,17 @@ const ListDetail = ({
         />
       </div>
       <InputTitleS title="상세정보" />
-      <InputCommon placeholder="사업자 번호" value={businessNumber} />
-      <InputCommon placeholder="회사명" value={companyName} />
-      <InputCommon placeholder="주소" value={address} />
+      <InputCommon
+        placeholder="사업자 번호"
+        value={businessNumber}
+        readonly={readonly}
+      />
+      <InputCommon
+        placeholder="회사명"
+        value={companyName}
+        readonly={readonly}
+      />
+      <InputCommon placeholder="주소" value={address} readonly={readonly} />
     </DetailWrap>
   );
 };

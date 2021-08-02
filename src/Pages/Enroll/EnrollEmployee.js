@@ -6,14 +6,14 @@ import { AutoComplete } from '../../Components/Select';
 
 const EnrollEmployee = ({
   office,
-  enrollCompany,
+  companyList,
   LoadCompany,
   onChange,
   applyEmployee
 }) => {
   useEffect(() => {
     LoadCompany();
-    console.log(enrollCompany);
+    console.log(companyList);
   }, [LoadCompany]);
 
   return (
@@ -23,7 +23,7 @@ const EnrollEmployee = ({
         <AutoComplete
           title="회사명"
           view={office.name}
-          enrollCompany={enrollCompany}
+          companyList={companyList}
           name="name"
           onChange={onChange}
         />

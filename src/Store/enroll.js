@@ -2,40 +2,58 @@ import { createReducer } from '../Hooks/redux-helper';
 
 export const Types = {
   EnrollRequestCompany: 'enroll/EnrollRequestCompany',
-  EnrollSuccess: 'enroll/EnrollSuccess',
+  EnrollRequestEmployee: 'enroll/EnrollRequestEmployee',
+  EnrollSuccessCompany: 'enroll/EnrollSuccessCompany',
+  EnrollSuccessEmployee: 'enroll/EnrollSuccessEmployee',
   EnrollFail: 'enroll/EnrollFail',
   EnrollCompanyList: 'enroll/EnrollCompanyList',
-  CompnayListSuccess: 'enroll/CompanyListSuccess',
-  EnrollRequestEmployee: 'enroll/EnrollRequestEmployee'
+  CompnayListSuccess: 'enroll/CompanyListSuccess'
 };
 
 export const actions = {
   enrollRequestCompany: data => ({ type: Types.EnrollRequestCompany, data }),
-  enrollSuccess: office => ({ type: Types.EnrollSuccess, office }),
+  enrollRequestEmployee: data => ({ type: Types.EnrollRequestEmployee, data }),
+  enrollSuccessCompany: enrollCompany => ({
+    type: Types.EnrollSuccessCompany,
+    enrollCompany
+  }),
+  enrollSuccessEmployee: enrollEmployee => ({
+    type: Types.EnrollSuccessEmployee,
+    enrollEmployee
+  }),
   enrollFail: errorMessage => ({ type: Types.EnrollFail, errorMessage }),
   enrollCompanyList: () => ({ type: Types.EnrollCompanyList }),
   compnayListSuccess: companyList => ({
     type: Types.CompnayListSuccess,
     companyList
-  }),
-  enrollRequestEmployee: data => ({ type: Types.EnrollRequestEmployee, data })
+  })
 };
 
 const INITIAL_STATE = {
-  enrollData: {
-    companyApplicantStatus: null,
+  enrollCompany: {
+    userIndex: null,
+    name: null,
+    address: null,
+    businessNumber: null,
+    companyApplicantStatus: null
+  },
+  enrollEmployee: {
+    companyIndex: null,
+    userIndex: null,
     workStatus: null
   },
-  enrollCompany: null
+  companyList: null
 };
 
 const reducer = createReducer(INITIAL_STATE, {
-  [Types.EnrollSuccess]: (state, action) =>
-    (state.enrollData = action.enrollData),
+  [Types.EnrollSuccessCompany]: (state, action) =>
+    (state.enrollCompany = action.enrollCompany),
+  [Types.EnrollSuccessEmployee]: (state, action) =>
+    (state.enrollEmployee = action.enrollEmployee),
   [Types.EnrollFail]: (state, action) =>
-    (state.enrollData.companyApplicantStatus = action.errorMessage),
+    (state.enrollCompany.companyApplicantStatus = action.errorMessage),
   [Types.CompnayListSuccess]: (state, action) =>
-    (state.enrollCompany = action.companyList)
+    (state.companyList = action.companyList)
 });
 
 export default reducer;

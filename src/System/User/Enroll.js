@@ -22,12 +22,13 @@ const Enroll = () => {
   // 양식 불가 : Invalid Business Number Format
   // 가능 번호 : Available
   const { validNumber } = useSelector(state => state.validation);
-
   // 신청 완료 : WAIT
   // 기본 상태값 : YET
   // 사업자 번호 중복(error) : Already Exists
-  const { enrollData, enrollCompany } = useSelector(state => state.enroll);
-
+  const { enrollEmployee, enrollCompany, companyList } = useSelector(
+    state => state.enroll
+  );
+  console.log(enrollEmployee);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -90,7 +91,7 @@ const Enroll = () => {
   // 사원 신청 api
   const applyEmployee = useCallback(() => {
     const data = {
-      companyIndex: 3,
+      companyIndex: 1,
       userIndex: userTokenInfo.userIndex
     };
     dispatch(enrollActions.enrollRequestEmployee(data));
@@ -100,22 +101,20 @@ const Enroll = () => {
     // console.log(userTokenInfo);
     // console.log(`number:${validNumber}`);
     // // console.log(`status:${companyApplicantStatus}`);
-    console.log(`status:${enrollData}`);
     inputFull();
-    if (
-      enrollData?.companyApplicantStatus === 'WAIT' ||
-      enrollData?.workStatus === 'WAITING'
-    ) {
+    if (enrollCompany?.companyApplicantStatus === 'WAIT') {
       alert('등록 완료');
       history.push('/mypage');
     }
+    if (enrollEmployee?.workStatus === 'WAITING') {
+      alert('신청 완료');
+      history.push('/mypage');
+    }
   }, [
-    office.name,
-    enrollData?.companyApplicantStatus,
+    enrollCompany?.companyApplicantStatus,
+    enrollEmployee.workStatus,
     history,
-    inputFull,
-    enrollData?.workStatus,
-    enrollData
+    inputFull
   ]);
 
   const obj = {
@@ -125,13 +124,13 @@ const Enroll = () => {
         applyCompany={applyCompany}
         ValidateBusinessNumber={ValidateBusinessNumber}
         validNumber={validNumber}
-        companyApplicantStatus={enrollData?.companyApplicantStatus}
+        companyApplicantStatus={enrollCompany?.companyApplicantStatus}
       />
     ),
     1: (
       <EnrollEmployee
         office={office}
-        enrollCompany={enrollCompany}
+        companyList={companyList}
         LoadCompany={LoadCompany}
         onChange={onChange}
         applyEmployee={applyEmployee}

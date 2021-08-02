@@ -6,6 +6,7 @@ import { ListDetail } from '../../Components/List';
 import { actions as adminActions } from '../../Store/admin';
 const AdminDetail = ({ match }) => {
   const index = match.params.index;
+  const readonly = true;
   const dispatch = useDispatch();
   const history = useHistory();
   const { dataDetail } = useSelector(state => state.admin);
@@ -26,6 +27,7 @@ const AdminDetail = ({ match }) => {
       {dataDetail ? (
         <div>
           <ListDetail
+            readonly={readonly}
             name={dataDetail.userName}
             email={dataDetail.email}
             phone={dataDetail.phone}

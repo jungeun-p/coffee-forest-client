@@ -14,7 +14,8 @@ const InputCommon = ({
   validNumber,
   companyApplicantStatus,
   checkEmail,
-  checkPw
+  checkPw,
+  readonly
 }) => {
   return (
     <>
@@ -23,11 +24,12 @@ const InputCommon = ({
         <Input
           autoComplete="off"
           name={name}
-          value={value}
+          defaultValue={value}
           // placeholder={placeholder}
           onBlur={onBlur}
           onChange={onChange}
           type={type}
+          readonly={readonly ? 'readOnly' : ''}
         />
       </InputWrap>
       {validEmail && (

@@ -7,9 +7,9 @@ function enrollEmployeeApi(data) {
   return axios
     .post(`${LOCAL_HOST}work-applicant`, data)
     .then(response => {
-      const enrollData = response.data;
+      const enrollEmployee = response.data;
       return {
-        enrollData
+        enrollEmployee
       };
     })
     .catch(error => {
@@ -41,9 +41,9 @@ function enrollApi(data) {
   return axios
     .post(`${LOCAL_HOST}company-applicant`, data)
     .then(response => {
-      const enrollData = response.data;
+      const enrollCompany = response.data;
       return {
-        enrollData
+        enrollCompany
       };
     })
     .catch(error => {
@@ -55,9 +55,9 @@ function enrollApi(data) {
 }
 
 function* enrollEmployee({ data }) {
-  const { enrollData } = yield call(enrollEmployeeApi, data);
-  if (enrollData) {
-    yield put(actions.enrollSuccess(enrollData));
+  const { enrollEmployee } = yield call(enrollEmployeeApi, data);
+  if (enrollEmployee) {
+    yield put(actions.enrollSuccessEmployee(enrollEmployee));
   }
 }
 
@@ -69,11 +69,11 @@ function* list() {
 }
 
 function* enrollOffice({ data }) {
-  const { enrollData, errorMessage } = yield call(enrollApi, data);
+  const { enrollCompany, errorMessage } = yield call(enrollApi, data);
   if (errorMessage === 'Already Exists') {
     yield put(actions.enrollFail(errorMessage));
   } else {
-    yield put(actions.enrollSuccess(enrollData));
+    yield put(actions.enrollSuccessCompany(enrollCompany));
   }
 }
 export default function* watchSign() {
