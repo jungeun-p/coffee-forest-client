@@ -1,7 +1,20 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import RequestEmployeePage from '../../../Pages/Setting/RequestEmployeePage';
+import { actions as employeeActions } from '../../../Store/employee';
 
-const RequestEmployeeList = () => {
-  return <div></div>;
+const RequestEmployee = () => {
+  const dispatch = useDispatch();
+  const { userTokenInfo } = useSelector(state => state.user);
+
+  const LoadRequestList = () => {
+    const index = {
+      userIndex: userTokenInfo.userIndex,
+      companyIndex: '1'
+    };
+    dispatch(employeeActions.requestList(index));
+  };
+  return <RequestEmployeePage LoadRequestList={LoadRequestList} />;
 };
 
-export default RequestEmployeeList;
+export default RequestEmployee;
