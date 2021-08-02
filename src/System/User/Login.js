@@ -38,11 +38,11 @@ const Login = () => {
       if (user.email === 'admin@coffee.com') {
         history.push('/admin');
       } else if (!companyIndex) {
-        alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
-        history.push('/enroll');
-      } else {
+        // alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
+        // history.push('/enroll');
         alert('로그인 성공');
         history.push('/mypage');
+      } else {
       }
     }
   }, [companyIndex, history, userTokenInfo]);
