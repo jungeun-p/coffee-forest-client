@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import AdminList from '../../Pages/Admin/AdminList';
@@ -7,22 +7,29 @@ import { actions as adminActions } from '../../Store/admin';
 const Admin = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const { dataList } = useSelector(state => state.admin);
+
   const LoadList = useCallback(() => {
     dispatch(adminActions.applicantList());
   }, [dispatch]);
-  const { dataList } = useSelector(state => state.admin);
-  const index = dataList?.map(it => it.index);
-  const LoadDetail = () => {
-    if (index) {
+
+  const LoadDetail = index => {
+    if (dataList.map(item => item.index === index)) {
       history.push(`/admin/${index}`);
     }
   };
+
   useEffect(() => {
     LoadList();
   }, [LoadList]);
+
   return (
     <>
-      {dataList ? <AdminList LoadDetail={LoadDetail} /> : <div>loading...</div>}
+      {dataList ? (
+        <AdminList LoadDetail={LoadDetail} dataList={dataList} />
+      ) : (
+        <div>loading...</div>
+      )}
     </>
   );
 };

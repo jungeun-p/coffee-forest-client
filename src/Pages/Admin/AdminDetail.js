@@ -1,19 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { ListDetail } from '../../Components/List';
 // import { ListDetail } from '../../Components/List';
 import { actions as adminActions } from '../../Store/admin';
 const AdminDetail = ({ match }) => {
-  const index = match.params.index;
-  const readonly = true;
   const dispatch = useDispatch();
   const history = useHistory();
+  const index = match.params.index;
   const { dataDetail } = useSelector(state => state.admin);
+
   useEffect(() => {
     dispatch(adminActions.applicantDetail(index));
-  }, []);
-  const onAccept = () => {
+  }, [index, dispatch, dataDetail]);
+
+  const onAccept = useCallback(() => {
     const acceptForm = {
       userIndex: dataDetail.userIndex,
       companyApplicantIndex: dataDetail.index,
@@ -21,13 +22,13 @@ const AdminDetail = ({ match }) => {
     };
     dispatch(adminActions.acceptCompany(acceptForm));
     history.push('/admin');
-  };
+  }, []);
+
   return (
     <div>
       {dataDetail ? (
         <div>
           <ListDetail
-            readonly={readonly}
             name={dataDetail.userName}
             email={dataDetail.email}
             phone={dataDetail.phone}
@@ -39,7 +40,7 @@ const AdminDetail = ({ match }) => {
           />
         </div>
       ) : (
-        <div>loading</div>
+        <div>정보가 존재하지 않습니다.</div>
       )}
     </div>
   );

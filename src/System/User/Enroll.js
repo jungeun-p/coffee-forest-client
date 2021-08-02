@@ -18,7 +18,6 @@ const Enroll = () => {
   const [tab, setTab] = useState({ activeId: 0 });
 
   const userTokenInfo = useSelector(state => state.user.userTokenInfo);
-
   // 양식 불가 : Invalid Business Number Format
   // 가능 번호 : Available
   const { validNumber } = useSelector(state => state.validation);
@@ -28,7 +27,6 @@ const Enroll = () => {
   const { enrollEmployee, enrollCompany, companyList } = useSelector(
     state => state.enroll
   );
-  console.log(enrollEmployee);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -98,15 +96,11 @@ const Enroll = () => {
   }, [dispatch, userTokenInfo.userIndex]);
 
   useEffect(() => {
-    // console.log(userTokenInfo);
-    // console.log(`number:${validNumber}`);
-    // // console.log(`status:${companyApplicantStatus}`);
     inputFull();
     if (enrollCompany?.companyApplicantStatus === 'WAIT') {
       alert('등록 완료');
       history.push('/mypage');
-    }
-    if (enrollEmployee?.workStatus === 'WAITING') {
+    } else if (enrollEmployee?.workStatus === 'WAITING') {
       alert('신청 완료');
       history.push('/mypage');
     }
