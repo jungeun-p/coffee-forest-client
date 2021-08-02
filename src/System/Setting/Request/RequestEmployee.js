@@ -14,7 +14,16 @@ const RequestEmployee = () => {
     };
     dispatch(employeeActions.requestList(index));
   };
-  return <RequestEmployeePage LoadRequestList={LoadRequestList} />;
+
+  const ApplyEmployee = () => {
+    console.log('승인');
+  };
+  return (
+    <RequestEmployeePage
+      LoadRequestList={LoadRequestList}
+      ApplyEmployee={ApplyEmployee}
+    />
+  );
 };
 
 export default RequestEmployee;

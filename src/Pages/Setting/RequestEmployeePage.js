@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import { TitleB } from '../../Components/Common';
 import { ListArticle } from '../../Components/List';
 
-const RequestEmployee = ({ LoadRequestList }) => {
+const RequestEmployee = ({ LoadRequestList, ApplyEmployee }) => {
   const acceptance = 'allow';
   const { requestList } = useSelector(state => state.employee);
 
   useEffect(() => {
     LoadRequestList();
+    console.log(requestList);
   }, [LoadRequestList]);
 
   return (
@@ -19,6 +20,8 @@ const RequestEmployee = ({ LoadRequestList }) => {
         {requestList &&
           requestList.map(item => (
             <ListArticle
+              onClick={ApplyEmployee}
+              key={item.workApplicantIndex}
               acceptance={acceptance}
               name={item.name}
               email={item.email}
