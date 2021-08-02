@@ -5,14 +5,14 @@ import { ListDetail } from '../../Components/List';
 // import { ListDetail } from '../../Components/List';
 import { actions as adminActions } from '../../Store/admin';
 const AdminDetail = ({ match }) => {
-  const index = match.params.index;
   const readonly = true;
   const dispatch = useDispatch();
   const history = useHistory();
+  const index = match.params.index;
   const { dataDetail } = useSelector(state => state.admin);
   useEffect(() => {
     dispatch(adminActions.applicantDetail(index));
-  }, []);
+  }, [dataDetail]);
   const onAccept = () => {
     const acceptForm = {
       userIndex: dataDetail.userIndex,

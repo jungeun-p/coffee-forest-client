@@ -7,7 +7,6 @@ const AdminList = ({ LoadDetail }) => {
   if (!dataList) {
     console.log('loading...');
   } else {
-    console.log(dataList);
     // dataList.map((it, index) => console.log(index));
   }
   return (
@@ -16,8 +15,8 @@ const AdminList = ({ LoadDetail }) => {
         <div>
           {dataList.map((it, index) => (
             <ListArticle
-              onClick={LoadDetail}
-              key={index}
+              onClick={() => LoadDetail(it.index)}
+              key={it.index}
               name={it.userName}
               phone={it.phone}
               email={it.email}
