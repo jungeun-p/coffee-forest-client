@@ -15,13 +15,19 @@ const RequestEmployee = () => {
     dispatch(employeeActions.requestList(index));
   };
 
-  const ApplyEmployee = () => {
-    console.log('승인');
+  const AcceptEmployee = index => {
+    const indexData = {
+      acceptorIndex: userTokenInfo.userIndex,
+      companyIndex: 1,
+      workApplicantIndex: index
+    };
+    dispatch(employeeActions.acceptEmployee(indexData));
   };
   return (
     <RequestEmployeePage
       LoadRequestList={LoadRequestList}
-      ApplyEmployee={ApplyEmployee}
+      // AcceptEmployee={AcceptEmployee}
+      AcceptEmployee={AcceptEmployee}
     />
   );
 };

@@ -88,12 +88,14 @@ const Enroll = () => {
 
   // 사원 신청 api
   const applyEmployee = useCallback(() => {
-    const data = {
-      companyIndex: 1,
-      userIndex: userTokenInfo.userIndex
-    };
-    dispatch(enrollActions.enrollRequestEmployee(data));
-  }, [dispatch, userTokenInfo.userIndex]);
+    if (office.name !== '') {
+      const data = {
+        companyIndex: 1,
+        userIndex: userTokenInfo.userIndex
+      };
+      dispatch(enrollActions.enrollRequestEmployee(data));
+    }
+  }, [dispatch, userTokenInfo.userIndex, office.name]);
 
   useEffect(() => {
     inputFull();

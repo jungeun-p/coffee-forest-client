@@ -35,7 +35,7 @@ const Login = () => {
 
   useEffect(() => {
     if (userTokenInfo.userIndex) {
-      if (user.email === 'admin@coffee.com') {
+      if (user.email === 'admin@naver.com') {
         history.push('/admin');
       } else if (!companyIndex) {
         // alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');

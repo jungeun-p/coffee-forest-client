@@ -12,6 +12,7 @@ const ListArticle = ({ onClick, acceptance, name, phone, email }) => {
         name={name}
         phone={phone}
         email={email}
+        // onClick={onClick}
       />
     </ListWrap>
   );
