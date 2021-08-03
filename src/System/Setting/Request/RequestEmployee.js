@@ -10,7 +10,7 @@ const RequestEmployee = () => {
   const LoadRequestList = () => {
     const index = {
       userIndex: userTokenInfo.userIndex,
-      companyIndex: '1'
+      companyIndex: 1
     };
     dispatch(employeeActions.requestList(index));
   };

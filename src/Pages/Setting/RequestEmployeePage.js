@@ -38,6 +38,8 @@ const ListForm = styled.div`
   flex-direction: column;
   justify-content: center;
   .list {
+  }
+  @media all and (min-width: 768px) {
     width: 320px;
   }
 `;

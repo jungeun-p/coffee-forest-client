@@ -48,6 +48,7 @@ const SettingWrapper = styled.div`
   @media all and (min-width: 768px) {
     display: flex;
     flex-direction: row;
+    width: 100%;
     .page {
       margin: 0 0 0 60px;
       /* width: 320px; */

@@ -50,6 +50,9 @@ const ProfileForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  @media all and (min-width: 768px) {
+    width: 320px;
+  }
 `;
 
 const ProfileInformation = styled.div`
