@@ -12,7 +12,7 @@ const AdminDetail = ({ match }) => {
 
   useEffect(() => {
     dispatch(adminActions.applicantDetail(index));
-  }, [index, dispatch, dataDetail]);
+  }, [dispatch, index]);
 
   const onAccept = useCallback(() => {
     const acceptForm = {

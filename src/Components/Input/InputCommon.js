@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 const InputCommon = ({
   label,
+  width,
   name,
   value,
   placeholder,
@@ -19,7 +20,7 @@ const InputCommon = ({
 }) => {
   return (
     <>
-      <InputWrap>
+      <InputWrap width={width === 'half' ? true : false}>
         <InputTitle>{placeholder}</InputTitle>
         <Input
           autoComplete="off"
@@ -73,13 +74,15 @@ const InputWrap = styled.div`
   flex-direction: column;
   justify-content: center;
   position: relative;
+  width: '';
+  width: ${props => (props.width ? '150px' : '')};
 `;
 const InputTitle = styled.div`
   transform: translateY(3em);
   height: 20px;
   font-size: 10px;
   color: #1ca953;
-  font-weight: 600;
+  font-weight: 700;
   margin-left: 12px;
 `;
 const Input = styled.input`
@@ -93,7 +96,7 @@ const Input = styled.input`
   outline: none;
   color: #232323;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 700;
   padding: 0;
   padding: 20px 0 8px 12px;
   /* margin-top: 20px; */

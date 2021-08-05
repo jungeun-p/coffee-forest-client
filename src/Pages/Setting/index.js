@@ -6,7 +6,7 @@ import TabMenu from './TabMenu';
 import TabPage from './TabPage';
 import ManageEmployee from './ManageEmployee';
 import RequestWorkPage from './RequestWorkPage';
-import SettingWorkPage from './SettingWorkPage';
+import ManageWorkPage from './ManageWorkPage';
 import EditProfile from './EditProfile';
 import RequestEmployee from '../../System/Setting/Request/RequestEmployee';
 
@@ -17,7 +17,7 @@ const SettingContainer = () => {
 
   const obj = {
     0: <EditProfile />,
-    1: <SettingWorkPage />,
+    1: <ManageWorkPage />,
     2: <ManageEmployee />,
     3: <RequestWorkPage />,
     4: <RequestEmployee />
