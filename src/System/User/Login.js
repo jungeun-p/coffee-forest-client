@@ -14,7 +14,9 @@ const Login = () => {
     password: ''
   });
 
-  const { userTokenInfo, companyIndex } = useSelector(state => state.user);
+  // const { userTokenInfo, companyIndex } = useSelector(state => state.user);
+
+  const { userData, errorMessage } = useSelector(state => state.user);
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -34,25 +36,50 @@ const Login = () => {
   }, [dispatch, user.email, user.password]);
 
   useEffect(() => {
-    if (userTokenInfo.userIndex) {
+    console.log(userData);
+    if (userData.userIndex) {
       if (user.email === 'admin@naver.com') {
         history.push('/admin');
-      } else if (!companyIndex) {
-        // alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
-        // history.push('/enroll');
+      } else if (userData.companyIndex !== 0) {
         alert('로그인 성공');
         history.push('/mypage');
+      } else if (userData.companyApplicantStatus === 'WAIT') {
+        alert('회사 등록 승인중...');
+      } else if (userData.workApplicantStatus === 'WAITING') {
+        alert('사원 등록 승인중...');
       } else {
+        alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
+        history.push('/enroll');
       }
+      // if (user.email === 'admin@naver.com') {
+      //   history.push('/admin');
+      // } else if (
+      //   userData.companyIndex === 0 &&
+      //   userData.companyApplicantStatus === 'UNKNOWN'
+      // ) {
+      //   alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
+      //   history.push('/enroll');
+      //   if (
+      //     userData.companyIndex === 0 &&
+      //     userData.companyApplicantStatus === 'WAIT'
+      //   ) {
+      //     alert('회사 등록 승인중...');
+      //   } else if (userData.workApplicantStatus === 'WAITING') {
+      //     alert('사원 등록 승인중...');
+      //   }
+      // } else {
+      //   alert('로그인 성공');
+      //   history.push('/mypage');
+      // }
     }
-  }, [companyIndex, history, userTokenInfo]);
+  }, [userData, history]);
 
   return (
     <LoginBody
       user={user}
       onChange={onChange}
       onClick={onClick}
-      userTokenInfo={userTokenInfo}
+      errorMessage={errorMessage}
     />
   );
 };

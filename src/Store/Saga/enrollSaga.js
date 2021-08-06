@@ -8,12 +8,14 @@ function enrollEmployeeApi(data) {
     .post(`${LOCAL_HOST}work-applicant`, data)
     .then(response => {
       const enrollEmployee = response.data;
+      console.log(enrollEmployee);
       return {
         enrollEmployee
       };
     })
     .catch(error => {
       const errorMessage = error.response.data.message;
+      console.log(error.response.data);
       return {
         errorMessage
       };

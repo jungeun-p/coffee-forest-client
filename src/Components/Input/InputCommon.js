@@ -20,9 +20,10 @@ const InputCommon = ({
 }) => {
   return (
     <>
-      <InputWrap width={width === 'half' ? true : false}>
+      <InputWrap>
         <InputTitle>{placeholder}</InputTitle>
         <Input
+          width={width === 'half' ? true : undefined}
           autoComplete="off"
           name={name}
           value={value}
@@ -75,7 +76,6 @@ const InputWrap = styled.div`
   justify-content: center;
   position: relative;
   width: '';
-  width: ${props => (props.width ? '150px' : '')};
 `;
 const InputTitle = styled.div`
   transform: translateY(3em);
@@ -87,6 +87,7 @@ const InputTitle = styled.div`
 `;
 const Input = styled.input`
   /* width: 302px; */
+  width: ${props => (props.width ? '150px' : '')};
   height: 30px;
   border: none;
   border-radius: 10px;

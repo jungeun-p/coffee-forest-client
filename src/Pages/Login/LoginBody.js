@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
 import { InputCommon } from '../../Components/Input';
 
-const LoginBody = ({ user, onChange, onClick, userTokenInfo }) => {
+const LoginBody = ({ user, onChange, onClick, errorMessage }) => {
   const formCategories = [
     {
       index: 1,
@@ -36,18 +36,18 @@ const LoginBody = ({ user, onChange, onClick, userTokenInfo }) => {
             type={cate?.type}
           />
         ))}
-        {userTokenInfo && (
+        {errorMessage && (
           <InputValid
-            userTokenInfo={
-              userTokenInfo === 'Invalid Email or Password' ? true : false
+            errorMessage={
+              errorMessage === 'Invalid Email or Password' ? true : false
             }
           >
             회원 정보를 다시 확인해주세요.
           </InputValid>
         )}
-        {userTokenInfo && (
+        {errorMessage && (
           <InputValid
-            userTokenInfo={userTokenInfo === 'Invalid Password' ? true : false}
+            errorMessage={errorMessage === 'Invalid Password' ? true : false}
           >
             비밀번호를 다시 확인해주세요.
           </InputValid>
@@ -78,7 +78,7 @@ const InputValid = styled.div`
   font-size: 8px;
   color: red;
   padding: 8px 0 0 8px;
-  display: ${props => (props.userTokenInfo ? 'inline' : 'none')};
+  display: ${props => (props.errorMessage ? 'inline' : 'none')};
 `;
 
 const LinkWrap = styled.div`

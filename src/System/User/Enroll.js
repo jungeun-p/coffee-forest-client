@@ -17,7 +17,7 @@ const Enroll = () => {
   const [full, setFull] = useState(false);
   const [tab, setTab] = useState({ activeId: 0 });
 
-  const userTokenInfo = useSelector(state => state.user.userTokenInfo);
+  const { userIndex } = useSelector(state => state.user.userData);
   // 양식 불가 : Invalid Business Number Format
   // 가능 번호 : Available
   const { validNumber } = useSelector(state => state.validation);
@@ -65,7 +65,7 @@ const Enroll = () => {
   const applyCompany = useCallback(() => {
     if (full === true) {
       const data = {
-        userIndex: userTokenInfo.userIndex,
+        userIndex: userIndex,
         name: office.name,
         address: office.address,
         businessNumber: office.businessNumber
@@ -78,7 +78,7 @@ const Enroll = () => {
     office.address,
     office.businessNumber,
     office.name,
-    userTokenInfo.userIndex
+    userIndex
   ]);
 
   // 등록된 회사 출력 api
@@ -91,11 +91,11 @@ const Enroll = () => {
     if (office.name !== '') {
       const data = {
         companyIndex: 1,
-        userIndex: userTokenInfo.userIndex
+        userIndex: userIndex
       };
       dispatch(enrollActions.enrollRequestEmployee(data));
     }
-  }, [dispatch, userTokenInfo.userIndex, office.name]);
+  }, [dispatch, userIndex, office.name]);
 
   useEffect(() => {
     inputFull();
@@ -110,7 +110,8 @@ const Enroll = () => {
     enrollCompany?.companyApplicantStatus,
     enrollEmployee.workStatus,
     history,
-    inputFull
+    inputFull,
+    companyList
   ]);
 
   const obj = {
