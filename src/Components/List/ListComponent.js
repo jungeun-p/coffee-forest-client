@@ -6,7 +6,7 @@ import { InputCommon, InputTitleS } from '../Input';
 
 const ListArticle = ({ onSelect, onClick, acceptance, name, phone, email }) => {
   return (
-    <ListWrap onSelect={onSelect}>
+    <ListWrap onClick={onClick}>
       <InformationWrap
         acceptance={acceptance}
         name={name}

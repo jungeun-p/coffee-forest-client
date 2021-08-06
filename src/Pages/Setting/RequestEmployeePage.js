@@ -8,9 +8,10 @@ const RequestEmployee = ({ LoadRequestList, AcceptEmployee }) => {
   const acceptance = 'allow';
   const { requestList } = useSelector(state => state.employee);
   console.log(requestList);
+
   useEffect(() => {
     LoadRequestList();
-  }, [LoadRequestList]);
+  }, []);
 
   return (
     <ListForm>

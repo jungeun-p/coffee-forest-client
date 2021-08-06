@@ -10,6 +10,7 @@ import MonthlyPage from '../Pages/Mypage/MonthlyPage';
 import Profile from '../Pages/User';
 import Setting from '../Pages/Setting';
 import Enroll from '../Pages/Enroll';
+import WaitingEnroll from '../Pages/Enroll/WaitingEnroll';
 
 const MainRouter = () => {
   return (
@@ -32,6 +33,9 @@ const MainRouter = () => {
         </Route>
         <Route path="/admin">
           <Admin />
+        </Route>
+        <Route path="/waiting">
+          <WaitingEnroll />
         </Route>
         {/* <Route path="/admin/:index">
           <AdminDetail />
