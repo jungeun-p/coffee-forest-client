@@ -18,7 +18,7 @@ const RequestEmployee = () => {
   const AcceptEmployee = index => {
     const indexData = {
       acceptorIndex: userIndex,
-      companyIndex: 1,
+      companyIndex: companyIndex,
       workApplicantIndex: index
     };
     dispatch(employeeActions.acceptEmployee(indexData));

@@ -7,14 +7,14 @@ function callAcceptApi(indexData) {
   return axios
     .post(`${LOCAL_HOST}work`, indexData)
     .then(response => {
-      const status = response.data.status;
+      const status = response.data;
       console.log(status);
       return {
         status
       };
     })
     .catch(error => {
-      const errorStatus = error.response.data.status;
+      const errorStatus = error.response.data;
       console.log(errorStatus);
       return {
         errorStatus
