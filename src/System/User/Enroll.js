@@ -104,7 +104,7 @@ const Enroll = () => {
       history.push('/mypage');
     } else if (enrollEmployee?.workStatus === 'WAITING') {
       alert('신청 완료');
-      history.push('/mypage');
+      history.push('/main');
     }
   }, [
     enrollCompany?.companyApplicantStatus,

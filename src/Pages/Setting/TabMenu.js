@@ -1,8 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { TitleB } from '../../Components/Common';
 
 const TabMenu = ({ clickHandler }) => {
+  const { position } = useSelector(state => state.user.userData);
   return (
     <div>
       <CategoryWrap>
@@ -11,21 +13,23 @@ const TabMenu = ({ clickHandler }) => {
           회원정보 수정
         </div>
       </CategoryWrap>
-      <CategoryWrap>
-        <TitleB>근태 관리</TitleB>
-        <div className="name" onClick={() => clickHandler(1)}>
-          근태 설정
-        </div>
-        <div className="name" onClick={() => clickHandler(2)}>
-          사원 관리
-        </div>
-        <div className="name" onClick={() => clickHandler(3)}>
-          일정 승인 대기
-        </div>
-        <div className="name" onClick={() => clickHandler(4)}>
-          사원 수락 대기
-        </div>
-      </CategoryWrap>
+      {position === 'ADMIN' && (
+        <CategoryWrap>
+          <TitleB>근태 관리</TitleB>
+          <div className="name" onClick={() => clickHandler(1)}>
+            근태 설정
+          </div>
+          <div className="name" onClick={() => clickHandler(2)}>
+            사원 관리
+          </div>
+          <div className="name" onClick={() => clickHandler(3)}>
+            일정 승인 대기
+          </div>
+          <div className="name" onClick={() => clickHandler(4)}>
+            사원 수락 대기
+          </div>
+        </CategoryWrap>
+      )}
     </div>
   );
 };
