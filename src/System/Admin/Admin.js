@@ -21,7 +21,7 @@ const Admin = () => {
 
   useEffect(() => {
     LoadList();
-  }, [LoadList]);
+  }, [dataList]);
 
   return (
     <>

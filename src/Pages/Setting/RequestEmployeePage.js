@@ -19,15 +19,16 @@ const RequestEmployee = ({ LoadRequestList, AcceptEmployee }) => {
         {requestList &&
           requestList.map(item => (
             <ListArticle
-              onClick={() => AcceptEmployee(item.workApplicantIndex)}
               // onClick={AcceptEmployee}
               key={item.workApplicantIndex}
+              onClick={() => AcceptEmployee(item.workApplicantIndex)}
               acceptance={acceptance}
               name={item.name}
               email={item.email}
               phone={item.phone}
             />
           ))}
+        {requestList && requestList.length === 0 && '신청 사원이 없습니다.'}
       </div>
     </ListForm>
   );

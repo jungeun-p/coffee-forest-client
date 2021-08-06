@@ -16,7 +16,7 @@ const AdminDetail = ({ match }) => {
   }, [dispatch, index]);
 
   const onAccept = useCallback(() => {
-    if (dataDetail) {
+    if (dataDetail.userIndex) {
       const acceptForm = {
         userIndex: dataDetail.userIndex,
         companyApplicantIndex: dataDetail.index,

@@ -21,6 +21,7 @@ const RequestEmployee = () => {
       companyIndex: companyIndex,
       workApplicantIndex: index
     };
+    console.log(indexData);
     dispatch(employeeActions.acceptEmployee(indexData));
   };
   return (

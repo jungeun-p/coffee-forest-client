@@ -90,7 +90,7 @@ const Enroll = () => {
   const applyEmployee = useCallback(() => {
     if (office.name !== '') {
       const data = {
-        companyIndex: 2,
+        companyIndex: 1,
         userIndex: userIndex
       };
       dispatch(enrollActions.enrollRequestEmployee(data));
@@ -104,7 +104,7 @@ const Enroll = () => {
       history.push('/mypage');
     } else if (enrollEmployee?.workStatus === 'WAITING') {
       alert('신청 완료');
-      history.push('/mypage');
+      history.push('/main');
     }
   }, [
     enrollCompany?.companyApplicantStatus,

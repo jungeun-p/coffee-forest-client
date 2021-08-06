@@ -14,10 +14,9 @@ function callAcceptApi(indexData) {
       };
     })
     .catch(error => {
-      const errorStatus = error.response.data;
-      console.log(errorStatus);
+      console.log(error.response);
       return {
-        errorStatus
+        error
       };
     });
 }
@@ -41,7 +40,7 @@ function callListApi(index) {
 
 function* accept({ indexData }) {
   const { status, errorStatus } = yield call(callAcceptApi, indexData);
-  if (status === 200) {
+  if (status) {
     yield put(actions.acceptSuccess(status));
   } else {
     yield put(actions.AcceptFail(errorStatus));
