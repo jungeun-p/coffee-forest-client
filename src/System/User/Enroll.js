@@ -101,10 +101,10 @@ const Enroll = () => {
     inputFull();
     if (enrollCompany?.companyApplicantStatus === 'WAIT') {
       alert('등록 완료');
-      history.push('/mypage');
+      history.push('/waiting');
     } else if (enrollEmployee?.workStatus === 'WAITING') {
       alert('신청 완료');
-      history.push('/main');
+      history.push('/waiting');
     }
   }, [
     enrollCompany?.companyApplicantStatus,
