@@ -5,19 +5,19 @@ import { actions as employeeActions } from '../../../Store/employee';
 
 const RequestEmployee = () => {
   const dispatch = useDispatch();
-  const { userTokenInfo } = useSelector(state => state.user);
+  const { userIndex, companyIndex } = useSelector(state => state.user.userData);
 
   const LoadRequestList = () => {
     const index = {
-      userIndex: userTokenInfo.userIndex,
-      companyIndex: 1
+      userIndex: userIndex,
+      companyIndex: companyIndex
     };
     dispatch(employeeActions.requestList(index));
   };
 
   const AcceptEmployee = index => {
     const indexData = {
-      acceptorIndex: userTokenInfo.userIndex,
+      acceptorIndex: userIndex,
       companyIndex: 1,
       workApplicantIndex: index
     };

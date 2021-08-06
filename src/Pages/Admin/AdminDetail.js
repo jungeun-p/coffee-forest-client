@@ -9,19 +9,22 @@ const AdminDetail = ({ match }) => {
   const history = useHistory();
   const index = match.params.index;
   const { dataDetail } = useSelector(state => state.admin);
+  console.log(dataDetail);
 
   useEffect(() => {
     dispatch(adminActions.applicantDetail(index));
   }, [dispatch, index]);
 
   const onAccept = useCallback(() => {
-    const acceptForm = {
-      userIndex: dataDetail.userIndex,
-      companyApplicantIndex: dataDetail.index,
-      rejectReason: ''
-    };
-    dispatch(adminActions.acceptCompany(acceptForm));
-    history.push('/admin');
+    if (dataDetail) {
+      const acceptForm = {
+        userIndex: dataDetail.userIndex,
+        companyApplicantIndex: dataDetail.index,
+        rejectReason: ''
+      };
+      dispatch(adminActions.acceptCompany(acceptForm));
+      history.push('/admin');
+    }
   }, []);
 
   return (
