@@ -87,7 +87,7 @@ const InputTitle = styled.div`
 `;
 const Input = styled.input`
   /* width: 302px; */
-  width: ${props => (props.width ? '150px' : '')};
+  width: ${props => (props.width ? '140px' : '')};
   height: 30px;
   border: none;
   border-radius: 10px;

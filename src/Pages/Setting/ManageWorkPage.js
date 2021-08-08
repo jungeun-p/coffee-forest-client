@@ -4,7 +4,7 @@ import { ButtonCommon } from '../../Components/Button';
 import { TitleB } from '../../Components/Common';
 import { InputCommon, InputTitleS } from '../../Components/Input';
 
-const ManageWorkPage = () => {
+const ManageWorkPage = ({ onChange, setting, onClick }) => {
   return (
     <SettingForm>
       <WorkInformation>
@@ -14,28 +14,32 @@ const ManageWorkPage = () => {
           <div className="line">
             <InputCommon
               width="half"
-              name=""
-              value=""
+              name="enterTime"
+              value={setting?.enterTime}
+              onChange={onChange}
               placeholder="출근 시간"
             />
             <InputCommon
               width="half"
-              name=""
-              value=""
+              name="outTime"
+              value={setting?.outTime}
+              onChange={onChange}
               placeholder="퇴근 시간"
             />
           </div>
           <div className="line">
             <InputCommon
               width="half"
-              name=""
-              value=""
+              name="lunchEnterTime"
+              value={setting?.lunchEnterTime}
+              onChange={onChange}
               placeholder="점심 시작 시간"
             />
             <InputCommon
               width="half"
-              name=""
-              value=""
+              name="lunchOutTime"
+              value={setting?.lunchOutTime}
+              onChange={onChange}
               placeholder="점심 마감 시간"
             />
           </div>
@@ -45,32 +49,44 @@ const ManageWorkPage = () => {
           <div className="line">
             <InputCommon
               width="half"
-              name=""
-              value=""
+              name="annualLeaveUnderYear"
+              value={setting?.annualLeaveUnderYear}
+              onChange={onChange}
               placeholder="입사 기준 1년 미만"
             />
             <InputCommon
               width="half"
-              name=""
-              value=""
+              name="annualLeaveUpperYear"
+              value={setting?.annualLeaveUpperYear}
+              onChange={onChange}
               placeholder="입사 기준 1년 이상"
             />
           </div>
         </div>
-        <div className="article">
-          <input type="checkbox" />
-          <InputTitleS title="탄력 근무제" />
+        <div className="article flexible">
+          <div className="title">
+            <input type="checkbox" />
+            <InputTitleS title="탄력 근무제" />
+          </div>
+          <InputCommon
+            name="flexibleTimeUnit"
+            value={setting?.flexibleTimeUnit}
+            onChange={onChange}
+            placeholder="시간 단위"
+          />
           <div className="line">
             <InputCommon
               width="half"
-              name=""
-              value=""
+              name="flexibleEnterTime"
+              value={setting?.flexibleEnterTime}
+              onChange={onChange}
               placeholder="입사 기준 1년 미만"
             />
             <InputCommon
               width="half"
-              name=""
-              value=""
+              name="flexibleOutTime"
+              value={setting?.flexibleOutTime}
+              onChange={onChange}
               placeholder="입사 기준 1년 이상"
             />
           </div>
@@ -80,34 +96,38 @@ const ManageWorkPage = () => {
           <div className="line">
             <InputCommon
               width="half"
-              name=""
-              value=""
+              name="dayOffEnterAm"
+              value={setting?.dayOffEnterAm}
+              onChange={onChange}
               placeholder="오전 반차 시작 시간"
             />
             <InputCommon
               width="half"
-              name=""
-              value=""
+              name="dayOffOutEnd"
+              value={setting?.dayOffOutEnd}
+              onChange={onChange}
               placeholder="오전 반차 마감 시간"
             />
           </div>
           <div className="line">
             <InputCommon
               width="half"
-              name=""
-              value=""
+              name="dayOffEnterPm"
+              value={setting?.dayOffEnterPm}
+              onChange={onChange}
               placeholder="오후 반차 시작 시간"
             />
             <InputCommon
               width="half"
-              name=""
-              value=""
+              name="dayOffOUtPm"
+              value={setting?.dayOffOUtPm}
+              onChange={onChange}
               placeholder="오후 반차 마감 시간"
             />
           </div>
         </div>
       </WorkInformation>
-      <ButtonCommon onClick={() => {}} title="저장하기" />
+      <ButtonCommon onClick={onClick} title="저장하기" />
     </SettingForm>
   );
 };
@@ -122,6 +142,10 @@ const SettingForm = styled.div`
 `;
 
 const WorkInformation = styled.div`
+  .title {
+    display: flex;
+    flex-direction: row;
+  }
   .article {
     margin-bottom: 35px;
     .line {

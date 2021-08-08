@@ -48,7 +48,7 @@ const Login = () => {
         history.push('/enroll');
       }
     }
-  });
+  }, [history, user.email, userData]);
 
   return (
     <LoginBody
