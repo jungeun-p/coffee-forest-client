@@ -6,9 +6,9 @@ import TabMenu from './TabMenu';
 import TabPage from './TabPage';
 import ManageEmployee from './ManageEmployee';
 import RequestWorkPage from './RequestWorkPage';
-import ManageWorkPage from './ManageWorkPage';
 import EditProfile from './EditProfile';
 import RequestEmployee from '../../System/Setting/Request/RequestEmployee';
+import ManageWork from '../../System/Setting/Manage/ManageWork';
 
 const SettingContainer = () => {
   const [tab, setTab] = useState({
@@ -17,7 +17,7 @@ const SettingContainer = () => {
 
   const obj = {
     0: <EditProfile />,
-    1: <ManageWorkPage />,
+    1: <ManageWork />,
     2: <ManageEmployee />,
     3: <RequestWorkPage />,
     4: <RequestEmployee />
