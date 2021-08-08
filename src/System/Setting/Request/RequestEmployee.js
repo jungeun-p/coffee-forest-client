@@ -13,7 +13,7 @@ const RequestEmployee = () => {
       companyIndex: companyIndex
     };
     dispatch(employeeActions.requestList(index));
-  }, [companyIndex, dispatch, userIndex]);
+  }, []);
 
   const AcceptEmployee = useCallback(
     index => {
