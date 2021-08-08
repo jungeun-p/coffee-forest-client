@@ -7,11 +7,11 @@ import { ListArticle } from '../../Components/List';
 const RequestEmployee = ({ LoadRequestList, AcceptEmployee }) => {
   const acceptance = 'allow';
   const { requestList } = useSelector(state => state.employee);
-  console.log(requestList);
 
   useEffect(() => {
     LoadRequestList();
-  }, []);
+    // console.log('e');
+  });
 
   return (
     <ListForm>

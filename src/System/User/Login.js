@@ -14,10 +14,7 @@ const Login = () => {
     password: ''
   });
 
-  // const { userTokenInfo, companyIndex } = useSelector(state => state.user);
-
   const { userData, errorMessage } = useSelector(state => state.user);
-
   const onChange = e => {
     const { name, value } = e.target;
     setUser(state => ({ ...state, [name]: value }));
@@ -36,7 +33,6 @@ const Login = () => {
   }, [dispatch, user.email, user.password]);
 
   useEffect(() => {
-    console.log(userData);
     if (userData.userIndex) {
       if (user.email === 'admin@naver.com') {
         history.push('/admin');
@@ -51,28 +47,8 @@ const Login = () => {
         alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
         history.push('/enroll');
       }
-      // if (user.email === 'admin@naver.com') {
-      //   history.push('/admin');
-      // } else if (
-      //   userData.companyIndex === 0 &&
-      //   userData.companyApplicantStatus === 'UNKNOWN'
-      // ) {
-      //   alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
-      //   history.push('/enroll');
-      //   if (
-      //     userData.companyIndex === 0 &&
-      //     userData.companyApplicantStatus === 'WAIT'
-      //   ) {
-      //     alert('회사 등록 승인중...');
-      //   } else if (userData.workApplicantStatus === 'WAITING') {
-      //     alert('사원 등록 승인중...');
-      //   }
-      // } else {
-      //   alert('로그인 성공');
-      //   history.push('/mypage');
-      // }
     }
-  }, [userData, history]);
+  });
 
   return (
     <LoginBody

@@ -12,18 +12,17 @@ const AdminDetail = ({ match }) => {
 
   useEffect(() => {
     dispatch(adminActions.applicantDetail(index));
-    console.log(dataDetail);
   }, [dispatch, index]);
 
   const onAccept = useCallback(() => {
     const acceptForm = {
-      userIndex: dataDetail.userIndex,
-      companyApplicantIndex: dataDetail.index,
+      userIndex: dataDetail?.userIndex,
+      companyApplicantIndex: dataDetail?.index,
       rejectReason: ''
     };
     dispatch(adminActions.acceptCompany(acceptForm));
     history.push('/admin');
-  }, [dispatch, history]);
+  }, [dataDetail, dispatch, history]);
 
   return (
     <div>
