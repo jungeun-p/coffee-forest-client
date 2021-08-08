@@ -35,8 +35,7 @@ const reducer = createReducer(INITIAL_STATE, {
     (state.requestList = action.requestList),
   [Types.RequestListFail]: (state, action) =>
     (state.errorMesage = action.errorMessage),
-  [Types.AcceptSuccess]: (state, action) =>
-    (state.accpetStatus = action.status),
+  [Types.AcceptSuccess]: (state, action) => (state.accpetStatus = 'success'),
   [Types.AcceptFail]: (state, action) =>
     (state.errorMessage = action.errorStatus)
 });

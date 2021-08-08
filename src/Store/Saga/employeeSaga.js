@@ -8,7 +8,6 @@ function callAcceptApi(indexData) {
     .post(`${LOCAL_HOST}work`, indexData)
     .then(response => {
       const status = response.data;
-      console.log(status);
       return {
         status
       };
@@ -40,7 +39,7 @@ function callListApi(index) {
 
 function* accept({ indexData }) {
   const { status, errorStatus } = yield call(callAcceptApi, indexData);
-  if (status) {
+  if (status === '') {
     yield put(actions.acceptSuccess(status));
   } else {
     yield put(actions.AcceptFail(errorStatus));
