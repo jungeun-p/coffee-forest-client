@@ -5,10 +5,10 @@ import ProfilePage from './ProfilePage';
 import TabMenu from './TabMenu';
 import TabPage from './TabPage';
 import ManageEmployee from './ManageEmployee';
-import RequestWorkPage from './RequestWorkPage';
 import EditProfile from './EditProfile';
 import RequestEmployee from '../../System/Setting/Request/RequestEmployee';
 import ManageWork from '../../System/Setting/Manage/ManageWork';
+import RequestWork from '../../System/Setting/Request/RequestWork';
 
 const SettingContainer = () => {
   const [tab, setTab] = useState({
@@ -19,7 +19,7 @@ const SettingContainer = () => {
     0: <EditProfile />,
     1: <ManageWork />,
     2: <ManageEmployee />,
-    3: <RequestWorkPage />,
+    3: <RequestWork />,
     4: <RequestEmployee />
   };
 
