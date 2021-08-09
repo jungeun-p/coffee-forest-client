@@ -6,8 +6,9 @@ import WeeklyPage from '../../Pages/Mypage/WeeklyPage';
 const WeeklyPlan = () => {
   const dispatch = useDispatch();
   const { userIndex, companyIndex } = useSelector(state => state.user.userData);
-  const { date } = useSelector(state => state.schedule);
-  const schedulePlan = date?.scheduleInfo;
+  const weekend = useSelector(state => state.schedule.date);
+  const schedulePlan = useSelector(state => state.schedule.date.scheduleInfo);
+  console.log(schedulePlan);
 
   const LoadSchedule = () => {
     const index = {
@@ -28,7 +29,11 @@ const WeeklyPlan = () => {
   // const schedulePlan = useSelector(state => state.schedule.date.scheduleList);
   // console.log(weekend);
   // @ts-ignore
-  return <>{date && <WeeklyPage date={date} schedulePlan={schedulePlan} />}</>;
+  return (
+    <>
+      {weekend && <WeeklyPage weekend={weekend} schedulePlan={schedulePlan} />}
+    </>
+  );
 };
 
 export default WeeklyPlan;

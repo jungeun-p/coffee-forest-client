@@ -7,7 +7,7 @@ const WorkData = ({ weekend }) => {
   return (
     <WorkDataWrapper>
       <WorkDateInfo />
-      <WorkMypage />
+      <WorkMypage weekend={weekend} />
     </WorkDataWrapper>
   );
 };

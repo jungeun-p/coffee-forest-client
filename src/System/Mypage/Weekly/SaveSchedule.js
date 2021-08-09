@@ -7,9 +7,7 @@ import WorkPlan from '../../../Pages/Mypage/Weekly/Plan/WorkPlan';
 
 const SaveSchedule = ({ schedulePlan, weekend }) => {
   const dispatch = useDispatch();
-  const { enter, companyIndex, userIndex } = useSelector(
-    state => state.schedule.date
-  );
+  const { userIndex, companyIndex } = useSelector(state => state.user.userData);
 
   // 일정 추가
   const [event, setEvent] = useState({
@@ -50,8 +48,8 @@ const SaveSchedule = ({ schedulePlan, weekend }) => {
   // 출근 api
   const onAttandacne = () => {
     const index = {
-      companyIndex: weekend.companyIndex,
-      userIndex: weekend.userIndex
+      companyIndex: companyIndex,
+      userIndex: userIndex
     };
     dispatch(actions.scheduleEnter(index));
   };
@@ -59,8 +57,8 @@ const SaveSchedule = ({ schedulePlan, weekend }) => {
   // 퇴근 api
   const onLeaving = () => {
     const index = {
-      companyIndex: weekend.companyIndex,
-      userIndex: weekend.userIndex
+      companyIndex: companyIndex,
+      userIndex: userIndex
     };
     dispatch(actions.scheduleEnd(index));
   };
@@ -71,7 +69,7 @@ const SaveSchedule = ({ schedulePlan, weekend }) => {
         onAttandacne={onAttandacne}
         onLeaving={onLeaving}
         schedulePlan={schedulePlan}
-        enter={enter}
+        // startTime={startTime}
         sendSchedule={sendSchedule}
         onChange={onChange}
         event={event}
