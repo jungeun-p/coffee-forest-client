@@ -8,7 +8,6 @@ const WorkPlan = ({
   onAttandacne,
   onLeaving,
   schedulePlan,
-  startTime,
   sendSchedule,
   onChange,
   event
@@ -18,6 +17,7 @@ const WorkPlan = ({
       {/* 이번 주 근무 타이틀 */}
       <WorkPlanWrapper>
         <TitleB>이번 주 근무</TitleB>
+        {/* 출퇴근 */}
         <ButtonWrapper>
           <ButtonCommonS onClick={onAttandacne} title="출근" />
           <ButtonCommonS onClick={onLeaving} title="퇴근" />
@@ -27,7 +27,6 @@ const WorkPlan = ({
       <WorkPlanList>
         <ThisWeekCalendar
           schedulePlan={schedulePlan}
-          startTime={startTime}
           sendSchedule={sendSchedule}
           onChange={onChange}
           event={event}
@@ -47,8 +46,7 @@ const WorkPlanWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 35px;
+  align-items: flex-start;
 `;
 
 const ButtonWrapper = styled.div`

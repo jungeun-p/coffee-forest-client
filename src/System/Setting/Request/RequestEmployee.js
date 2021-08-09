@@ -8,11 +8,13 @@ const RequestEmployee = () => {
   const { userIndex, companyIndex } = useSelector(state => state.user.userData);
 
   const LoadRequestList = useCallback(() => {
-    const index = {
-      userIndex: userIndex,
-      companyIndex: companyIndex
-    };
-    dispatch(employeeActions.requestList(index));
+    if (userIndex) {
+      const index = {
+        userIndex: userIndex,
+        companyIndex: companyIndex
+      };
+      dispatch(employeeActions.requestList(index));
+    }
   }, []);
 
   const AcceptEmployee = useCallback(

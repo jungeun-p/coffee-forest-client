@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { actions as scheduleActions } from '../../Store/schedule';
-import WeeklyPage from '../../Pages/Mypage/WeeklyPage';
+import WeeklyPage from '../../../Pages/Mypage/WeeklyPage';
+import { actions as scheduleActions } from '../../../Store/schedule';
 
 const WeeklyPlan = () => {
   const dispatch = useDispatch();
@@ -9,15 +9,15 @@ const WeeklyPlan = () => {
   const weekend = useSelector(state => state.schedule.date);
   const schedulePlan = useSelector(state => state.schedule.date.scheduleInfo);
   console.log(schedulePlan);
-
-  const LoadSchedule = () => {
+  // 주간 일정 리스트 api
+  const LoadSchedule = useCallback(() => {
     const index = {
       userIndex: userIndex,
       companyIndex: companyIndex,
       startDate: '2021-08-09'
     };
     dispatch(scheduleActions.scheduleInfoRequest(index));
-  };
+  }, [dispatch]);
 
   useEffect(() => {
     if (userIndex) {
@@ -25,13 +25,11 @@ const WeeklyPlan = () => {
     }
   }, []);
 
-  // const weekend = useSelector(state => state.schedule.date);
-  // const schedulePlan = useSelector(state => state.schedule.date.scheduleList);
-  // console.log(weekend);
-  // @ts-ignore
   return (
     <>
-      {weekend && <WeeklyPage weekend={weekend} schedulePlan={schedulePlan} />}
+      {weekend && schedulePlan && (
+        <WeeklyPage weekend={weekend} schedulePlan={schedulePlan} />
+      )}
     </>
   );
 };

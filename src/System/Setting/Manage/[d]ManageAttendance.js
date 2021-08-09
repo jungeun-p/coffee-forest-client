@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { LOCAL_HOST } from '../../../Lib/constant';
 
+// 삭제 예정
 const ManageAttendance = () => {
   const companyIndex = useSelector(state => state.schedule.date.companyIndex);
   const [time, setTime] = useState({

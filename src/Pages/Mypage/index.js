@@ -3,10 +3,10 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import MonthlyPage from '../Mypage/MonthlyPage';
 import HeaderNav from '../Mypage/HeaderNav';
 import styled from 'styled-components';
-import WeeklyPlan from '../../System/Mypage/WeeklyPlan';
 import { ContainerRoot, ContentsWrapper } from '../../Components/Common';
 // import ProfilePage from '../Setting/ProfilePage';
 import SettingContainer from '../Setting';
+import WeeklyPlan from '../../System/Mypage/Weekly/WeeklyPlan';
 
 const MypageContainer = () => {
   return (

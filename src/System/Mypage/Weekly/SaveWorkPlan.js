@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../../Lib/constant';
 import { actions } from '../../../Store/schedule';
@@ -32,7 +32,7 @@ const SaveSchedule = ({ schedulePlan, weekend }) => {
       date: event.date,
       startTime: event.startTime,
       endTime: event.endTime,
-      scheduleStatus: event.scheduleStatus
+      scheduleType: event.scheduleStatus
     };
     axios
       .post(`${LOCAL_HOST}schedule`, schedule)
@@ -55,13 +55,13 @@ const SaveSchedule = ({ schedulePlan, weekend }) => {
   };
 
   // 퇴근 api
-  const onLeaving = () => {
+  const onLeaving = useCallback(() => {
     const index = {
       companyIndex: companyIndex,
       userIndex: userIndex
     };
     dispatch(actions.scheduleEnd(index));
-  };
+  }, [dispatch]);
 
   return (
     <>
@@ -69,7 +69,6 @@ const SaveSchedule = ({ schedulePlan, weekend }) => {
         onAttandacne={onAttandacne}
         onLeaving={onLeaving}
         schedulePlan={schedulePlan}
-        // startTime={startTime}
         sendSchedule={sendSchedule}
         onChange={onChange}
         event={event}

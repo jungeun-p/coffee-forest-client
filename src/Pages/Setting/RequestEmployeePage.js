@@ -10,7 +10,7 @@ const RequestEmployee = ({ LoadRequestList, AcceptEmployee }) => {
 
   useEffect(() => {
     LoadRequestList();
-  }, [LoadRequestList, requestList]);
+  }, [LoadRequestList]);
 
   return (
     <ListForm>

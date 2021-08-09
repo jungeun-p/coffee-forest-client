@@ -3,13 +3,7 @@ import styled from 'styled-components';
 import AddEvent from '../Event';
 import functionWeek from '../../Hooks/addThisWeek';
 
-const ThisWeekCalendar = ({
-  schedulePlan,
-  startTime,
-  sendSchedule,
-  onChange,
-  event
-}) => {
+const ThisWeekCalendar = ({ schedulePlan, sendSchedule, onChange, event }) => {
   // 기존 달력 날짜
   const thisWeekDate = functionWeek();
   return (
@@ -18,8 +12,8 @@ const ThisWeekCalendar = ({
         <PlanDate
           day={day}
           key={index}
-          // schedulePlan={schedulePlan[day]}
-          // sendSchedule={sendSchedule}
+          schedulePlan={schedulePlan[day]}
+          sendSchedule={sendSchedule}
           onChange={onChange}
           event={event}
         />
@@ -76,11 +70,7 @@ const PlanDate = ({ day, schedulePlan, sendSchedule, onChange, event }) => {
             />
           ))
         ) : (
-          <PlanArticle
-            title="근무"
-            startTime="오전 8 : 30"
-            endTime="오후 5 : 30"
-          />
+          <div className="default">일정을 추가해주세요!</div>
         )}
       </PlanList>
       <AddEvent
@@ -118,7 +108,15 @@ const PlanInfo = styled.div`
     cursor: pointer;
   }
 `;
-const PlanList = styled.div``;
+const PlanList = styled.div`
+  .default {
+    font-size: 12px;
+    line-height: 16px;
+    color: #d9dbce;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+`;
 
 // 각 스케줄 및 시간
 const PlanArticle = ({ title, startTime, endTime }) => {

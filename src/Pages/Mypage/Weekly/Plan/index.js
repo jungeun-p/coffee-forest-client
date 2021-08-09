@@ -1,8 +1,8 @@
 import React from 'react';
-import SaveSchedule from '../../../../System/Mypage/Weekly/SaveSchedule';
+import SaveWorkPlan from '../../../../System/Mypage/Weekly/SaveWorkPlan';
 
 const WorkPlan = ({ weekend, schedulePlan }) => {
-  return <SaveSchedule schedulePlan={schedulePlan} weekend={weekend} />;
+  return <SaveWorkPlan schedulePlan={schedulePlan} weekend={weekend} />;
 };
 
 export default WorkPlan;
