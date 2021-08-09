@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const WorkLoad = ({ schedulePlan, weekend }) => {
-  // const date = Object.keys(schedulePlan);
+  // const date = Object.keys(weekend?.schedulePlan);
   // const status = date.map(date =>
   //   schedulePlan[date].map(key => key.scheduleStatus)
   // );
@@ -10,30 +10,30 @@ const WorkLoad = ({ schedulePlan, weekend }) => {
   // const statusArray = status.reduce((acc, it) => [...acc, ...it], []);
   // // 중복 제거
   // const uniqueStatus = [...new Set(statusArray)];
-  // console.log(uniqueStatus);
-  // const statusCateogry = [
-  //   {
-  //     index: 1,
-  //     name: '⛱️ 휴가',
-  //     status: 'VACATION'
-  //   },
-  //   {
-  //     index: 2,
-  //     name: '💼 외근',
-  //     status: 'OUTSIDE'
-  //   },
-  //   {
-  //     index: 3,
-  //     name: '✍ 회의',
-  //     status: 'MEETING'
-  //   }
-  // ];
+  // // console.log(uniqueStatus);
+  const statusCateogry = [
+    {
+      index: 1,
+      name: '⛱️ 휴가',
+      status: 'VACATION'
+    },
+    {
+      index: 2,
+      name: '💼 외근',
+      status: 'OUTSIDE'
+    },
+    {
+      index: 3,
+      name: '✍ 회의',
+      status: 'MEETING'
+    }
+  ];
   return (
     <WorkLoadBox>
       <UserProfile>
         <div className="logo">💻</div>
         <div className="name">
-          <div className="userName">{weekend?.name} 님의</div>
+          <div className="userName">{weekend?.userName} 님의</div>
           <div className="userTitle">이번 주 업무량</div>
         </div>
       </UserProfile>
@@ -96,10 +96,10 @@ const UserLoad = styled.div`
   /* margin-left: 5em; */
 `;
 
-// const UserStatus = styled.div`
-//   font-size: 15px;
-//   font-weight: 600;
-//   color: ${props => (props.status ? '#444444' : '#c4c4c4')};
-// `;
+const UserStatus = styled.div`
+  font-size: 15px;
+  font-weight: 600;
+  color: ${props => (props.status ? '#444444' : '#c4c4c4')};
+`;
 
 export default WorkLoad;

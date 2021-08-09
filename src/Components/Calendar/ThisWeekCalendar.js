@@ -5,7 +5,7 @@ import functionWeek from '../../Hooks/addThisWeek';
 
 const ThisWeekCalendar = ({
   schedulePlan,
-  enter,
+  startTime,
   sendSchedule,
   onChange,
   event

@@ -8,7 +8,7 @@ const WorkPlan = ({
   onAttandacne,
   onLeaving,
   schedulePlan,
-  enter,
+  startTime,
   sendSchedule,
   onChange,
   event
@@ -27,7 +27,7 @@ const WorkPlan = ({
       <WorkPlanList>
         <ThisWeekCalendar
           schedulePlan={schedulePlan}
-          enter={enter}
+          startTime={startTime}
           sendSchedule={sendSchedule}
           onChange={onChange}
           event={event}

@@ -1,7 +1,9 @@
 import { createReducer } from '../Hooks/redux-helper';
 
 export const Types = {
-  ScheduleInfo: 'schedule/ScheduleInfo',
+  ScheduleInfoRequest: 'schedule/ScheduleInfoRequest',
+  ScheduleInfoSuccess: 'schedule/ScheduleInfoSuccess',
+  ScheduleInfoFail: 'schedule/ScheduleInfoFail',
   ScheduleEnter: 'schedule/ScheduleEnter',
   ScheduleEnterSuccess: 'schedule/ScheduleEnterSuccess',
   ScheduleEnd: 'schedule/ScheduleEnd',
@@ -9,7 +11,15 @@ export const Types = {
 };
 
 export const actions = {
-  scheduleInfo: scheduleData => ({ type: Types.ScheduleInfo, scheduleData }),
+  scheduleInfoRequest: index => ({ type: Types.ScheduleInfoRequest, index }),
+  ScheduleInfoSuccess: scheduleData => ({
+    type: Types.ScheduleInfoSuccess,
+    scheduleData
+  }),
+  scheduleInfoFail: errorMessage => ({
+    type: Types.ScheduleInfoFail,
+    errorMessage
+  }),
   scheduleEnter: index => ({ type: Types.ScheduleEnter, index }),
   scheduleEnterSuccess: attendance => ({
     type: Types.ScheduleEnterSuccess,
@@ -23,11 +33,15 @@ export const actions = {
 };
 
 const INITIAL_STATE = {
-  date: {}
+  date: {},
+  errorMessage: null
 };
 
 const reducer = createReducer(INITIAL_STATE, {
-  [Types.ScheduleInfo]: (state, action) => (state.date = action.scheduleData),
+  [Types.ScheduleInfoSuccess]: (state, action) =>
+    (state.date = action.scheduleData),
+  [Types.ScheduleInfoFail]: (state, action) =>
+    (state.errorMessage = action.errorMessage),
   [Types.ScheduleEnterSuccess]: (state, action) =>
     (state.date.enter = action.attendance),
   [Types.ScheduleEndSuccess]: (state, action) =>

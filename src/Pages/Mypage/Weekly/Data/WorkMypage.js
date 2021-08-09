@@ -6,7 +6,7 @@ const WorkMypage = ({ weekend }) => {
   return (
     <MainProfile>
       <div className="Info">
-        <div className="Name">{weekend?.name}</div>
+        <div className="Name">{weekend?.userName}</div>
         <div className="Position">{weekend?.position}</div>
       </div>
       <Logo src={mainLogo} />
