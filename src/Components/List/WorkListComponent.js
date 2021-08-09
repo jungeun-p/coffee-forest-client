@@ -1,12 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 import { ButtonCommonS } from '../Button';
+import basicProfile from '../../assets/Img/profile/basicProfile.png';
+import ToggleDown from '../../assets/Icon/ToggleDown.png';
+import ToggleUp from '../../assets/Icon/ToggleUp.png';
 
-const WorkListArticle = ({ titleType, title, date }) => {
+const WorkListArticle = ({ onView, view, titleType, title, date }) => {
   return (
     <ListWrap>
-      <WorkTitle titleType={titleType} title={title} date={date} />
-      <WorkPeople />
+      <WorkTitle
+        onView={onView}
+        view={view}
+        titleType={titleType}
+        title={title}
+        date={date}
+      />
+      <WorkPeople view={view} />
     </ListWrap>
   );
 };
@@ -19,7 +28,7 @@ const ListWrap = styled.div`
   margin-bottom: 20px;
 `;
 
-const WorkTitle = ({ titleType, title, date }) => {
+const WorkTitle = ({ view, onView, titleType, title, date }) => {
   return (
     <TitleBox>
       <div className="info">
@@ -29,7 +38,7 @@ const WorkTitle = ({ titleType, title, date }) => {
           <div className="date">{date}</div>
         </WorkDetail>
       </div>
-      <div className="button">></div>
+      <Toggle onClick={onView} src={view === true ? ToggleUp : ToggleDown} />
     </TitleBox>
   );
 };
@@ -43,8 +52,13 @@ const TitleBox = styled.div`
     flex-direction: row;
     justify-content: flex-start;
   }
-  .button {
-  }
+`;
+
+const Toggle = styled.img`
+  width: 10px;
+  height: 5px;
+  cursor: pointer;
+  /* src: url(${'ToggleDown'}); */
 `;
 
 const WorkType = styled.div`
@@ -77,18 +91,21 @@ const WorkDetail = styled.div`
   }
 `;
 
-const WorkPeople = () => {
+const WorkPeople = ({ view }) => {
   return (
-    <PeopleBox>
+    <PeopleBox view={view}>
       <div className="info">
         <div className="title">참여 인원</div>
         <div className="people">
           <People />
-          <div>김용휘</div>
-          <div>박정은</div>
+          <People />
+          <People />
+          <People />
+          <People />
         </div>
       </div>
       <div className="button">
+        <ButtonCommonS title="거절" />
         <ButtonCommonS title="승인" />
       </div>
     </PeopleBox>
@@ -96,8 +113,7 @@ const WorkPeople = () => {
 };
 
 const PeopleBox = styled.div`
-  display: none;
-  display: flex;
+  display: ${props => (props.view ? 'flex' : 'none')};
   flex-direction: column;
   margin-top: 20px;
   .info {
@@ -114,6 +130,8 @@ const PeopleBox = styled.div`
     .people {
       display: flex;
       flex-direction: row;
+      justify-content: flex-start;
+      margin-bottom: 20px;
     }
   }
   .button {
@@ -124,6 +142,32 @@ const PeopleBox = styled.div`
 `;
 
 const People = () => {
-  return <div></div>;
+  return (
+    <ProfileWrap>
+      <Profile src={basicProfile} />
+      <div className="profileName">김바름</div>
+    </ProfileWrap>
+  );
 };
+
+const ProfileWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 15px;
+  .profileName {
+    font-weight: 500;
+    font-size: 7px;
+    line-height: 8px;
+    text-align: center;
+    color: #858585;
+  }
+`;
+const Profile = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  border: 2px solid #c4c4c4;
+  margin-bottom: 6px;
+`;
 export { WorkListArticle };
