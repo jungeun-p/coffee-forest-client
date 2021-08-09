@@ -32,7 +32,11 @@ const WorkTitle = ({ view, onView, titleType, title, date }) => {
   return (
     <TitleBox>
       <div className="info">
-        <WorkType>{titleType}</WorkType>
+        <WorkType
+          titleType={titleType === '회의' ? '#fedf5e' : '#FE5E5E' && '#5EB1FE'}
+        >
+          {titleType}
+        </WorkType>
         <WorkDetail>
           <div className="title">{title}</div>
           <div className="date">{date}</div>
@@ -64,7 +68,9 @@ const Toggle = styled.img`
 const WorkType = styled.div`
   width: 40px;
   height: 15px;
-  background: #fedf5e;
+  background-color: ${props => props.titleType};
+  /* 휴가 : #FE5E5E */
+  /* 외근 : #5EB1FE */
   border-radius: 15px;
   font-size: 9px;
   line-height: 11px;
