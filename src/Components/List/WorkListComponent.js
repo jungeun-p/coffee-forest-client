@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ButtonCommonS } from '../Button';
 import basicProfile from '../../assets/Img/profile/basicProfile.png';
 import ToggleDown from '../../assets/Icon/ToggleDown.png';
 import ToggleUp from '../../assets/Icon/ToggleUp.png';
 
-const WorkListArticle = ({ onView, view, titleType, title, date }) => {
+const WorkListArticle = ({ userName, titleType, title, date, time }) => {
+  const [view, setView] = useState(false);
+  const onView = () => {
+    setView(!view ? true : false);
+  };
   return (
     <ListWrap>
       <WorkTitle
@@ -14,8 +18,9 @@ const WorkListArticle = ({ onView, view, titleType, title, date }) => {
         titleType={titleType}
         title={title}
         date={date}
+        time={time}
       />
-      <WorkPeople view={view} />
+      <WorkPeople userName={userName} view={view} />
     </ListWrap>
   );
 };
@@ -28,18 +33,28 @@ const ListWrap = styled.div`
   margin-bottom: 20px;
 `;
 
-const WorkTitle = ({ view, onView, titleType, title, date }) => {
+const WorkTitle = ({ view, onView, titleType, title, date, time }) => {
   return (
     <TitleBox>
       <div className="info">
         <WorkType
-          titleType={titleType === '회의' ? '#fedf5e' : '#FE5E5E' && '#5EB1FE'}
+          titleType={
+            titleType === 'MEETING'
+              ? '#fedf5e'
+              : titleType === 'VACATION'
+              ? '#FE5E5E'
+              : '#5EB1FE'
+          }
         >
-          {titleType}
+          {titleType === 'MEETING'
+            ? '회의'
+            : titleType === 'VACATION'
+            ? '휴가'
+            : '외근'}
         </WorkType>
         <WorkDetail>
           <div className="title">{title}</div>
-          <div className="date">{date}</div>
+          <div className="date">{`${date} / ${time}`}</div>
         </WorkDetail>
       </div>
       <Toggle onClick={onView} src={view === true ? ToggleUp : ToggleDown} />
@@ -97,17 +112,13 @@ const WorkDetail = styled.div`
   }
 `;
 
-const WorkPeople = ({ view }) => {
+const WorkPeople = ({ userName, view }) => {
   return (
     <PeopleBox view={view}>
       <div className="info">
         <div className="title">참여 인원</div>
         <div className="people">
-          <People />
-          <People />
-          <People />
-          <People />
-          <People />
+          <People userName={userName} />
         </div>
       </div>
       <div className="button">
@@ -147,11 +158,11 @@ const PeopleBox = styled.div`
   }
 `;
 
-const People = () => {
+const People = ({ userName }) => {
   return (
     <ProfileWrap>
       <Profile src={basicProfile} />
-      <div className="profileName">김바름</div>
+      <div className="profileName">{userName || '김바름'}</div>
     </ProfileWrap>
   );
 };

@@ -1,22 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { TitleB } from '../../Components/Common';
 import { WorkListArticle } from '../../Components/List';
 
-const RequestWork = ({ onReject, onAccept }) => {
-  const [view, setView] = useState(false);
-  const onView = () => {
-    setView(!view ? true : false);
-  };
+const RequestWork = ({ workList, onReject, onAccept }) => {
   return (
     <ListForm>
       <TitleB>일정 승인 대기</TitleB>
+      {workList &&
+        workList?.map(work => (
+          <WorkListArticle
+            key={work.scheduleIndex}
+            date={work.date}
+            time={`${work.startTime} ~ ${work.endTime}`}
+            title={work.title}
+            titleType={work.scheduleType}
+            userName={work.userName}
+          />
+        ))}
       <WorkListArticle
-        onView={onView}
-        view={view}
-        titleType="외근"
+        titleType="MEETING"
         title="개발자 코드리뷰"
-        date="06. 08 / 오전 9 : 30 ~ 오전 11 : 30"
+        date="06. 08"
+        time="오전 9 : 30 ~ 오전 11 : 30"
       />
     </ListForm>
   );

@@ -6,6 +6,7 @@ import scheduleReducer from './schedule';
 import enrollReducer from './enroll';
 import adminReducer from './admin';
 import employeeReducer from './employee';
+import workReducer from './work';
 import { all } from 'redux-saga/effects';
 import signSaga from './Saga/signSaga';
 import validSaga from './Saga/validSaga';
@@ -14,6 +15,7 @@ import enrollSaga from './Saga/enrollSaga';
 import adminSaga from './Saga/adminSaga';
 import employeeSaga from './Saga/employeeSaga';
 import scheduleSaga from './Saga/scheduleSaga';
+import workSaga from './Saga/workSaga';
 
 // reducer 합치기
 const reducer = combineReducers({
@@ -22,7 +24,8 @@ const reducer = combineReducers({
   schedule: scheduleReducer,
   enroll: enrollReducer,
   admin: adminReducer,
-  employee: employeeReducer
+  employee: employeeReducer,
+  work: workReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -43,7 +46,8 @@ function* rootSaga() {
     enrollSaga(),
     adminSaga(),
     employeeSaga(),
-    scheduleSaga()
+    scheduleSaga(),
+    workSaga()
   ]);
 }
 sagaMiddleware.run(rootSaga);
