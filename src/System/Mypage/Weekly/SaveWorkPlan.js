@@ -11,8 +11,9 @@ const SaveWorkPlan = ({ weekend }) => {
 
   // 일정 추가
   const [event, setEvent] = useState({
-    companyIndex: companyIndex,
-    userIndex: userIndex,
+    companyIndex: '',
+    userIndex: '',
+    title: '',
     date: '',
     startTime: '',
     endTime: '',
@@ -27,8 +28,9 @@ const SaveWorkPlan = ({ weekend }) => {
   // 일정 추가 api
   const sendSchedule = () => {
     let schedule = {
-      companyIndex: event.companyIndex,
-      userIndex: event.userIndex,
+      companyIndex: companyIndex,
+      userIndex: userIndex,
+      title: '외부 업체 미팅',
       date: event.date,
       startTime: event.startTime,
       endTime: event.endTime,

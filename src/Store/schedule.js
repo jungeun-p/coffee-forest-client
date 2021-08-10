@@ -21,19 +21,24 @@ export const actions = {
     errorMessage
   }),
   scheduleEnter: index => ({ type: Types.ScheduleEnter, index }),
-  scheduleEnterSuccess: attendance => ({
+  scheduleEnterSuccess: enter => ({
     type: Types.ScheduleEnterSuccess,
-    attendance
+    enter
   }),
   scheduleEnd: index => ({ type: Types.ScheduleEnd, index }),
-  scheduleEndSuccess: attendance => ({
+  scheduleEndSuccess: end => ({
     type: Types.ScheduleEndSuccess,
-    attendance
+    end
   })
 };
 
 const INITIAL_STATE = {
-  date: {},
+  date: {
+    userIndex: null,
+    userName: null,
+    profileImage: null,
+    scheduleInfo: {}
+  },
   errorMessage: null
 };
 
@@ -43,9 +48,9 @@ const reducer = createReducer(INITIAL_STATE, {
   [Types.ScheduleInfoFail]: (state, action) =>
     (state.errorMessage = action.errorMessage),
   [Types.ScheduleEnterSuccess]: (state, action) =>
-    (state.date.enter = action.attendance),
+    (state.date.scheduleInfo = action.enter),
   [Types.ScheduleEndSuccess]: (state, action) =>
-    (state.date.enter = action.attendance)
+    (state.date.scheduleInfo = action.end)
 });
 
 export default reducer;
