@@ -7,8 +7,8 @@ function endApi(index) {
   return axios
     .patch(`${LOCAL_HOST}attendance`, index)
     .then(response => {
-      const attendance = response.data;
-      return { attendance };
+      const end = response.data;
+      return { end };
     })
     .catch(error => {
       const errorMessage = error.response.data;
@@ -20,9 +20,10 @@ function enterApi(index) {
   return axios
     .post(`${LOCAL_HOST}attendance`, index)
     .then(response => {
-      const attendance = response.data;
+      const enter = response.data;
+      console.log(enter);
       return {
-        attendance
+        enter
       };
     })
     .catch(error => {
@@ -32,16 +33,16 @@ function enterApi(index) {
 }
 
 function* end({ index }) {
-  const { attendance } = yield call(endApi, index);
-  if (attendance) {
-    yield put(actions.scheduleEndSuccess(attendance));
+  const { end } = yield call(endApi, index);
+  if (end) {
+    yield put(actions.scheduleEndSuccess(end));
   }
 }
 
 function* enter({ index }) {
-  const { attendance } = yield call(enterApi, index);
-  if (attendance) {
-    yield put(actions.scheduleEnterSuccess(attendance));
+  const { enter } = yield call(enterApi, index);
+  if (enter) {
+    yield put(actions.scheduleEnterSuccess(enter));
   }
 }
 
