@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { ButtonCommonS } from '../Button';
 import { InputSmall } from '../Input';
 
-const AddEvent = ({ view, event, onChange, sendSchedule, date }) => {
+const AddEvent = ({ view, event, onChange, sendSchedule }) => {
   return (
     <AddEventArticle view={view}>
       <EventForm>
-        <select className="selectBox" name="scheduleStatus" onChange={onChange}>
+        <select className="selectBox" name="scheduleType" onChange={onChange}>
           <option value="">유형 선택</option>
           <option value="OUTSIDE">외근 💼</option>"
           <option value="">회의 ✍</option>"<option value="">연차 ⛱</option>"
@@ -15,7 +15,7 @@ const AddEvent = ({ view, event, onChange, sendSchedule, date }) => {
         <div className="date">
           <InputSmall
             name="date"
-            value={event.date}
+            value={event?.date}
             placeholder="날짜"
             onChange={onChange}
           />
@@ -23,13 +23,13 @@ const AddEvent = ({ view, event, onChange, sendSchedule, date }) => {
         <div className="time">
           <InputSmall
             name="startTime"
-            value={event.startTime}
+            value={event?.startTime}
             placeholder="시작 시간"
             onChange={onChange}
           />
           <InputSmall
             name="endTime"
-            value={event.endTime}
+            value={event?.endTime}
             placeholder="마감 시간"
             onChange={onChange}
           />

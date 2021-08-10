@@ -5,14 +5,7 @@ import AddEvent from '../Event';
 // 삭제 예정
 
 // 일일 스케줄
-const WeekList = ({
-  schedulePlan,
-  date,
-  plan,
-  sendSchedule,
-  onChange,
-  event
-}) => {
+const WeekList = ({ date, plan, sendSchedule, onChange, event }) => {
   const [view, setView] = useState(false);
   const onView = () => {
     setView(!view ? true : false);

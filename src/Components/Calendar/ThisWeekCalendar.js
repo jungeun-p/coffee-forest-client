@@ -3,26 +3,28 @@ import styled from 'styled-components';
 import AddEvent from '../Event';
 import functionWeek from '../../Hooks/addThisWeek';
 
-const ThisWeekCalendar = ({ schedulePlan, sendSchedule, onChange, event }) => {
+const ThisWeekCalendar = ({ weekend, sendSchedule, onChange, event }) => {
   // 기존 달력 날짜
   const thisWeekDate = functionWeek();
+  const schedulePlan = weekend?.scheduleInfo;
   return (
     <>
-      {thisWeekDate.map((day, index) => (
-        <PlanDate
-          day={day}
-          key={index}
-          schedulePlan={schedulePlan[day]}
-          sendSchedule={sendSchedule}
-          onChange={onChange}
-          event={event}
-        />
-      ))}
+      {schedulePlan &&
+        thisWeekDate.map((day, index) => (
+          <PlanDate
+            day={day}
+            key={index}
+            schedulePlan={schedulePlan[day]}
+            sendSchedule={sendSchedule}
+            onChange={onChange}
+            event={event}
+          />
+        ))}
     </>
   );
 };
 
-const PlanDate = ({ day, schedulePlan, sendSchedule, onChange, event }) => {
+const PlanDate = ({ schedulePlan, day, sendSchedule, onChange, event }) => {
   const [view, setView] = useState(false);
   const onView = () => {
     setView(!view ? true : false);
@@ -78,7 +80,6 @@ const PlanDate = ({ day, schedulePlan, sendSchedule, onChange, event }) => {
         event={event}
         onChange={onChange}
         sendSchedule={sendSchedule}
-        // date={date}
       />
     </WeekArticle>
   );

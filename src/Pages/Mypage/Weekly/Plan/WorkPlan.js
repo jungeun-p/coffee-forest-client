@@ -5,9 +5,9 @@ import { ThisWeekCalendar } from '../../../../Components/Calendar';
 import { TitleB } from '../../../../Components/Common';
 
 const WorkPlan = ({
+  weekend,
   onAttandacne,
   onLeaving,
-  schedulePlan,
   sendSchedule,
   onChange,
   event
@@ -26,7 +26,7 @@ const WorkPlan = ({
       {/* 이번 주 근무 일정 */}
       <WorkPlanList>
         <ThisWeekCalendar
-          schedulePlan={schedulePlan}
+          weekend={weekend}
           sendSchedule={sendSchedule}
           onChange={onChange}
           event={event}

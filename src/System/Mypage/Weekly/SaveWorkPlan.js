@@ -5,7 +5,7 @@ import { actions } from '../../../Store/schedule';
 import { useDispatch, useSelector } from 'react-redux';
 import WorkPlan from '../../../Pages/Mypage/Weekly/Plan/WorkPlan';
 
-const SaveSchedule = ({ schedulePlan, weekend }) => {
+const SaveWorkPlan = ({ weekend }) => {
   const dispatch = useDispatch();
   const { userIndex, companyIndex } = useSelector(state => state.user.userData);
 
@@ -16,7 +16,7 @@ const SaveSchedule = ({ schedulePlan, weekend }) => {
     date: '',
     startTime: '',
     endTime: '',
-    scheduleStatus: ''
+    scheduleType: ''
   });
 
   const onChange = e => {
@@ -32,7 +32,7 @@ const SaveSchedule = ({ schedulePlan, weekend }) => {
       date: event.date,
       startTime: event.startTime,
       endTime: event.endTime,
-      scheduleType: event.scheduleStatus
+      scheduleType: event.scheduleType
     };
     axios
       .post(`${LOCAL_HOST}schedule`, schedule)
@@ -55,34 +55,24 @@ const SaveSchedule = ({ schedulePlan, weekend }) => {
   };
 
   // 퇴근 api
-  const onLeaving = useCallback(() => {
+  const onLeaving = () => {
     const index = {
       companyIndex: companyIndex,
       userIndex: userIndex
     };
     dispatch(actions.scheduleEnd(index));
-  }, [dispatch]);
+  };
 
   return (
-    <>
-      <WorkPlan
-        onAttandacne={onAttandacne}
-        onLeaving={onLeaving}
-        schedulePlan={schedulePlan}
-        sendSchedule={sendSchedule}
-        onChange={onChange}
-        event={event}
-      />
-      {/* <button onClick={onAttandacne}>출근</button>
-      <button onClick={onLeaving}>퇴근</button>
-      <WorkAttendance schedulePlan={schedulePlan} enter={enter} />
-      <WorkAddSchedule
-        sendSchedule={sendSchedule}
-        onChange={onChange}
-        event={event}
-      /> */}
-    </>
+    <WorkPlan
+      weekend={weekend}
+      onAttandacne={onAttandacne}
+      onLeaving={onLeaving}
+      sendSchedule={sendSchedule}
+      onChange={onChange}
+      event={event}
+    />
   );
 };
 
-export default SaveSchedule;
+export default SaveWorkPlan;

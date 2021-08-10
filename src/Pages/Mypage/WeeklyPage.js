@@ -1,17 +1,18 @@
 // @ts-ignore
 import React from 'react';
 import styled from 'styled-components';
+import SaveWorkPlan from '../../System/Mypage/Weekly/SaveWorkPlan';
 import WorkData from './Weekly/Data/WorkData';
 import WorkLoad from './Weekly/Load/WorkLoad';
-import WorkPlan from './Weekly/Plan';
+// import WorkPlan from './Weekly/Plan/WorkPlan';
 
-const WeeklyPage = ({ weekend, schedulePlan }) => {
+const WeeklyPage = ({ weekend }) => {
   return (
     <WorkWeekly>
       <WorkData weekend={weekend} />
       <WorkList>
-        <WorkLoad schedulePlan={schedulePlan} weekend={weekend} />
-        <WorkPlan schedulePlan={schedulePlan} weekend={weekend} />
+        <WorkLoad weekend={weekend} />
+        <SaveWorkPlan weekend={weekend} />
       </WorkList>
     </WorkWeekly>
   );

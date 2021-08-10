@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const WorkLoad = ({ schedulePlan, weekend }) => {
+const WorkLoad = ({ weekend }) => {
   // const date = Object.keys(weekend?.schedulePlan);
   // const status = date.map(date =>
   //   schedulePlan[date].map(key => key.scheduleStatus)

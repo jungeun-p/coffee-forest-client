@@ -7,8 +7,9 @@ const WeeklyPlan = () => {
   const dispatch = useDispatch();
   const { userIndex, companyIndex } = useSelector(state => state.user.userData);
   const weekend = useSelector(state => state.schedule.date);
-  const schedulePlan = useSelector(state => state.schedule.date.scheduleInfo);
-  console.log(schedulePlan);
+  console.log(weekend);
+  // const schedulePlan = useSelector(state => state.schedule.date.scheduleInfo);
+
   // 주간 일정 리스트 api
   const LoadSchedule = useCallback(() => {
     const index = {
@@ -27,8 +28,11 @@ const WeeklyPlan = () => {
 
   return (
     <>
-      {weekend && schedulePlan && (
-        <WeeklyPage weekend={weekend} schedulePlan={schedulePlan} />
+      {weekend && (
+        <WeeklyPage
+          weekend={weekend}
+          // schedulePlan={schedulePlan}
+        />
       )}
     </>
   );
