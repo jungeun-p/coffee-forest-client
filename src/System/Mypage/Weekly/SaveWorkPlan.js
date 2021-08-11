@@ -24,13 +24,13 @@ const SaveWorkPlan = ({ weekend }) => {
     const { name, value } = e.target;
     setEvent(state => ({ ...state, [name]: value }));
   };
-
+  console.log(event);
   // 일정 추가 api
   const sendSchedule = () => {
     let schedule = {
       companyIndex: companyIndex,
       userIndex: userIndex,
-      title: '개발자 코드 리뷰',
+      title: '김석진 연차',
       date: event.date,
       startTime: event.startTime,
       endTime: event.endTime,
