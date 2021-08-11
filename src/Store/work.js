@@ -6,7 +6,7 @@ export const Types = {
   WorkListError: 'work/WorkListError',
   WorkAccept: 'work/WorkAccept',
   WorkAcceptSuccess: 'work/WorkAcceptSuccess',
-  WorkReject: 'work/Reject',
+  WorkReject: 'work/WorkReject',
   WorkRejectSuccess: 'work/WorkRejectSuccess'
 };
 
@@ -14,19 +14,17 @@ export const actions = {
   requestWorkList: workIndex => ({ type: Types.RequestWorkList, workIndex }),
   workListSuccess: workList => ({ type: Types.WorkListSuccess, workList }),
   workListError: errorMessage => ({ type: Types.WorkListError, errorMessage }),
-  workAccept: (index, scheduleIndex) => ({
+  workAccept: indexData => ({
     type: Types.WorkAccept,
-    index,
-    scheduleIndex
+    indexData
   }),
   workAcceptSuccess: statusAccept => ({
     type: Types.WorkAcceptSuccess,
     statusAccept
   }),
-  workReject: (index, scheduleIndex) => ({
+  workReject: indexData => ({
     type: Types.WorkReject,
-    index,
-    scheduleIndex
+    indexData
   }),
   workRejectSuccess: statusReject => ({
     type: Types.WorkRejectSuccess,

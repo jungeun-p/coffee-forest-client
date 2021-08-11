@@ -16,6 +16,8 @@ const RequestWork = ({ workList, onReject, onAccept }) => {
             title={work.title}
             titleType={work.scheduleType}
             userName={work.userName}
+            onAccept={() => onAccept(work.scheduleIndex)}
+            onReject={() => onReject(work.scheduleIndex)}
           />
         ))}
       <WorkListArticle

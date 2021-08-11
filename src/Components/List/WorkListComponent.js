@@ -5,7 +5,15 @@ import basicProfile from '../../assets/Img/profile/basicProfile.png';
 import ToggleDown from '../../assets/Icon/ToggleDown.png';
 import ToggleUp from '../../assets/Icon/ToggleUp.png';
 
-const WorkListArticle = ({ userName, titleType, title, date, time }) => {
+const WorkListArticle = ({
+  userName,
+  titleType,
+  title,
+  date,
+  time,
+  onAccept,
+  onReject
+}) => {
   const [view, setView] = useState(false);
   const onView = () => {
     setView(!view ? true : false);
@@ -20,7 +28,12 @@ const WorkListArticle = ({ userName, titleType, title, date, time }) => {
         date={date}
         time={time}
       />
-      <WorkPeople userName={userName} view={view} />
+      <WorkPeople
+        userName={userName}
+        view={view}
+        onAccept={onAccept}
+        onReject={onReject}
+      />
     </ListWrap>
   );
 };
@@ -112,7 +125,7 @@ const WorkDetail = styled.div`
   }
 `;
 
-const WorkPeople = ({ userName, view }) => {
+const WorkPeople = ({ userName, view, onReject, onAccept }) => {
   return (
     <PeopleBox view={view}>
       <div className="info">
@@ -122,8 +135,8 @@ const WorkPeople = ({ userName, view }) => {
         </div>
       </div>
       <div className="button">
-        <ButtonCommonS title="거절" />
-        <ButtonCommonS title="승인" />
+        <ButtonCommonS onClick={onReject} title="거절" />
+        <ButtonCommonS onClick={onAccept} title="승인" />
       </div>
     </PeopleBox>
   );

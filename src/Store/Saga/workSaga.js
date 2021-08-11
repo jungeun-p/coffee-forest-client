@@ -3,11 +3,14 @@ import { call, takeEvery, put } from 'redux-saga/effects';
 import { LOCAL_HOST } from '../../Lib/constant';
 import { actions, Types } from '../work';
 
-function acceptApi({ index, scheduleIndex }) {
+function acceptApi(indexData) {
   return axios
-    .patch(`${LOCAL_HOST}schedule-applicant${scheduleIndex}`, index)
+    .patch(
+      `${LOCAL_HOST}schedule-applicant/${indexData.scheduleIndex}`,
+      indexData
+    )
     .then(response => {
-      const statusAccept = response.data;
+      const statusAccept = response.status;
       return { statusAccept };
     })
     .catch(error => {
@@ -18,15 +21,18 @@ function acceptApi({ index, scheduleIndex }) {
     });
 }
 
-function rejectApi({ index, scheduleIndex }) {
+function rejectApi(indexData) {
   return axios
-    .delete(`${LOCAL_HOST}schedule-applicant${scheduleIndex}`, index)
+    .delete(`${LOCAL_HOST}schedule-applicant/${indexData.scheduleIndex}`, {
+      data: indexData
+    })
     .then(response => {
-      const statusReject = response.data;
+      const statusReject = response.status;
       return { statusReject };
     })
     .catch(error => {
-      const errorReject = error.response.data;
+      const errorReject = error.response;
+      console.log(errorReject);
       return {
         errorReject
       };
@@ -50,18 +56,16 @@ function listApi(workIndex) {
     });
 }
 
-function* settle({ index, scheduleIndex }) {
-  const { statusAccept, errorAccept } = yield call(acceptApi, {
-    index,
-    scheduleIndex
-  });
-  const { statusReject, errorReject } = yield call(rejectApi, {
-    index,
-    scheduleIndex
-  });
+function* settleAccpet({ indexData }) {
+  const { statusAccept } = yield call(acceptApi, indexData);
   if (statusAccept) {
     yield put(actions.workAcceptSuccess(statusAccept));
-  } else if (statusReject) {
+  }
+}
+
+function* settleReject({ indexData }) {
+  const { statusReject } = yield call(rejectApi, indexData);
+  if (statusReject) {
     yield put(actions.workRejectSuccess(statusReject));
   }
 }
@@ -75,5 +79,6 @@ function* list({ workIndex }) {
 
 export default function* watchWork() {
   yield takeEvery(Types.RequestWorkList, list);
-  yield takeEvery((Types.WorkAccept, Types.workReject), settle);
+  yield takeEvery(Types.WorkAccept, settleAccpet);
+  yield takeEvery(Types.WorkReject, settleReject);
 }
