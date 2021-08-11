@@ -48,7 +48,7 @@ const PlanDate = ({ schedulePlan, day, sendSchedule, onChange, event }) => {
           schedulePlan.map((plan, index) => (
             <PlanArticle
               key={index}
-              title={plan.scheduleStatus === 'OUTSIDE' ? '외근' : '근무'}
+              title={plan.scheduleType}
               startTime={
                 plan.startTime.slice(0, 2) > 12
                   ? `오후 ${
@@ -72,7 +72,7 @@ const PlanDate = ({ schedulePlan, day, sendSchedule, onChange, event }) => {
             />
           ))
         ) : (
-          <div className="default">일정을 추가해주세요!</div>
+          <div className="default">일정을 추가해주세요</div>
         )}
       </PlanList>
       <AddEvent
@@ -123,8 +123,26 @@ const PlanList = styled.div`
 const PlanArticle = ({ title, startTime, endTime }) => {
   return (
     <PlanOne>
-      <PlanTitleBox title={title}>
-        <div className="title">{title}</div>
+      <PlanTitleBox
+        title={
+          title === ('ENTER' && 'LEAVE')
+            ? '#1ca953'
+            : title === 'OUTSIDE'
+            ? '#5EB1FE'
+            : title === 'MEETING'
+            ? '#fedf5e'
+            : '#FE5E5E'
+        }
+      >
+        <div className="title">
+          {title === ('ENTER' && 'LEAVE')
+            ? '근무'
+            : title === 'OUTSIDE'
+            ? '외근'
+            : title === 'MEETING'
+            ? '회의'
+            : '휴가'}
+        </div>
       </PlanTitleBox>
       <PlanTime>
         {startTime} ~ {endTime}
@@ -141,8 +159,7 @@ const PlanOne = styled.div`
 const PlanTitleBox = styled.div`
   width: 35px;
   height: 20px;
-  background-color: ${props =>
-    props.title === '외근' ? '#5eb1fe' : '#1ca953'};
+  background-color: ${props => props.title};
   border-radius: 5px;
   margin-right: 15px;
   .title {
