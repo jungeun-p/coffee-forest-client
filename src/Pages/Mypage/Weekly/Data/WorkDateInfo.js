@@ -1,22 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-
-const WorkDateInfo = ({ weekend }) => {
+import functionWeek from '../../../../Hooks/addThisWeek';
+const WorkDateInfo = () => {
+  const thisWeekDate = functionWeek();
+  const thisYear = thisWeekDate[0].slice(0, 4);
+  const thisMonth = thisWeekDate[0].slice(5, 7);
+  const thisDateStart = thisWeekDate[0].slice(8, 11);
+  const thisDateLast = thisWeekDate[4].slice(8, 11);
   return (
-    <MainDate>
-      <Month>
-        <div>{weekend?.month} 월</div>
-      </Month>
-      <DividedBar />
-      <Dates>
-        <Year>
-          <div>{weekend?.year} 년</div>
-        </Year>
-        <WeekendNumber>
-          <div>{`${weekend?.month}. ${weekend?.weekStartDate} ~ ${weekend?.month}. ${weekend?.weekEndDate}`}</div>
-        </WeekendNumber>
-      </Dates>
-    </MainDate>
+    <>
+      <MainDate>
+        <Month>
+          <div>{thisMonth} 월</div>
+        </Month>
+        <DividedBar />
+        <Dates>
+          <Year>
+            <div>{thisYear} 년</div>
+          </Year>
+          <WeekendNumber>
+            <div>{`${thisMonth}. ${thisDateStart} ~ ${thisMonth}. ${thisDateLast}`}</div>
+          </WeekendNumber>
+        </Dates>
+      </MainDate>
+    </>
   );
 };
 
@@ -29,7 +36,7 @@ const Month = styled.div`
   font-size: 24px;
   color: #1ca953;
   font-weight: 800;
-  letter-spacing: -0.1em;
+  letter-spacing: -0.14px;
   line-height: 12px;
 `;
 

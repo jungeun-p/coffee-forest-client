@@ -5,7 +5,6 @@ import Signup from '../Pages/Signup';
 // import Login from '../Pages/Login';
 import Admin from '../Pages/Admin';
 import Mypage from '../Pages/Mypage';
-import MonthlyPage from '../Pages/Mypage/MonthlyPage';
 // import ManageEmployee from '../Pages/Mypage/ManageEmployee';
 import Profile from '../Pages/User';
 import Setting from '../Pages/Setting';
@@ -46,9 +45,9 @@ const MainRouter = () => {
         <Route path="/mypage">
           <Mypage />
         </Route>
-        <Route path="/mypage/monthly">
+        {/* <Route path="/mypage/monthly">
           <MonthlyPage />
-        </Route>
+        </Route> */}
         <Route path="/mypage/manage">
           <Setting />
         </Route>
