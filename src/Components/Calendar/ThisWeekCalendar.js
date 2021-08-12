@@ -125,7 +125,7 @@ const PlanArticle = ({ title, startTime, endTime }) => {
     <PlanOne>
       <PlanTitleBox
         title={
-          title === ('ENTER' || 'LEAVE')
+          title === 'ENTER' || title === 'LEAVE'
             ? '#1ca953'
             : title === 'OUTSIDE'
             ? '#5EB1FE'
@@ -135,7 +135,7 @@ const PlanArticle = ({ title, startTime, endTime }) => {
         }
       >
         <div className="title">
-          {title === ('ENTER' || 'LEAVE')
+          {title === 'ENTER' || title === 'LEAVE'
             ? '근무'
             : title === 'OUTSIDE'
             ? '외근'

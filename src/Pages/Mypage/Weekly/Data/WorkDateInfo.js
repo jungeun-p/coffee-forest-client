@@ -36,7 +36,7 @@ const Month = styled.div`
   font-size: 24px;
   color: #1ca953;
   font-weight: 800;
-  letter-spacing: -0.1em;
+  letter-spacing: -0.14px;
   line-height: 12px;
 `;
 

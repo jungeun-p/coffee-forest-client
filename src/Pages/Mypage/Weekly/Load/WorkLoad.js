@@ -2,15 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const WorkLoad = ({ weekend }) => {
-  // const date = Object.keys(weekend?.schedulePlan);
-  // const status = date.map(date =>
-  //   schedulePlan[date].map(key => key.scheduleStatus)
-  // );
+  const date = Object.keys(weekend?.scheduleInfo);
+  const scheduleInfo = weekend.scheduleInfo;
+  // const status = date.map(it => scheduleInfo[it].map(key => key.scheduleType));
+  // console.log(status);
   // // array of arrays 펼치기
   // const statusArray = status.reduce((acc, it) => [...acc, ...it], []);
+  // console.log(statusArray);
   // // 중복 제거
   // const uniqueStatus = [...new Set(statusArray)];
-  // // console.log(uniqueStatus);
+  // console.log(uniqueStatus);
   const statusCateogry = [
     {
       index: 1,
@@ -48,6 +49,9 @@ const WorkLoad = ({ weekend }) => {
             </UserStatus>
           ))
         )} */}
+        {statusCateogry.map((title, index) => (
+          <UserStatus key={index}>{title.name}</UserStatus>
+        ))}
       </UserLoad>
     </WorkLoadBox>
   );
@@ -66,8 +70,9 @@ const WorkLoadBox = styled.div`
   padding: 20px 20px;
 
   @media all and (min-width: 768px) {
-    /* min-width: 250px; */
-    margin-right: 3vw;
+    min-width: 250px;
+    /* margin-right: 3vw; */
+    margin-right: 20px;
   }
 `;
 
