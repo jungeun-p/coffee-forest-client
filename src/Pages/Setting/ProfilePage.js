@@ -11,7 +11,6 @@ const ProfilePage = () => {
       <div className="name">{userData.name}</div>
       <div className="infos">
         <div className="info">{userData.email}</div>
-        <div className="info">이메일</div>
         <div className="info">
           {userData.position === 'ADMIN' ? '관리자' : '직원'}
         </div>
