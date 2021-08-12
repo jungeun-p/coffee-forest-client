@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import mainLogo from '../../../../assets/Img/profile/basicProfile.png';
+import { useSelector } from 'react-redux';
 
 const WorkMypage = ({ weekend }) => {
+  const { position } = useSelector(state => state.user.userData);
+
   return (
     <MainProfile>
       <div className="Info">
         <div className="Name">{weekend?.userName}</div>
-        <div className="Position">{weekend?.position}</div>
+        <div className="Position">
+          {position === 'ADMIN' ? '관리자' : '직원'}
+        </div>
       </div>
       <Logo src={mainLogo} />
     </MainProfile>
@@ -22,12 +27,17 @@ const MainProfile = styled.div`
     margin-right: 10px;
     text-align: right;
     font-size: 12px;
+    font-weight: 700;
     @media all and (min-width: 768px) {
       visibility: visible;
     }
     .Name {
       font-size: 14px;
-      font-weight: 600;
+    }
+    .Position {
+      font-size: 9px;
+      color: #c4c4c4;
+      margin-top: 3px;
     }
   }
 `;

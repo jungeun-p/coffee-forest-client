@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../../Lib/constant';
 import { actions } from '../../../Store/schedule';
@@ -24,7 +24,7 @@ const SaveWorkPlan = ({ weekend }) => {
     const { name, value } = e.target;
     setEvent(state => ({ ...state, [name]: value }));
   };
-  console.log(event);
+
   // 일정 추가 api
   const sendSchedule = () => {
     let schedule = {

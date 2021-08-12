@@ -6,9 +6,11 @@ import styled from 'styled-components';
 import WorkData from '../../../Pages/Mypage/Weekly/Data/WorkData';
 import WorkLoad from '../../../Pages/Mypage/Weekly/Load/WorkLoad';
 import SaveWorkPlan from './SaveWorkPlan';
+import functionWeek from '../../../Hooks/addThisWeek';
 
 const WeeklyPlan = () => {
   const dispatch = useDispatch();
+  const thisWeekDate = functionWeek();
   const { userIndex, companyIndex } = useSelector(state => state.user.userData);
   const weekend = useSelector(state => state.schedule.date);
   console.log(weekend);
@@ -18,7 +20,7 @@ const WeeklyPlan = () => {
     const index = {
       userIndex: userIndex,
       companyIndex: companyIndex,
-      startDate: '2021-08-09'
+      startDate: thisWeekDate[0]
     };
     dispatch(scheduleActions.scheduleInfoRequest(index));
   }, [dispatch]);
