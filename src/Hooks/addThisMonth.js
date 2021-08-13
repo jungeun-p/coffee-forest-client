@@ -1,60 +1,41 @@
+import dayjs from 'dayjs';
+import { useState } from 'react';
+
 const addThisMonth = () => {
-  let calendar = [];
+  // day
+  const weekday = require('dayjs/plugin/weekday');
+  const isoWeek = require('dayjs/plugin/isoWeek');
+  const weekOfYear = require('dayjs/plugin/weekOfYear');
 
-  // 날짜 규격 함수
-  const formDate = date => {
-    const thisYear = date.getFullYear();
-    const thisMonth = date.getMonth() + 1;
-    const thisMonthDay = date.getDate();
+  // day extend
+  dayjs.extend(weekday);
+  dayjs.extend(isoWeek);
+  dayjs.extend(weekOfYear);
 
-    const addZero = num => {
-      if (num < 10) {
-        num = '0' + num;
-      }
-      return num;
-    };
-    const monthArticle = `${
-      addZero(thisYear) - addZero(thisMonth) - addZero(thisMonthDay)
-    }`;
-    return monthArticle;
-  };
+  const today = dayjs();
+  const [viewDate, setViewDate] = useState(dayjs());
+  const [selectDate, setSelectDate] = useState(dayjs());
 
-  const now = new Date();
-  const nowDayOfWeek = now.getDay();
-  const nowDate = now.getDate();
-  const first = new Date(now.getFullYear(), now.getMonth(), 1);
-  const last = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-  console.log(nowDate, first, last.getDate());
+  const createCalendar = () => {
+    const startWeek = viewDate.startOf('month').week();
+    const endWeek =
+      viewDate.endOf('month').week() === 1
+        ? 53
+        : viewDate.endOf('month').week();
+    let calendar = [];
 
-  const addCalendar = () => {
-    const calendar = [];
-    for (let i = 1; i <= last.getDate(); i++) {
-      calendar.push(i);
+    for (let week = startWeek; week <= endWeek; week++) {
+      calendar.push();
     }
-    const thisMonth = last.getMonth() + 1;
-    return { calendar, thisMonth };
+
+    return calendar;
   };
 
-  return calendar;
+  // // 이번 주 시작 날짜 (일요일 : 0, 월요일 : 1)
+  // const thisYear = today.year();
+  // const thisMonth = today.month() + 1;
+
+  return <div></div>;
 };
 
-// 이전 달 혹은 다음 달 출력 함수
-
-// 달력 출력
-const addCalendar = () => {
-  const now = new Date();
-  const last = new Date(now.getFullYear(), now.getMonth() + 1, 0);
-  const calendar = [];
-
-  for (let i = 1; i <= last.getDate(); i++) {
-    // if (i % 7 === 1) {
-    //   return `일요일:${i}`;
-    // }
-    calendar.push(i);
-  }
-  const thisMonth = last.getMonth() + 1;
-
-  return { calendar, thisMonth };
-};
-
-export default addCalendar;
+export default addThisMonth;

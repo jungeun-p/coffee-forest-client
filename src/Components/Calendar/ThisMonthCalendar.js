@@ -1,19 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import addCalendar from '../../Hooks/addThisMonth';
-import ThisMonthSchedule from '../../Hooks/ThisMonthSchedule';
 
 const ThisMonthCalendar = () => {
-  const thisMonthDate = addCalendar();
-  const thisMonth = ThisMonthSchedule();
-  console.log(thisMonth);
+  // const thisMonthDate = addCalendar();
   const onClick = () => {
     console.log('back');
   };
   return (
     <MonthlyCalendarBox>
       <MonthlyTitle>
-        <div className="month">{thisMonthDate.thisMonth}월</div>
+        <div className="month">{}월</div>
         <div className="button">
           <ButtonBack onClick={onClick}>{`<`}</ButtonBack>
           <ButtonFront>{`>`}</ButtonFront>
