@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import addCalendar from '../../Hooks/addThisMonth';
+import ThisMonthSchedule from '../../Hooks/ThisMonthSchedule';
 
 const ThisMonthCalendar = () => {
   const thisMonthDate = addCalendar();
+  const thisMonth = ThisMonthSchedule();
+  console.log(thisMonth);
   const onClick = () => {
     console.log('back');
   };
@@ -121,6 +124,6 @@ const CalendarWeek = styled.div`
 //       margin: 15px 15px;
 //     }
 //   }
-`;
+// `;
 
 export default ThisMonthCalendar;
