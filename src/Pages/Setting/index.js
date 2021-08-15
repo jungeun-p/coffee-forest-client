@@ -4,11 +4,11 @@ import { TitleB } from '../../Components/Common';
 import ProfilePage from './ProfilePage';
 import TabMenu from './TabMenu';
 import TabPage from './TabPage';
-import ManageEmployee from './ManageEmployee';
 import EditProfile from './EditProfile';
 import RequestEmployee from '../../System/Setting/Request/RequestEmployee';
 import ManageWork from '../../System/Setting/Manage/ManageWork';
 import RequestWork from '../../System/Setting/Request/RequestWork';
+import ManageEmployee from '../../System/Setting/Manage/ManageEmployee';
 
 const SettingContainer = () => {
   const [tab, setTab] = useState({
