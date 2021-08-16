@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import AdminList from '../../Pages/Admin/AdminList';
@@ -21,7 +21,7 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(adminActions.applicantList());
-  }, [dataList, dispatch]);
+  }, []);
 
   return (
     <>

@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import basicProfile from '../../assets/Img/profile/basicProfile.png';
 import ToggleDown from '../../assets/Icon/ToggleDown.png';
 import ToggleUp from '../../assets/Icon/ToggleUp.png';
+import { InputCommon, InputTitleS } from '../Input';
+import { ButtonCommonS } from '../Button';
 
 const EmployeeListArticle = ({ acceptance, name, phone, email }) => {
   const [view, setView] = useState(false);
@@ -96,11 +98,66 @@ const Toggle = styled.img`
 `;
 
 const ManageForm = ({ view, acceptance }) => {
-  return <FormBox view={view}>얍</FormBox>;
+  return (
+    <FormBox view={view}>
+      <FlexibleForm>
+        <div className="title">
+          <input className="checkbox" type="checkbox" />
+          <div>탄력근무제</div>
+        </div>
+        <div className="time">
+          <InputCommon width="123px" placeholder="출근 시간" />
+          <InputCommon width="123px" placeholder="퇴근 시간" />
+        </div>
+        <div className="title">
+          <div>연차 지정</div>
+        </div>
+        <div className="form">
+          <InputCommon placeholder="시간 단위" />
+        </div>
+        <div className="button">
+          <ButtonCommonS title="저장" />
+        </div>
+      </FlexibleForm>
+    </FormBox>
+  );
 };
 
 const FormBox = styled.div`
-  display: ${props => (props.view ? 'flex' : 'none')};
+  display: ${props => (props.view ? '' : 'none')};
+`;
+
+const FlexibleForm = styled.div`
+  .title {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 14px;
+    color: #232323;
+    .checkbox {
+      width: 10px;
+      height: 10px;
+      border: 3px solid #1ca953;
+      cursor: pointer;
+    }
+  }
+  .time {
+    width: 280px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 15px;
+  }
 `;
 
 export default EmployeeListArticle;

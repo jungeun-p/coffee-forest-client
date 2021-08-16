@@ -23,7 +23,7 @@ const InputCommon = ({
       <InputWrap>
         <InputTitle>{placeholder}</InputTitle>
         <Input
-          width={width === 'half' ? true : undefined}
+          width={width !== '' ? width : false}
           autoComplete="off"
           name={name}
           value={value}
@@ -86,8 +86,9 @@ const InputTitle = styled.div`
   margin-left: 12px;
 `;
 const Input = styled.input`
-  /* width: 302px; */
-  width: ${props => (props.width ? '140px' : '')};
+  /* width: 320px; */
+  width: ${props => props.width};
+
   height: 30px;
   border: none;
   border-radius: 10px;
