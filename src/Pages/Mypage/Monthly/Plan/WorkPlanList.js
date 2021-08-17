@@ -3,25 +3,34 @@ import styled from 'styled-components';
 import { TitleB } from '../../../../Components/Common';
 import { WorkListArticle } from '../../../../Components/List';
 
-const WorkPlanList = () => {
+const WorkPlanList = ({ scheduleMonthly }) => {
+  console.log(scheduleMonthly);
   return (
     <WorkWrapperList>
       {/* 이번 달 중 오늘 스케줄 */}
       <TitleB>오늘의 일정</TitleB>
-      <WorkListArticle
-        titleType="MEETING"
-        title="개발자 코드리뷰"
-        date="06. 08"
-        time="오전 9 : 30 ~ 오전 11 : 30"
-      />
-      <WorkListArticle
-        titleType="VACATION"
-        title="박지민 휴가"
-        date="06. 08"
-        time="오전 9 : 30 ~ 오전 11 : 30"
-      />
+      {scheduleMonthly &&
+        scheduleMonthly.map((it, index) => (
+          <WorkListArticle
+            key={index}
+            titleType={it.scheduleInfo.scheduleType}
+            title={it.scheduleInfo.title}
+            time={`${it.scheduleInfo.startTime}~${it.scheduleInfo.endTime}`}
+            userName={it.simpleUserInfo.name}
+          />
+        ))}
+      {scheduleMonthly?.length === 0 && (
+        <div className="noSchedule">스케줄이 없습니다.</div>
+      )}
     </WorkWrapperList>
   );
 };
-const WorkWrapperList = styled.div``;
+const WorkWrapperList = styled.div`
+  .noSchedule {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #858585;
+  }
+`;
 export default WorkPlanList;

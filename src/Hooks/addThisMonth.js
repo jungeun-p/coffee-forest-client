@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const AddThisMonth = () => {
+const AddThisMonth = ({ LoadSchedule }) => {
   // day
   const weekday = require('dayjs/plugin/weekday');
   const isoWeek = require('dayjs/plugin/isoWeek');
@@ -58,6 +58,7 @@ const AddThisMonth = () => {
                     <div
                       className={`text ${isSelected} ${isToday} ${isNone}`}
                       onClick={() => {
+                        LoadSchedule(current.format('D'));
                         setSelectDate(current);
                       }}
                     >

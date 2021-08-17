@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import AddThisMonth from '../../Hooks/addThisMonth';
 
-const ThisMonthCalendar = () => {
-  const Calendar = AddThisMonth();
-  // const onClick = () => {
-  //   console.log('back');
-  // };
-  return <MonthlyCalendarBox>{Calendar}</MonthlyCalendarBox>;
+const ThisMonthCalendar = ({ LoadSchedule }) => {
+  return (
+    <MonthlyCalendarBox>
+      <AddThisMonth LoadSchedule={LoadSchedule} />
+    </MonthlyCalendarBox>
+  );
 };
 
 const MonthlyCalendarBox = styled.div`
