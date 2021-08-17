@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EditProfilePage from '../../../Pages/Setting/EditProfilePage';
+import { actions as userActions } from '../../../Store/user';
 
 const EditProfile = () => {
   const dispatch = useDispatch();
+  const { userProfile } = useSelector(state => state.user);
+  const { userData } = useSelector(state => state.user);
+
   const [profile, setProfile] = useState({
-    userName: '',
+    name: '',
     password: '',
     phone: '',
     address: ''
@@ -13,12 +17,20 @@ const EditProfile = () => {
 
   const SaveProfile = () => {
     if (
-      (profile.userName &&
-        profile.password &&
-        profile.phone &&
-        profile.address) !== ''
+      (profile.name && profile.password && profile.phone && profile.address) !==
+      ''
     ) {
-      console.log('ok');
+      const profileData = {
+        userIndex: userData.userIndex,
+        name: profile.name,
+        password: profile.password,
+        phone: profile.phone,
+        address: profile.address
+      };
+      dispatch(userActions.editProfile(profileData));
+      if (userProfile) {
+        alert('업데이트 성공');
+      }
     }
   };
 
@@ -26,6 +38,11 @@ const EditProfile = () => {
     const { name, value } = e.target;
     setProfile({ ...profile, [name]: value });
   };
+
+  useEffect(() => {
+    console.log(userProfile, userData);
+  }, [userProfile]);
+
   return (
     <EditProfilePage
       profile={profile}

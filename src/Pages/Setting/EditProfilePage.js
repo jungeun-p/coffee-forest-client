@@ -8,7 +8,6 @@ import { InputCommon, InputTitleS } from '../../Components/Input';
 const EditProfilePage = ({ profile, onChange, SaveProfile }) => {
   // const { userData } = useSelector(state => state.user);
   // console.log(userData);
-  console.log(profile);
   return (
     <ProfileForm>
       <TitleB>회원정보 수정</TitleB>
@@ -16,7 +15,7 @@ const EditProfilePage = ({ profile, onChange, SaveProfile }) => {
         <InputTitleS title="개인정보" />
         <InputCommon
           onChange={onChange}
-          name="userName"
+          name="name"
           value={profile.name}
           placeholder="이름"
         />

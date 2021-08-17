@@ -16,6 +16,7 @@ import adminSaga from './Saga/adminSaga';
 import employeeSaga from './Saga/employeeSaga';
 import scheduleSaga from './Saga/scheduleSaga';
 import workSaga from './Saga/workSaga';
+import profileSaga from './Saga/profileSaga';
 
 // reducer 합치기
 const reducer = combineReducers({
@@ -47,7 +48,8 @@ function* rootSaga() {
     adminSaga(),
     employeeSaga(),
     scheduleSaga(),
-    workSaga()
+    workSaga(),
+    profileSaga()
   ]);
 }
 sagaMiddleware.run(rootSaga);
