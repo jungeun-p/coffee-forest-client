@@ -15,8 +15,7 @@ const InputCommon = ({
   validNumber,
   companyApplicantStatus,
   checkEmail,
-  checkPw,
-  readonly
+  checkPw
 }) => {
   return (
     <>
