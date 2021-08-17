@@ -42,6 +42,5 @@
 **Developed By**
 
 *YongHwi Kim* - *https://github.com/yh0921k*     
-*JungEun Park* - *https://github.com/jungeun-p* 
- 
+*Jungeun Park* - *https://github.com/jungeun-p* 
 <br>
