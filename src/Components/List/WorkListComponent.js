@@ -52,18 +52,22 @@ const WorkTitle = ({ view, onView, titleType, title, date, time }) => {
       <div className="info">
         <WorkType
           titleType={
-            titleType === 'MEETING'
+            titleType === 'ENTER' || titleType === 'LEAVE'
+              ? '#1ca953'
+              : titleType === 'OUTSIDE'
+              ? '#5EB1FE'
+              : titleType === 'MEETING'
               ? '#fedf5e'
-              : titleType === 'VACATION'
-              ? '#FE5E5E'
-              : '#5EB1FE'
+              : '#FE5E5E'
           }
         >
-          {titleType === 'MEETING'
+          {titleType === 'ENTER' || titleType === 'LEAVE'
+            ? '근무'
+            : titleType === 'OUTSIDE'
+            ? '외근'
+            : titleType === 'MEETING'
             ? '회의'
-            : titleType === 'VACATION'
-            ? '휴가'
-            : '외근'}
+            : '휴가'}
         </WorkType>
         <WorkDetail>
           <div className="title">{title}</div>

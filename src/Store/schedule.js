@@ -4,6 +4,9 @@ export const Types = {
   ScheduleInfoRequest: 'schedule/ScheduleInfoRequest',
   ScheduleInfoSuccess: 'schedule/ScheduleInfoSuccess',
   ScheduleInfoFail: 'schedule/ScheduleInfoFail',
+  ScheduleMonthlyRequest: 'schedule/ScheduleMontlyRequest',
+  ScheduleMonthlySuccess: 'schedule/ScheduleMonthlySuccess',
+  ScheduleMonthlyFail: 'schedule/ScheduleMonthlyFail',
   ScheduleEnter: 'schedule/ScheduleEnter',
   ScheduleEnterSuccess: 'schedule/ScheduleEnterSuccess',
   ScheduleEnd: 'schedule/ScheduleEnd',
@@ -11,6 +14,7 @@ export const Types = {
 };
 
 export const actions = {
+  // 주간 일정
   scheduleInfoRequest: index => ({ type: Types.ScheduleInfoRequest, index }),
   ScheduleInfoSuccess: scheduleData => ({
     type: Types.ScheduleInfoSuccess,
@@ -20,6 +24,20 @@ export const actions = {
     type: Types.ScheduleInfoFail,
     errorMessage
   }),
+  // 월간 일정
+  scheduleMonthlyRequest: index => ({
+    type: Types.ScheduleMonthlyRequest,
+    index
+  }),
+  scheduleMonthlySuccess: scheduleMonthly => ({
+    type: Types.ScheduleMonthlySuccess,
+    scheduleMonthly
+  }),
+  scheduleMonthlyFail: errorMessage => ({
+    type: Types.ScheduleMonthlyFail,
+    errorMessage
+  }),
+  // 출퇴근
   scheduleEnter: index => ({ type: Types.ScheduleEnter, index }),
   scheduleEnterSuccess: enter => ({
     type: Types.ScheduleEnterSuccess,
@@ -39,6 +57,7 @@ const INITIAL_STATE = {
     profileImage: null,
     scheduleInfo: {}
   },
+  scheduleMonthly: null,
   errorMessage: null
 };
 
@@ -50,7 +69,11 @@ const reducer = createReducer(INITIAL_STATE, {
   [Types.ScheduleEnterSuccess]: (state, action) =>
     (state.date.scheduleInfo = action.enter),
   [Types.ScheduleEndSuccess]: (state, action) =>
-    (state.date.scheduleInfo = action.end)
+    (state.date.scheduleInfo = action.end),
+  [Types.ScheduleMonthlySuccess]: (state, action) =>
+    (state.scheduleMonthly = action.scheduleMonthly),
+  [Types.ScheduleMonthlyFail]: (state, action) =>
+    (state.errorMessage = action.errorMessage)
 });
 
 export default reducer;

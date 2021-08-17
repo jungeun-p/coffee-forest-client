@@ -30,7 +30,7 @@ const SaveWorkPlan = ({ weekend }) => {
     let schedule = {
       companyIndex: companyIndex,
       userIndex: userIndex,
-      title: '일정 등록 test',
+      title: '박지민 외부 미팅',
       date: event.date,
       startTime: event.startTime,
       endTime: event.endTime,
