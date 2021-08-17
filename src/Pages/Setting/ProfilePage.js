@@ -10,6 +10,7 @@ const ProfilePage = () => {
       <ProfileImage src={basicProfile} />
       <div className="name">{userData.name}</div>
       <div className="infos">
+        <div className="office">커피 포레스트</div>
         <div className="info">{userData.email}</div>
         <div className="info">
           {userData.position === 'ADMIN' ? '관리자' : '직원'}
@@ -31,11 +32,15 @@ const MainProfile = styled.div`
     margin: 20px 0 10px 0;
   }
   .infos {
+    color: #232323;
+    margin-top: 5px;
     .info {
-      color: #232323;
-      font-size: 12px;
-      margin-top: 5px;
       font-weight: 400;
+      font-size: 12px;
+    }
+    .office {
+      font-weight: 700;
+      font-size: 14px;
     }
   }
 `;
