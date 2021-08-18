@@ -1,25 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TitleB } from '../../Components/Common';
-import { InputCommon } from '../../Components/Input';
 import EmployeeListArticle from '../../Components/List/EmployeeListComponent';
 
-const ManageEmployeePage = ({ acceptance }) => {
+const ManageEmployeePage = ({
+  acceptance,
+  employeeList,
+  employee,
+  onChange
+}) => {
   return (
     <ListForm>
       <TitleB>사원 관리</TitleB>
-      <EmployeeListArticle
-        acceptance={acceptance}
-        name="김용휘"
-        phone="010-3333-3333"
-        email="a@naver.com"
-      />
-      <EmployeeListArticle
-        acceptance={acceptance}
-        name="김용휘"
-        phone="010-3333-3333"
-        email="a@naver.com"
-      />
+      {employeeList &&
+        employeeList.map((it, index) => (
+          <EmployeeListArticle
+            acceptance={acceptance}
+            key={index}
+            name={it.name}
+            email={it.email}
+            workStartTime={it?.workStartTime}
+            workEndTime={it?.workEndTime}
+            fullDayOffCount={it?.fullDayOffCount}
+            employee={employee}
+            onChange={onChange}
+          />
+        ))}
     </ListForm>
   );
 };
