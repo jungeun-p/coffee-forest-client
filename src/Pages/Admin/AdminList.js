@@ -8,7 +8,7 @@ const AdminList = ({ LoadDetail, dataList }) => {
         <div>
           {dataList.map((it, index) => (
             <ListArticle
-              onClick={() => LoadDetail(it.index)}
+              onSelect={() => LoadDetail(it.index)}
               key={it.index}
               name={it.userName}
               phone={it.phone}

@@ -7,11 +7,13 @@ import WorkData from '../../../Pages/Mypage/Weekly/Data/WorkData';
 import WorkLoad from '../../../Pages/Mypage/Weekly/Load/WorkLoad';
 import SaveWorkPlan from './SaveWorkPlan';
 import functionWeek from '../../../Hooks/addThisWeek';
+import waitingLogo from '../../../assets/Img/logo/waitingLogo.png';
 
 const WeeklyPlan = () => {
   const dispatch = useDispatch();
   const thisWeekDate = functionWeek();
   const { userIndex, companyIndex } = useSelector(state => state.user.userData);
+  const { userData } = useSelector(state => state.user);
   const weekend = useSelector(state => state.schedule.date);
   console.log(weekend);
 
@@ -29,20 +31,55 @@ const WeeklyPlan = () => {
     if (userIndex) {
       LoadSchedule();
     }
-  }, []);
+  }, [userData.workApplicantStatus]);
 
   return (
-    weekend && (
-      <WorkWeekly>
-        <WorkData weekend={weekend} />
-        <WorkList>
-          <WorkLoad weekend={weekend} />
-          <SaveWorkPlan weekend={weekend} />
-        </WorkList>
-      </WorkWeekly>
-    )
+    <div>
+      {weekend && (
+        <WorkWeekly>
+          <WorkData weekend={weekend} />
+          <WorkList>
+            <WorkLoad weekend={weekend} />
+            <SaveWorkPlan weekend={weekend} />
+          </WorkList>
+        </WorkWeekly>
+      )}
+      {(userData.workApplicantStatus === 'WAITING' ||
+        userData.companyApplicantStatus === 'WAIT') && (
+        <Preview>
+          <div className="loading">
+            <LoadingImg src={waitingLogo} />
+            수락 대기중...
+          </div>
+        </Preview>
+      )}
+    </div>
   );
 };
+
+const Preview = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  width: 100vw;
+  height: 100vh;
+  background: #00000026;
+  .loading {
+    font-size: 18px;
+    color: white;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(40vh);
+  }
+`;
+
+const LoadingImg = styled.img`
+  width: 150px;
+  margin-bottom: 10px;
+`;
 
 const WorkWeekly = styled.div`
   @media all and (min-width: 768px) {

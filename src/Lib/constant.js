@@ -2,7 +2,7 @@
 // export const URL = `http://192.168.60.104`; // yh GraalVm 서버
 // export const URL = `http://172.30.1.12`; // je GraalVM 서버
 
-export const URL = `http://192.168.20.248`; // 외부 서버
+export const URL = `http://172.16.100.230`; // 외부 서버
 
 export const LOCAL_HOST = `${URL}:80/`;
 
