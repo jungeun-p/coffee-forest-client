@@ -4,7 +4,6 @@ import { TitleB } from '../../../../Components/Common';
 import { WorkListArticle } from '../../../../Components/List';
 
 const WorkPlanList = ({ scheduleMonthly }) => {
-  console.log(scheduleMonthly);
   return (
     <WorkWrapperList>
       {/* 이번 달 중 오늘 스케줄 */}
