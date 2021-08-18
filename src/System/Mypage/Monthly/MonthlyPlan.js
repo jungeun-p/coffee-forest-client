@@ -4,13 +4,23 @@ import ThisMonthCalendar from '../../../Components/Calendar/ThisMonthCalendar';
 import LoadMonthlyPlan from './LoadMonthlyPlan';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as scheduleActions } from '../../../Store/schedule';
+import dayjs from 'dayjs';
 
 const MonthlyPlan = () => {
   const dispatch = useDispatch();
   const { userIndex, companyIndex } = useSelector(state => state.user.userData);
+  const now = dayjs();
 
   const LoadSchedule = day => {
+    const YearMonth = now.format('YYYY-MM');
+    const today = now.date();
     if (!day) {
+      const index = {
+        userIndex: userIndex,
+        companyIndex: companyIndex,
+        startDate: `${YearMonth}-${today < 10 ? '0' + today : today}`
+      };
+      dispatch(scheduleActions.scheduleMonthlyRequest(index));
     } else {
       const index = {
         userIndex: userIndex,
@@ -22,7 +32,7 @@ const MonthlyPlan = () => {
   };
   useEffect(() => {
     LoadSchedule();
-  }, []);
+  });
   return (
     <WorkMonthly>
       <ThisMonthCalendar LoadSchedule={LoadSchedule} />

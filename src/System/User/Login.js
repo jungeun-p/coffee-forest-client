@@ -40,9 +40,9 @@ const Login = () => {
         alert('로그인 성공');
         history.push('/mypage');
       } else if (userData.companyApplicantStatus === 'WAIT') {
-        history.push('/waiting');
+        history.push('/mypage');
       } else if (userData.workApplicantStatus === 'WAITING') {
-        history.push('/waiting');
+        history.push('/mypage');
       } else {
         alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
         history.push('/enroll');
