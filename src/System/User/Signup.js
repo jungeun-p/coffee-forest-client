@@ -20,7 +20,6 @@ const Signup = () => {
   const [full, setFull] = useState(false);
 
   const { validEmail } = useSelector(state => state.validation);
-  // const { signFail, signSuccess } = useSelector(state => state.user);
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -91,13 +90,7 @@ const Signup = () => {
   };
 
   useEffect(() => {
-    // ValidateEmail();
-    // console.log(`signFail:${signFail}, signSuccess:${signSuccess}`);
     inputFull();
-    // ValidateEmail();
-    // console.log(`Validemail:${validEmail}`);
-    // // console.log(`password: ${password}`);
-    // console.log(`email: ${email}`);
   }, [inputFull]);
 
   return (

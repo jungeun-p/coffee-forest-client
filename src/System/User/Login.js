@@ -15,6 +15,8 @@ const Login = () => {
   });
 
   const { userData, errorMessage } = useSelector(state => state.user);
+  const { enrollEmployee, enrollCompany } = useSelector(state => state.enroll);
+
   const onChange = e => {
     const { name, value } = e.target;
     setUser(state => ({ ...state, [name]: value }));
@@ -43,6 +45,11 @@ const Login = () => {
         history.push('/mypage');
       } else if (userData.workApplicantStatus === 'WAITING') {
         history.push('/mypage');
+      } else if (
+        enrollCompany.companyApplicantStatus === 'WAIT' ||
+        enrollEmployee.workStatus === 'WAITING'
+      ) {
+        history.push('/');
       } else {
         alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
         history.push('/enroll');
