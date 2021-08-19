@@ -27,9 +27,11 @@ const ManageEmployee = () => {
         companyIndex: companyIndex
       };
       dispatch(employeeActions.listEmployee(index));
-      console.log(employeeList);
+      // if (employeeList) {
+      //   setEmployee({ ...employee.employeeList, ...employeeList });
+      // }
     }
-  }, []);
+  }, [dispatch]);
 
   // 사원 정보 수정 api
   const acceptance = () => {};

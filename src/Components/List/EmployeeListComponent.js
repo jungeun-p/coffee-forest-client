@@ -146,7 +146,7 @@ const ManageForm = ({
           <InputCommon
             name="fullDayOffCount"
             onChange={onChange}
-            value={fullDayOffCount}
+            value={fullDayOffCount || employee?.fullDayOffCount}
             placeholder="연차 개수"
           />
         </div>
