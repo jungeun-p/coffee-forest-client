@@ -21,7 +21,6 @@ function enterApi(index) {
     .post(`${LOCAL_HOST}attendance`, index)
     .then(response => {
       const enter = response.data;
-      console.log(enter);
       return {
         enter
       };

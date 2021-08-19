@@ -39,9 +39,9 @@ const EditProfile = () => {
     setProfile({ ...profile, [name]: value });
   };
 
-  useEffect(() => {
-    console.log(userProfile, userData);
-  }, [userProfile]);
+  // useEffect(() => {
+  //   console.log(userProfile, userData);
+  // }, [userProfile]);
 
   return (
     <EditProfilePage

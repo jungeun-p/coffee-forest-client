@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ManageEmployeePage from '../../../Pages/Setting/ManageEmployeePage';
 import { actions as employeeActions } from '../../../Store/employee';
 
 const ManageEmployee = () => {
   const [employee, setEmployee] = useState({
-    flexibleState: false,
+    flexibleState: '',
     workStartTime: '',
     workEndTime: '',
     fullDayOffCount: ''
   });
-  const { companyIndex } = useSelector(state => state.user.userData);
   const dispatch = useDispatch();
-  const { employeeList } = useSelector(state => state.employee);
+  const { companyIndex, userIndex } = useSelector(state => state.user.userData);
+  const { employeeList, employeeInfo } = useSelector(state => state.employee);
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -27,19 +27,28 @@ const ManageEmployee = () => {
         companyIndex: companyIndex
       };
       dispatch(employeeActions.listEmployee(index));
-      // if (employeeList) {
-      //   setEmployee({ ...employee.employeeList, ...employeeList });
-      // }
     }
+    // setEmployee({ ...employee.employeeList, employeeList });
   }, [dispatch]);
-
+  console.log(employeeInfo, employee);
   // 사원 정보 수정 api
-  const acceptance = () => {};
+  const updateEmployee = useCallback(() => {
+    const employeeData = {
+      adminIndex: userIndex,
+      companyIndex: companyIndex,
+      userIndex: 4,
+      flexibleState: true,
+      workStartTime: employee.workStartTime,
+      workEndTime: employee.workEndTime,
+      fullDayOffCount: employee.fullDayOffCount
+    };
+    dispatch(employeeActions.updateEmployee(employeeData));
+  }, [dispatch]);
   return (
     <div>
       <ManageEmployeePage
         onChange={onChange}
-        acceptance={acceptance}
+        updateEmployee={updateEmployee}
         employee={employee}
         employeeList={employeeList}
       />

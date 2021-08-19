@@ -8,6 +8,7 @@ function employeeUpdateApi(employeeData) {
     .patch(`${LOCAL_HOST}works`, employeeData)
     .then(response => {
       const employeeInfo = response.data;
+      console.log(employeeInfo);
       return {
         employeeInfo
       };
