@@ -6,21 +6,32 @@ import ToggleUp from '../../assets/Icon/ToggleUp.png';
 import { InputCommon, InputTitleS } from '../Input';
 import { ButtonCommonS } from '../Button';
 
-const EmployeeListArticle = ({ acceptance, name, phone, email }) => {
+const EmployeeListArticle = ({
+  acceptance,
+  name,
+  email,
+  workStartTime,
+  workEndTime,
+  fullDayOffCount,
+  employee,
+  onChange
+}) => {
   const [view, setView] = useState(false);
   const onView = () => {
     setView(!view ? true : false);
   };
   return (
     <ListWrap>
-      <InformationWrap
-        onView={onView}
+      <InformationWrap onView={onView} view={view} name={name} email={email} />
+      <ManageForm
+        acceptance={acceptance}
         view={view}
-        name={name}
-        phone={phone}
-        email={email}
+        workStartTime={workStartTime}
+        workEndTime={workEndTime}
+        fullDayOffCount={fullDayOffCount}
+        employee={employee}
+        onChange={onChange}
       />
-      <ManageForm acceptance={acceptance} view={view} />
     </ListWrap>
   );
 };
@@ -33,7 +44,7 @@ const ListWrap = styled.div`
   margin-bottom: 20px;
 `;
 
-const InformationWrap = ({ onView, view, name, phone, email }) => {
+const InformationWrap = ({ onView, view, name, email }) => {
   return (
     <InformationBox>
       <Information>
@@ -41,7 +52,6 @@ const InformationWrap = ({ onView, view, name, phone, email }) => {
         <div className="profiledetail">
           <div className="name">{name}</div>
           <div className="info">
-            <div className="detail">{phone}</div>
             <div className="detail">{email}</div>
           </div>
         </div>
@@ -97,7 +107,15 @@ const Toggle = styled.img`
   /* src: url(${'ToggleDown'}); */
 `;
 
-const ManageForm = ({ view, acceptance }) => {
+const ManageForm = ({
+  view,
+  acceptance,
+  workStartTime,
+  workEndTime,
+  fullDayOffCount,
+  employee,
+  onChange
+}) => {
   return (
     <FormBox view={view}>
       <FlexibleForm>
@@ -106,17 +124,34 @@ const ManageForm = ({ view, acceptance }) => {
           <div>탄력근무제</div>
         </div>
         <div className="time">
-          <InputCommon width="123px" placeholder="출근 시간" />
-          <InputCommon width="123px" placeholder="퇴근 시간" />
+          <InputCommon
+            name="workStartTime"
+            onChange={onChange}
+            value={workStartTime}
+            width="123px"
+            placeholder="출근 시간"
+          />
+          <InputCommon
+            name="workEndTime"
+            onChange={onChange}
+            value={workEndTime}
+            width="123px"
+            placeholder="퇴근 시간"
+          />
         </div>
         <div className="title">
           <div>연차 지정</div>
         </div>
         <div className="form">
-          <InputCommon placeholder="시간 단위" />
+          <InputCommon
+            name="fullDayOffCount"
+            onChange={onChange}
+            value={fullDayOffCount || employee?.fullDayOffCount}
+            placeholder="연차 개수"
+          />
         </div>
         <div className="button">
-          <ButtonCommonS title="저장" />
+          <ButtonCommonS onClick={acceptance} title="저장" />
         </div>
       </FlexibleForm>
     </FormBox>
