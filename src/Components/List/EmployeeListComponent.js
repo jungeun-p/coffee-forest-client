@@ -7,7 +7,7 @@ import { InputCommon, InputTitleS } from '../Input';
 import { ButtonCommonS } from '../Button';
 
 const EmployeeListArticle = ({
-  acceptance,
+  updateEmployee,
   name,
   email,
   workStartTime,
@@ -24,7 +24,7 @@ const EmployeeListArticle = ({
     <ListWrap>
       <InformationWrap onView={onView} view={view} name={name} email={email} />
       <ManageForm
-        acceptance={acceptance}
+        updateEmployee={updateEmployee}
         view={view}
         workStartTime={workStartTime}
         workEndTime={workEndTime}
@@ -109,7 +109,7 @@ const Toggle = styled.img`
 
 const ManageForm = ({
   view,
-  acceptance,
+  updateEmployee,
   workStartTime,
   workEndTime,
   fullDayOffCount,
@@ -127,14 +127,14 @@ const ManageForm = ({
           <InputCommon
             name="workStartTime"
             onChange={onChange}
-            value={workStartTime}
+            value={employee.workStartTime}
             width="123px"
             placeholder="출근 시간"
           />
           <InputCommon
             name="workEndTime"
             onChange={onChange}
-            value={workEndTime}
+            value={employee.workEndTime}
             width="123px"
             placeholder="퇴근 시간"
           />
@@ -146,12 +146,12 @@ const ManageForm = ({
           <InputCommon
             name="fullDayOffCount"
             onChange={onChange}
-            value={fullDayOffCount || employee?.fullDayOffCount}
+            value={employee.fullDayOffCount}
             placeholder="연차 개수"
           />
         </div>
         <div className="button">
-          <ButtonCommonS onClick={acceptance} title="저장" />
+          <ButtonCommonS onClick={updateEmployee} title="저장" />
         </div>
       </FlexibleForm>
     </FormBox>

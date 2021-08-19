@@ -49,7 +49,7 @@ const INITIAL_STATE = {
   requestList: null,
   accpetStatus: null,
   employeeList: null,
-  employeeStatus: null,
+  employeeInfo: null,
   errorMessage: null
 };
 
@@ -64,7 +64,7 @@ const reducer = createReducer(INITIAL_STATE, {
   [Types.ListEmployeeSuccess]: (state, action) =>
     (state.employeeList = action.employeeList),
   [Types.UpdateEmployeeSuccess]: (state, action) =>
-    (state.employeeStatus = action.employeeInfo)
+    (state.employeeInfo = action.employeeInfo)
 });
 
 export default reducer;
