@@ -7,6 +7,7 @@ import { InputCommon, InputTitleS } from '../Input';
 import { ButtonCommonS } from '../Button';
 
 const EmployeeListArticle = ({
+  LoadDetail,
   updateEmployee,
   name,
   email,
@@ -21,7 +22,7 @@ const EmployeeListArticle = ({
     setView(!view ? true : false);
   };
   return (
-    <ListWrap>
+    <ListWrap onClick={LoadDetail}>
       <InformationWrap onView={onView} view={view} name={name} email={email} />
       <ManageForm
         updateEmployee={updateEmployee}

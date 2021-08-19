@@ -10,6 +10,7 @@ import Profile from '../Pages/User';
 import Setting from '../Pages/Setting';
 import Enroll from '../Pages/Enroll';
 import WaitingEnroll from '../Pages/Enroll/WaitingEnroll';
+import ManageEmployeeDetail from '../Pages/Setting/Manage/Employee/ManageEmployeeDetail';
 
 const MainRouter = () => {
   return (
@@ -50,6 +51,9 @@ const MainRouter = () => {
         </Route> */}
         <Route path="/mypage/manage">
           <Setting />
+        </Route>
+        <Route path="/mypage/manage/:index">
+          <ManageEmployeeDetail />
         </Route>
       </Switch>
     </BrowserRouter>

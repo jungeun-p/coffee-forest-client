@@ -1,22 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-import { TitleB } from '../../Components/Common';
-import EmployeeListArticle from '../../Components/List/EmployeeListComponent';
+import { TitleB } from '../../../../Components/Common';
+import EmployeeListArticle from '../../../../Components/List/EmployeeListComponent';
 
 const ManageEmployeePage = ({
+  LoadDetail,
   updateEmployee,
   employeeList,
   employee,
   onChange
 }) => {
+  console.log(employeeList);
   return (
     <ListForm>
       <TitleB>사원 관리</TitleB>
       {employeeList &&
         employeeList.map((it, index) => (
           <EmployeeListArticle
+            LoadDetail={() => LoadDetail(it.userIndex)}
             updateEmployee={updateEmployee}
-            key={index}
+            key={it.userIndex}
             name={it.name}
             email={it.email}
             // workStartTime={it?.workStartTime}

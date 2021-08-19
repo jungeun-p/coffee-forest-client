@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ManageEmployeePage from '../../../Pages/Setting/ManageEmployeePage';
+import { useHistory } from 'react-router-dom';
+import ManageEmployeePage from '../../../Pages/Setting/Manage/Employee/ManageEmployeePage';
 import { actions as employeeActions } from '../../../Store/employee';
 
 const ManageEmployee = () => {
@@ -11,6 +12,7 @@ const ManageEmployee = () => {
     fullDayOffCount: ''
   });
   const dispatch = useDispatch();
+  const history = useHistory();
   const { companyIndex, userIndex } = useSelector(state => state.user.userData);
   const { employeeList, employeeInfo } = useSelector(state => state.employee);
 
@@ -30,7 +32,14 @@ const ManageEmployee = () => {
     }
     // setEmployee({ ...employee.employeeList, employeeList });
   }, [dispatch]);
-  console.log(employeeInfo, employee);
+
+  // 사원 리스트 디테일
+  const LoadDetail = index => {
+    if (employeeList.map(item => item.userIndex === index)) {
+      history.push(`/manage/${index}`);
+    }
+  };
+
   // 사원 정보 수정 api
   const updateEmployee = useCallback(() => {
     const employeeData = {
@@ -44,10 +53,12 @@ const ManageEmployee = () => {
     };
     dispatch(employeeActions.updateEmployee(employeeData));
   }, [dispatch]);
+
   return (
     <div>
       <ManageEmployeePage
         onChange={onChange}
+        LoadDetail={LoadDetail}
         updateEmployee={updateEmployee}
         employee={employee}
         employeeList={employeeList}
