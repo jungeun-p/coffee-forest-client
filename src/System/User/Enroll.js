@@ -90,7 +90,7 @@ const Enroll = () => {
   const applyEmployee = useCallback(() => {
     if (office.name !== '') {
       const data = {
-        companyIndex: 2,
+        companyIndex: 1,
         userIndex: userIndex
       };
       dispatch(enrollActions.enrollRequestEmployee(data));

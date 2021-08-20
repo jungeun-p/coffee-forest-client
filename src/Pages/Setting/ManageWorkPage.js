@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
 import { TitleB } from '../../Components/Common';
 import { InputCommon, InputTitleS } from '../../Components/Input';
+import FormSelect from '../../Components/Select/FormSelect';
 
 const ManageWorkPage = ({ onChange, setting, UpdateCompany }) => {
   return (
@@ -50,23 +51,24 @@ const ManageWorkPage = ({ onChange, setting, UpdateCompany }) => {
             <InputTitleS title="탄력 근무제" />
           </div>
           <div className="line">
-            <InputCommon
+            <FormSelect />
+            {/* <InputCommon
               width="half"
               name="flexibleWorkStartTime"
               value={setting?.flexibleWorkStartTime}
               onChange={onChange}
               placeholder="출근 선택 시작 시간"
-            />
-            <InputCommon
+            /> */}
+            {/* <InputCommon
               width="half"
               name="flexibleWorkEndTime"
               value={setting?.flexibleWorkEndTime}
               onChange={onChange}
               placeholder="퇴근 선택 마감 시간"
-            />
+            /> */}
           </div>
         </div>
-        <div className="article">
+        {/* <div className="article">
           <InputTitleS title="연차 지정" />
           <div className="line">
             <InputCommon
@@ -84,7 +86,7 @@ const ManageWorkPage = ({ onChange, setting, UpdateCompany }) => {
               placeholder="입사 기준 1년 미만"
             />
           </div>
-        </div>
+        </div> */}
         <div className="article">
           <InputTitleS title="반차 지정" />
           <div className="line">
@@ -146,7 +148,26 @@ const WorkInformation = styled.div`
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      .selectBox {
+        width: 40vw;
+        margin-top: 15px;
+        -webkit-appearance: none; /* for chrome */
+        -moz-appearance: none; /*for firefox*/
+        appearance: none;
+        border-radius: 10px;
+        height: 60px;
+        padding: 10px 10px;
+        background-color: #f8faed;
+        border: none;
+        font-size: 10px;
+        color: black;
+      }
+      .selectBox::-ms-expand {
+        display: none; /*for IE10,11*/
+      }
     }
+  }
+  .article.flexible {
   }
 `;
 
