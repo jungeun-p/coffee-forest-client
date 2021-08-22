@@ -7,3 +7,13 @@ body {
   font-family: 'appleM';
   src: url('./assets/Fonts/AppleSDGothicNeoM.ttf') foramt('truetype');
 }
+
+@font-face {
+  font-family: 'appleB';
+  src: url('./assets/Fonts/AppleSDGothicNeoB.ttf') foramt('truetype');
+}
+
+@font-face {
+  font-family: 'appleEB';
+  src: url('./assets/Fonts/AppleSDGothicNeoEB.ttf') foramt('truetype');
+}

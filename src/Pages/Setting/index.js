@@ -51,7 +51,7 @@ const SettingWrapper = styled.div`
     width: 100%;
     .page {
       margin: 0 0 0 60px;
-      /* width: 320px; */
+      /* width: 100%; */
     }
   }
 `;

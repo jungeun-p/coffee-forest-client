@@ -53,29 +53,36 @@ const FormSelect = () => {
 };
 
 const SelectForm = styled.div`
-  position: absolute;
-  width: 30vw;
-  z-index: 2;
+  width: 20vw;
   border-radius: 10px;
   background-color: #f8faed;
-  padding: 12px 12px 12px 12px;
+  padding: 12px 0px 12px 12px;
+  top: 20px;
+  margin-top: 15px;
   .default {
-    font-size: 14px;
+    font-size: 10px;
     color: #1ca953;
-    font-weight: 700;
+    font-weight: 600;
   }
   .value {
+    font-size: 14px;
     line-height: 25px;
-    font-weight: 700;
+    font-weight: 600;
   }
 `;
 
 const Select = styled.div`
-  display: ${props => (props.view ? '' : 'none')};
+  display: ${props => (props.view ? 'block' : 'none')};
   background-color: #f8faed;
   font-weight: 700;
+  max-height: 80px;
+  overflow-y: scroll;
+  -webkit-font-smoothing: antialiased;
   .selectList {
-    padding-top: 20px;
+    padding: 10px 0px;
+    font-size: 14px;
+    /* position: fixed;
+    z-index: 5; */
   }
 `;
 
