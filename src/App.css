@@ -5,5 +5,5 @@ body {
 
 @font-face {
   font-family: 'appleM';
-  src: url('./assets/Fonts/AppleSDGothicNeoM.ttf');
+  src: url('./assets/Fonts/AppleSDGothicNeoM.ttf') foramt('truetype');
 }

@@ -1,7 +1,7 @@
-import "./App.css";
-import React from "react";
+import './App.css';
+import React from 'react';
 // import { applyMiddleware, createStore } from "redux";
-import MainRouter from "./Routes/MainRouter";
+import MainRouter from './Routes/MainRouter';
 
 // const printLog = (store) => (next) => (action) => {
 //   console.log(`prev state = ${JSON.stringify(store.getState())}`);
