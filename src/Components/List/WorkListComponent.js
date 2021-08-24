@@ -56,7 +56,7 @@ const WorkTitle = ({ view, onView, titleType, title, date, time }) => {
               ? '#1ca953'
               : titleType === 'OUTSIDE'
               ? '#5EB1FE'
-              : titleType === 'MEETING'
+              : titleType === 'CONFERENCE'
               ? '#fedf5e'
               : '#FE5E5E'
           }
@@ -65,7 +65,7 @@ const WorkTitle = ({ view, onView, titleType, title, date, time }) => {
             ? '근무'
             : titleType === 'OUTSIDE'
             ? '외근'
-            : titleType === 'MEETING'
+            : titleType === 'CONFERENCE'
             ? '회의'
             : '휴가'}
         </WorkType>

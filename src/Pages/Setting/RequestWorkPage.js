@@ -21,7 +21,7 @@ const RequestWork = ({ workList, onReject, onAccept }) => {
           />
         ))}
       <WorkListArticle
-        titleType="MEETING"
+        titleType="CONFERENCE"
         title="개발자 코드리뷰"
         date="06. 08"
         time="오전 9 : 30 ~ 오전 11 : 30"

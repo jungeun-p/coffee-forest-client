@@ -129,7 +129,7 @@ const PlanArticle = ({ title, startTime, endTime }) => {
             ? '#1ca953'
             : title === 'OUTSIDE'
             ? '#5EB1FE'
-            : title === 'MEETING'
+            : title === 'CONFERENCE'
             ? '#fedf5e'
             : '#FE5E5E'
         }
@@ -139,7 +139,7 @@ const PlanArticle = ({ title, startTime, endTime }) => {
             ? '근무'
             : title === 'OUTSIDE'
             ? '외근'
-            : title === 'MEETING'
+            : title === 'CONFERENCE'
             ? '회의'
             : '휴가'}
         </div>
@@ -162,11 +162,13 @@ const PlanTitleBox = styled.div`
   background-color: ${props => props.title};
   border-radius: 5px;
   margin-right: 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   .title {
-    text-align: center;
     font-weight: 600;
     font-size: 12px;
-    line-height: 18px;
     color: #ffffff;
   }
 `;
