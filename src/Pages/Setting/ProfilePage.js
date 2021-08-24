@@ -10,7 +10,7 @@ const ProfilePage = () => {
       <ProfileImage src={basicProfile} />
       <div className="name">{userData.name}</div>
       <div className="infos">
-        <div className="office">커피 포레스트</div>
+        <div className="office">{userData.companyName}</div>
         <div className="info">{userData.email}</div>
         <div className="info">
           {userData.position === 'ADMIN' ? '관리자' : '직원'}

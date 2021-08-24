@@ -1,7 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { ButtonCommon, ButtonCommonH } from '../../Components/Button';
+import {
+  ButtonCommon,
+  ButtonCommonH,
+  ButtonCommonS
+} from '../../Components/Button';
 import { TitleB } from '../../Components/Common';
 import { InputCommon, InputTitleS } from '../../Components/Input';
 
@@ -19,13 +23,16 @@ const EditProfilePage = ({ profile, onChange, SaveProfile }) => {
           value={profile.name}
           placeholder="이름"
         />
-        <InputCommon
-          onChange={onChange}
-          name="password"
-          value={profile.password}
-          placeholder="비밀번호"
-          type="password"
-        />
+        <PasswordUpdate>
+          <InputCommon
+            onChange={onChange}
+            name="password"
+            value={profile.password}
+            placeholder="비밀번호"
+            type="password"
+          />
+          <ButtonCommonH title="수정" />
+        </PasswordUpdate>
         <InputCommon
           onChange={onChange}
           name="phone"
@@ -55,6 +62,11 @@ const ProfileForm = styled.div`
 
 const ProfileInformation = styled.div`
   margin-bottom: 40px;
+`;
+
+const PasswordUpdate = styled.div`
+  display: flex;
+  flex-direction: row;
 `;
 
 export default EditProfilePage;
