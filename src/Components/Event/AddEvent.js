@@ -10,8 +10,8 @@ const AddEvent = ({ view, event, onChange, sendSchedule }) => {
         <select className="selectBox" name="scheduleType" onChange={onChange}>
           <option value="">유형 선택</option>
           <option value="OUTSIDE">외근 💼</option>
-          <option value="MEETING">회의 ✍</option>
-          <option value="VACATION">연차 ⛱</option>
+          <option value="CONFERENCE">회의 ✍</option>
+          <option value="HOLIDAY">연차 ⛱</option>
         </select>
         <div className="date">
           <InputSmall
