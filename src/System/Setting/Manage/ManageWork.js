@@ -1,29 +1,37 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ManageWorkPage from '../../../Pages/Setting/ManageWorkPage';
 import { actions as companyActions } from '../../../Store/company';
 
 const ManageWork = () => {
-  const [setting, setSetting] = useState({
-    workStartTime: '',
-    workEndTime: '',
-    lunchStartTime: '',
-    lunchEndTime: '',
-    flexibleState: '',
-    flexibleWorkStartTime: '',
-    flexibleWorkEndTime: '',
-    fullDayOffUpperYear: '',
-    fullDayOffUnderyear: '',
-    morningDayOffStartTime: '',
-    morningDayOffEndTime: '',
-    afternoonDayOffStartTime: '',
-    afternoonDayOffEndTime: ''
-  });
-
-  const dispatch = useDispatch();
   const { companyIndex, userIndex } = useSelector(state => state.user.userData);
   const { companyEnvironment } = useSelector(state => state.company);
-  console.log(companyEnvironment);
+  const dispatch = useDispatch();
+
+  const LoadCompanySetting = useCallback(() => {
+    dispatch(companyActions.requestCompany(companyIndex));
+  }, [companyIndex, dispatch]);
+
+  useEffect(() => {
+    LoadCompanySetting();
+  }, [LoadCompanySetting]);
+
+  const [setting, setSetting] = useState({
+    workStartTime: companyEnvironment?.workStartTime,
+    workEndTime: companyEnvironment?.workEndTime,
+    lunchStartTime: companyEnvironment?.lunchStartTime,
+    lunchEndTime: companyEnvironment?.lunchEndTime,
+    flexibleState: companyEnvironment?.flexibleState,
+    flexibleWorkStartTime: companyEnvironment?.flexibleWorkStartTime,
+    flexibleWorkEndTime: companyEnvironment?.flexibleWorkEndTime,
+    fullDayOffUpperYear: companyEnvironment?.fullDayOffUpperYear,
+    fullDayOffUnderYear: companyEnvironment?.fullDayOffUnderYear,
+    morningDayOffStartTime: companyEnvironment?.morningDayOffStartTime,
+    morningDayOffEndTime: companyEnvironment?.morningDayOffEndTime,
+    afternoonDayOffStartTime: companyEnvironment?.afternoonDayOffStartTime,
+    afternoonDayOffEndTime: companyEnvironment?.afternoonDayOffEndTime
+  });
+  console.log(setting);
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -41,7 +49,7 @@ const ManageWork = () => {
       flexibleWorkStartTime: setting.flexibleWorkStartTime,
       flexibleWorkEndTime: setting.flexibleWorkEndTime,
       fullDayOffUpperYear: setting.fullDayOffUpperYear,
-      fullDayOffUnderyear: setting.fullDayOffUnderyear,
+      fullDayOffUnderYear: setting.fullDayOffUnderYear,
       morningDayOffStartTime: setting.morningDayOffStartTime,
       morningDayOffEndTime: setting.morningDayOffEndTime,
       afternoonDayOffStartTime: setting.afternoonDayOffStartTime,
