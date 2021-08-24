@@ -13,104 +13,93 @@ const ManageWorkPage = ({ onChange, setting, UpdateCompany }) => {
         <div className="article">
           <InputTitleS title="근무 시간 지정" />
           <div className="line">
-            <FormSelect />
-            <FormSelect />
-          </div>
-          <div className="line">
-            <FormSelect />
-            <FormSelect />
-          </div>
-          <div className="line">
-            {/* <InputCommon
+            <InputCommon
               width="half"
               name="workStartTime"
-              value={setting?.workStartTime}
+              value={setting.workStartTime}
               onChange={onChange}
               placeholder="출근 시간"
-            /> */}
-            {/* <InputCommon
+            />
+            <InputCommon
               width="half"
               name="workEndTime"
-              value={setting?.workEndTime}
+              value={setting.workEndTime}
               onChange={onChange}
               placeholder="퇴근 시간"
-            /> */}
+            />
           </div>
-          {/* <div className="line">
+          <div className="line">
             <InputCommon
               width="half"
               name="lunchStartTime"
-              value={setting?.lunchStartTime}
+              value={setting.lunchStartTime}
               onChange={onChange}
               placeholder="점심 시작 시간"
             />
             <InputCommon
               width="half"
               name="lunchEndTime"
-              value={setting?.lunchEndTime}
+              value={setting.lunchEndTime}
               onChange={onChange}
               placeholder="점심 마감 시간"
             />
-          </div> */}
+          </div>
         </div>
-        {/* <div className="article flexible">
+        <div className="article flexible">
           <div className="title">
             <input type="checkbox" />
             <InputTitleS title="탄력 근무제" />
           </div>
           <div className="line">
-            <FormSelect />
             <InputCommon
               width="half"
               name="flexibleWorkStartTime"
-              value={setting?.flexibleWorkStartTime}
+              value={setting.flexibleWorkStartTime}
               onChange={onChange}
               placeholder="출근 선택 시작 시간"
             />
             <InputCommon
               width="half"
               name="flexibleWorkEndTime"
-              value={setting?.flexibleWorkEndTime}
+              value={setting.flexibleWorkEndTime}
               onChange={onChange}
               placeholder="퇴근 선택 마감 시간"
             />
           </div>
-        </div> */}
+        </div>
         <div className="article">
           <InputTitleS title="연차 지정" />
           <div className="line">
-            {/* <InputCommon
+            <InputCommon
               width="half"
               name="fullDayOffUpperYear"
-              value={setting?.fullDayOffUpperYear}
+              value={setting.fullDayOffUpperYear}
               onChange={onChange}
               placeholder="입사 기준 1년 이상"
             />
             <InputCommon
               width="half"
-              name="fullDayOffUnderyear"
-              value={setting?.fullDayOffUnderyear}
+              name="fullDayOffUnderYear"
+              value={setting.fullDayOffUnderYear}
               onChange={onChange}
               placeholder="입사 기준 1년 미만"
-            /> */}
-            <FormSelect />
-            <FormSelect />
+            />
           </div>
         </div>
-        {/* <div className="article">
+        <div className="article">
           <InputTitleS title="반차 지정" />
           <div className="line">
             <InputCommon
               width="half"
               name="morningDayOffStartTime"
-              value={setting?.morningDayOffStartTime}
+              value={setting.morningDayOffStartTime}
               onChange={onChange}
               placeholder="오전 반차 시작 시간"
             />
             <InputCommon
               width="half"
               name="morningDayOffEndTime"
-              value={setting?.morningDayOffEndTime}
+              value={setting.morningDayOffEndTime}
               onChange={onChange}
               placeholder="오전 반차 마감 시간"
             />
@@ -119,19 +108,19 @@ const ManageWorkPage = ({ onChange, setting, UpdateCompany }) => {
             <InputCommon
               width="half"
               name="afternoonDayOffStartTime"
-              value={setting?.afternoonDayOffStartTime}
+              value={setting.afternoonDayOffStartTime}
               onChange={onChange}
               placeholder="오후 반차 시작 시간"
             />
             <InputCommon
               width="half"
               name="afternoonDayOffEndTime"
-              value={setting?.afternoonDayOffEndTime}
+              value={setting.afternoonDayOffEndTime}
               onChange={onChange}
               placeholder="오후 반차 마감 시간"
             />
           </div>
-        </div> */}
+        </div>
       </WorkInformation>
       <ButtonCommon onClick={UpdateCompany} title="저장하기" />
     </SettingForm>
