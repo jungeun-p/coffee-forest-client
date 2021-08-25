@@ -7,10 +7,10 @@ const EditProfile = () => {
   const dispatch = useDispatch();
   const { userProfile } = useSelector(state => state.user);
   const [profile, setProfile] = useState({
-    name: userProfile.name,
+    name: userProfile?.name,
     password: '',
-    phone: userProfile.phone,
-    address: userProfile.address
+    phone: userProfile?.phone,
+    address: userProfile?.address
   });
 
   const SaveProfile = () => {
