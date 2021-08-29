@@ -15,7 +15,6 @@ function signApi(data) {
       };
     })
     .catch(error => {
-      console.log(error.response.data);
       const errorMessage = error.response.data.message;
       return { errorMessage };
     });
@@ -38,7 +37,6 @@ function loginApi(data) {
     })
     .catch(error => {
       const errorMessage = error.response.data.message;
-      console.log(error.response.data);
       return { errorMessage };
     });
 }

@@ -1,29 +1,33 @@
 import React from 'react';
 import styled from 'styled-components';
-import functionWeek from '../../../../Hooks/addThisWeek';
+import AddThisWeek from '../../../../Hooks/addThisWeek';
+import dayjs from 'dayjs';
+
 const WorkDateInfo = () => {
-  const thisWeekDate = functionWeek();
-  const thisYear = thisWeekDate[0].slice(0, 4);
-  const thisMonth = thisWeekDate[0].slice(5, 7);
-  const thisDateStart = thisWeekDate[0].slice(8, 11);
-  const thisDateLast = thisWeekDate[4].slice(8, 11);
+  const thisWeekDate = AddThisWeek();
+  const now = dayjs();
+  const thisYear = now.year();
+  const thisMonth = now.month() + 1;
+  const thisDateStart = thisWeekDate[0].date;
+  const thisDateLast = thisWeekDate[4].date;
   return (
-    <>
-      <MainDate>
-        <Month>
-          <div>{thisMonth} 월</div>
-        </Month>
-        <DividedBar />
-        <Dates>
-          <Year>
-            <div>{thisYear} 년</div>
-          </Year>
-          <WeekendNumber>
-            <div>{`${thisMonth}. ${thisDateStart} ~ ${thisMonth}. ${thisDateLast}`}</div>
-          </WeekendNumber>
-        </Dates>
-      </MainDate>
-    </>
+    <MainDate>
+      <Month>
+        <div>{thisMonth < 10 ? '0' + thisMonth : thisMonth} 월</div>
+      </Month>
+      <DividedBar />
+      <Dates>
+        <Year>
+          <div>{thisYear} 년</div>
+        </Year>
+        <WeekendNumber>
+          <div>{`${thisDateStart.slice(5, 7)}. ${thisDateStart.slice(
+            8,
+            11
+          )} ~ ${thisDateLast.slice(5, 7)}. ${thisDateLast.slice(8, 11)}`}</div>
+        </WeekendNumber>
+      </Dates>
+    </MainDate>
   );
 };
 
