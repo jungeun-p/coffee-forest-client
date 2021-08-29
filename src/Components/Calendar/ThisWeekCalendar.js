@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import AddEvent from '../Event';
-import functionWeek from '../../Hooks/addThisWeek';
+import AddThisWeek from '../../Hooks/addThisWeek';
 
 const ThisWeekCalendar = ({ weekend, sendSchedule, onChange, event }) => {
   // 기존 달력 날짜
-  const thisWeekDate = functionWeek();
+  const thisWeekDate = AddThisWeek();
   const schedulePlan = weekend?.scheduleInfo;
   return (
     <>
       {schedulePlan &&
         thisWeekDate.map((day, index) => (
           <PlanDate
-            day={day}
+            day={day.date}
             key={index}
-            schedulePlan={schedulePlan[day]}
+            schedulePlan={schedulePlan[day.date]}
             sendSchedule={sendSchedule}
             onChange={onChange}
             event={event}

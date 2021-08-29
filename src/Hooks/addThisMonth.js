@@ -1,12 +1,15 @@
 import dayjs from 'dayjs';
+import weekday from 'dayjs/plugin/weekday';
+import isoWeek from 'dayjs/plugin/isoWeek';
+import weekOfYear from 'dayjs/plugin/weekOfYear';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const AddThisMonth = ({ LoadSchedule }) => {
   // day
-  const weekday = require('dayjs/plugin/weekday');
-  const isoWeek = require('dayjs/plugin/isoWeek');
-  const weekOfYear = require('dayjs/plugin/weekOfYear');
+  // const weekday = require('dayjs/plugin/weekday');
+  // const isoWeek = require('dayjs/plugin/isoWeek');
+  // const weekOfYear = require('dayjs/plugin/weekOfYear');
 
   // day extend
   dayjs.extend(weekday);

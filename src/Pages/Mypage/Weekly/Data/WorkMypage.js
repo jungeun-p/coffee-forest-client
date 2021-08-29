@@ -23,14 +23,14 @@ const MainProfile = styled.div`
   display: flex;
   flex-direction: row;
   .Info {
-    visibility: hidden;
+    /* visibility: hidden; */
     margin-right: 10px;
     text-align: right;
     font-size: 12px;
     font-weight: 700;
-    @media all and (min-width: 768px) {
+    /* @media all and (min-width: 768px) {
       visibility: visible;
-    }
+    } */
     .Name {
       font-size: 14px;
     }
