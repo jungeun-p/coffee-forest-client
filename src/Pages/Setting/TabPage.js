@@ -14,13 +14,13 @@ const TabPage = () => {
   return (
     <BrowserRouter>
       <SettingWrap>
-        <div className="profile">
+        {/* <div className="profile">
           <div className="info">
             <TitleB>내 정보</TitleB>
             <ProfilePage />
             <TabMenu />
           </div>
-        </div>
+        </div> */}
         <div className="page">
           <Route path="/mypage/manage/edit" component={EditProfile} />
           <Route path="/mypage/manage/setting" component={ManageWork} />
