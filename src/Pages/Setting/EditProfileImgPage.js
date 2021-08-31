@@ -4,12 +4,18 @@ import { TitleB } from '../../Components/Common';
 import basicProfile from '../../assets/Img/profile/basicProfile.png';
 import { ButtonCommon } from '../../Components/Button';
 
-const EditProfileImg = () => {
+const EditProfileImgPage = ({ img, onChange }) => {
   return (
     <ImgForm>
       <TitleB>프로필 사진 변경</TitleB>
       <EditForm>
-        <ProfileImage src={basicProfile} />
+        <ProfileImage src={img.previewURL || basicProfile} />
+        <input
+          type="file"
+          accept="image/jpg,impge/png,image/jpeg,image/gif"
+          name="profile_img"
+          onChange={onChange}
+        />
       </EditForm>
       <ButtonCommon title="변경하기" />
     </ImgForm>
@@ -23,6 +29,7 @@ const ImgForm = styled.div`
     width: 320px;
   }
 `;
+
 const ProfileImage = styled.img`
   display: flex;
   flex-direction: column;
@@ -30,6 +37,8 @@ const ProfileImage = styled.img`
   align-items: center;
   width: 100px;
   height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
 `;
 
 const EditForm = styled.div`
@@ -40,4 +49,4 @@ const EditForm = styled.div`
   margin-bottom: 40px;
 `;
 
-export default EditProfileImg;
+export default EditProfileImgPage;

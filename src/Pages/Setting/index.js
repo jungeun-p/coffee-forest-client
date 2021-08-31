@@ -9,8 +9,8 @@ import RequestWork from '../../System/Setting/Request/RequestWork';
 import ManageEmployee from '../../System/Setting/Manage/ManageEmployee';
 import EditProfile from '../../System/Setting/Edit/EditProfile';
 import { BrowserRouter, Route } from 'react-router-dom';
-import TabPage from './TabPage';
-import EditProfileImg from './EditProfileImg';
+// import TabPage from './TabPage';
+import EditProfileImg from '../../System/Setting/Edit/EditProfileImg';
 
 const SettingContainer = () => {
   return (
@@ -26,7 +26,7 @@ const SettingContainer = () => {
         <div className="page">
           {/* <TabPage /> */}
           {/* <EditProfile /> */}
-          <Route exact path="/mypage/manage" component={EditProfile} />
+          {/* <Route exact path="/mypage/manage" component={EditProfile} /> */}
           <Route path="/mypage/manage/edit" component={EditProfile} />
           <Route path="/mypage/manage/setting" component={ManageWork} />
           <Route path="/mypage/manage/employee" component={ManageEmployee} />
