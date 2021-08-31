@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import basicProfile from '../../assets/Img/profile/basicProfile.png';
 
@@ -7,7 +8,9 @@ const ProfilePage = () => {
   const { userData } = useSelector(state => state.user);
   return (
     <MainProfile>
-      <ProfileImage src={basicProfile} />
+      <Cateogry to="/mypage/manage/profileImg">
+        <ProfileImage src={basicProfile} />
+      </Cateogry>
       <div className="name">{userData.name}</div>
       <div className="infos">
         <div className="office">{userData.companyName}</div>
@@ -44,6 +47,8 @@ const MainProfile = styled.div`
     }
   }
 `;
+
+const Cateogry = styled(Link)``;
 const ProfileImage = styled.img`
   width: 100px;
   height: 100px;
