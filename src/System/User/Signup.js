@@ -83,7 +83,8 @@ const Signup = () => {
       // redux-saga로 dispatch(action, data) 전달
       dispatch(userActions.signRequest(data));
       alert('회원 가입 성공!');
-      history.push('/');
+      // history.push('/');
+      window.location.replace('/');
     } else {
       alert('제대로 작성해주세요');
     }

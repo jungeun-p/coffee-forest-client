@@ -36,10 +36,12 @@ const Login = () => {
 
   useEffect(() => {
     if (userData.userIndex) {
-      if (user.email === 'admin@naver.com') {
+      if (
+        user.email === 'admin@naver.com' ||
+        userData.email === 'admin@naver.com'
+      ) {
         history.push('/admin');
       } else if (userData.companyIndex !== 0) {
-        alert('로그인 성공');
         history.push('/mypage');
       } else if (userData.companyApplicantStatus === 'WAIT') {
         history.push('/mypage');
@@ -49,7 +51,7 @@ const Login = () => {
         enrollCompany.companyApplicantStatus === 'WAIT' ||
         enrollEmployee.workStatus === 'WAITING'
       ) {
-        history.push('/');
+        window.location.replace('/');
       } else {
         alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
         history.push('/enroll');
