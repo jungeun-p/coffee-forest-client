@@ -9,7 +9,7 @@ const ProfilePage = () => {
   return (
     <MainProfile>
       <Cateogry to="/mypage/manage/profileImg">
-        <ProfileImage src={basicProfile} />
+        <ProfileImage src={userData.profileImage || basicProfile} />
       </Cateogry>
       <div className="name">{userData.name}</div>
       <div className="infos">
@@ -52,6 +52,8 @@ const Cateogry = styled(Link)``;
 const ProfileImage = styled.img`
   width: 100px;
   height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
 `;
 
 const DivideLine = styled.div`

@@ -16,14 +16,13 @@ const WeeklyPlan = () => {
   const { userData } = useSelector(state => state.user);
   const weekend = useSelector(state => state.schedule.date);
   console.log(weekend);
-  // console.log(weekend);
 
   // 주간 일정 리스트 api
   const LoadSchedule = useCallback(() => {
     const index = {
       userIndex: userIndex,
       companyIndex: companyIndex,
-      startDate: '2021-08-29'
+      startDate: '2021-09-05'
     };
     dispatch(scheduleActions.scheduleInfoRequest(index));
   }, [dispatch]);

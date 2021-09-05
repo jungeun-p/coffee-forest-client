@@ -4,12 +4,12 @@ import { TitleB } from '../../Components/Common';
 import basicProfile from '../../assets/Img/profile/basicProfile.png';
 import { ButtonCommon } from '../../Components/Button';
 
-const EditProfileImgPage = ({ img, onChange, UploadImg }) => {
+const EditProfileImgPage = ({ profileImage, img, onChange, UploadImg }) => {
   return (
     <ImgForm>
       <TitleB>프로필 사진 변경</TitleB>
       <EditForm>
-        <ProfileImage src={img.previewURL || basicProfile} />
+        <ProfileImage src={img.previewURL || profileImage || basicProfile} />
         <input
           type="file"
           accept="image/jpg,impge/png,image/jpeg,image/gif"

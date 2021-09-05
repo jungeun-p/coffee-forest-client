@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 import { useLocation, Link } from 'react-router-dom';
 import { categories } from '../../Lib/CategoryNavName';
 import mainLogo from '../../assets/Img/logo/mainLogo.png';
+import { useSelector } from 'react-redux';
 // import basicProfile from '../../assets/Img/profile/basicProfile.png';
 
 const HeaderNav = () => {

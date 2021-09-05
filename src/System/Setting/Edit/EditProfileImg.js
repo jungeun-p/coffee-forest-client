@@ -6,10 +6,12 @@ import { actions as userActions } from '../../../Store/user';
 const EditProfileImg = () => {
   const dispatch = useDispatch();
   const { userData } = useSelector(state => state.user);
+  const profileImage = userData.profileImage;
   const [img, setImg] = useState({
     file: '',
     previewURL: ''
   });
+
   const onChange = e => {
     let reader = new FileReader();
     let file = e.target.files[0];
@@ -24,18 +26,28 @@ const EditProfileImg = () => {
 
   const UploadImg = () => {
     const formData = new FormData();
-    // formData.append('profileImageUpdateRequest', '');
-    // formData.append('profileImageUpdateRequest'.deleteIndexList, [0]);
-    // formData.append('profileImages', img.file.name);
-    formData.append('profileImageUpdateRequest', {
-      userIndex: 1,
-      deleteIndexList: [0]
-    });
+    const request = {
+      userIndex: userData.userIndex,
+      deleteIndexList: [1]
+    };
+    formData.append('profileImageUpdateRequest', JSON.stringify(request));
     formData.append('profileImages', img.file);
+
+    // for (let key of formData.keys()) {
+    //   console.log(`1:${key}`);
+    // }
+    // for (let value of formData.values()) {
+    //   console.log(`2:${value}`);
+    // }
     dispatch(userActions.editProfileImg(formData));
   };
   return (
-    <EditProfileImgPage img={img} onChange={onChange} UploadImg={UploadImg} />
+    <EditProfileImgPage
+      profileImage={profileImage}
+      img={img}
+      onChange={onChange}
+      UploadImg={UploadImg}
+    />
   );
 };
 

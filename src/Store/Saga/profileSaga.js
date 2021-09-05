@@ -4,9 +4,12 @@ import { LOCAL_HOST } from '../../Lib/constant';
 import { actions, Types } from '../user';
 
 function uploadProfileImg(formData) {
-  console.log(formData);
   return axios
-    .put(`${LOCAL_HOST}users`, formData)
+    .put(`${LOCAL_HOST}users`, formData, {
+      headers: {
+        'Content-Type': `multipart/form-data`
+      }
+    })
     .then(response => {
       const uploadedPathList = response.data;
       console.log(uploadedPathList);

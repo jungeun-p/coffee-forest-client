@@ -14,7 +14,7 @@ const WorkMypage = ({ weekend }) => {
           {position === 'ADMIN' ? '관리자' : '직원'}
         </div>
       </div>
-      <Logo src={mainLogo} />
+      <Logo src={weekend.profileImage || mainLogo} />
     </MainProfile>
   );
 };
@@ -44,6 +44,9 @@ const MainProfile = styled.div`
 
 const Logo = styled.img`
   height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  object-fit: cover;
 `;
 
 export default WorkMypage;
