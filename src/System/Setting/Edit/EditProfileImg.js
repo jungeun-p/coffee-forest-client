@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EditProfileImgPage from '../../../Pages/Setting/EditProfileImgPage';
+import { actions as userActions } from '../../../Store/user';
 
 const EditProfileImg = () => {
   const dispatch = useDispatch();
@@ -9,7 +10,6 @@ const EditProfileImg = () => {
     file: '',
     previewURL: ''
   });
-
   const onChange = e => {
     let reader = new FileReader();
     let file = e.target.files[0];
@@ -23,15 +23,16 @@ const EditProfileImg = () => {
   };
 
   const UploadImg = () => {
-    const imgData = {
-      profileImageUpdateRequest: {
-        userIndex: userData.userIndex,
-        deleteIndexList: [1] // 삭제할 이미지가 있을 경우
-      },
-      profileImages: {
-        // MultiPartFile 리스트
-      }
-    };
+    const formData = new FormData();
+    // formData.append('profileImageUpdateRequest', '');
+    // formData.append('profileImageUpdateRequest'.deleteIndexList, [0]);
+    // formData.append('profileImages', img.file.name);
+    formData.append('profileImageUpdateRequest', {
+      userIndex: 1,
+      deleteIndexList: [0]
+    });
+    formData.append('profileImages', img.file);
+    dispatch(userActions.editProfileImg(formData));
   };
   return (
     <EditProfileImgPage img={img} onChange={onChange} UploadImg={UploadImg} />

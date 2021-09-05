@@ -10,7 +10,9 @@ export const Types = {
   LoginFail: 'user/LoginFail',
   EditProfile: 'user/EditProfile',
   EditSuccess: 'user/EditSuccess',
-  EditFail: 'user/EditFail'
+  EditFail: 'user/EditFail',
+  EditProfileImg: 'user/EditProfileImg',
+  EditProfileImgSuccess: 'user/EditProfileImgSuccess'
 };
 
 export const actions = {
@@ -25,7 +27,12 @@ export const actions = {
   // profile
   editProfile: profileData => ({ type: Types.EditProfile, profileData }),
   editSuccess: userProfile => ({ type: Types.EditSuccess, userProfile }),
-  editFail: errorMessage => ({ type: Types.EditFail, errorMessage })
+  editFail: errorMessage => ({ type: Types.EditFail, errorMessage }),
+  editProfileImg: formData => ({ type: Types.EditProfileImg, formData }),
+  editProfileImgSuccess: uploadedPathList => ({
+    type: Types.EditProfileImgSuccess,
+    uploadedPathList
+  })
 };
 
 const INITIAL_STATE = {

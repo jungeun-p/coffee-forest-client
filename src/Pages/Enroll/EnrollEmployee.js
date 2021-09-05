@@ -13,7 +13,6 @@ const EnrollEmployee = ({
 }) => {
   useEffect(() => {
     LoadCompany();
-    console.log(companyList);
   }, [LoadCompany]);
 
   return (
