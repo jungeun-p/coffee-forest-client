@@ -21,6 +21,7 @@ const ManageEmployeePage = ({
             updateEmployee={updateEmployee}
             key={it.userIndex}
             name={it.name}
+            profileImage={it.profileImage}
             email={it.email}
             // workStartTime={it?.workStartTime}
             // workEndTime={it?.workEndTime}

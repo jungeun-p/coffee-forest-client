@@ -7,6 +7,7 @@ import ToggleUp from '../../assets/Icon/ToggleUp.png';
 
 const WorkListArticle = ({
   userName,
+  profileImage,
   titleType,
   title,
   date,
@@ -30,6 +31,7 @@ const WorkListArticle = ({
       />
       <WorkPeople
         userName={userName}
+        profileImage={profileImage}
         view={view}
         onAccept={onAccept}
         onReject={onReject}
@@ -129,13 +131,13 @@ const WorkDetail = styled.div`
   }
 `;
 
-const WorkPeople = ({ userName, view, onReject, onAccept }) => {
+const WorkPeople = ({ userName, profileImage, view, onReject, onAccept }) => {
   return (
     <PeopleBox view={view}>
       <div className="info">
         <div className="title">참여 인원</div>
         <div className="people">
-          <People userName={userName} />
+          <People userName={userName} profileImage={profileImage} />
         </div>
       </div>
       <div className="button">
@@ -153,7 +155,8 @@ const PeopleBox = styled.div`
   .info {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
     .title {
       font-size: 10px;
       line-height: 14px;
@@ -164,7 +167,7 @@ const PeopleBox = styled.div`
     .people {
       display: flex;
       flex-direction: row;
-      justify-content: flex-start;
+      flex-wrap: wrap;
       margin-bottom: 20px;
     }
   }
@@ -175,10 +178,10 @@ const PeopleBox = styled.div`
   }
 `;
 
-const People = ({ userName }) => {
+const People = ({ userName, profileImage }) => {
   return (
     <ProfileWrap>
-      <Profile src={basicProfile} />
+      <Profile src={profileImage || basicProfile} />
       <div className="profileName">{userName || '김바름'}</div>
     </ProfileWrap>
   );
@@ -195,6 +198,7 @@ const ProfileWrap = styled.div`
     line-height: 8px;
     text-align: center;
     color: #858585;
+    margin-bottom: 5px;
   }
 `;
 const Profile = styled.img`
@@ -203,5 +207,6 @@ const Profile = styled.img`
   border-radius: 100px;
   border: 2px solid #c4c4c4;
   margin-bottom: 6px;
+  object-fit: cover;
 `;
 export { WorkListArticle };

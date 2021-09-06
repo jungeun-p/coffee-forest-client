@@ -22,6 +22,7 @@ const WorkPlanList = ({ scheduleMonthly }) => {
               title={it.scheduleInfo.title}
               time={`${it.scheduleInfo.startTime}~${it.scheduleInfo.endTime}`}
               userName={it.simpleUserInfo.name}
+              profileImage={it.simpleUserInfo.profileImage}
             />
           ))}
       {scheduleMonthly?.length === 0 && (

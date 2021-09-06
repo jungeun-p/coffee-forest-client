@@ -7,7 +7,6 @@ const FormSelect = () => {
     setView(!view ? true : false);
   };
   const [value, setValue] = useState();
-  console.log(value);
 
   const list = [
     {
