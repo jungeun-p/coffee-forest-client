@@ -32,13 +32,6 @@ const EditProfileImg = () => {
     };
     formData.append('profileImageUpdateRequest', JSON.stringify(request));
     formData.append('profileImages', img.file);
-
-    // for (let key of formData.keys()) {
-    //   console.log(`1:${key}`);
-    // }
-    // for (let value of formData.values()) {
-    //   console.log(`2:${value}`);
-    // }
     dispatch(userActions.editProfileImg(formData));
   };
   return (

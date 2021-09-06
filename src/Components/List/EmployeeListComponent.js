@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import basicProfile from '../../assets/Img/profile/basicProfile.png';
 import ToggleDown from '../../assets/Icon/ToggleDown.png';
 import ToggleUp from '../../assets/Icon/ToggleUp.png';
-import { InputCommon, InputTitleS } from '../Input';
+import { InputCommon } from '../Input';
 import { ButtonCommonS } from '../Button';
 
 const EmployeeListArticle = ({
@@ -69,9 +69,9 @@ const InformationBox = styled.div`
   align-items: flex-start;
 `;
 
-const ButtonWrap = styled.div`
-  display: ${props => (props.acceptance ? 'inline' : 'none')};
-`;
+// const ButtonWrap = styled.div`
+//   display: ${props => (props.acceptance ? 'inline' : 'none')};
+// `;
 
 const ProfileImg = styled.img`
   width: 50px;

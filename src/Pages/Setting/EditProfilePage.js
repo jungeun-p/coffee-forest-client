@@ -1,11 +1,6 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import {
-  ButtonCommon,
-  ButtonCommonH,
-  ButtonCommonS
-} from '../../Components/Button';
+import { ButtonCommon, ButtonCommonH } from '../../Components/Button';
 import { TitleB } from '../../Components/Common';
 import { InputCommon, InputTitleS } from '../../Components/Input';
 

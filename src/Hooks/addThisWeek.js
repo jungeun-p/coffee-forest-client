@@ -9,7 +9,9 @@ const AddThisWeek = () => {
   dayjs.extend(isoWeek);
 
   let calendar = [];
-  const [viewDate, setViewDate] = useState(dayjs());
+  const [
+    viewDate //setViewDate
+  ] = useState(dayjs());
   const ThisWeek = n => {
     const date = viewDate.weekday(n).format('YYYY-MM-DD');
     return {
@@ -22,6 +24,6 @@ const AddThisWeek = () => {
   return calendar;
 };
 
-// 추후 기능 구현
-const changeWeekend = () => {};
+// // 추후 기능 구현
+// const changeWeekend = () => {};
 export default AddThisWeek;

@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const WorkLoad = ({ weekend }) => {
-  const date = Object.keys(weekend?.scheduleInfo);
-  const scheduleInfo = weekend.scheduleInfo;
+  // const date = Object.keys(weekend?.scheduleInfo);
+  // const scheduleInfo = weekend.scheduleInfo;
   // const status = date.map(it => scheduleInfo[it].map(key => key.scheduleType));
   // console.log(status);
   // // array of arrays 펼치기

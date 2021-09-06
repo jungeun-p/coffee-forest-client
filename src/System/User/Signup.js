@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import SignTemplate from '../../Pages/Signup/SignTemplate';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import { actions as userActions } from '../../Store/user';
 import { actions as validActions } from '../../Store/validation';
 import CheckForm from '../../Hooks/CheckForm';
 
 const Signup = () => {
-  const history = useHistory();
+  // const history = useHistory();
   const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: '',
@@ -82,11 +82,11 @@ const Signup = () => {
       };
       // redux-saga로 dispatch(action, data) 전달
       dispatch(userActions.signRequest(data));
-      alert('회원 가입 성공!');
+      alert('가입이 완료 되었습니다.');
       // history.push('/');
       window.location.replace('/');
     } else {
-      alert('제대로 작성해주세요');
+      alert('정확히 작성해주세요.');
     }
   };
 

@@ -51,30 +51,30 @@ const ProfileInformation = styled.div`
   margin-bottom: 40px;
   /* width: 100%; */
 `;
-const MainProfile = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 40px 0;
-  .name {
-    color: #1ca953;
-    font-weight: 600;
-    font-size: 16px;
-    margin: 20px 0 10px 0;
-  }
-  .infos {
-    text-align: center;
-    .info {
-      color: #232323;
-      font-size: 12px;
-      margin-bottom: 3px;
-    }
-  }
-`;
-const ProfileImage = styled.img`
-  width: 130px;
-  height: 130px;
-`;
+// const MainProfile = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   margin: 40px 0;
+//   .name {
+//     color: #1ca953;
+//     font-weight: 600;
+//     font-size: 16px;
+//     margin: 20px 0 10px 0;
+//   }
+//   .infos {
+//     text-align: center;
+//     .info {
+//       color: #232323;
+//       font-size: 12px;
+//       margin-bottom: 3px;
+//     }
+//   }
+// `;
+// const ProfileImage = styled.img`
+//   width: 130px;
+//   height: 130px;
+// `;
 
 export default EditProfile;

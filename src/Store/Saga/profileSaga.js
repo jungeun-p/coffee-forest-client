@@ -38,6 +38,9 @@ function editProfileApi(profileData) {
 
 function* upload({ formData }) {
   const { uploadedPathList } = yield call(uploadProfileImg, formData);
+  if (uploadedPathList) {
+    yield put(actions.editProfileImgSuccess(uploadedPathList));
+  }
 }
 
 function* edit({ profileData }) {

@@ -14,7 +14,7 @@ const ManageEmployee = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { companyIndex, userIndex } = useSelector(state => state.user.userData);
-  const { employeeList, employeeInfo } = useSelector(state => state.employee);
+  const { employeeList } = useSelector(state => state.employee);
 
   const onChange = e => {
     const { name, value } = e.target;

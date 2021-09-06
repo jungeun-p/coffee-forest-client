@@ -6,12 +6,11 @@ import styled from 'styled-components';
 import WorkData from '../../../Pages/Mypage/Weekly/Data/WorkData';
 import WorkLoad from '../../../Pages/Mypage/Weekly/Load/WorkLoad';
 import SaveWorkPlan from './SaveWorkPlan';
-import AddThisWeek from '../../../Hooks/addThisWeek';
 import waitingLogo from '../../../assets/Img/logo/waitingLogo.png';
 
 const WeeklyPlan = () => {
   const dispatch = useDispatch();
-  const thisWeekDate = AddThisWeek();
+  // const thisWeekDate = AddThisWeek();
   const { userIndex, companyIndex } = useSelector(state => state.user.userData);
   const { userData } = useSelector(state => state.user);
   const weekend = useSelector(state => state.schedule.date);
