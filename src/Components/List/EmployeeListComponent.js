@@ -10,6 +10,7 @@ const EmployeeListArticle = ({
   LoadDetail,
   updateEmployee,
   name,
+  profileImage,
   email,
   workStartTime,
   workEndTime,
@@ -23,7 +24,13 @@ const EmployeeListArticle = ({
   };
   return (
     <ListWrap onClick={LoadDetail}>
-      <InformationWrap onView={onView} view={view} name={name} email={email} />
+      <InformationWrap
+        onView={onView}
+        view={view}
+        name={name}
+        profileImage={profileImage}
+        email={email}
+      />
       <ManageForm
         updateEmployee={updateEmployee}
         view={view}
@@ -45,11 +52,11 @@ const ListWrap = styled.div`
   margin-bottom: 20px;
 `;
 
-const InformationWrap = ({ onView, view, name, email }) => {
+const InformationWrap = ({ onView, view, name, email, profileImage }) => {
   return (
     <InformationBox>
       <Information>
-        <ProfileImg src={basicProfile} />
+        <ProfileImg src={profileImage || basicProfile} />
         <div className="profiledetail">
           <div className="name">{name}</div>
           <div className="info">
@@ -75,6 +82,9 @@ const InformationBox = styled.div`
 
 const ProfileImg = styled.img`
   width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
 `;
 
 const Information = styled.div`

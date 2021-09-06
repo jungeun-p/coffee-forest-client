@@ -6,7 +6,6 @@ const SettingTime = ({ startTime, endTime }) => {
   // 13 이상 23 이하 = 오후
   // 1 이상 11 이하 = 오전
   const timeHourStart = parseInt(startTime.slice(0, 2));
-  console.log(typeof timeHourStart);
   const timeMinuteStart = startTime.slice(3, 5);
   const timeHourEnd = parseInt(endTime.slice(0, 2));
   const timeMinuteEnd = endTime.slice(3, 5);

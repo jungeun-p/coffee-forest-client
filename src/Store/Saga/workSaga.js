@@ -32,7 +32,6 @@ function rejectApi(indexData) {
     })
     .catch(error => {
       const errorReject = error.response;
-      console.log(errorReject);
       return {
         errorReject
       };

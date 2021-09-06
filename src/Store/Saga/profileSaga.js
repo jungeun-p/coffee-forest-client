@@ -12,7 +12,6 @@ function uploadProfileImg(formData) {
     })
     .then(response => {
       const uploadedPathList = response.data;
-      console.log(uploadedPathList);
       return {
         uploadedPathList
       };
