@@ -21,12 +21,9 @@ const RequestWork = ({ workList, onReject, onAccept }) => {
             onReject={() => onReject(work.scheduleIndex)}
           />
         ))}
-      <WorkListArticle
-        titleType="CONFERENCE"
-        title="개발자 코드리뷰"
-        date="06. 08"
-        time="오전 9 : 30 ~ 오전 11 : 30"
-      />
+      {workList.length === 0 && (
+        <div className="noSchedule">요청된 일정이 없습니다.</div>
+      )}
     </ListForm>
   );
 };
@@ -37,6 +34,12 @@ const ListForm = styled.div`
   justify-content: center;
   @media all and (min-width: 768px) {
     width: 320px;
+  }
+  .noSchedule {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #858585;
   }
 `;
 

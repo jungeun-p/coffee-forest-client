@@ -28,7 +28,9 @@ const RequestEmployee = ({ LoadRequestList, AcceptEmployee }) => {
               phone={item.phone}
             />
           ))}
-        {requestList && requestList.length === 0 && '신청 사원이 없습니다.'}
+        {requestList.length === 0 && (
+          <div className="noSchedule">신청 사원이 없습니다.</div>
+        )}
       </div>
     </ListForm>
   );
@@ -38,7 +40,11 @@ const ListForm = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  .list {
+  .noSchedule {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #858585;
   }
   @media all and (min-width: 768px) {
     width: 320px;

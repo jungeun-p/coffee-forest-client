@@ -32,7 +32,10 @@ export const ContainerRoot = styled.main`
 // ContainerRoot 하위 Wrapper
 
 export const ContentsWrapper = styled.div`
-  padding: 50px 28px 0px 28px;
+  @media all and (min-width: 768px) {
+    padding: 50px 28px 0px 28px;
+  }
+  padding: 50px 28px 60px 28px;
   /* @media all and (min-width: 768px) {
     display: flex;
     flex-direction: row;
