@@ -152,10 +152,12 @@ const WorkPeople = ({ userName, profileImage, view, onReject, onAccept }) => {
           <People userName={userName} profileImage={profileImage} />
         </div>
       </div>
-      <div className="button">
-        <ButtonCommonS onClick={onReject} title="거절" />
-        <ButtonCommonS onClick={onAccept} title="승인" />
-      </div>
+      {onReject && onAccept && (
+        <div className="button">
+          <ButtonCommonS onClick={onReject} title="거절" />
+          <ButtonCommonS onClick={onAccept} title="승인" />
+        </div>
+      )}
     </PeopleBox>
   );
 };
@@ -180,13 +182,13 @@ const PeopleBox = styled.div`
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      margin-bottom: 20px;
     }
   }
   .button {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    margin-top: 20px;
   }
 `;
 
