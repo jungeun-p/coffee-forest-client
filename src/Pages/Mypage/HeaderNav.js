@@ -39,7 +39,7 @@ const HeaderWrapper = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 8vh;
+  height: 6vh;
   width: 100vw;
   background-color: #ffffff;
   z-index: 3;

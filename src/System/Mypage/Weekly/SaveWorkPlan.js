@@ -20,18 +20,20 @@ const SaveWorkPlan = ({ weekend }) => {
     scheduleType: ''
   });
 
+  console.log(event);
+
   const onChange = e => {
     const { name, value } = e.target;
     setEvent(state => ({ ...state, [name]: value }));
   };
 
   // 일정 추가 api
-  const sendSchedule = () => {
+  const sendSchedule = day => {
     let schedule = {
       companyIndex: companyIndex,
       userIndex: userIndex,
-      title: '외부 미팅',
-      date: event.date,
+      title: event.title,
+      date: day,
       startTime: event.startTime,
       endTime: event.endTime,
       scheduleType: event.scheduleType

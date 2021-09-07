@@ -3,24 +3,32 @@ import styled from 'styled-components';
 import { ButtonCommonS } from '../Button';
 import { InputSmall } from '../Input';
 
-const AddEvent = ({ view, event, onChange, sendSchedule }) => {
+const AddEvent = ({ day, view, event, onChange, sendSchedule }) => {
   return (
     <AddEventArticle view={view}>
       <EventForm>
+        <div className="date">
+          <InputSmall
+            name="title"
+            value={event?.title}
+            placeholder=""
+            onChange={onChange}
+          />
+        </div>
         <select className="selectBox" name="scheduleType" onChange={onChange}>
           <option value="">유형 선택</option>
           <option value="OUTSIDE">외근 💼</option>
           <option value="CONFERENCE">회의 ✍</option>
           <option value="HOLIDAY">연차 ⛱</option>
         </select>
-        <div className="date">
+        {/* <div className="date">
           <InputSmall
             name="date"
-            value={event?.date}
+            value={event.date}
             placeholder="날짜"
             onChange={onChange}
           />
-        </div>
+        </div> */}
         <div className="time">
           <InputSmall
             name="startTime"
@@ -37,7 +45,7 @@ const AddEvent = ({ view, event, onChange, sendSchedule }) => {
         </div>
       </EventForm>
       <div className="button">
-        <ButtonCommonS onClick={sendSchedule} title="일정 등록" />
+        <ButtonCommonS onClick={() => sendSchedule(day)} title="일정 등록" />
       </div>
     </AddEventArticle>
   );
@@ -68,6 +76,7 @@ const EventForm = styled.div`
     border: none;
     font-size: 10px;
     color: #b7b7b7;
+    margin-top: 15px;
   }
   .selectBox::-ms-expand {
     display: none; /*for IE10,11*/

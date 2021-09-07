@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import AddEvent from '../Event';
 import AddThisWeek from '../../Hooks/addThisWeek';
+import dayjs from 'dayjs';
 
 const ThisWeekCalendar = ({ weekend, sendSchedule, onChange, event }) => {
   // 기존 달력 날짜
@@ -26,19 +27,20 @@ const ThisWeekCalendar = ({ weekend, sendSchedule, onChange, event }) => {
 
 const PlanDate = ({ schedulePlan, day, sendSchedule, onChange, event }) => {
   const [view, setView] = useState(false);
+  const today = dayjs();
   const onView = () => {
     setView(!view ? true : false);
   };
   useEffect(() => {
     setView(false);
   }, []);
+  const isToday = today.format('YYYY-MM-DD') === day ? 'today' : '';
   return (
     <WeekArticle>
       <PlanInfo>
-        <div className="date">{`${day.slice(5, 7)}월 ${day.slice(
-          8,
-          11
-        )}일`}</div>
+        <div className={`date ${isToday}`}>
+          {`${day.slice(5, 7)}월 ${day.slice(8, 11)}일`}
+        </div>
         <div className="event" onClick={onView}>
           ✏️
         </div>
@@ -77,6 +79,7 @@ const PlanDate = ({ schedulePlan, day, sendSchedule, onChange, event }) => {
       </PlanList>
       <AddEvent
         view={view}
+        day={day}
         event={event}
         onChange={onChange}
         sendSchedule={sendSchedule}
@@ -99,7 +102,13 @@ const PlanInfo = styled.div`
     font-size: 14px;
     font-weight: 600;
     line-height: 19px;
-    color: #232323;
+    color: #858585;
+  }
+  .today {
+    color: #1ca953;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-position: under;
   }
   .event {
     color: #1ca953;
