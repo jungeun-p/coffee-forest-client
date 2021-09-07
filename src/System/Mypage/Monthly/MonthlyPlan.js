@@ -25,7 +25,7 @@ const MonthlyPlan = () => {
       const index = {
         userIndex: userIndex,
         companyIndex: companyIndex,
-        startDate: `2021-09-${day < 10 ? '0' + day : day}`
+        startDate: `${YearMonth}-${day < 10 ? '0' + day : day}`
       };
       dispatch(scheduleActions.scheduleMonthlyRequest(index));
     }

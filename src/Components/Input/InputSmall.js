@@ -20,7 +20,7 @@ const Input = styled.input`
   font-size: 10px;
   color: #b7b7b7;
   padding: 5px 10px;
-  margin-top: 15px;
+  /* margin-top: 15px; */
 `;
 
 export default InputSmall;

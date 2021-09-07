@@ -8,10 +8,11 @@ const AddEvent = ({ day, view, event, onChange, sendSchedule }) => {
     <AddEventArticle view={view}>
       <EventForm>
         <div className="date">
-          <InputSmall
+          <input
+            className="eventTitle"
             name="title"
             value={event?.title}
-            placeholder=""
+            placeholder="제목 추가"
             onChange={onChange}
           />
         </div>
@@ -36,6 +37,7 @@ const AddEvent = ({ day, view, event, onChange, sendSchedule }) => {
             placeholder="시작 시간"
             onChange={onChange}
           />
+          <div className="hypen"> - </div>
           <InputSmall
             name="endTime"
             value={event?.endTime}
@@ -75,7 +77,7 @@ const EventForm = styled.div`
     background-color: #f8faed;
     border: none;
     font-size: 10px;
-    color: #b7b7b7;
+    color: #858585;
     margin-top: 15px;
   }
   .selectBox::-ms-expand {
@@ -84,18 +86,28 @@ const EventForm = styled.div`
   .date {
     display: flex;
     flex-direction: column;
+    .eventTitle {
+      border: none;
+      outline: none;
+      padding: 14px 0 14px 10px;
+      font-size: 14px;
+      border-bottom: 1px solid #1ca953;
+    }
   }
   .time {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 15px;
+    .hypen {
+      align-items: center;
+    }
     .title {
       font-size: 12px;
       line-height: 16px;
       color: #858585;
       font-weight: 600;
-      padding-top: 15px;
     }
   }
 `;

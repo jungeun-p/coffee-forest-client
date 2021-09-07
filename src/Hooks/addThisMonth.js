@@ -67,7 +67,7 @@ const AddThisMonth = ({ LoadSchedule }) => {
                     >
                       <span className={`day`}>{current.format('D')}</span>
                       {isToday ? (
-                        <span className="isToday">📌</span>
+                        <div className="isToday" />
                       ) : isSelected ? (
                         <span className="isSelected"></span>
                       ) : null}
@@ -191,9 +191,11 @@ const StyledBody = styled.div`
         .text {
           display: flex;
           flex-direction: column;
+          align-items: center;
           color: #858585;
           .isToday {
-            font-size: 8px;
+            width: 14px;
+            border: 1px solid #1ca953;
           }
         }
         .selected {

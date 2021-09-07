@@ -11,7 +11,8 @@ const WorkListArticle = ({
   titleType,
   title,
   date,
-  time,
+  startTime,
+  endTime,
   onAccept,
   onReject
 }) => {
@@ -27,7 +28,8 @@ const WorkListArticle = ({
         titleType={titleType}
         title={title}
         date={date}
-        time={time}
+        startTime={startTime}
+        endTime={endTime}
       />
       <WorkPeople
         userName={userName}
@@ -48,7 +50,15 @@ const ListWrap = styled.div`
   margin-bottom: 20px;
 `;
 
-const WorkTitle = ({ view, onView, titleType, title, date, time }) => {
+const WorkTitle = ({
+  view,
+  onView,
+  titleType,
+  title,
+  date,
+  startTime,
+  endTime
+}) => {
   return (
     <TitleBox>
       <div className="info">
@@ -73,7 +83,9 @@ const WorkTitle = ({ view, onView, titleType, title, date, time }) => {
         </WorkType>
         <WorkDetail>
           <div className="title">{title}</div>
-          <div className="date">{`${date} / ${time}`}</div>
+          <div className="date">{`${
+            date ? date + ' /' : ''
+          } ${startTime} ~ ${endTime}`}</div>
         </WorkDetail>
       </div>
       <Toggle onClick={onView} src={view === true ? ToggleUp : ToggleDown} />
@@ -140,10 +152,12 @@ const WorkPeople = ({ userName, profileImage, view, onReject, onAccept }) => {
           <People userName={userName} profileImage={profileImage} />
         </div>
       </div>
-      <div className="button">
-        <ButtonCommonS onClick={onReject} title="거절" />
-        <ButtonCommonS onClick={onAccept} title="승인" />
-      </div>
+      {onReject && onAccept && (
+        <div className="button">
+          <ButtonCommonS onClick={onReject} title="거절" />
+          <ButtonCommonS onClick={onAccept} title="승인" />
+        </div>
+      )}
     </PeopleBox>
   );
 };
@@ -168,13 +182,13 @@ const PeopleBox = styled.div`
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      margin-bottom: 20px;
     }
   }
   .button {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    margin-top: 20px;
   }
 `;
 
