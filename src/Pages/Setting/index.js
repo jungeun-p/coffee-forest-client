@@ -46,9 +46,9 @@ const SettingWrapper = styled.div`
   @media all and (max-width: 767px) {
     display: flex;
     flex-direction: column;
-    .page {
-      /* display: none; */
-    }
+    /* .page {
+      display: none;
+    } */
   }
   @media all and (min-width: 768px) {
     display: flex;

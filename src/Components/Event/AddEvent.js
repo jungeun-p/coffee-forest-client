@@ -34,14 +34,14 @@ const AddEvent = ({ day, view, event, onChange, sendSchedule }) => {
           <InputSmall
             name="startTime"
             value={event?.startTime}
-            placeholder="시작 시간"
+            placeholder="00:00"
             onChange={onChange}
           />
           <div className="hypen"> - </div>
           <InputSmall
             name="endTime"
             value={event?.endTime}
-            placeholder="마감 시간"
+            placeholder="00:00"
             onChange={onChange}
           />
         </div>

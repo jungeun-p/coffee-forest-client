@@ -11,6 +11,7 @@ import Setting from '../Pages/Setting';
 import Enroll from '../Pages/Enroll';
 import WaitingEnroll from '../Pages/Enroll/WaitingEnroll';
 import ManageEmployeeDetail from '../Pages/Setting/Manage/Employee/ManageEmployeeDetail';
+import EditProfileImg from '../System/Setting/Edit/EditProfileImg';
 
 const MainRouter = () => {
   return (
@@ -46,9 +47,6 @@ const MainRouter = () => {
         <Route path="/mypage">
           <Mypage />
         </Route>
-        {/* <Route path="/mypage/monthly">
-          <MonthlyPage />
-        </Route> */}
         <Route path="/mypage/manage">
           <Setting />
         </Route>

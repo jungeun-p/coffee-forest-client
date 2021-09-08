@@ -28,7 +28,7 @@ const RequestEmployee = ({ LoadRequestList, AcceptEmployee }) => {
               phone={item.phone}
             />
           ))}
-        {requestList.length === 0 && (
+        {requestList && requestList.length === 0 && (
           <div className="noSchedule">신청 사원이 없습니다.</div>
         )}
       </div>
