@@ -1,5 +1,7 @@
 import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
+import { persistStore, persistReducer } from 'redux-persist';
+import storageSession from 'redux-persist/lib/storage/session';
 import userReducer from './user';
 import validReducer from './validation';
 import scheduleReducer from './schedule';
@@ -20,6 +22,12 @@ import workSaga from './Saga/workSaga';
 import profileSaga from './Saga/profileSaga';
 import companySaga from './Saga/companySaga';
 
+const persistConfig = {
+  key: 'root',
+  storageSession
+  // whiteList: ['']
+  // blackList 제외
+};
 // reducer 합치기
 const reducer = combineReducers({
   user: userReducer,
@@ -32,6 +40,8 @@ const reducer = combineReducers({
   company: companyReducer
 });
 
+// persistReducer(persistConfig, reducer);
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const sagaMiddleware = createSagaMiddleware();
@@ -40,6 +50,8 @@ const store = createStore(
   reducer,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
+
+const persistor = persistStore(store);
 
 // saga
 function* rootSaga() {
@@ -58,4 +70,4 @@ function* rootSaga() {
 }
 sagaMiddleware.run(rootSaga);
 
-export default store;
+export { store, persistor };
