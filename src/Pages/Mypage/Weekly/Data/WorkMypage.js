@@ -14,7 +14,7 @@ const WorkMypage = ({ weekend }) => {
           {position === 'ADMIN' ? '관리자' : '직원'}
         </div>
       </div>
-      <Logo src={weekend.profileImage || mainLogo} />
+      <Logo src={`${weekend.profileImage}#2324` || mainLogo} />
     </MainProfile>
   );
 };

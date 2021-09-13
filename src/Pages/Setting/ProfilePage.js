@@ -9,7 +9,7 @@ const ProfilePage = () => {
   return (
     <MainProfile>
       <Cateogry to="/mypage/manage/profileImg">
-        <ProfileImage src={userData.profileImage || basicProfile} />
+        <ProfileImage src={`${userData.profileImage}#123` || basicProfile} />
       </Cateogry>
       <div className="name">{userData.name}</div>
       <div className="infos">

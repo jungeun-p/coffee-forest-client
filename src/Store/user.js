@@ -60,8 +60,7 @@ const INITIAL_STATE = {
     companyName: null,
     workApplicantStatus: 'UNKNOWN',
     companyApplicantStatus: 'UNKNOWN'
-  },
-  userProfile: null
+  }
 };
 
 const reducer = createReducer(INITIAL_STATE, {

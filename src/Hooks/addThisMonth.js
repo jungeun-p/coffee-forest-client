@@ -56,24 +56,22 @@ const AddThisMonth = ({ LoadSchedule }) => {
               let isNone =
                 current.format('MM') === viewDate.format('MM') ? '' : 'none';
               return (
-                <>
-                  <div className={`box`} key={`${week}_${i}`}>
-                    <div
-                      className={`text ${isSelected} ${isToday} ${isNone}`}
-                      onClick={() => {
-                        LoadSchedule(current.format('D'));
-                        setSelectDate(current);
-                      }}
-                    >
-                      <span className={`day`}>{current.format('D')}</span>
-                      {isToday ? (
-                        <div className="isToday" />
-                      ) : isSelected ? (
-                        <span className="isSelected"></span>
-                      ) : null}
-                    </div>
+                <div className={`box`} key={`${week}_${i}`}>
+                  <div
+                    className={`text ${isSelected} ${isToday} ${isNone}`}
+                    onClick={() => {
+                      LoadSchedule(current.format('D'));
+                      setSelectDate(current);
+                    }}
+                  >
+                    <span className={`day`}>{current.format('D')}</span>
+                    {isToday ? (
+                      <div className="isToday" />
+                    ) : isSelected ? (
+                      <span className="isSelected"></span>
+                    ) : null}
                   </div>
-                </>
+                </div>
               );
             })}
         </div>

@@ -9,7 +9,9 @@ const EditProfileImgPage = ({ profileImage, img, onChange, UploadImg }) => {
     <ImgForm>
       <TitleB>프로필 사진 변경</TitleB>
       <EditForm>
-        <ProfileImage src={img.previewURL || profileImage || basicProfile} />
+        <ProfileImage
+          src={img.previewURL || `${profileImage}#212` || basicProfile}
+        />
         <input
           type="file"
           accept="image/jpg,impge/png,image/jpeg,image/gif"

@@ -7,21 +7,21 @@ import WorkData from '../../../Pages/Mypage/Weekly/Data/WorkData';
 import WorkLoad from '../../../Pages/Mypage/Weekly/Load/WorkLoad';
 import SaveWorkPlan from './SaveWorkPlan';
 import waitingLogo from '../../../assets/Img/logo/waitingLogo.png';
+import AddThisWeek from '../../../Hooks/addThisWeek';
 
 const WeeklyPlan = () => {
   const dispatch = useDispatch();
-  // const thisWeekDate = AddThisWeek();
+  const thisWeekDate = AddThisWeek();
   const { userIndex, companyIndex } = useSelector(state => state.user.userData);
   const { userData } = useSelector(state => state.user);
   const weekend = useSelector(state => state.schedule.date);
-  // console.log(weekend);
 
   // 주간 일정 리스트 api
   const LoadSchedule = useCallback(() => {
     const index = {
       userIndex: userIndex,
       companyIndex: companyIndex,
-      startDate: '2021-09-05'
+      startDate: thisWeekDate[0].date
     };
     dispatch(scheduleActions.scheduleInfoRequest(index));
   }, [dispatch]);
