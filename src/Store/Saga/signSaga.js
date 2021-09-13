@@ -1,5 +1,6 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { actions, Types } from '../user';
+import { actions as tokenActions } from '../token';
 // import { actions as scheduleActions } from '../schedule';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../Lib/constant';
@@ -27,12 +28,14 @@ function loginApi(data) {
   return axios
     .post(`${LOCAL_HOST}sign-in`, data)
     .then(response => {
+      const userData = response.data;
+      const { userTokenInfo } = response.data;
       const { accessToken } = response.data.userTokenInfo;
       axios.defaults.headers.common['Authorization'] = accessToken;
       // const { userTokenInfo } = response.data;
-      const userData = response.data;
       return {
-        userData
+        userData,
+        userTokenInfo
       };
     })
     .catch(error => {
@@ -51,9 +54,10 @@ function* sign({ data }) {
 }
 
 function* login({ data }) {
-  const { userData, errorMessage } = yield call(loginApi, data);
+  const { userData, userTokenInfo, errorMessage } = yield call(loginApi, data);
   if (userData) {
     yield put(actions.loginSuccess(userData));
+    yield put(tokenActions.tokenInfo(userTokenInfo));
     // yield put(scheduleActions.scheduleInfo(userData));
   } else if (errorMessage) {
     yield put(actions.loginFail(errorMessage));
