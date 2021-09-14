@@ -11,7 +11,7 @@ import Setting from '../Pages/Setting';
 import Enroll from '../Pages/Enroll';
 import WaitingEnroll from '../Pages/Enroll/WaitingEnroll';
 import ManageEmployeeDetail from '../Pages/Setting/Manage/Employee/ManageEmployeeDetail';
-import EditProfileImg from '../System/Setting/Edit/EditProfileImg';
+// import EditProfileImg from '../System/Setting/Edit/EditProfileImg';
 
 const MainRouter = () => {
   return (

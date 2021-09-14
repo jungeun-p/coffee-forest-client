@@ -2,7 +2,6 @@ import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistReducer } from 'redux-persist';
 import storageSession from 'redux-persist/lib/storage/session';
-import storage from 'redux-persist/lib/storage';
 import userReducer from './user';
 import tokenReducer from './token';
 import validReducer from './validation';
@@ -30,7 +29,7 @@ import companySaga from './Saga/companySaga';
 const persistConfig = {
   key: 'root',
   storage: storageSession,
-  blacklist: ['token']
+  blacklist: ['token', 'validation', 'enroll', 'work']
   // whiteList: ['']
   // blackList 제외
 };

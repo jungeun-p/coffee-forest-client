@@ -15,7 +15,6 @@ const WeeklyPlan = () => {
   const { userIndex, companyIndex } = useSelector(state => state.user.userData);
   const { userData } = useSelector(state => state.user);
   const weekend = useSelector(state => state.schedule.date);
-
   // 주간 일정 리스트 api
   const LoadSchedule = useCallback(() => {
     const index = {

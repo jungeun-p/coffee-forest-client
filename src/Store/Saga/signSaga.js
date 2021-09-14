@@ -28,11 +28,11 @@ function loginApi(data) {
   return axios
     .post(`${LOCAL_HOST}sign-in`, data)
     .then(response => {
-      const userData = response.data;
-      const { userTokenInfo } = response.data;
-      const { accessToken } = response.data.userTokenInfo;
-      axios.defaults.headers.common['Authorization'] = accessToken;
-      // const { userTokenInfo } = response.data;
+      const { userTokenInfo, ...rest } = response.data;
+      const userData = rest;
+      // 요청하는 콜마다 헤더에 accessToken 담아서 전달
+      axios.defaults.headers.common['Authorization'] =
+        userTokenInfo.accessToken;
       return {
         userData,
         userTokenInfo

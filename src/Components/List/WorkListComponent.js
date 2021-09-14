@@ -108,6 +108,7 @@ const Toggle = styled.img`
   width: 10px;
   height: 5px;
   cursor: pointer;
+  margin: 2px 0 0 10px;
   /* src: url(${'ToggleDown'}); */
 `;
 
@@ -205,7 +206,7 @@ const ProfileWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 15px;
+  margin-left: 15px;
   .profileName {
     font-weight: 500;
     font-size: 7px;
