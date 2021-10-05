@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ButtonCommonS } from '../Button';
 import { InputSmall } from '../Input';
+import FormSelect from '../Select/FormSelect';
 
 const AddEvent = ({ day, view, event, onChange, sendSchedule }) => {
+  const [selected, onSelected] = useState(false);
+  const SelectOption = () => {
+    onSelected(!selected ? true : false);
+  };
   return (
     <AddEventArticle view={view}>
       <EventForm>
@@ -31,12 +36,16 @@ const AddEvent = ({ day, view, event, onChange, sendSchedule }) => {
           />
         </div> */}
         <div className="time">
-          <InputSmall
-            name="startTime"
-            value={event?.startTime}
-            placeholder="00:00"
-            onChange={onChange}
-          />
+          <div className="hour">
+            <InputSmall
+              name="startTime"
+              value={event?.startTime}
+              placeholder="00:00"
+              onChange={onChange}
+              SelectOption={SelectOption}
+            />
+            <SelectBox selected={selected} />
+          </div>
           <div className="hypen"> - </div>
           <InputSmall
             name="endTime"
@@ -45,6 +54,7 @@ const AddEvent = ({ day, view, event, onChange, sendSchedule }) => {
             onChange={onChange}
           />
         </div>
+        <FormSelect />
       </EventForm>
       <div className="button">
         <ButtonCommonS onClick={() => sendSchedule(day)} title="일정 등록" />
@@ -52,6 +62,47 @@ const AddEvent = ({ day, view, event, onChange, sendSchedule }) => {
     </AddEventArticle>
   );
 };
+
+const SelectBox = ({ selected }) => {
+  return (
+    <SelectBoxWrap selected={selected}>
+      <div className="select">1</div>
+      <div className="select">2</div>
+      <div className="select">3</div>
+      <div className="select">4</div>
+      <div className="select">5</div>
+      <div className="select">6</div>
+      <div className="select">7</div>
+      <div className="select">8</div>
+      <div className="select">9</div>
+      <div className="select">10</div>
+    </SelectBoxWrap>
+  );
+};
+
+const SelectBoxWrap = styled.div`
+  max-height: 300px;
+  min-width: 106px;
+  transform-origin: left top;
+  z-index: 8;
+  display: ${props => (props.selected ? '' : 'none')};
+  position: absolute;
+  background-color: #ffffff;
+  box-shadow: 4px 16px 36px rgb(0 0 0 / 5%);
+  border-radius: 2px;
+  padding: 5px 10px;
+  max-width: 80%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  cursor: pointer;
+  .select {
+    padding: 10px 10px;
+    :hover {
+      background-color: lightgray;
+      transition: 0.1s ease-in;
+    }
+  }
+`;
 
 const AddEventArticle = styled.div`
   display: ${props => (props.view ? '' : 'none')};
@@ -98,7 +149,7 @@ const EventForm = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    /* align-items: center; */
     margin-top: 15px;
     .hypen {
       align-items: center;
@@ -109,6 +160,10 @@ const EventForm = styled.div`
       color: #858585;
       font-weight: 600;
     }
+  }
+  .hour {
+    display: flex;
+    flex-direction: column;
   }
 `;
 

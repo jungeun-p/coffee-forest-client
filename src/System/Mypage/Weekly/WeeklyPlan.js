@@ -28,6 +28,8 @@ const WeeklyPlan = () => {
   useEffect(() => {
     if (userIndex) {
       LoadSchedule();
+    } else {
+      window.location.replace('/');
     }
   }, [userData.workApplicantStatus]);
 

@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const InputSmall = ({ name, value, placeholder, onChange }) => {
+const InputSmall = ({ name, value, placeholder, onChange, SelectOption }) => {
   return (
     <Input
       name={name}
       value={value}
       placeholder={placeholder}
       onChange={onChange}
+      onClick={SelectOption}
+      autoComplete="off"
     />
   );
 };
