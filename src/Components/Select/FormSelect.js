@@ -31,33 +31,38 @@ const FormSelect = () => {
     }
   ];
   return (
-    <div>
-      <SelectForm onClick={selectView}>
+    <FormBox onClick={selectView}>
+      <SelectForm>
         <div className="default">과일 선택하기</div>
         <div className="value">{value || '선택하세요'}</div>
-        <Select view={view}>
-          {list.map(fruits => (
-            <div
-              className="selectList"
-              onClick={() => setValue(fruits.value)}
-              key={fruits.index}
-            >
-              {fruits.name}
-            </div>
-          ))}
-        </Select>
       </SelectForm>
-    </div>
+      <Select view={view}>
+        {list.map(fruits => (
+          <div
+            className="selectList"
+            onClick={() => setValue(fruits.value)}
+            key={fruits.index}
+          >
+            {fruits.name}
+          </div>
+        ))}
+      </Select>
+    </FormBox>
   );
 };
 
+const FormBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+`;
+
 const SelectForm = styled.div`
-  width: 20vw;
   border-radius: 10px;
   background-color: #f8faed;
   padding: 12px 0px 12px 12px;
+  width: 120px;
   top: 20px;
-  margin-top: 15px;
   .default {
     font-size: 10px;
     color: #1ca953;
@@ -74,9 +79,15 @@ const Select = styled.div`
   display: ${props => (props.view ? 'block' : 'none')};
   background-color: #f8faed;
   font-weight: 700;
-  max-height: 80px;
+  max-height: 150px;
+  padding: 5px 10px;
+  border-radius: 10px;
   overflow-y: scroll;
   -webkit-font-smoothing: antialiased;
+  z-index: 3;
+  position: absolute;
+  /* overflow-y: auto; */
+  overflow-x: hidden;
   .selectList {
     padding: 10px 0px;
     font-size: 14px;

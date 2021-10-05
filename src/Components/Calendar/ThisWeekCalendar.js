@@ -25,7 +25,14 @@ const ThisWeekCalendar = ({ weekend, sendSchedule, onChange, event }) => {
   );
 };
 
-const PlanDate = ({ schedulePlan, day, sendSchedule, onChange, event }) => {
+const PlanDate = ({
+  schedulePlan,
+  day,
+  sendSchedule,
+  onChange,
+  event,
+  setEvent
+}) => {
   const [view, setView] = useState(false);
   const today = dayjs();
   const onView = () => {
@@ -37,13 +44,11 @@ const PlanDate = ({ schedulePlan, day, sendSchedule, onChange, event }) => {
   const isToday = today.format('YYYY-MM-DD') === day ? 'today' : '';
   return (
     <WeekArticle>
-      <PlanInfo>
+      <PlanInfo onClick={onView}>
         <div className={`date ${isToday}`}>
           {`${day.slice(5, 7)}월 ${day.slice(8, 11)}일`}
         </div>
-        <div className="event" onClick={onView}>
-          ✏️
-        </div>
+        <div className="event">✏️</div>
       </PlanInfo>
       <PlanList>
         {schedulePlan ? (
@@ -81,6 +86,7 @@ const PlanDate = ({ schedulePlan, day, sendSchedule, onChange, event }) => {
         view={view}
         day={day}
         event={event}
+        setEvent={setEvent}
         onChange={onChange}
         sendSchedule={sendSchedule}
       />

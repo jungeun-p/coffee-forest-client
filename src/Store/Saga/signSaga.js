@@ -4,6 +4,7 @@ import { actions as tokenActions } from '../token';
 // import { actions as scheduleActions } from '../schedule';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../Lib/constant';
+// import Cookies from 'universal-cookie';
 // import { API_HOST } from "../Lib/constant";
 
 function signApi(data) {
@@ -30,6 +31,7 @@ function loginApi(data) {
     .then(response => {
       const { userTokenInfo, ...rest } = response.data;
       const userData = rest;
+
       // 요청하는 콜마다 헤더에 accessToken 담아서 전달
       axios.defaults.headers.common['Authorization'] =
         userTokenInfo.accessToken;
