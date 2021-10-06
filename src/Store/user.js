@@ -60,13 +60,16 @@ const INITIAL_STATE = {
     companyName: null,
     workApplicantStatus: 'UNKNOWN',
     companyApplicantStatus: 'UNKNOWN'
-  }
+  },
+  userProfile: null
 };
 
 const reducer = createReducer(INITIAL_STATE, {
   [Types.SignFail]: (state, action) => (state.signFail = action.errorMessage),
   [Types.SignSuccess]: (state, action) => (state.signSuccess = action.message),
-  [Types.LoginSuccess]: (state, action) => (state.userData = action.userData),
+  [Types.LoginSuccess]: (state, action) => (
+    (state.userData = action.userData), (state.userProfile = action.userData)
+  ),
   [Types.LoginFail]: (state, action) =>
     (state.errorMessage = action.errorMessage),
   [Types.EditSuccess]: (state, action) =>

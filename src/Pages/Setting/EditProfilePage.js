@@ -5,8 +5,6 @@ import { TitleB } from '../../Components/Common';
 import { InputCommon, InputTitleS } from '../../Components/Input';
 
 const EditProfilePage = ({ profile, onChange, SaveProfile }) => {
-  // const { userData } = useSelector(state => state.user);
-  // console.log(userData);
   return (
     <ProfileForm>
       <TitleB>회원정보 수정</TitleB>

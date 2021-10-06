@@ -1,7 +1,9 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 // import { applyMiddleware, createStore } from "redux";
 import MainRouter from './Routes/MainRouter';
+import Cookies from 'universal-cookie/es6';
+import { useSelector } from 'react-redux';
 
 // const printLog = (store) => (next) => (action) => {
 //   console.log(`prev state = ${JSON.stringify(store.getState())}`);
@@ -21,7 +23,19 @@ import MainRouter from './Routes/MainRouter';
 // const store = createStore(myReducer, applyMiddleware(printLog));
 // store.dispatch({ type: "someAction" });
 
+export function getAccessToken() {
+  const cookies = new Cookies();
+  const refresh_token = cookies.get('refreshToken');
+  if (refresh_token) {
+    console.log('alive RT');
+  }
+}
+
 function App() {
+  // const { tokenInfo } = useSelector(state => state.token);
+  useEffect(() => {
+    const token = getAccessToken();
+  });
   return (
     <>
       <MainRouter />

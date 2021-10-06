@@ -44,7 +44,7 @@ const AddEvent = ({ day, view, event, onChange, sendSchedule }) => {
               onChange={onChange}
               SelectOption={SelectOption}
             />
-            <SelectBox selected={selected} />
+            {/* <SelectBox selected={selected} /> */}
           </div>
           <div className="hypen"> - </div>
           <InputSmall
@@ -54,7 +54,7 @@ const AddEvent = ({ day, view, event, onChange, sendSchedule }) => {
             onChange={onChange}
           />
         </div>
-        <FormSelect />
+        {/* <FormSelect /> */}
       </EventForm>
       <div className="button">
         <ButtonCommonS onClick={() => sendSchedule(day)} title="일정 등록" />

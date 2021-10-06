@@ -5,12 +5,12 @@ import { actions as userActions } from '../../../Store/user';
 
 const EditProfile = () => {
   const dispatch = useDispatch();
-  const { userProfile } = useSelector(state => state.user);
+  const { userData, userProfile } = useSelector(state => state.user);
   const [profile, setProfile] = useState({
-    name: userProfile?.name,
+    name: userData?.name,
     password: '',
-    phone: userProfile?.phone,
-    address: userProfile?.address
+    phone: userData?.phone,
+    address: userData?.address
   });
 
   const SaveProfile = () => {
@@ -19,7 +19,7 @@ const EditProfile = () => {
       ''
     ) {
       const profileData = {
-        userIndex: userProfile.userIndex,
+        userIndex: userData.userIndex,
         name: profile.name,
         password: profile.password,
         phone: profile.phone,
