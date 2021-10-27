@@ -5,24 +5,6 @@ import MainRouter from './Routes/MainRouter';
 import Cookies from 'universal-cookie/es6';
 import { useSelector } from 'react-redux';
 
-// const printLog = (store) => (next) => (action) => {
-//   console.log(`prev state = ${JSON.stringify(store.getState())}`);
-//   const result = next(action);
-//   console.log(`next state = ${JSON.stringify(store.getState())}`);
-//   return result;
-// };
-
-// const myReducer = (state = { name: "mike" }, action) => {
-//   console.log("myReducer");
-//   if (action.type === "someAction") {
-//     return { name: "mikeee" };
-//   }
-//   return state;
-// };
-
-// const store = createStore(myReducer, applyMiddleware(printLog));
-// store.dispatch({ type: "someAction" });
-
 export function getAccessToken() {
   const cookies = new Cookies();
   const refresh_token = cookies.get('refreshToken');
@@ -33,9 +15,9 @@ export function getAccessToken() {
 
 function App() {
   // const { tokenInfo } = useSelector(state => state.token);
-  useEffect(() => {
-    const token = getAccessToken();
-  });
+  // useEffect(() => {
+  //   const token = getAccessToken();
+  // });
   return (
     <>
       <MainRouter />

@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import { persistReducer } from 'redux-persist';
-import storageSession from 'redux-persist/lib/storage/session';
+// import storageSession from 'redux-persist/lib/storage/session';
 import userReducer from './user';
 import tokenReducer from './token';
 import validReducer from './validation';
@@ -26,13 +26,13 @@ import companySaga from './Saga/companySaga';
 // 새로운 persist
 // key: reducer의 어느 지점에서부터 데이터를 지정할 것인지
 // storage: 웹의 localStorage
-const persistConfig = {
-  key: 'root',
-  storage: storageSession,
-  blacklist: ['token', 'validation', 'enroll', 'work']
-  // whiteList: ['']
-  // blackList 제외
-};
+// const persistConfig = {
+//   key: 'root',
+//   storage: storageSession,
+//   blacklist: ['token', 'validation', 'enroll', 'work']
+//   // whiteList: ['']
+//   // blackList 제외
+// };
 // reducer 합치기
 const reducer = combineReducers({
   user: userReducer,
@@ -47,15 +47,15 @@ const reducer = combineReducers({
 });
 
 // persistConfig 추가된 reducer 반환
-const enhancedReducer = persistReducer(persistConfig, reducer);
+// const enhancedReducer = persistReducer(persistConfig, reducer);
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const sagaMiddleware = createSagaMiddleware();
 
 const store = createStore(
-  // reducer,
-  enhancedReducer,
+  reducer,
+  // enhancedReducer,
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
