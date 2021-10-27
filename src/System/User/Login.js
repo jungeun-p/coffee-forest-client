@@ -34,7 +34,6 @@ const Login = () => {
     }
   }, [dispatch, user.email, user.password]);
 
-  console.log(userData);
   useEffect(() => {
     if (userData.userIndex) {
       if (
