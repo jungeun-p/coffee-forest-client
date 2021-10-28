@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import EditProfilePage from '../../../Pages/Setting/EditProfilePage';
 import { actions as userActions } from '../../../Store/user';
@@ -37,9 +37,7 @@ const EditProfile = () => {
     setProfile({ ...profile, [name]: value });
   };
 
-  // useEffect(() => {
-  //   console.log(userProfile, userData);
-  // }, [userProfile]);
+  useEffect(() => {}, [userProfile]);
 
   return (
     <EditProfilePage

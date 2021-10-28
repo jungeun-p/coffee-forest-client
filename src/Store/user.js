@@ -51,11 +51,6 @@ const INITIAL_STATE = {
     address: null,
     position: null,
     profileImage: null,
-    userTokenInfo: {
-      userIndex: null,
-      accessToken: null,
-      refreshToken: null
-    },
     companyIndex: 0,
     companyName: null,
     workApplicantStatus: 'UNKNOWN',
@@ -67,9 +62,10 @@ const INITIAL_STATE = {
 const reducer = createReducer(INITIAL_STATE, {
   [Types.SignFail]: (state, action) => (state.signFail = action.errorMessage),
   [Types.SignSuccess]: (state, action) => (state.signSuccess = action.message),
-  [Types.LoginSuccess]: (state, action) => (
-    (state.userData = action.userData), (state.userProfile = action.userData)
-  ),
+  [Types.LoginSuccess]: (state, action) => {
+    state.userData = action.userData;
+    state.userProfile = action.userData;
+  },
   [Types.LoginFail]: (state, action) =>
     (state.errorMessage = action.errorMessage),
   [Types.EditSuccess]: (state, action) =>

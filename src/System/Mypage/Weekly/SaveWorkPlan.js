@@ -19,7 +19,6 @@ const SaveWorkPlan = ({ weekend }) => {
     endTime: '',
     scheduleType: ''
   });
-
   const onChange = e => {
     const { name, value } = e.target;
     setEvent(state => ({ ...state, [name]: value }));

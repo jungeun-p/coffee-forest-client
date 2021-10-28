@@ -14,26 +14,26 @@ const WeeklyPlan = () => {
   const thisWeekDate = AddThisWeek();
   const { userIndex, companyIndex } = useSelector(state => state.user.userData);
   const { userData } = useSelector(state => state.user);
-  const { tokenInfo } = useSelector(state => state.token);
-  console.log(tokenInfo);
+  // const { tokenInfo } = useSelector(state => state.token);
+  // console.log(userData);
   const weekend = useSelector(state => state.schedule.date);
   // 주간 일정 리스트 api
-  const LoadSchedule = useCallback(() => {
+  const LoadSchedule = () => {
     const index = {
       userIndex: userIndex,
       companyIndex: companyIndex,
       startDate: thisWeekDate[0].date
     };
     dispatch(scheduleActions.scheduleInfoRequest(index));
-  }, [dispatch]);
+  };
 
   useEffect(() => {
     if (userIndex) {
       LoadSchedule();
     } else {
-      window.location.replace('/');
+      // window.location.replace('/');
     }
-  }, [userData.workApplicantStatus]);
+  }, [dispatch]);
 
   return (
     <div>

@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import MainRouter from './Routes/MainRouter';
 import Cookies from 'universal-cookie/es6';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 export function getAccessToken() {
   const cookies = new Cookies();
