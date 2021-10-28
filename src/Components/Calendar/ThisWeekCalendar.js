@@ -57,24 +57,36 @@ const PlanDate = ({
               key={index}
               title={plan.scheduleType}
               startTime={
-                plan.startTime.slice(0, 2) > 12
-                  ? `오후 ${
-                      plan.startTime.slice(0, 2) - 12
-                    } : ${plan.startTime.slice(3, 5)}`
-                  : `오전 ${plan.startTime.slice(
+                plan.startTime ? (
+                  plan.startTime?.slice(0, 2) > 12 ? (
+                    `오후 ${
+                      plan.startTime?.slice(0, 2) - 12
+                    } : ${plan.startTime?.slice(3, 5)}`
+                  ) : (
+                    `오전 ${plan.startTime?.slice(
                       0,
                       2
-                    )} : ${plan.startTime.slice(3, 5)}`
+                    )} : ${plan.startTime?.slice(3, 5)}`
+                  )
+                ) : (
+                  <div></div>
+                )
               }
               endTime={
-                plan.endTime.slice(0, 2) > 12
-                  ? `오후 ${
-                      plan.endTime.slice(0, 2) - 12
-                    } : ${plan.endTime.slice(3, 5)}`
-                  : `오전 ${plan.endTime.slice(0, 2)} : ${plan.endTime.slice(
+                plan.endTime ? (
+                  plan.endTime?.slice(0, 2) > 12 ? (
+                    `오후 ${
+                      plan.endTime?.slice(0, 2) - 12
+                    } : ${plan.endTime?.slice(3, 5)}`
+                  ) : (
+                    `오전 ${plan.endTime?.slice(0, 2)} : ${plan.endTime.slice(
                       3,
                       5
                     )}`
+                  )
+                ) : (
+                  <div></div>
+                )
               }
             />
           ))

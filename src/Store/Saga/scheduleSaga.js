@@ -30,6 +30,7 @@ function scheduleApi(index) {
       };
     })
     .catch(error => {
+      console.log(error);
       const errorMessage = error.response.data;
       return { errorMessage };
     });

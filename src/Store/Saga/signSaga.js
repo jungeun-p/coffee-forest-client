@@ -43,8 +43,8 @@ function loginApi(data) {
       axios.defaults.headers.common['Authorization'] =
         userTokenInfo.accessToken;
       return {
-        userData,
-        userTokenInfo
+        userData
+        // userTokenInfo
       };
     })
     .catch(error => {
@@ -63,10 +63,10 @@ function* sign({ data }) {
 }
 
 function* login({ data }) {
-  const { userData, userTokenInfo, errorMessage } = yield call(loginApi, data);
+  const { userData, errorMessage } = yield call(loginApi, data);
   if (userData) {
     yield put(actions.loginSuccess(userData));
-    yield put(tokenActions.tokenInfo(userTokenInfo));
+    // yield put(tokenActions.tokenInfo(userTokenInfo));
     // yield put(scheduleActions.scheduleInfo(userData));
   } else if (errorMessage) {
     yield put(actions.loginFail(errorMessage));

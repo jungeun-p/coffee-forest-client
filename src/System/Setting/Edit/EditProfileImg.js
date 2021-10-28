@@ -11,6 +11,7 @@ const EditProfileImg = () => {
     file: '',
     previewURL: ''
   });
+  console.log(profileImage, `image:${img.file}`);
 
   const onChange = e => {
     let reader = new FileReader();

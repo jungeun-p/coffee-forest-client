@@ -14,7 +14,7 @@ const ManageWork = () => {
 
   useEffect(() => {
     LoadCompanySetting();
-  }, [LoadCompanySetting]);
+  }, [dispatch]);
 
   const [setting, setSetting] = useState({
     workStartTime: companyEnvironment?.workStartTime,
