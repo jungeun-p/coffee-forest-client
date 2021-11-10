@@ -32,7 +32,7 @@ const MonthlyPlan = () => {
   };
   useEffect(() => {
     LoadSchedule();
-  });
+  }, [dispatch]);
   return (
     <WorkMonthly>
       <ThisMonthCalendar LoadSchedule={LoadSchedule} />

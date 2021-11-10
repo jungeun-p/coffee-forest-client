@@ -6,18 +6,18 @@ import Cookies from 'universal-cookie/es6';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 
-export function getAccessToken() {
-  const cookies = new Cookies();
-  const refresh_token = cookies.get('refreshToken');
-  if (refresh_token) {
-    console.log('alive RT');
-  }
+// export function getAccessToken() {
+const cookies = new Cookies();
+const refresh_token = cookies.get('refreshToken');
+if (refresh_token) {
+  console.log('alive RT');
 }
 
+// }
 function App() {
-  // const { tokenInfo } = useSelector(state => state.token);
+  // // const { tokenInfo } = useSelector(state => state.token);
   // useEffect(() => {
-  //   const token = getAccessToken();
+  //   getAccessToken();
   // });
   return (
     <>

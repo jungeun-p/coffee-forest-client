@@ -12,8 +12,8 @@ const RequestWork = ({ workList, onReject, onAccept }) => {
           <WorkListArticle
             key={work.scheduleIndex}
             date={work.date}
-            startTime={work.startTime.slice(0, 5)}
-            endTime={work.endTime.slice(0, 5)}
+            startTime={work.startTime?.slice(0, 5)}
+            endTime={work.endTime?.slice(0, 5)}
             title={work.title}
             titleType={work.scheduleType}
             userName={work.userName}
