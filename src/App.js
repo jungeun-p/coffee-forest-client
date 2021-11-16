@@ -1,24 +1,31 @@
 import './App.css';
 import React, { useEffect } from 'react';
-// import { applyMiddleware, createStore } from "redux";
 import MainRouter from './Routes/MainRouter';
+import { getAccessToken, setRefreshToken } from './Hooks/auth';
+import { useDispatch, useSelector } from 'react-redux';
 import Cookies from 'universal-cookie/es6';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
+import AddThisWeek from './Hooks/addThisWeek';
+import { actions as scheduleActions } from './Store/schedule';
 
-// export function getAccessToken() {
-const cookies = new Cookies();
-const refresh_token = cookies.get('refreshToken');
-if (refresh_token) {
-  console.log('alive RT');
-}
-
-// }
 function App() {
-  // // const { tokenInfo } = useSelector(state => state.token);
-  // useEffect(() => {
-  //   getAccessToken();
-  // });
+  const { authenticated } = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  const thisWeekDate = AddThisWeek();
+  console.log(authenticated);
+  useEffect(() => {
+    if (!authenticated) {
+      const index = {
+        userIndex: localStorage.getItem('userIndex'),
+        companyIndex: localStorage.getItem('companyIndex'),
+        startDate: thisWeekDate[0].date
+      };
+      if (index) {
+        dispatch(scheduleActions.scheduleInfoRequest(index));
+      }
+      const token = getAccessToken();
+      setRefreshToken(token);
+    }
+  }, [authenticated]);
   return (
     <>
       <MainRouter />

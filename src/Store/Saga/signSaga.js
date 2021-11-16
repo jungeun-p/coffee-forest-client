@@ -39,6 +39,9 @@ function loginApi(data) {
       cookies.set('refreshToken', userTokenInfo.refreshToken, {
         sameSite: 'strict'
       });
+      // userIndex 로컬에 저장
+      localStorage.setItem('userIndex', userTokenInfo.userIndex);
+      localStorage.setItem('companyIndex', userData.companyIndex);
       // 요청하는 콜마다 헤더에 accessToken 담아서 전달
       axios.defaults.headers.common['Authorization'] =
         userTokenInfo.accessToken;

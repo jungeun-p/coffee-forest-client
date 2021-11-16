@@ -36,11 +36,7 @@ export const actions = {
 };
 
 const INITIAL_STATE = {
-  // signLoading: false,
-  signFail: null,
-  signSuccess: null,
-  // loginFail: null,
-  authenticated: false,
+  authenticated: null,
   // data
   errorMessage: null,
   userData: {
@@ -60,14 +56,17 @@ const INITIAL_STATE = {
 };
 
 const reducer = createReducer(INITIAL_STATE, {
-  [Types.SignFail]: (state, action) => (state.signFail = action.errorMessage),
+  [Types.SignFail]: (state, action) => (state.authenticated = false),
   [Types.SignSuccess]: (state, action) => (state.signSuccess = action.message),
   [Types.LoginSuccess]: (state, action) => {
     state.userData = action.userData;
     state.userProfile = action.userData;
+    state.authenticated = true;
   },
-  [Types.LoginFail]: (state, action) =>
-    (state.errorMessage = action.errorMessage),
+  [Types.LoginFail]: (state, action) => {
+    state.errorMessage = action.errorMessage;
+    state.authenticated = false;
+  },
   [Types.EditSuccess]: (state, action) =>
     (state.userProfile = action.userProfile)
 });
