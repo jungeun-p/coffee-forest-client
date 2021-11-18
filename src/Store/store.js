@@ -1,7 +1,5 @@
 import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import { persistReducer } from 'redux-persist';
-// import storageSession from 'redux-persist/lib/storage/session';
 import userReducer from './user';
 import tokenReducer from './token';
 import validReducer from './validation';

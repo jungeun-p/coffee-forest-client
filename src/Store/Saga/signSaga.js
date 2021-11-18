@@ -1,10 +1,10 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { actions, Types } from '../user';
-import { actions as tokenActions } from '../token';
 // import { actions as scheduleActions } from '../schedule';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../Lib/constant';
 import Cookies from 'universal-cookie/es6';
+import { setAccessToken } from '../../Hooks/auth';
 
 // import Cookies from 'universal-cookie';
 // import { API_HOST } from "../Lib/constant";
@@ -24,9 +24,6 @@ function signApi(data) {
       const errorMessage = error.response.data.message;
       return { errorMessage };
     });
-  // return axios.post(`${API_HOST}users`, user, {
-  //   withCredentials: true,
-  // });
 }
 
 function loginApi(data) {
@@ -39,15 +36,12 @@ function loginApi(data) {
       cookies.set('refreshToken', userTokenInfo.refreshToken, {
         sameSite: 'strict'
       });
-      // userIndex 로컬에 저장
+      // Index Info 로컬에 저장
       localStorage.setItem('userIndex', userTokenInfo.userIndex);
       localStorage.setItem('companyIndex', userData.companyIndex);
-      // 요청하는 콜마다 헤더에 accessToken 담아서 전달
-      axios.defaults.headers.common['Authorization'] =
-        userTokenInfo.accessToken;
+      setAccessToken(userTokenInfo.accessToken);
       return {
         userData
-        // userTokenInfo
       };
     })
     .catch(error => {
@@ -69,8 +63,6 @@ function* login({ data }) {
   const { userData, errorMessage } = yield call(loginApi, data);
   if (userData) {
     yield put(actions.loginSuccess(userData));
-    // yield put(tokenActions.tokenInfo(userTokenInfo));
-    // yield put(scheduleActions.scheduleInfo(userData));
   } else if (errorMessage) {
     yield put(actions.loginFail(errorMessage));
   }

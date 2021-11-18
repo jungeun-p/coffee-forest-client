@@ -12,37 +12,19 @@ import AddThisWeek from '../../../Hooks/addThisWeek';
 const WeeklyPlan = () => {
   const dispatch = useDispatch();
   const thisWeekDate = AddThisWeek();
-  const { userIndex, companyIndex } = useSelector(state => state.user.userData);
+  // const { userIndex, companyIndex } = useSelector(state => state.user.userData);
   const { userData } = useSelector(state => state.user);
   const weekend = useSelector(state => state.schedule.date);
-
-  // 주간 일정 리스트 api
-  // const LoadSchedule = () => {
-  //   const index = {
-  //     userIndex: userIndex,
-  //     companyIndex: companyIndex,
-  //     startDate: thisWeekDate[0].date
-  //   };
-  //   if (index) {
-  //     dispatch(scheduleActions.scheduleInfoRequest(index));
-  //   }
-  // };
+  const status = useSelector(state => state.schedule.errorMessage);
 
   useEffect(() => {
-    // // if (userIndex) {
-    // LoadSchedule();
-    // // } else {
-    // //   // window.location.replace('/');
-    // // }
     const index = {
-      userIndex: userIndex,
-      companyIndex: companyIndex,
+      userIndex: localStorage.getItem('userIndex'),
+      companyIndex: localStorage.getItem('companyIndex'),
       startDate: thisWeekDate[0].date
     };
-    if (index) {
-      dispatch(scheduleActions.scheduleInfoRequest(index));
-    }
-  }, [companyIndex, dispatch, userIndex]);
+    dispatch(scheduleActions.scheduleWeeklyRequest(index));
+  }, []);
 
   return (
     <div>

@@ -12,23 +12,26 @@ export function setRefreshToken(refreshToken) {
 // 새 accessToken 발급
 export function getAccessToken() {
   // token 유효성도 체크하기
-  const refreshToken = cookies.get('refreshToken');
-  if (refreshToken) {
-    const index = {
-      userIndex: localStorage.getItem('userIndex'),
-      refreshToken: cookies.get('refreshToken')
-    };
-    return axios
-      .patch(`${LOCAL_HOST}refresh`, index)
-      .then(response => {
-        const { refreshToken, accessToken } = response.data;
-        axios.defaults.headers.common['Authorization'] = accessToken;
-        return {
-          refreshToken
-        };
-      })
-      .catch(error => {
-        console.log(error.response.data);
-      });
-  }
+  // const refreshToken = cookies.get('refreshToken');
+  // if (refreshToken) {
+  const index = {
+    userIndex: localStorage.getItem('userIndex'),
+    refreshToken: cookies.get('refreshToken')
+  };
+  return axios
+    .patch(`${LOCAL_HOST}refresh`, index)
+    .then(response => {
+      const { accessToken } = response.data;
+      setAccessToken(accessToken);
+      return {
+        accessToken
+      };
+    })
+    .catch(error => console.log(error.response.data));
+}
+
+// accessToken request header 설정
+export function setAccessToken(accessToken) {
+  console.log('setAccessToken', accessToken);
+  axios.defaults.headers.common['Authorization'] = accessToken;
 }

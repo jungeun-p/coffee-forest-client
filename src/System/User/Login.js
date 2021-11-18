@@ -3,11 +3,13 @@ import LoginBody from '../../Pages/Login/LoginBody';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions } from '../../Store/user';
+import Cookies from 'universal-cookie/es6';
 // import { actions as scheduleActions } from '../../Store/schedule';
 
 const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const cookies = new Cookies();
 
   const [user, setUser] = useState({
     email: '',
@@ -35,6 +37,7 @@ const Login = () => {
   }, [dispatch, user.email, user.password]);
 
   useEffect(() => {
+    const token = cookies.get('refreshToken');
     if (userData.userIndex) {
       if (
         user.email === 'admin@naver.com' ||
@@ -56,6 +59,8 @@ const Login = () => {
         alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
         history.push('/enroll');
       }
+    } else if (token) {
+      history.push('/mypage');
     }
   }, [history, user.email, userData]);
 

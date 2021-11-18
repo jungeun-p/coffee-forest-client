@@ -8,7 +8,8 @@ import dayjs from 'dayjs';
 
 const MonthlyPlan = () => {
   const dispatch = useDispatch();
-  const { userIndex, companyIndex } = useSelector(state => state.user.userData);
+  const status = useSelector(state => state.schedule.errorMessage);
+  console.log(status);
   const now = dayjs();
 
   const LoadSchedule = day => {
@@ -16,20 +17,21 @@ const MonthlyPlan = () => {
     const today = now.date();
     if (!day) {
       const index = {
-        userIndex: userIndex,
-        companyIndex: companyIndex,
+        userIndex: localStorage.getItem('userIndex'),
+        companyIndex: localStorage.getItem('companyIndex'),
         startDate: `${YearMonth}-${today < 10 ? '0' + today : today}`
       };
       dispatch(scheduleActions.scheduleMonthlyRequest(index));
     } else {
       const index = {
-        userIndex: userIndex,
-        companyIndex: companyIndex,
+        userIndex: localStorage.getItem('userIndex'),
+        companyIndex: localStorage.getItem('companyIndex'),
         startDate: `${YearMonth}-${day < 10 ? '0' + day : day}`
       };
       dispatch(scheduleActions.scheduleMonthlyRequest(index));
     }
   };
+
   useEffect(() => {
     LoadSchedule();
   }, [dispatch]);
