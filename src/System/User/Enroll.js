@@ -90,9 +90,10 @@ const Enroll = () => {
   const applyEmployee = useCallback(() => {
     if (office.name !== '') {
       const data = {
-        companyIndex: 1,
+        companyIndex: 2,
         userIndex: userIndex
       };
+      console.log(data);
       dispatch(enrollActions.enrollRequestEmployee(data));
     }
   }, [dispatch, userIndex, office.name]);

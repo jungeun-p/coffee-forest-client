@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // import WeeklyPage from '../../../Pages/Mypage/WeeklyPage';
 import { actions as scheduleActions } from '../../../Store/schedule';
@@ -12,33 +12,32 @@ import AddThisWeek from '../../../Hooks/addThisWeek';
 const WeeklyPlan = () => {
   const dispatch = useDispatch();
   const thisWeekDate = AddThisWeek();
-  // const { userIndex, companyIndex } = useSelector(state => state.user.userData);
-  const { userData } = useSelector(state => state.user);
-  const weekend = useSelector(state => state.schedule.date);
-  const status = useSelector(state => state.schedule.errorMessage);
+  const { date } = useSelector(state => state.schedule);
+  const { status } = useSelector(state => state.auth);
+  const companyIndex = localStorage.getItem('companyIndex');
+  const userIndex = localStorage.getItem('userIndex');
 
   useEffect(() => {
     const index = {
-      userIndex: localStorage.getItem('userIndex'),
-      companyIndex: localStorage.getItem('companyIndex'),
+      userIndex: userIndex,
+      companyIndex: companyIndex,
       startDate: thisWeekDate[0].date
     };
     dispatch(scheduleActions.scheduleWeeklyRequest(index));
-  }, []);
+  }, [status]);
 
   return (
     <div>
-      {weekend && (
+      {date && (
         <WorkWeekly>
-          <WorkData weekend={weekend} />
+          <WorkData weekend={date} />
           <WorkList>
-            <WorkLoad weekend={weekend} />
-            <SaveWorkPlan weekend={weekend} />
+            <WorkLoad weekend={date} />
+            <SaveWorkPlan weekend={date} />
           </WorkList>
         </WorkWeekly>
       )}
-      {(userData.workApplicantStatus === 'WAITING' ||
-        userData.companyApplicantStatus === 'WAIT') && (
+      {companyIndex === '0' && userIndex && (
         <Preview>
           <div className="loading">
             <LoadingImg src={waitingLogo} />

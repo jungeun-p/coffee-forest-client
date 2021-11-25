@@ -1,5 +1,6 @@
 import { call, put, all, takeLeading, takeEvery } from 'redux-saga/effects';
 import { actions, Types } from '../schedule';
+import { actions as authActions } from '../auth';
 import { callApi } from '../../util/api.js';
 
 function* monthly({ index }) {
@@ -10,8 +11,10 @@ function* monthly({ index }) {
   });
   if (data) {
     yield put(actions.scheduleMonthlySuccess(data));
+    yield put(authActions.getAccessSuccess());
   } else {
     yield put(actions.scheduleMonthlyFail(status));
+    yield put(authActions.getAccessFail(status));
   }
 }
 
@@ -23,8 +26,10 @@ function* weekly({ index }) {
   });
   if (data) {
     yield put(actions.scheduleWeeklySuccess(data));
+    yield put(authActions.getAccessSuccess());
   } else {
     yield put(actions.scheduleWeeklyFail(status));
+    yield put(authActions.getAccessFail(status));
   }
 }
 

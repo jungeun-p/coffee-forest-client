@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import ThisMonthCalendar from '../../../Components/Calendar/ThisMonthCalendar';
 import LoadMonthlyPlan from './LoadMonthlyPlan';
@@ -8,8 +8,8 @@ import dayjs from 'dayjs';
 
 const MonthlyPlan = () => {
   const dispatch = useDispatch();
-  const status = useSelector(state => state.schedule.errorMessage);
-  console.log(status);
+  const montly = useSelector(state => state.schedule);
+  const { status } = useSelector(state => state.auth);
   const now = dayjs();
 
   const LoadSchedule = day => {
@@ -34,7 +34,7 @@ const MonthlyPlan = () => {
 
   useEffect(() => {
     LoadSchedule();
-  }, [dispatch]);
+  }, [status]);
   return (
     <WorkMonthly>
       <ThisMonthCalendar LoadSchedule={LoadSchedule} />

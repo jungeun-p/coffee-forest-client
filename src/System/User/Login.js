@@ -10,6 +10,8 @@ const Login = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const cookies = new Cookies();
+  const userIndex = localStorage.getItem('userIndex');
+  const companyIndex = localStorage.getItem('companyIndex');
 
   const [user, setUser] = useState({
     email: '',
@@ -24,7 +26,7 @@ const Login = () => {
     setUser(state => ({ ...state, [name]: value }));
   };
 
-  const onClick = useCallback(() => {
+  const onClick = () => {
     if ((user.email && user.password) === '') {
       alert('로그인 정보를 다시 확인해주세요');
     } else {
@@ -34,10 +36,30 @@ const Login = () => {
       };
       dispatch(actions.loginRequest(data));
     }
-  }, [dispatch, user.email, user.password]);
+  };
 
   useEffect(() => {
     const token = cookies.get('refreshToken');
+    console.log(userData, enrollCompany);
+    // if (token && userIndex) {
+    //   // admin 계정의 로그인 했을 때
+    //   if (
+    //     user.email === 'admin@naver.com' ||
+    //     userData.email === 'admin@naver.com'
+    //   ) {
+    //     history.push('/admin');
+    //     // 회사 등록 or 사원 등록 후 초기화
+    //   } else if (companyIndex === '0') {
+    //     alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
+    //     history.push('/enroll');
+    //   } else if (
+    //     userData.companyApplicantStatus === 'WAIT' ||
+    //     userData.workApplicantStatus === 'WAITING'
+    //   ) {
+    //     history.push('/mypage');
+    //   }
+    // }
+
     if (userData.userIndex) {
       if (
         user.email === 'admin@naver.com' ||
@@ -55,14 +77,14 @@ const Login = () => {
         enrollEmployee.workStatus === 'WAITING'
       ) {
         window.location.replace('/');
-      } else {
+      } else if (userData.companyIndex === 0) {
         alert('회사를 등록하거나, 등록된 회사를 찾아 신청하세요.');
         history.push('/enroll');
       }
-    } else if (token) {
+    } else {
       history.push('/mypage');
     }
-  }, [history, user.email, userData]);
+  }, [userData]);
 
   return (
     <LoginBody

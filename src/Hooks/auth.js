@@ -32,6 +32,5 @@ export function getAccessToken() {
 
 // accessToken request header 설정
 export function setAccessToken(accessToken) {
-  console.log('setAccessToken', accessToken);
   axios.defaults.headers.common['Authorization'] = accessToken;
 }

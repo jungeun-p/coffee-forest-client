@@ -9,6 +9,7 @@ import adminReducer from './admin';
 import employeeReducer from './employee';
 import workReducer from './work';
 import companyReducer from './company';
+import authReducer from './auth';
 import { all } from 'redux-saga/effects';
 import signSaga from './Saga/signSaga';
 import validSaga from './Saga/validSaga';
@@ -41,7 +42,8 @@ const reducer = combineReducers({
   admin: adminReducer,
   employee: employeeReducer,
   work: workReducer,
-  company: companyReducer
+  company: companyReducer,
+  auth: authReducer
 });
 
 // persistConfig 추가된 reducer 반환

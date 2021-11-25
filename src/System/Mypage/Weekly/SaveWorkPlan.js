@@ -27,8 +27,8 @@ const SaveWorkPlan = ({ weekend }) => {
   // 일정 추가 api
   const sendSchedule = day => {
     let schedule = {
-      companyIndex: companyIndex,
-      userIndex: userIndex,
+      companyIndex: localStorage.getItem('companyIndex'),
+      userIndex: localStorage.getItem('userIndex'),
       title: event.title,
       date: day,
       startTime: event.startTime,
