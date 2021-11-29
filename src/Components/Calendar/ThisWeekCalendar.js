@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import AddEvent from '../Event';
 import AddThisWeek from '../../Hooks/addThisWeek';
 import dayjs from 'dayjs';
+import TimeBox from '../Event/TimeBox';
 
 const ThisWeekCalendar = ({ weekend, sendSchedule, onChange, event }) => {
   // 기존 달력 날짜
@@ -59,7 +60,7 @@ const PlanDate = ({
               startTime={
                 plan.startTime ? (
                   plan.startTime?.slice(0, 2) > 12 ? (
-                    `오후 ${
+                    `오후 0${
                       plan.startTime?.slice(0, 2) - 12
                     } : ${plan.startTime?.slice(3, 5)}`
                   ) : (
@@ -74,8 +75,8 @@ const PlanDate = ({
               }
               endTime={
                 plan.endTime ? (
-                  plan.endTime?.slice(0, 2) > 12 ? (
-                    `오후 ${
+                  plan.endTime?.slice(0, 2) >= 12 ? (
+                    `오후 0${
                       plan.endTime?.slice(0, 2) - 12
                     } : ${plan.endTime?.slice(3, 5)}`
                   ) : (
@@ -98,7 +99,7 @@ const PlanDate = ({
         view={view}
         day={day}
         event={event}
-        setEvent={setEvent}
+        // setEvent={setEvent}
         onChange={onChange}
         sendSchedule={sendSchedule}
       />
@@ -172,7 +173,8 @@ const PlanArticle = ({ title, startTime, endTime }) => {
         </div>
       </PlanTitleBox>
       <PlanTime>
-        {startTime} ~ {endTime}
+        <TimeBox time={startTime}></TimeBox>
+        <TimeBox time={endTime}></TimeBox>
       </PlanTime>
     </PlanOne>
   );
@@ -204,6 +206,9 @@ const PlanTime = styled.div`
   font-size: 14px;
   line-height: 18px;
   color: #232323;
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
 `;
 
 export default ThisWeekCalendar;

@@ -18,6 +18,7 @@ const WeeklyPlan = () => {
   const userIndex = localStorage.getItem('userIndex');
 
   useEffect(() => {
+    // console.log(date);
     const index = {
       userIndex: userIndex,
       companyIndex: companyIndex,
@@ -37,7 +38,7 @@ const WeeklyPlan = () => {
           </WorkList>
         </WorkWeekly>
       )}
-      {companyIndex === '0' && userIndex && (
+      {companyIndex === '0' && userIndex !== '0' && (
         <Preview>
           <div className="loading">
             <LoadingImg src={waitingLogo} />

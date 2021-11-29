@@ -27,7 +27,6 @@ const AddThisMonth = ({ LoadSchedule }) => {
         ? 53
         : viewDate.endOf('month').week();
     let calendar = [];
-
     for (let week = startWeek; week <= endWeek; week++) {
       calendar.push(
         <div className="oneWeek" key={week}>
@@ -38,7 +37,7 @@ const AddThisMonth = ({ LoadSchedule }) => {
                 .startOf('week')
                 .week(week)
                 .add(n + i, 'day');
-              if (viewDate.format('MM') === 12) {
+              if (viewDate.format('MM') === '12') {
                 current = viewDate
                   .startOf('week')
                   .week(week - 52)
@@ -60,7 +59,7 @@ const AddThisMonth = ({ LoadSchedule }) => {
                   <div
                     className={`text ${isSelected} ${isToday} ${isNone}`}
                     onClick={() => {
-                      LoadSchedule(current.format('D'));
+                      LoadSchedule(current.format('YYYY-MM-DD'));
                       setSelectDate(current);
                     }}
                   >
@@ -81,7 +80,7 @@ const AddThisMonth = ({ LoadSchedule }) => {
     return calendar;
   };
 
-  const changegeMonth = (date: any, changeString: string) => {
+  const changeMonth = (date, changeString) => {
     switch (changeString) {
       case 'add':
         return setViewDate(viewDate.add(1, 'month'));
@@ -99,13 +98,13 @@ const AddThisMonth = ({ LoadSchedule }) => {
         <div className="button">
           <div
             className="icon previous_icon"
-            onClick={() => changegeMonth(viewDate, 'subtract')}
+            onClick={() => changeMonth(viewDate, 'subtract')}
           >
             <i className="fas fa-chevron-left" />
           </div>
           <div
             className="icon next_icon"
-            onClick={() => changegeMonth(viewDate, 'add')}
+            onClick={() => changeMonth(viewDate, 'add')}
           >
             <i className="fas fa-chevron-right" />
           </div>

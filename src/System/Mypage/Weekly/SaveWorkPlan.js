@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../../Lib/constant';
 import { actions } from '../../../Store/schedule';
@@ -23,7 +23,6 @@ const SaveWorkPlan = ({ weekend }) => {
     const { name, value } = e.target;
     setEvent(state => ({ ...state, [name]: value }));
   };
-
   // 일정 추가 api
   const sendSchedule = day => {
     let schedule = {
@@ -47,22 +46,22 @@ const SaveWorkPlan = ({ weekend }) => {
   };
 
   // 출근 api
-  const onAttandacne = () => {
+  const onAttandacne = useCallback(() => {
     const index = {
       companyIndex: companyIndex,
       userIndex: userIndex
     };
     dispatch(actions.scheduleEnter(index));
-  };
+  }, []);
 
   // 퇴근 api
-  const onLeaving = () => {
+  const onLeaving = useCallback(() => {
     const index = {
       companyIndex: companyIndex,
       userIndex: userIndex
     };
     dispatch(actions.scheduleEnd(index));
-  };
+  }, []);
 
   return (
     <WorkPlan
