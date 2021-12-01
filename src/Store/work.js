@@ -45,7 +45,7 @@ const reducer = createReducer(INITIAL_STATE, {
     (state.errorMessage = action.errorMessage),
   [Types.WorkAcceptSuccess]: (state, action) =>
     (state.workStatus = action.statusAccept),
-  [Types.workRejectSuccess]: (state, action) =>
+  [Types.WorkRejectSuccess]: (state, action) =>
     (state.workStatus = action.statusReject)
 });
 

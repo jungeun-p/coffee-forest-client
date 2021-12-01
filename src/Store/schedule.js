@@ -1,12 +1,12 @@
 import { createReducer } from '../Hooks/redux-helper';
 
 export const Types = {
+  ScheduleStatus:'schedule/ScheduleStatus',
   ScheduleWeeklyRequest: 'schedule/ScheduleWeeklyRequest',
   ScheduleWeeklySuccess: 'schedule/ScheduleWeeklySuccess',
-  ScheduleWeeklyFail: 'schedule/ScheduleWeeklyFail',
   ScheduleMonthlyRequest: 'schedule/ScheduleMontlyRequest',
   ScheduleMonthlySuccess: 'schedule/ScheduleMonthlySuccess',
-  ScheduleMonthlyFail: 'schedule/ScheduleMonthlyFail',
+  AddSchedule: 'schedule/Addschedule',
   ScheduleEnter: 'schedule/ScheduleEnter',
   ScheduleEnterSuccess: 'schedule/ScheduleEnterSuccess',
   ScheduleEnd: 'schedule/ScheduleEnd',
@@ -14,6 +14,7 @@ export const Types = {
 };
 
 export const actions = {
+  scheduleStatus: (status)=>({type:Types.ScheduleStatus, status}),
   // 주간 일정
   scheduleWeeklyRequest: index => ({
     type: Types.ScheduleWeeklyRequest,
@@ -22,10 +23,6 @@ export const actions = {
   scheduleWeeklySuccess: scheduleData => ({
     type: Types.ScheduleWeeklySuccess,
     scheduleData
-  }),
-  scheduleWeeklyFail: status => ({
-    type: Types.ScheduleWeeklyFail,
-    status
   }),
   // 월간 일정
   scheduleMonthlyRequest: index => ({
@@ -36,10 +33,8 @@ export const actions = {
     type: Types.ScheduleMonthlySuccess,
     scheduleMonthly
   }),
-  scheduleMonthlyFail: status => ({
-    type: Types.ScheduleMonthlyFail,
-    status
-  }),
+  // 일정 추가 
+  addSchedule: schedule=> ({type: Types.AddSchedule, schedule}),
   // 출퇴근
   scheduleEnter: index => ({ type: Types.ScheduleEnter, index }),
   scheduleEnterSuccess: enter => ({
@@ -61,26 +56,24 @@ const INITIAL_STATE = {
     scheduleInfo: {}
   },
   scheduleMonthly: null,
-  errorMessage: null
+  scheduleStatus: null
 };
 
 const reducer = createReducer(INITIAL_STATE, {
+  [Types.ScheduleStatus]: (state, action) => 
+    (state.scheduleStatus='Success'),
   [Types.ScheduleWeeklySuccess]: (state, action) => {
     state.date = action.scheduleData;
-    state.errorMessage = null;
+    state.scheduleStatus = null;
   },
-  [Types.ScheduleWeeklyFail]: (state, action) =>
-    (state.errorMessage = action.status),
+  [Types.ScheduleMonthlySuccess]: (state, action) => {
+    state.scheduleMonthly = action.scheduleMonthly;
+    state.scheduleStatus = null;
+  },
   [Types.ScheduleEnterSuccess]: (state, action) =>
     (state.date.scheduleInfo = action.enter),
   [Types.ScheduleEndSuccess]: (state, action) =>
     (state.date.scheduleInfo = action.end),
-  [Types.ScheduleMonthlySuccess]: (state, action) => {
-    state.scheduleMonthly = action.scheduleMonthly;
-    state.errorMessage = null;
-  },
-  [Types.ScheduleMonthlyFail]: (state, action) =>
-    (state.errorMessage = action.status)
 });
 
 export default reducer;

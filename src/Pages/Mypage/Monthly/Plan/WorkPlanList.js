@@ -20,8 +20,8 @@ const WorkPlanList = ({ scheduleMonthly }) => {
               key={index}
               titleType={it.scheduleInfo.scheduleType}
               title={it.scheduleInfo.title}
-              startTime={it.scheduleInfo.startTime.slice(0, 5)}
-              endTime={it.scheduleInfo.endTime.slice(0, 5)}
+              startTime={it.scheduleInfo.startTime}
+              endTime={it.scheduleInfo.endTime}
               userName={it.simpleUserInfo.name}
               profileImage={it.simpleUserInfo.profileImage}
             />

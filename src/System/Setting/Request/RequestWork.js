@@ -4,9 +4,9 @@ import RequestWorkPage from '../../../Pages/Setting/RequestWorkPage';
 import { actions as workActions } from '../../../Store/work';
 
 const RequestWork = () => {
+  const dispatch = useDispatch();
   const { userIndex, companyIndex } = useSelector(state => state.user.userData);
   const { workList, workStatus } = useSelector(state => state.work);
-  const dispatch = useDispatch();
   // 승인
   const onAccept = index => {
     const indexData = {
@@ -35,7 +35,7 @@ const RequestWork = () => {
     if (workIndex) {
       dispatch(workActions.requestWorkList(workIndex));
     }
-  }, [companyIndex, workStatus, dispatch, userIndex]);
+  }, [workStatus]);
 
   return (
     workList && (

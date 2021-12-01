@@ -4,6 +4,7 @@ import { ButtonCommonS } from '../Button';
 import basicProfile from '../../assets/Img/profile/basicProfile.png';
 import ToggleDown from '../../assets/Icon/ToggleDown.png';
 import ToggleUp from '../../assets/Icon/ToggleUp.png';
+import TimeBox from '../Event/TimeBox';
 
 const WorkListArticle = ({
   userName,
@@ -83,9 +84,11 @@ const WorkTitle = ({
         </WorkType>
         <WorkDetail>
           <div className="title">{title}</div>
-          <div className="date">{`${
-            date ? date + ' /' : ''
-          } ${startTime} ~ ${endTime}`}</div>
+          <div className="time">
+            <TimeBox time={startTime} />
+            <div className="hypen">-</div>
+            <TimeBox time={endTime} />
+          </div>
         </WorkDetail>
       </div>
       <Toggle onClick={onView} src={view === true ? ToggleUp : ToggleDown} />
@@ -101,6 +104,7 @@ const TitleBox = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    flex-wrap: wrap;
   }
 `;
 
@@ -125,6 +129,7 @@ const WorkType = styled.div`
   color: #ffffff;
   font-weight: 700;
   margin-right: 10px;
+  margin-bottom: 10px;
   padding-top: 5px;
 `;
 
@@ -134,6 +139,15 @@ const WorkDetail = styled.div`
     line-height: 16px;
     color: #232323;
     font-weight: 700;
+  }
+  .time {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .hypen {
+      font-size: 15px;
+      margin: 10px 5px 0 5px;
+    }
   }
   .date {
     font-size: 12px;

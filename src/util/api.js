@@ -1,8 +1,14 @@
 import axios from 'axios';
-import { getAccessToken } from '../Hooks/auth';
-// import Cookies from 'universal-cookie/es6';
-// import { getAccessToken, setAccessToken } from '../Hooks/auth';
 import { LOCAL_HOST } from '../Lib/constant';
+
+/**
+ *
+ * @param {object} param
+ * @param {'get' | 'post' =} param.method
+ * @param {string} param.url
+ * @param {object=} param.params
+ * @param {object=} param.data
+ */
 
 export function callApi({ method = 'get', url, params, data }) {
   return axios({

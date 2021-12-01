@@ -1,36 +1,35 @@
 import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import ThisMonthCalendar from '../../../Components/Calendar/ThisMonthCalendar';
-import LoadMonthlyPlan from './LoadMonthlyPlan';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as scheduleActions } from '../../../Store/schedule';
 import dayjs from 'dayjs';
+import WorkPlanList from '../../../Pages/Mypage/Monthly/Plan/WorkPlanList';
 
 const MonthlyPlan = () => {
   const dispatch = useDispatch();
-  // const monthly = useSelector(state => state.schedule);
+  const { scheduleMonthly } = useSelector(state => state.schedule);
   const { status } = useSelector(state => state.auth);
   const now = dayjs();
 
-  const LoadSchedule = date => {
+  const LoadSchedule = useCallback(date => {
     const today = now.format('YYYY-MM-DD');
-    console.log(date);
     if (!date) {
       const index = {
         userIndex: localStorage.getItem('userIndex'),
         companyIndex: localStorage.getItem('companyIndex'),
-        startDate: `${today}`
+        startDate:today
       };
       dispatch(scheduleActions.scheduleMonthlyRequest(index));
     } else {
       const index = {
         userIndex: localStorage.getItem('userIndex'),
         companyIndex: localStorage.getItem('companyIndex'),
-        startDate: `${date}`
+        startDate: date
       };
       dispatch(scheduleActions.scheduleMonthlyRequest(index));
     }
-  };
+  }, []);
 
   useEffect(() => {
     LoadSchedule();
@@ -39,7 +38,7 @@ const MonthlyPlan = () => {
   return (
     <WorkMonthly>
       <ThisMonthCalendar LoadSchedule={LoadSchedule} />
-      <LoadMonthlyPlan />
+      <WorkPlanList scheduleMonthly={scheduleMonthly} />
     </WorkMonthly>
   );
 };

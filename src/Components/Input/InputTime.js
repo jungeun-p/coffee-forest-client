@@ -22,7 +22,7 @@ const Input = styled.input`
   font-size: 14px;
   text-align: center;
   padding: 0;
-  margin-right: 10px;
+  margin-top: 10px;
 `;
 
 export default InputTime;

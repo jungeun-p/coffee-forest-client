@@ -4,24 +4,25 @@ import AddEvent from '../Event';
 import AddThisWeek from '../../Hooks/addThisWeek';
 import dayjs from 'dayjs';
 import TimeBox from '../Event/TimeBox';
+import { useSelector } from 'react-redux';
 
-const ThisWeekCalendar = ({ weekend, sendSchedule, onChange, event }) => {
+const ThisWeekCalendar = ({ weekend, onChange, event }) => {
   // 기존 달력 날짜
   const thisWeekDate = AddThisWeek();
   const schedulePlan = weekend?.scheduleInfo;
+  
   return (
     <>
       {schedulePlan &&
         thisWeekDate.map((day, index) => (
           <PlanDate
-            day={day.date}
-            key={index}
-            schedulePlan={schedulePlan[day.date]}
-            sendSchedule={sendSchedule}
-            onChange={onChange}
-            event={event}
+          day={day.date}
+          key={index}
+          schedulePlan={schedulePlan[day.date]}
+          onChange={onChange}
+          event={event}
           />
-        ))}
+          ))}
     </>
   );
 };
@@ -29,19 +30,21 @@ const ThisWeekCalendar = ({ weekend, sendSchedule, onChange, event }) => {
 const PlanDate = ({
   schedulePlan,
   day,
-  sendSchedule,
   onChange,
   event,
-  setEvent
 }) => {
   const [view, setView] = useState(false);
-  const today = dayjs();
+  const { scheduleStatus } = useSelector(state => state.schedule);
+  
   const onView = () => {
     setView(!view ? true : false);
   };
+  
   useEffect(() => {
     setView(false);
-  }, []);
+  }, [scheduleStatus]);
+  
+  const today = dayjs();
   const isToday = today.format('YYYY-MM-DD') === day ? 'today' : '';
   return (
     <WeekArticle>
@@ -57,38 +60,8 @@ const PlanDate = ({
             <PlanArticle
               key={index}
               title={plan.scheduleType}
-              startTime={
-                plan.startTime ? (
-                  plan.startTime?.slice(0, 2) > 12 ? (
-                    `오후 0${
-                      plan.startTime?.slice(0, 2) - 12
-                    } : ${plan.startTime?.slice(3, 5)}`
-                  ) : (
-                    `오전 ${plan.startTime?.slice(
-                      0,
-                      2
-                    )} : ${plan.startTime?.slice(3, 5)}`
-                  )
-                ) : (
-                  <div></div>
-                )
-              }
-              endTime={
-                plan.endTime ? (
-                  plan.endTime?.slice(0, 2) >= 12 ? (
-                    `오후 0${
-                      plan.endTime?.slice(0, 2) - 12
-                    } : ${plan.endTime?.slice(3, 5)}`
-                  ) : (
-                    `오전 ${plan.endTime?.slice(0, 2)} : ${plan.endTime.slice(
-                      3,
-                      5
-                    )}`
-                  )
-                ) : (
-                  <div></div>
-                )
-              }
+              startTime={plan.startTime}
+              endTime={plan.endTime}
             />
           ))
         ) : (
@@ -99,9 +72,7 @@ const PlanDate = ({
         view={view}
         day={day}
         event={event}
-        // setEvent={setEvent}
         onChange={onChange}
-        sendSchedule={sendSchedule}
       />
     </WeekArticle>
   );
@@ -169,12 +140,13 @@ const PlanArticle = ({ title, startTime, endTime }) => {
             ? '외근'
             : title === 'CONFERENCE'
             ? '회의'
-            : '휴가'}
+            : '연차'}
         </div>
       </PlanTitleBox>
       <PlanTime>
-        <TimeBox time={startTime}></TimeBox>
-        <TimeBox time={endTime}></TimeBox>
+        <TimeBox time={startTime} />
+        <div className="hypen">-</div>
+        <TimeBox time={endTime} />
       </PlanTime>
     </PlanOne>
   );
@@ -183,7 +155,7 @@ const PlanArticle = ({ title, startTime, endTime }) => {
 const PlanOne = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
+  flex-wrap: wrap;
 `;
 const PlanTitleBox = styled.div`
   width: 35px;
@@ -195,6 +167,7 @@ const PlanTitleBox = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
   .title {
     font-weight: 600;
     font-size: 12px;
@@ -208,7 +181,13 @@ const PlanTime = styled.div`
   color: #232323;
   display: flex;
   flex-direction: row;
-  justify-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  .hypen {
+    font-size: 15px;
+    margin: 10px 5px 0 5px;
+  }
 `;
 
 export default ThisWeekCalendar;

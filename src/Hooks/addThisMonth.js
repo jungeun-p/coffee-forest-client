@@ -37,7 +37,7 @@ const AddThisMonth = ({ LoadSchedule }) => {
                 .startOf('week')
                 .week(week)
                 .add(n + i, 'day');
-              if (viewDate.format('MM') === '12') {
+              if (viewDate.format('MM') === 12) {
                 current = viewDate
                   .startOf('week')
                   .week(week - 52)

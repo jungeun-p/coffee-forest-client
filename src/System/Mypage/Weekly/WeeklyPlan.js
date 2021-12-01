@@ -1,31 +1,63 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import WeeklyPage from '../../../Pages/Mypage/WeeklyPage';
 import { actions as scheduleActions } from '../../../Store/schedule';
 import styled from 'styled-components';
 import WorkData from '../../../Pages/Mypage/Weekly/Data/WorkData';
 import WorkLoad from '../../../Pages/Mypage/Weekly/Load/WorkLoad';
-import SaveWorkPlan from './SaveWorkPlan';
 import waitingLogo from '../../../assets/Img/logo/waitingLogo.png';
 import AddThisWeek from '../../../Hooks/addThisWeek';
+import WorkPlan from '../../../Pages/Mypage/Weekly/Plan/WorkPlan';
 
 const WeeklyPlan = () => {
   const dispatch = useDispatch();
   const thisWeekDate = AddThisWeek();
-  const { date } = useSelector(state => state.schedule);
+  const { date, scheduleStatus } = useSelector(state => state.schedule);
   const { status } = useSelector(state => state.auth);
   const companyIndex = localStorage.getItem('companyIndex');
   const userIndex = localStorage.getItem('userIndex');
 
+    // 일정 추가
+  const [event, setEvent] = useState({
+    companyIndex: '',
+    userIndex: '',
+    title: '',
+    date: '',
+    startTime: '',
+    endTime: '',
+    scheduleType: ''
+  });
+
+  const onChange = e => {
+    const { name, value } = e.target;
+    setEvent(state => ({ ...state, [name]: value }));
+  };
+
+  // 출근 api
+  const onAttandacne = useCallback(() => {
+    const index = {
+      companyIndex: companyIndex,
+      userIndex: userIndex
+    };
+    dispatch(scheduleActions.scheduleEnter(index));
+  }, [dispatch]);
+
+  // 퇴근 api
+  const onLeaving = useCallback(() => {
+    const index = {
+      companyIndex: companyIndex,
+      userIndex: userIndex
+    };
+    dispatch(scheduleActions.scheduleEnd(index));
+  }, [dispatch]);
+
   useEffect(() => {
-    // console.log(date);
     const index = {
       userIndex: userIndex,
       companyIndex: companyIndex,
       startDate: thisWeekDate[0].date
     };
     dispatch(scheduleActions.scheduleWeeklyRequest(index));
-  }, [status]);
+  }, [status, scheduleStatus]);
 
   return (
     <div>
@@ -34,7 +66,12 @@ const WeeklyPlan = () => {
           <WorkData weekend={date} />
           <WorkList>
             <WorkLoad weekend={date} />
-            <SaveWorkPlan weekend={date} />
+            <WorkPlan 
+              weekend={date}
+              onAttandacne={onAttandacne}
+              onLeaving={onLeaving}
+              onChange={onChange}
+              event={event} />
           </WorkList>
         </WorkWeekly>
       )}
