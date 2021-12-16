@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions as scheduleActions } from '../../../Store/schedule';
 import styled from 'styled-components';
@@ -13,10 +13,11 @@ const WeeklyPlan = () => {
   const thisWeekDate = AddThisWeek();
   const { date, scheduleStatus } = useSelector(state => state.schedule);
   const { status } = useSelector(state => state.auth);
+  const { logoutToken } = useSelector(state => state.user);
   const companyIndex = localStorage.getItem('companyIndex');
   const userIndex = localStorage.getItem('userIndex');
 
-    // 일정 추가
+  // 일정 추가
   const [event, setEvent] = useState({
     companyIndex: '',
     userIndex: '',
@@ -33,22 +34,22 @@ const WeeklyPlan = () => {
   };
 
   // 출근 api
-  const onAttandacne = useCallback(() => {
+  const onAttandacne = () => {
     const index = {
       companyIndex: companyIndex,
       userIndex: userIndex
     };
     dispatch(scheduleActions.scheduleEnter(index));
-  }, [dispatch]);
+  };
 
   // 퇴근 api
-  const onLeaving = useCallback(() => {
+  const onLeaving = () => {
     const index = {
       companyIndex: companyIndex,
       userIndex: userIndex
     };
     dispatch(scheduleActions.scheduleEnd(index));
-  }, [dispatch]);
+  };
 
   useEffect(() => {
     const index = {
@@ -66,12 +67,13 @@ const WeeklyPlan = () => {
           <WorkData weekend={date} />
           <WorkList>
             <WorkLoad weekend={date} />
-            <WorkPlan 
+            <WorkPlan
               weekend={date}
               onAttandacne={onAttandacne}
               onLeaving={onLeaving}
               onChange={onChange}
-              event={event} />
+              event={event}
+            />
           </WorkList>
         </WorkWeekly>
       )}

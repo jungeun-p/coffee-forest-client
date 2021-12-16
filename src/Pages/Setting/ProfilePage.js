@@ -1,26 +1,43 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import basicProfile from '../../assets/Img/profile/basicProfile.png';
+import mainLogo from '../../assets/Img/profile/basicProfile.png';
+import { signOut } from '../../Hooks/auth';
+import { actions } from '../../Store/user';
 
-const ProfilePage = () => {
+const ProfilePage = ({ date }) => {
   const { userData } = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
+  const Logout = () => {
+    signOut();
+    const logout = localStorage.getItem('logout');
+    dispatch(actions.logoutSuccess(logout));
+  };
+
   return (
-    <MainProfile>
-      <Cateogry to="/mypage/manage/profileImg">
-        <ProfileImage src={`${userData.profileImage}#123` || basicProfile} />
-      </Cateogry>
-      <div className="name">{userData.name}</div>
-      <div className="infos">
-        <div className="office">{userData.companyName}</div>
-        <div className="info">{userData.email}</div>
-        <div className="info">
-          {userData.position === 'ADMIN' ? '관리자' : '직원'}
-        </div>
-      </div>
-      <DivideLine />
-    </MainProfile>
+    <>
+      {date && (
+        <MainProfile>
+          <Cateogry to="/mypage/manage/profileImg">
+            <ProfileImage src={`${date.profileImage}` ?? mainLogo} />
+          </Cateogry>
+          <div className="name">{date.userName}</div>
+          <div className="infos">
+            <div className="office">{userData.companyName}</div>
+            <div className="info">{userData.email}</div>
+            <div className="info">
+              {userData.position === 'ADMIN' ? '관리자' : '직원'}
+            </div>
+            <div className="logout" onClick={Logout}>
+              🔓 로그아웃
+            </div>
+          </div>
+          <DivideLine />
+        </MainProfile>
+      )}
+    </>
   );
 };
 
@@ -44,6 +61,15 @@ const MainProfile = styled.div`
     .office {
       font-weight: 700;
       font-size: 14px;
+    }
+    .logout {
+      border: none;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 20px;
+      margin-top: 15px;
+      cursor: pointer;
     }
   }
 `;

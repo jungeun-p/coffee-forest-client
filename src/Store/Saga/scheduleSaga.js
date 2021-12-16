@@ -1,8 +1,9 @@
-import { call, put, all, takeLeading, takeEvery } from 'redux-saga/effects';
+import { call, put, all, takeEvery } from 'redux-saga/effects';
 import { actions, Types } from '../schedule';
 import { actions as authActions } from '../auth';
 import { callApi } from '../../util/api.js';
 
+// 일정 추가 
 function* schedule({schedule}){
   const {data, status} = yield call(callApi, {
     url: 'schedule',
@@ -16,6 +17,7 @@ function* schedule({schedule}){
   }
 }
 
+// 월간 일정 
 function* monthly({ index }) {
   const { data, status } = yield call(callApi, {
     url: 'schedule/month',
@@ -31,6 +33,7 @@ function* monthly({ index }) {
   }
 }
 
+// 주간 일정
 function* weekly({ index }) {
   const { data, status } = yield call(callApi, {
     url: 'schedule/week',

@@ -10,6 +10,7 @@ const MonthlyPlan = () => {
   const dispatch = useDispatch();
   const { scheduleMonthly } = useSelector(state => state.schedule);
   const { status } = useSelector(state => state.auth);
+  const { logoutToken } = useSelector(state => state.user);
   const now = dayjs();
 
   const LoadSchedule = useCallback(date => {
@@ -18,7 +19,7 @@ const MonthlyPlan = () => {
       const index = {
         userIndex: localStorage.getItem('userIndex'),
         companyIndex: localStorage.getItem('companyIndex'),
-        startDate:today
+        startDate: today
       };
       dispatch(scheduleActions.scheduleMonthlyRequest(index));
     } else {
@@ -33,7 +34,12 @@ const MonthlyPlan = () => {
 
   useEffect(() => {
     LoadSchedule();
-  }, [status]);
+    // 자동 로그아웃 처리
+    const logout = localStorage.getItem('logout');
+    if (logoutToken || logout !== null) {
+      window.location.replace('/');
+    }
+  }, [status, logoutToken]);
 
   return (
     <WorkMonthly>

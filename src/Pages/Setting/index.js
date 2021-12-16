@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { TitleB } from '../../Components/Common';
-import ProfilePage from './ProfilePage';
 import TabMenu from './TabMenu';
 import RequestEmployee from '../../System/Setting/Request/RequestEmployee';
 import ManageWork from '../../System/Setting/Manage/ManageWork';
@@ -11,22 +10,18 @@ import EditProfile from '../../System/Setting/Edit/EditProfile';
 import { BrowserRouter, Route } from 'react-router-dom';
 // import TabPage from './TabPage';
 import EditProfileImg from '../../System/Setting/Edit/EditProfileImg';
+import Profile from '../../System/Setting/Profile/Profile';
 
 const SettingContainer = () => {
   return (
     <BrowserRouter>
       <SettingWrapper>
-        <div className="profile">
-          <div className="info">
-            <TitleB>내 정보</TitleB>
-            <ProfilePage />
-            <TabMenu />
-          </div>
+        <div className="info">
+          <TitleB>내 정보</TitleB>
+          <Profile />
+          <TabMenu />
         </div>
         <div className="page">
-          {/* <TabPage /> */}
-          {/* <EditProfile /> */}
-          {/* <Route exact path="/mypage/manage" component={EditProfile} /> */}
           <Route path="/mypage/manage/edit" component={EditProfile} />
           <Route path="/mypage/manage/setting" component={ManageWork} />
           <Route path="/mypage/manage/employee" component={ManageEmployee} />

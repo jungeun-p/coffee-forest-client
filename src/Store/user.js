@@ -8,6 +8,8 @@ export const Types = {
   LoginRequest: 'user/LoginRequest',
   LoginSuccess: 'user/LoginSuccess',
   LoginFail: 'user/LoginFail',
+  LogoutRequest: 'user/LogoutRequest',
+  LogoutSuccess: ' user/LogoutSuccess',
   EditProfile: 'user/EditProfile',
   EditSuccess: 'user/EditSuccess',
   EditFail: 'user/EditFail',
@@ -24,6 +26,9 @@ export const actions = {
   loginRequest: data => ({ type: Types.LoginRequest, data }),
   loginSuccess: userData => ({ type: Types.LoginSuccess, userData }),
   loginFail: errorMessage => ({ type: Types.LoginFail, errorMessage }),
+  // logout
+  logoutRequst: data => ({ type: Types.LogoutRequest }),
+  logoutSuccess: message => ({ type: Types.LogoutSuccess, message }),
   // profile
   editProfile: profileData => ({ type: Types.EditProfile, profileData }),
   editSuccess: userProfile => ({ type: Types.EditSuccess, userProfile }),
@@ -37,6 +42,7 @@ export const actions = {
 
 const INITIAL_STATE = {
   authenticated: null,
+  logoutToken: null,
   // data
   errorMessage: null,
   userData: {
@@ -67,6 +73,8 @@ const reducer = createReducer(INITIAL_STATE, {
     state.errorMessage = action.errorMessage;
     state.authenticated = false;
   },
+  [Types.LogoutSuccess]: (state, action) =>
+    (state.logoutToken = action.message),
   [Types.EditSuccess]: (state, action) =>
     (state.userProfile = action.userProfile)
 });

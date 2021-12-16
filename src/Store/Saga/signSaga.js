@@ -1,30 +1,27 @@
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { actions, Types } from '../user';
-// import { actions as scheduleActions } from '../schedule';
 import axios from 'axios';
 import { LOCAL_HOST } from '../../Lib/constant';
 import Cookies from 'universal-cookie/es6';
 import { setAccessToken } from '../../Hooks/auth';
-
-// import Cookies from 'universal-cookie';
-// import { API_HOST } from "../Lib/constant";
+import { callApi } from '../../util/api';
 
 const cookies = new Cookies();
 
-function signApi(data) {
-  return axios
-    .post(`${LOCAL_HOST}sign-up`, data)
-    .then(response => {
-      const message = 'Valid';
-      return {
-        message
-      };
-    })
-    .catch(error => {
-      const errorMessage = error.response.data.message;
-      return { errorMessage };
-    });
-}
+// function signApi(data) {
+//   return axios
+//     .post(`${LOCAL_HOST}sign-up`, data)
+//     .then(response => {
+//       const message = 'Valid';
+//       return {
+//         message
+//       };
+//     })
+//     .catch(error => {
+//       const errorMessage = error.response.data.message;
+//       return { errorMessage };
+//     });
+// }
 
 function loginApi(data) {
   return axios
@@ -50,16 +47,35 @@ function loginApi(data) {
     });
 }
 
-function* sign({ data }) {
-  const { message, errorMessage } = yield call(signApi, data);
-  if (message) {
+// function* signOut({ data }) {
+//   const { reresultMessage, errorMessage } = yield call(callApi, {
+//     url: 'sign-out',
+//     method: 'delete',
+//     data: data
+//   });
+//   if (reresultMessage) {
+//     console.log(reresultMessage);
+//     const message = 'LogoutSuccess';
+//     yield put(actions.logoutSuccess(message));
+//   }
+// }
+
+function* signUp({ data }) {
+  // const { message, errorMessage } = yield call(signApi, data);
+  const { reresultMessage, errorMessage } = yield call(callApi, {
+    url: 'sign-up',
+    method: 'post',
+    data: data
+  });
+  if (reresultMessage) {
+    const message = 'Valid';
     yield put(actions.signSuccess(message));
   } else {
     yield put(actions.signFail(errorMessage));
   }
 }
 
-function* login({ data }) {
+function* signIn({ data }) {
   const { userData, errorMessage } = yield call(loginApi, data);
   if (userData) {
     yield put(actions.loginSuccess(userData));
@@ -69,6 +85,7 @@ function* login({ data }) {
 }
 
 export default function* watchSign() {
-  yield takeEvery(Types.SignRequest, sign);
-  yield takeEvery(Types.LoginRequest, login);
+  yield takeEvery(Types.SignRequest, signUp);
+  yield takeEvery(Types.LoginRequest, signIn);
+  // yield takeEvery(Types.LogoutRequest, signOut);
 }

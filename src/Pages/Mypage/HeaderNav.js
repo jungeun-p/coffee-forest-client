@@ -3,14 +3,22 @@ import styled, { css } from 'styled-components';
 import { useLocation, Link } from 'react-router-dom';
 import { categories } from '../../Lib/CategoryNavName';
 import mainLogo from '../../assets/Img/logo/mainLogo.png';
-// import { useSelector } from 'react-redux';
-// import basicProfile from '../../assets/Img/profile/basicProfile.png';
+import { signOut } from '../../Hooks/auth';
+import { useDispatch } from 'react-redux';
+import { actions } from '../../Store/user';
 
 const HeaderNav = () => {
+  const dispatch = useDispatch();
+
+  const Logout = () => {
+    signOut();
+    const logout = localStorage.getItem('logout');
+    dispatch(actions.logoutSuccess(logout));
+  };
+
   const pathName = useLocation().pathname;
   return (
     <HeaderWrapper>
-      {/* <div>🧩</div> */}
       <Logo className="logo" src={mainLogo} />
       <CategoryWrapper>
         {categories.map((cate, index) => (
@@ -22,13 +30,11 @@ const HeaderNav = () => {
             <CategoryName>
               <i className={cate.class}></i>
             </CategoryName>
-            {/* <CategoryBar selected={pathName === cate.router ? true : false} /> */}
           </Category>
         ))}
       </CategoryWrapper>
-      {/* <Logo className="logo" src={mainLogo} /> */}
-      <div className="logo" id="signout">
-        <i className="fas fa-share-square"></i>
+      <div className="logo" id="signout" onClick={Logout}>
+        <i className="fas fa-share-square" />
       </div>
     </HeaderWrapper>
   );

@@ -1,6 +1,9 @@
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import Cookies from 'universal-cookie/es6';
 import { LOCAL_HOST } from '../Lib/constant';
+import { actions } from '../Store/user';
 
 const cookies = new Cookies();
 
@@ -27,10 +30,18 @@ export function getAccessToken() {
         accessToken
       };
     })
-    .catch(error => console.log(error.response.data));
+    .catch(error => console.log('error'));
 }
 
 // accessToken request header 설정
 export function setAccessToken(accessToken) {
   axios.defaults.headers.common['Authorization'] = accessToken;
+}
+
+export function signOut() {
+  window.localStorage.setItem('logout', Date.now().toString());
+  window.localStorage.removeItem('userIndex');
+  window.localStorage.removeItem('companyIndex');
+  cookies.remove('refreshToken');
+  console.log('this is logout');
 }
