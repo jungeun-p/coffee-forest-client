@@ -2,17 +2,18 @@ import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { ListDetail } from '../../Components/List';
-// import { ListDetail } from '../../Components/List';
 import { actions as adminActions } from '../../Store/admin';
+
 const AdminDetail = ({ match }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const index = match.params.index;
   const { dataDetail } = useSelector(state => state.admin);
+  const { status } = useSelector(state => state.auth);
 
   useEffect(() => {
     dispatch(adminActions.applicantDetail(index));
-  }, [dispatch, index]);
+  }, [status, index]);
 
   const onAccept = useCallback(() => {
     const acceptForm = {

@@ -53,10 +53,10 @@ const INITIAL_STATE = {
     address: null,
     position: null,
     profileImage: null,
-    companyIndex: 0,
+    companyIndex: null,
     companyName: null,
-    workApplicantStatus: 'UNKNOWN',
-    companyApplicantStatus: 'UNKNOWN'
+    workApplicantStatus: null,
+    companyApplicantStatus: null
   },
   userProfile: null
 };

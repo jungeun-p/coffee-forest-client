@@ -11,9 +11,9 @@ export const Types = {
 
 export const actions = {
   applicantList: () => ({ type: Types.ApplicantList }),
-  applicationListSuccess: dataList => ({
+  applicationListSuccess: data => ({
     type: Types.ApplicantListSuccess,
-    dataList
+    data
   }),
   applicantDetail: index => ({ type: Types.ApplicantDetail, index }),
   applicantDetailSuccess: dataDetail => ({
@@ -31,7 +31,7 @@ const INITIAL_STATE = {
 };
 const reducer = createReducer(INITIAL_STATE, {
   [Types.ApplicantListSuccess]: (state, action) =>
-    (state.dataList = action.dataList),
+    (state.dataList = action.data),
   [Types.ApplicantDetailSuccess]: (state, action) =>
     (state.dataDetail = action.dataDetail),
   [Types.AcceptSuccess]: (state, action) => (state.accept = 'accept')

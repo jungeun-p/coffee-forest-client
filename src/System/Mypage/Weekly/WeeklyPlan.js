@@ -13,7 +13,6 @@ const WeeklyPlan = () => {
   const thisWeekDate = AddThisWeek();
   const { date, scheduleStatus } = useSelector(state => state.schedule);
   const { status } = useSelector(state => state.auth);
-  const { logoutToken } = useSelector(state => state.user);
   const companyIndex = localStorage.getItem('companyIndex');
   const userIndex = localStorage.getItem('userIndex');
 
@@ -58,7 +57,12 @@ const WeeklyPlan = () => {
       startDate: thisWeekDate[0].date
     };
     dispatch(scheduleActions.scheduleWeeklyRequest(index));
-  }, [status, scheduleStatus]);
+  }, [
+    status,
+    date.scheduleInfo.endTime,
+    date.scheduleInfo.startTime,
+    scheduleStatus
+  ]);
 
   return (
     <div>

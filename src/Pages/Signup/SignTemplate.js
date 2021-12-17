@@ -3,10 +3,12 @@ import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
 import { TitleB } from '../../Components/Common';
 import { InputCommon, InputTitleS } from '../../Components/Input';
+import numberFormatter from '../../Hooks/numberFormat';
 
 const SignTemplate = ({
   user,
   onChange,
+  numberChange,
   onClick,
   ValidateEmail,
   validEmail,
@@ -44,9 +46,10 @@ const SignTemplate = ({
     {
       index: 4,
       name: 'phone',
-      onChange: onChange,
+      onChange: numberChange,
       value: user.phone,
-      placeholder: '전화번호'
+      placeholder: '전화번호',
+      placeholderTitle: '000-0000-0000'
     },
     {
       index: 5,
@@ -56,6 +59,7 @@ const SignTemplate = ({
       placeholder: '주소'
     }
   ];
+
   return (
     <SignForm>
       <TitleB>회원 가입</TitleB>
@@ -65,7 +69,9 @@ const SignTemplate = ({
           <InputCommon
             key={index}
             name={cate.name}
+            value={cate.value}
             placeholder={cate.placeholder}
+            placeholderTitle={cate.placeholderTitle}
             onChange={cate.onChange}
             onBlur={cate?.onBlur}
             validEmail={cate?.validEmail}

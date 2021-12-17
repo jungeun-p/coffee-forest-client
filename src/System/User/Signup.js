@@ -5,9 +5,9 @@ import SignTemplate from '../../Pages/Signup/SignTemplate';
 import { actions as userActions } from '../../Store/user';
 import { actions as validActions } from '../../Store/validation';
 import CheckForm from '../../Hooks/CheckForm';
+import numberFormatter from '../../Hooks/numberFormat';
 
 const Signup = () => {
-  // const history = useHistory();
   const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: '',
@@ -24,6 +24,10 @@ const Signup = () => {
   const onChange = e => {
     const { name, value } = e.target;
     setUser(state => ({ ...state, [name]: value }));
+  };
+  const numberChange = e => {
+    const phone = numberFormatter(e.target.value, 'phone');
+    setUser({ ...user, phone: phone });
   };
 
   // 이메일, 비밀번호 형식 검사
@@ -80,10 +84,8 @@ const Signup = () => {
         phone: user.phone,
         address: user.address
       };
-      // redux-saga로 dispatch(action, data) 전달
       dispatch(userActions.signRequest(data));
       alert('가입이 완료 되었습니다.');
-      // history.push('/');
       window.location.replace('/');
     } else {
       alert('정확히 작성해주세요.');
@@ -98,6 +100,7 @@ const Signup = () => {
     <SignTemplate
       user={user}
       onChange={onChange}
+      numberChange={numberChange}
       onClick={onClick}
       ValidateEmail={ValidateEmail}
       validEmail={validEmail}

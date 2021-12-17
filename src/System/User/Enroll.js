@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import ButtonSelect from '../../Components/Button/ButtonSelect';
+import numberFormatter from '../../Hooks/numberFormat';
 import EnrollEmployee from '../../Pages/Enroll/EnrollEmployee';
 import EnrollOffice from '../../Pages/Enroll/EnrollOffice';
 import { actions as enrollActions } from '../../Store/enroll';
@@ -10,44 +10,42 @@ import { actions as validActions } from '../../Store/validation';
 
 const Enroll = () => {
   const [office, setOffice] = useState({
-    name: '',
-    address: '',
-    businessNumber: ''
+    name: null,
+    address: null,
+    businessNumber: '1'
   });
   const [full, setFull] = useState(false);
   const [tab, setTab] = useState({ activeId: 0 });
-
-  const { userIndex } = useSelector(state => state.user.userData);
+  const dispatch = useDispatch();
+  // const { userIndex } = useSelector(state => state.user.userData);
+  const userIndex = localStorage.getItem('userIndex');
   // 양식 불가 : Invalid Business Number Format
   // 가능 번호 : Available
   const { validNumber } = useSelector(state => state.validation);
   // 신청 완료 : WAIT
   // 기본 상태값 : YET
   // 사업자 번호 중복(error) : Already Exists
+
   const { enrollEmployee, enrollCompany, companyList } = useSelector(
     state => state.enroll
   );
-  const history = useHistory();
-  const dispatch = useDispatch();
 
   const onChange = e => {
     const { name, value } = e.target;
     setOffice({ ...office, [name]: value });
   };
+  const numberChange = e => {
+    const businessNumber = numberFormatter(e.target.value, 'businessNumber');
+    setOffice({ ...office, businessNumber: businessNumber });
+  };
 
-  const inputFull = useCallback(() => {
-    if (
-      validNumber === 'Available' &&
-      // enrollData?.companyApplicantStatus === 'WAIT' &&
-      office.name !== '' &&
-      office.address !== '' &&
-      office.businessNumber !== ''
-    ) {
+  const inputFull = () => {
+    if (validNumber === 'Available' && office.name && office.address) {
       setFull(true);
     } else {
       setFull(false);
     }
-  }, [office.address, office.businessNumber, office.name, validNumber]);
+  };
 
   // 사업자 번호 포맷 검사 api
   const ValidateBusinessNumber = useCallback(() => {
@@ -62,36 +60,31 @@ const Enroll = () => {
   }, [dispatch, office.businessNumber]);
 
   // 회사 등록 신청 api
-  const applyCompany = useCallback(() => {
+  const applyCompany = () => {
     if (full === true) {
       const data = {
-        userIndex: userIndex,
+        userIndex,
         name: office.name,
         address: office.address,
         businessNumber: office.businessNumber
       };
       dispatch(enrollActions.enrollRequestCompany(data));
+    } else {
+      alert('모두 기입해주세요.');
     }
-  }, [
-    dispatch,
-    full,
-    office.address,
-    office.businessNumber,
-    office.name,
-    userIndex
-  ]);
+  };
 
   // 등록된 회사 출력 api
   const LoadCompany = useCallback(() => {
     dispatch(enrollActions.enrollCompanyList());
   }, [office.name]);
 
-  // 사원 신청 api
+  // 사원 신청 api -> 추후 변경하기
   const applyEmployee = useCallback(() => {
     if (office.name !== '') {
       const data = {
         companyIndex: 2,
-        userIndex: userIndex
+        userIndex
       };
       console.log(data);
       dispatch(enrollActions.enrollRequestEmployee(data));
@@ -102,23 +95,19 @@ const Enroll = () => {
     inputFull();
     if (enrollCompany?.companyApplicantStatus === 'WAIT') {
       alert('등록 완료');
-      history.push('/');
+      window.location.replace('/');
     } else if (enrollEmployee?.workStatus === 'WAITING') {
       alert('신청 완료');
-      history.push('/');
+      window.location.replace('/');
     }
-  }, [
-    enrollCompany?.companyApplicantStatus,
-    enrollEmployee.workStatus,
-    history,
-    inputFull,
-    companyList
-  ]);
+  }, [validNumber, office, full, enrollCompany, enrollEmployee]);
 
   const obj = {
     0: (
       <EnrollOffice
+        office={office}
         onChange={onChange}
+        numberChange={numberChange}
         applyCompany={applyCompany}
         ValidateBusinessNumber={ValidateBusinessNumber}
         validNumber={validNumber}

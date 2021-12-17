@@ -51,6 +51,7 @@ const InformationBox = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: wrap;
 `;
 
 const ButtonWrap = styled.div`
@@ -59,14 +60,15 @@ const ButtonWrap = styled.div`
 
 const ProfileImg = styled.img`
   width: 50px;
+  margin-right: 25px;
 `;
 
 const Information = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
+  flex-wrap: wrap;
   .profiledetail {
-    margin-left: 25px;
     .name {
       font-size: 12px;
       line-height: 16px;

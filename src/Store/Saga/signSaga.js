@@ -8,21 +8,6 @@ import { callApi } from '../../util/api';
 
 const cookies = new Cookies();
 
-// function signApi(data) {
-//   return axios
-//     .post(`${LOCAL_HOST}sign-up`, data)
-//     .then(response => {
-//       const message = 'Valid';
-//       return {
-//         message
-//       };
-//     })
-//     .catch(error => {
-//       const errorMessage = error.response.data.message;
-//       return { errorMessage };
-//     });
-// }
-
 function loginApi(data) {
   return axios
     .post(`${LOCAL_HOST}sign-in`, data)
@@ -36,6 +21,11 @@ function loginApi(data) {
       // Index Info 로컬에 저장
       localStorage.setItem('userIndex', userTokenInfo.userIndex);
       localStorage.setItem('companyIndex', userData.companyIndex);
+      // localStorage.setItem(
+      //   'companyApplicantStatus',
+      //   userData.companyApplicantStatus
+      // );
+      // localStorage.setItem('workApplicantStatus', userData.workApplicantStatus);
       setAccessToken(userTokenInfo.accessToken);
       return {
         userData
@@ -47,21 +37,7 @@ function loginApi(data) {
     });
 }
 
-// function* signOut({ data }) {
-//   const { reresultMessage, errorMessage } = yield call(callApi, {
-//     url: 'sign-out',
-//     method: 'delete',
-//     data: data
-//   });
-//   if (reresultMessage) {
-//     console.log(reresultMessage);
-//     const message = 'LogoutSuccess';
-//     yield put(actions.logoutSuccess(message));
-//   }
-// }
-
 function* signUp({ data }) {
-  // const { message, errorMessage } = yield call(signApi, data);
   const { reresultMessage, errorMessage } = yield call(callApi, {
     url: 'sign-up',
     method: 'post',
@@ -87,5 +63,4 @@ function* signIn({ data }) {
 export default function* watchSign() {
   yield takeEvery(Types.SignRequest, signUp);
   yield takeEvery(Types.LoginRequest, signIn);
-  // yield takeEvery(Types.LogoutRequest, signOut);
 }

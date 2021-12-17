@@ -8,10 +8,7 @@ const Admin = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { dataList } = useSelector(state => state.admin);
-
-  // const LoadList = useCallback(() => {
-  //   dispatch(adminActions.applicantList());
-  // }, []);
+  const { status } = useSelector(state => state.auth);
 
   const LoadDetail = index => {
     if (dataList.map(item => item.index === index)) {
@@ -21,7 +18,7 @@ const Admin = () => {
 
   useEffect(() => {
     dispatch(adminActions.applicantList());
-  }, []);
+  }, [status]);
 
   return (
     <>
