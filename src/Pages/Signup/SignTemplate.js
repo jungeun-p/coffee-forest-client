@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
 import { TitleB } from '../../Components/Common';
 import { InputCommon, InputTitleS } from '../../Components/Input';
-import numberFormatter from '../../Hooks/numberFormat';
 
 const SignTemplate = ({
   user,

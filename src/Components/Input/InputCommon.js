@@ -12,6 +12,7 @@ const InputCommon = ({
   onChange,
   onBlur,
   type,
+  disabled,
   validEmail,
   validNumber,
   companyApplicantStatus,
@@ -31,6 +32,7 @@ const InputCommon = ({
           onBlur={onBlur}
           onChange={onChange}
           type={type}
+          disabled={disabled}
         />
       </InputWrap>
       {validEmail && (
@@ -88,7 +90,6 @@ const InputTitle = styled.div`
 const Input = styled.input`
   /* width: 320px; */
   width: ${props => props.width};
-
   height: 30px;
   border: none;
   border-radius: 10px;
@@ -103,6 +104,9 @@ const Input = styled.input`
   padding: 20px 0 8px 12px;
   /* margin-top: 20px; */
   ::placeholder {
+    color: #d9dbce;
+  }
+  :disabled {
     color: #d9dbce;
   }
 `;

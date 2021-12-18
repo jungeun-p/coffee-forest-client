@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
 import { TitleB } from '../../Components/Common';
 import { InputCommon, InputTitleS } from '../../Components/Input';
 
-const ManageWorkPage = ({ onChange, setting, UpdateCompany }) => {
+const ManageWorkPage = ({ onChange, onChecked, setting, UpdateCompany }) => {
   return (
     <SettingForm>
       <WorkInformation>
@@ -46,7 +46,11 @@ const ManageWorkPage = ({ onChange, setting, UpdateCompany }) => {
         </div>
         <div className="article flexible">
           <div className="title">
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              onChange={onChecked}
+              checked={setting.flexibleState}
+            />
             <InputTitleS title="탄력 근무제" />
           </div>
           <div className="line">
@@ -56,6 +60,7 @@ const ManageWorkPage = ({ onChange, setting, UpdateCompany }) => {
               value={setting.flexibleWorkStartTime}
               onChange={onChange}
               placeholder="출근 선택 시작 시간"
+              disabled={!setting.flexibleState}
             />
             <InputCommon
               width="half"
@@ -63,6 +68,7 @@ const ManageWorkPage = ({ onChange, setting, UpdateCompany }) => {
               value={setting.flexibleWorkEndTime}
               onChange={onChange}
               placeholder="퇴근 선택 마감 시간"
+              disabled={!setting.flexibleState}
             />
           </div>
         </div>

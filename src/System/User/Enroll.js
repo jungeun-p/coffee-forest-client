@@ -10,9 +10,9 @@ import { actions as validActions } from '../../Store/validation';
 
 const Enroll = () => {
   const [office, setOffice] = useState({
-    name: null,
-    address: null,
-    businessNumber: '1'
+    name: '',
+    address: '',
+    businessNumber: ''
   });
   const [full, setFull] = useState(false);
   const [tab, setTab] = useState({ activeId: 0 });
@@ -80,18 +80,18 @@ const Enroll = () => {
   }, [office.name]);
 
   // 사원 신청 api -> 추후 변경하기
-  const applyEmployee = useCallback(() => {
+  const applyEmployee = () => {
     if (office.name !== '') {
       const data = {
         companyIndex: 2,
         userIndex
       };
-      console.log(data);
       dispatch(enrollActions.enrollRequestEmployee(data));
     }
-  }, [dispatch, userIndex, office.name]);
+  };
 
   useEffect(() => {
+    console.log(companyList);
     inputFull();
     if (enrollCompany?.companyApplicantStatus === 'WAIT') {
       alert('등록 완료');

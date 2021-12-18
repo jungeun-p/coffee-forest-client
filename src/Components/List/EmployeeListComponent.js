@@ -7,7 +7,7 @@ import { InputCommon } from '../Input';
 import { ButtonCommonS } from '../Button';
 
 const EmployeeListArticle = ({
-  LoadDetail,
+  // LoadDetail,
   updateEmployee,
   name,
   profileImage,
@@ -23,7 +23,9 @@ const EmployeeListArticle = ({
     setView(!view ? true : false);
   };
   return (
-    <ListWrap onClick={LoadDetail}>
+    <ListWrap
+    //onClick={LoadDetail}
+    >
       <InformationWrap
         onView={onView}
         view={view}
@@ -139,14 +141,14 @@ const ManageForm = ({
             name="workStartTime"
             onChange={onChange}
             value={employee.workStartTime}
-            width="123px"
+            // width="123px"
             placeholder="출근 시간"
           />
           <InputCommon
             name="workEndTime"
             onChange={onChange}
             value={employee.workEndTime}
-            width="123px"
+            // width="123px"
             placeholder="퇴근 시간"
           />
         </div>
@@ -192,11 +194,11 @@ const FlexibleForm = styled.div`
     }
   }
   .time {
-    width: 280px;
-    display: flex;
+    /* width: 280px; */
+    /* display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; */
   }
   .button {
     display: flex;

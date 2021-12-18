@@ -6,45 +6,44 @@ import { actions as employeeActions } from '../../../Store/employee';
 
 const ManageEmployee = () => {
   const [employee, setEmployee] = useState({
-    flexibleState: '',
-    workStartTime: '',
+    userIndex: '',
+    fullDayOffCount: '',
+    flexibleState: false,
     workEndTime: '',
-    fullDayOffCount: ''
+    workStartTime: ''
   });
   const dispatch = useDispatch();
-  const history = useHistory();
-  const { companyIndex, userIndex } = useSelector(state => state.user.userData);
+  const userIndex = localStorage.getItem('userIndex');
+  const companyIndex = localStorage.getItem('companyIndex');
   const { employeeList } = useSelector(state => state.employee);
+
+  // 사원 리스트 api
+  useEffect(() => {
+    const index = {
+      // userIndex: '',
+      companyIndex
+    };
+    dispatch(employeeActions.listEmployee(index));
+    console.log(employee);
+  }, [employee.userIndex]);
 
   const onChange = e => {
     const { name, value } = e.target;
     setEmployee({ ...employee, [name]: value });
   };
 
-  // 사원 리스트 api
-  useEffect(() => {
-    if (companyIndex) {
-      const index = {
-        userIndex: '',
-        companyIndex: companyIndex
-      };
-      dispatch(employeeActions.listEmployee(index));
-    }
-    // setEmployee({ ...employee.employeeList, employeeList });
-  }, [dispatch]);
-
-  // 사원 리스트 디테일
-  const LoadDetail = index => {
-    if (employeeList.map(item => item.userIndex === index)) {
-      history.push(`/manage/${index}`);
-    }
-  };
+  // // 사원 리스트 디테일
+  // const LoadDetail = index => {
+  //   if (employeeList.map(item => item.userIndex === index)) {
+  //     history.push(`/manage/${index}`);
+  //   }
+  // };
 
   // 사원 정보 수정 api
   const updateEmployee = useCallback(() => {
     const employeeData = {
       adminIndex: userIndex,
-      companyIndex: companyIndex,
+      companyIndex,
       userIndex: 4,
       flexibleState: true,
       workStartTime: employee.workStartTime,
@@ -52,13 +51,13 @@ const ManageEmployee = () => {
       fullDayOffCount: employee.fullDayOffCount
     };
     dispatch(employeeActions.updateEmployee(employeeData));
-  }, [dispatch]);
+  }, []);
 
   return (
     <div>
       <ManageEmployeePage
         onChange={onChange}
-        LoadDetail={LoadDetail}
+        // LoadDetail={LoadDetail}
         updateEmployee={updateEmployee}
         employee={employee}
         employeeList={employeeList}

@@ -1,46 +1,48 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ManageWorkPage from '../../../Pages/Setting/ManageWorkPage';
 import { actions as companyActions } from '../../../Store/company';
 
 const ManageWork = () => {
-  const { companyIndex, userIndex } = useSelector(state => state.user.userData);
+  const companyIndex = localStorage.getItem('companyIndex');
+  const userIndex = localStorage.getItem('userIndex');
   const { companyEnvironment } = useSelector(state => state.company);
   const dispatch = useDispatch();
 
-  const LoadCompanySetting = useCallback(() => {
-    dispatch(companyActions.requestCompany(companyIndex));
-  }, [companyIndex, dispatch]);
+  const [setting, setSetting] = useState({
+    workStartTime: '',
+    workEndTime: '',
+    lunchStartTime: '',
+    lunchEndTime: '',
+    flexibleState: false,
+    flexibleWorkStartTime: '',
+    flexibleWorkEndTime: '',
+    fullDayOffUpperYear: '',
+    fullDayOffUnderYear: '',
+    morningDayOffStartTime: '',
+    morningDayOffEndTime: '',
+    afternoonDayOffStartTime: '',
+    afternoonDayOffEndTime: ''
+  });
 
   useEffect(() => {
-    LoadCompanySetting();
-  }, [dispatch]);
-
-  const [setting, setSetting] = useState({
-    workStartTime: companyEnvironment?.workStartTime,
-    workEndTime: companyEnvironment?.workEndTime,
-    lunchStartTime: companyEnvironment?.lunchStartTime,
-    lunchEndTime: companyEnvironment?.lunchEndTime,
-    flexibleState: companyEnvironment?.flexibleState,
-    flexibleWorkStartTime: companyEnvironment?.flexibleWorkStartTime,
-    flexibleWorkEndTime: companyEnvironment?.flexibleWorkEndTime,
-    fullDayOffUpperYear: companyEnvironment?.fullDayOffUpperYear,
-    fullDayOffUnderYear: companyEnvironment?.fullDayOffUnderYear,
-    morningDayOffStartTime: companyEnvironment?.morningDayOffStartTime,
-    morningDayOffEndTime: companyEnvironment?.morningDayOffEndTime,
-    afternoonDayOffStartTime: companyEnvironment?.afternoonDayOffStartTime,
-    afternoonDayOffEndTime: companyEnvironment?.afternoonDayOffEndTime
-  });
-  console.log(setting);
+    if (companyIndex) dispatch(companyActions.requestCompany(companyIndex));
+    if (companyEnvironment) setSetting(companyEnvironment);
+  }, []);
 
   const onChange = e => {
     const { name, value } = e.target;
     setSetting(state => ({ ...state, [name]: value }));
   };
+
+  const onChecked = e => {
+    const { checked } = e.target;
+    setSetting(state => ({ ...state, flexibleState: checked }));
+  };
   const UpdateCompany = () => {
     const companySetting = {
-      userIndex: userIndex,
-      companyIndex: companyIndex,
+      userIndex,
+      companyIndex,
       workStartTime: setting.workStartTime,
       workEndTime: setting.workEndTime,
       lunchStartTime: setting.lunchStartTime,
@@ -61,6 +63,7 @@ const ManageWork = () => {
   return (
     <ManageWorkPage
       onChange={onChange}
+      onChecked={onChecked}
       setting={setting}
       UpdateCompany={UpdateCompany}
     />
