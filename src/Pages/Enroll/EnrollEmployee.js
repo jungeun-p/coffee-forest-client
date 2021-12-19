@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import styled from 'styled-components';
 import { ButtonCommon } from '../../Components/Button';
 // import { InputCommon } from '../../Components/Input';
 import { AutoComplete } from '../../Components/Select';
 
 const EnrollEmployee = ({
-  office,
+  employee,
+  setEmployee,
   companyList,
   LoadCompany,
   onChange,
@@ -15,16 +16,28 @@ const EnrollEmployee = ({
     LoadCompany();
   }, [LoadCompany]);
 
+  const selectCompany = useCallback(
+    (index, name) => {
+      setEmployee(state => ({
+        ...state,
+        companyName: name,
+        companyIndex: index
+      }));
+    },
+    [employee.companyIndex]
+  );
+
   return (
     <EnrollForm>
       <EnrollInformation>
-        {/* <InputCommon name="name" onChange={onChange} placeholder="회사명" /> */}
         <AutoComplete
           title="회사명"
-          view={office.name}
+          employee={employee}
+          view={employee.companyName}
           companyList={companyList}
-          name="name"
+          name="companyName"
           onChange={onChange}
+          selectCompany={selectCompany}
         />
       </EnrollInformation>
       <ButtonCommon onClick={applyEmployee} title="등록하기" />

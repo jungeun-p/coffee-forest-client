@@ -9,15 +9,22 @@ import { actions as enrollActions } from '../../Store/enroll';
 import { actions as validActions } from '../../Store/validation';
 
 const Enroll = () => {
+  // EnrollOffice
   const [office, setOffice] = useState({
     name: '',
     address: '',
     businessNumber: ''
   });
+  // EnrollEmployee
+  const [employee, setEmployee] = useState({
+    companyIndex: '',
+    companyName: '',
+    companyAddress: ''
+  });
+
   const [full, setFull] = useState(false);
   const [tab, setTab] = useState({ activeId: 0 });
   const dispatch = useDispatch();
-  // const { userIndex } = useSelector(state => state.user.userData);
   const userIndex = localStorage.getItem('userIndex');
   // 양식 불가 : Invalid Business Number Format
   // 가능 번호 : Available
@@ -33,7 +40,10 @@ const Enroll = () => {
   const onChange = e => {
     const { name, value } = e.target;
     setOffice({ ...office, [name]: value });
+    setEmployee({ ...employee, [name]: value });
   };
+
+  // 사업자 번호 자동 하이픈 처리
   const numberChange = e => {
     const businessNumber = numberFormatter(e.target.value, 'businessNumber');
     setOffice({ ...office, businessNumber: businessNumber });
@@ -81,9 +91,9 @@ const Enroll = () => {
 
   // 사원 신청 api -> 추후 변경하기
   const applyEmployee = () => {
-    if (office.name !== '') {
+    if (employee.companyName !== '') {
       const data = {
-        companyIndex: 2,
+        companyIndex: employee.companyIndex,
         userIndex
       };
       dispatch(enrollActions.enrollRequestEmployee(data));
@@ -91,7 +101,6 @@ const Enroll = () => {
   };
 
   useEffect(() => {
-    console.log(companyList);
     inputFull();
     if (enrollCompany?.companyApplicantStatus === 'WAIT') {
       alert('등록 완료');
@@ -116,7 +125,8 @@ const Enroll = () => {
     ),
     1: (
       <EnrollEmployee
-        office={office}
+        employee={employee}
+        setEmployee={setEmployee}
         companyList={companyList}
         LoadCompany={LoadCompany}
         onChange={onChange}
@@ -124,9 +134,11 @@ const Enroll = () => {
       />
     )
   };
+
   const clickHandler = id => {
     setTab({ activeId: id });
   };
+
   return (
     <>
       <CategoryWrap>
